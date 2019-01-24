@@ -34,7 +34,7 @@ public class Grasper implements IGrasper{
 	static final int RELEASE_DISTANCE_INCHES = 17;
 	
 	BaseMotorController grasperLeft , grasperRight; 
-	Ultrasonic Ultrasonic;
+	Ultrasonic ultrasonic;
 	
 	// shared grasp and release settings
 	private int onTargetCount; // counter indicating how many times/iterations we were on target
@@ -77,10 +77,10 @@ public class Grasper implements IGrasper{
 		setNominalAndPeakOutputs(MAX_PCT_OUTPUT);
 	}
 	
-	public Grasper(BaseMotorController grasperLeft_in, BaseMotorController grasperRight_in, Ultrasonic Ultrasonic_in, Robot robot_in) {
+	public Grasper(BaseMotorController grasperLeft_in, BaseMotorController grasperRight_in, Ultrasonic ultrasonic_in, Robot robot_in) {
 		this(grasperLeft_in, grasperRight_in, robot_in);
 		
-		Ultrasonic = Ultrasonic_in;
+		ultrasonic = ultrasonic_in;
 	}
 	
 
@@ -131,9 +131,9 @@ public class Grasper implements IGrasper{
 	}
 	
 	public boolean tripleCheckGraspUsingUltrasonic() {
-		if (Ultrasonic != null && isGrasping) {
+		if (ultrasonic != null && isGrasping) {
 						
-			boolean isOnTarget = Ultrasonic.getRangeInches() < GRASP_DISTANCE_INCHES;
+			boolean isOnTarget = ultrasonic.getRangeInches() < GRASP_DISTANCE_INCHES;
 			
 			if (isOnTarget) { // if we are on target in this iteration 
 				onTargetCount++; // we increase the counter
@@ -182,9 +182,9 @@ public class Grasper implements IGrasper{
 	}
 	
 	public boolean tripleCheckReleaseUsingUltrasonic() {
-		if (Ultrasonic != null && isReleasing) {
+		if (ultrasonic != null && isReleasing) {
 						
-			boolean isOnTarget = Ultrasonic.getRangeInches() > RELEASE_DISTANCE_INCHES;
+			boolean isOnTarget = ultrasonic.getRangeInches() > RELEASE_DISTANCE_INCHES;
 			
 			if (isOnTarget) { // if we are on target in this iteration 
 				onTargetCount++; // we increase the counter
