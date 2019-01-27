@@ -2,12 +2,12 @@
  * 
  */
 package frc.robot;
+
 import java.util.Calendar;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.BaseMotorController;
-import edu.wpi.first.wpilibj.Ultrasonic;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Joystick;
@@ -34,7 +34,7 @@ public class Grasper implements IGrasper{
 	static final int RELEASE_DISTANCE_INCHES = 17;
 	
 	BaseMotorController grasperLeft , grasperRight; 
-	Ultrasonic ultrasonic;
+	Sonar sonar;
 	
 	// shared grasp and release settings
 	private int onTargetCount; // counter indicating how many times/iterations we were on target
@@ -77,10 +77,10 @@ public class Grasper implements IGrasper{
 		setNominalAndPeakOutputs(MAX_PCT_OUTPUT);
 	}
 	
-	public Grasper(BaseMotorController grasperLeft_in, BaseMotorController grasperRight_in, Ultrasonic ultrasonic_in, Robot robot_in) {
+	public Grasper(BaseMotorController grasperLeft_in, BaseMotorController grasperRight_in, Sonar sonar_in, Robot robot_in) {
 		this(grasperLeft_in, grasperRight_in, robot_in);
 		
-		ultrasonic = ultrasonic_in;
+		sonar = sonar_in;
 	}
 	
 
@@ -108,7 +108,7 @@ public class Grasper implements IGrasper{
 	}
 	
 	// do not use in teleop - for auton only
-	// This version does NOT rely on the Ultrasonic. Use only if Ultrasonic does not fulfill expectations.
+	// This version does NOT rely on the sonar. Use only if sonar does not fulfill expectations.
 	public void waitGraspOrRelease() {
 		long start = Calendar.getInstance().getTimeInMillis();
 
@@ -130,10 +130,10 @@ public class Grasper implements IGrasper{
 		}
 	}
 	
-	public boolean tripleCheckGraspUsingUltrasonic() {
-		if (ultrasonic != null && isGrasping) {
+	public boolean tripleCheckGraspUsingSonar() {
+		if (sonar != null && isGrasping) {
 						
-			boolean isOnTarget = ultrasonic.getRangeInches() < GRASP_DISTANCE_INCHES;
+			boolean isOnTarget = sonar.getRangeInInches() < GRASP_DISTANCE_INCHES;
 			
 			if (isOnTarget) { // if we are on target in this iteration 
 				onTargetCount++; // we increase the counter
@@ -143,7 +143,7 @@ public class Grasper implements IGrasper{
 					System.out.println("Triple-check failed (grasping).");
 				} else {
 					// we are definitely moving
-					//System.out.println("Grasping. Ultrasonic range: " + Ultrasonic.getRangeInInches());
+					//System.out.println("Grasping. Sonar range: " + sonar.getRangeInInches());
 				}
 			}
 			
@@ -160,10 +160,10 @@ public class Grasper implements IGrasper{
 	}
 	
 	// do not use in teleop - for auton only
-	public void waitGraspUsingUltrasonic() {
+	public void waitGraspUsingSonar() {
 		long start = Calendar.getInstance().getTimeInMillis();
 		
-		while (tripleCheckGraspUsingUltrasonic()) {
+		while (tripleCheckGraspUsingSonar()) {
 			if (!DriverStation.getInstance().isAutonomous()
 					|| Calendar.getInstance().getTimeInMillis() - start >= TIMEOUT_MS) {
 				System.out.println("You went over the time limit (grasping)");
@@ -181,10 +181,10 @@ public class Grasper implements IGrasper{
 		}
 	}
 	
-	public boolean tripleCheckReleaseUsingUltrasonic() {
-		if (ultrasonic != null && isReleasing) {
+	public boolean tripleCheckReleaseUsingSonar() {
+		if (sonar != null && isReleasing) {
 						
-			boolean isOnTarget = ultrasonic.getRangeInches() > RELEASE_DISTANCE_INCHES;
+			boolean isOnTarget = sonar.getRangeInInches() > RELEASE_DISTANCE_INCHES;
 			
 			if (isOnTarget) { // if we are on target in this iteration 
 				onTargetCount++; // we increase the counter
@@ -194,7 +194,7 @@ public class Grasper implements IGrasper{
 					System.out.println("Triple-check failed (releasing).");
 				} else {
 					// we are definitely moving
-					//System.out.println("Releasing. Ultrasonic range: " + Ultrasonic.getRangeInInches());
+					//System.out.println("Releasing. Sonar range: " + sonar.getRangeInInches());
 				}
 			}
 			
@@ -211,10 +211,10 @@ public class Grasper implements IGrasper{
 	}
 	
 	// do not use in teleop - for auton only
-	public void waitReleaseUsingUltrasonic() {
+	public void waitReleaseUsingSonar() {
 		long start = Calendar.getInstance().getTimeInMillis();
 		
-		while (tripleCheckReleaseUsingUltrasonic()) {
+		while (tripleCheckReleaseUsingSonar()) {
 			if (!DriverStation.getInstance().isAutonomous()
 					|| Calendar.getInstance().getTimeInMillis() - start >= TIMEOUT_MS) {
 				System.out.println("You went over the time limit (releasing)");
