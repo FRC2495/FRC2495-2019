@@ -69,12 +69,12 @@ public class Robot extends TimedRobot {
     System.out.println("Auto selected: " + m_autoSelected);
   }
 
-  /**
-   * This function is called periodically during autonomous.
-   */
-  @Override
-  public void autonomousPeriodic() {
-    switch (m_autoSelected) {
+	/**
+	 * This function is called periodically during autonomous.
+	 */
+	@Override
+	public void autonomousPeriodic() {
+		switch (m_autoSelected) {
       case kCustomAuto:
         // Put custom auto code here
         break;
@@ -83,7 +83,11 @@ public class Robot extends TimedRobot {
         // Put default auto code here
         break;
     }
-  }
+	}
+
+	@Override
+	public void teleopInit() {
+	}
 
   /**
    * This function is called periodically during operator control.
@@ -98,7 +102,15 @@ public class Robot extends TimedRobot {
   @Override
   public void testPeriodic() {
   }
+	
+	@Override
+	public void disabledInit() {
+	}
 
+	@Override
+	public void disabledPeriodic() {	
+  }
+  
   public void updateToSmartDash()
 	{
   }
