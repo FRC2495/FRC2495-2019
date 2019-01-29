@@ -1,7 +1,7 @@
 /**
  * 
  */
-package frc.robot;
+package frc.robot.subsystems;
 
 import java.util.Calendar;
 
@@ -11,6 +11,11 @@ import com.ctre.phoenix.motorcontrol.can.BaseMotorController;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Joystick;
+
+import frc.robot.interfaces.*;
+import frc.robot.sensors.Sonar;
+import frc.robot.Robot;
+
 /**
  * @author Joshua
  *

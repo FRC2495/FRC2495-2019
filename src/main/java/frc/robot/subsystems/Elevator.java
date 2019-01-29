@@ -1,4 +1,4 @@
-package frc.robot;
+package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Joystick;
@@ -11,6 +11,10 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import java.util.Calendar;
+
+import frc.robot.interfaces.*;
+import frc.robot.Robot;
+
 
 public class Elevator implements IElevator {
 	

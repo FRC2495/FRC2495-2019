@@ -1,4 +1,4 @@
-package frc.robot;
+package frc.robot.subsystems;
 
 import java.util.Calendar;
 
@@ -13,6 +13,10 @@ import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+
+import frc.robot.interfaces.*;
+import frc.robot.Robot;
+
 
 public class Drivetrain implements PIDOutput, IDrivetrain {
 
