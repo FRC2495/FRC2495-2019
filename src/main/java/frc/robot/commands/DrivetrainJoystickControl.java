@@ -12,7 +12,7 @@
 package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.ControllerBase;
+import frc.robot.ControllerBase.JoystickButtons;
 
 /**
  *
@@ -44,7 +44,8 @@ public class DrivetrainJoystickControl extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        Robot.drivetrain.joystickControl(null, null, false); // TODO
+        Robot.drivetrain.joystickControl(Robot.oi.getLeftJoystick(), Robot.oi.getRightJoystick(), 
+            Robot.oi.getLeftJoystick().getRawButton(JoystickButtons.BTN1) || Robot.oi.getRightJoystick().getRawButton(JoystickButtons.BTN1));
     }
 
     // Make this return true when this Command no longer needs to run execute()

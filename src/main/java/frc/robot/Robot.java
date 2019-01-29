@@ -7,9 +7,9 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.DriverStation;
+//import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.command.Command;
+//import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -20,11 +20,12 @@ import com.ctre.phoenix.motorcontrol.can.BaseMotorController;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
-import frc.robot.interfaces.*;
+//import frc.robot.interfaces.*;
 import frc.robot.sensors.*;
-import frc.robot.commands.*;
+//import frc.robot.commands.*;
 import frc.robot.subsystems.*;
-import frc.robot.util.*;
+//import frc.robot.util.*;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -36,11 +37,13 @@ import frc.robot.util.*;
 public class Robot extends TimedRobot {
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
-  	// IMPORTANT MAKE SURE THAT THIS CONSTANT IS SET TO TRUE IF USING COMPETITION BOT!
+
+  // IMPORTANT MAKE SURE THAT THIS CONSTANT IS SET TO TRUE IF USING COMPETITION BOT!
 	// use this constant to switch between competition and practice bot
   public static final boolean COMPETITION_BOT_CONFIG = true;
 
-	//public static OI oi;
+  public static OI oi;
+  
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
@@ -72,7 +75,9 @@ public class Robot extends TimedRobot {
 	public static /*I*/Grasper grasper;
 	
 	BaseMotorController grasperLeft;
-	BaseMotorController grasperRight;
+  BaseMotorController grasperRight;
+  
+
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
@@ -92,7 +97,7 @@ public class Robot extends TimedRobot {
 		gyro.calibrate(); 
 		gyro.reset();
 
-		camera = new HMCamera("GRIP/myContoursReport");
+		camera = new HMCamera("GRIP/myContoursReport"); // TODO switch to Limelight
 
 		accelerometer = new HMAccelerometer();
 
@@ -109,12 +114,13 @@ public class Robot extends TimedRobot {
 		grasperRight = new WPI_VictorSPX(Ports.CAN.GRASPER_RIGHT);
 
 		grasper = new Grasper(grasperLeft, grasperRight, sonar, this);
-		
+    
+    
 		// OI must be constructed after subsystems. If the OI creates Commands
 		//(which it very likely will), subsystems are not guaranteed to be
 		// constructed yet. Thus, their requires() statements may grab null
 		// pointers. Bad news. Don't move it.
-    //oi = new OI();
+    oi = new OI();
   } 
 
   /**
