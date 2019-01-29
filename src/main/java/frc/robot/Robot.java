@@ -7,9 +7,24 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+
+import com.ctre.phoenix.motorcontrol.can.BaseMotorController;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+
+import frc.robot.interfaces.*;
+import frc.robot.sensors.*;
+import frc.robot.commands.*;
+import frc.robot.subsystems.*;
+import frc.robot.util.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -28,6 +43,35 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
+
+	// sensors
+	
+	HMCamera camera;
+	
+	public static ADXRS450_Gyro gyro; // gyro
+	boolean hasGyroBeenManuallyCalibratedAtLeastOnce = false;
+	
+	Sonar sonar;
+	
+	HMAccelerometer accelerometer;
+	
+	// motorized devices
+	
+	public static /*I*/Drivetrain drivetrain;
+
+	WPI_TalonSRX frontLeft;
+	WPI_TalonSRX frontRight;
+	BaseMotorController rearLeft; 
+	BaseMotorController rearRight;
+	
+	public static /*I*/Elevator elevatorControl;
+	
+	WPI_TalonSRX elevator;
+	
+	public static /*I*/Grasper grasper;
+	
+	BaseMotorController grasperLeft;
+	BaseMotorController grasperRight;
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
