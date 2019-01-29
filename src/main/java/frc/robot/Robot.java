@@ -40,6 +40,7 @@ public class Robot extends TimedRobot {
 	// use this constant to switch between competition and practice bot
   public static final boolean COMPETITION_BOT_CONFIG = true;
 
+	//public static OI oi;
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
@@ -81,7 +82,40 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
-  }
+
+    // sensors
+			
+		sonar = new Sonar(Ports.Analog.SONAR); 
+			
+		gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0); // we want to instantiate before we pass to drivetrain	
+
+		gyro.calibrate(); 
+		gyro.reset();
+
+		camera = new HMCamera("GRIP/myContoursReport");
+
+		accelerometer = new HMAccelerometer();
+
+		// motorized devices
+
+		frontLeft = new WPI_TalonSRX(Ports.CAN.LEFT_FRONT);
+		frontRight = new WPI_TalonSRX(Ports.CAN.RIGHT_FRONT);
+		rearLeft = new WPI_VictorSPX(Ports.CAN.LEFT_REAR);
+		rearRight= new WPI_VictorSPX(Ports.CAN.RIGHT_REAR);
+
+		elevator = new WPI_TalonSRX(Ports.CAN.ELEVATOR);
+
+		grasperLeft = new WPI_VictorSPX(Ports.CAN.GRASPER_LEFT);
+		grasperRight = new WPI_VictorSPX(Ports.CAN.GRASPER_RIGHT);
+
+		grasper = new Grasper(grasperLeft, grasperRight, sonar, this);
+		
+		// OI must be constructed after subsystems. If the OI creates Commands
+		//(which it very likely will), subsystems are not guaranteed to be
+		// constructed yet. Thus, their requires() statements may grab null
+		// pointers. Bad news. Don't move it.
+    //oi = new OI();
+  } 
 
   /**
    * This function is called every robot packet, no matter the mode. Use
@@ -111,6 +145,16 @@ public class Robot extends TimedRobot {
     m_autoSelected = m_chooser.getSelected();
     // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
     System.out.println("Auto selected: " + m_autoSelected);
+
+		switch (m_autoSelected) {
+      case kCustomAuto:
+        // start custom auto command here
+        break;
+      case kDefaultAuto:
+      default:
+        // start default auto command here
+        break;
+    }
   }
 
 	/**
@@ -118,15 +162,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
-		switch (m_autoSelected) {
-      case kCustomAuto:
-        // Put custom auto code here
-        break;
-      case kDefaultAuto:
-      default:
-        // Put default auto code here
-        break;
-    }
+		Scheduler.getInstance().run();
 	}
 
 	@Override
@@ -138,6 +174,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+		Scheduler.getInstance().run();
   }
 
   /**
@@ -153,6 +190,7 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void disabledPeriodic() {	
+		Scheduler.getInstance().run();
   }
   
   public void updateToSmartDash()
