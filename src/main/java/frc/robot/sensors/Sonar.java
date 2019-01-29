@@ -51,7 +51,7 @@ public class Sonar{
     }
     
     // Just get the voltage.
-    double getVoltage() {
+    public double getVoltage() {
         return channel.getVoltage();
     }
     
