@@ -35,12 +35,12 @@ import frc.robot.subsystems.*;
  * project.
  */
 public class Robot extends TimedRobot {
-  // IMPORTANT MAKE SURE THAT THIS CONSTANT IS SET TO TRUE IF USING COMPETITION BOT!
+	// IMPORTANT MAKE SURE THAT THIS CONSTANT IS SET TO TRUE IF USING COMPETITION BOT!
 	// use this constant to switch between competition and practice bot
-  public static final boolean COMPETITION_BOT_CONFIG = true;
+	public static final boolean COMPETITION_BOT_CONFIG = true;
 
-  public static OI oi;
-  
+	public static OI oi;
+	
 	Command m_autonomousCommand;
 	
 	// choosers (for auton)
@@ -103,15 +103,15 @@ public class Robot extends TimedRobot {
 	public static /*I*/Grasper grasper;
 	
 	BaseMotorController grasperLeft;
-  BaseMotorController grasperRight;
-  
+	BaseMotorController grasperRight;
+	
 
-  /**
-   * This function is run when the robot is first started up and should be
-   * used for any initialization code.
-   */
-  @Override
-  public void robotInit() {
+	/**
+	 * This function is run when the robot is first started up and should be
+	 * used for any initialization code.
+	 */
+	@Override
+	public void robotInit() {
 		// choosers (for auton)
 		
 		autonChooser.setDefaultOption("Do Nothing", AUTON_DO_NOTHING);
@@ -158,7 +158,7 @@ public class Robot extends TimedRobot {
 		frontLeft = new WPI_TalonSRX(Ports.CAN.LEFT_FRONT);
 		frontRight = new WPI_TalonSRX(Ports.CAN.RIGHT_FRONT);
 		rearLeft = new WPI_VictorSPX(Ports.CAN.LEFT_REAR);
-		rearRight= new WPI_VictorSPX(Ports.CAN.RIGHT_REAR);
+		rearRight = new WPI_VictorSPX(Ports.CAN.RIGHT_REAR);
 
 		elevator = new WPI_TalonSRX(Ports.CAN.ELEVATOR);
 
@@ -166,40 +166,40 @@ public class Robot extends TimedRobot {
 		grasperRight = new WPI_VictorSPX(Ports.CAN.GRASPER_RIGHT);
 
 		grasper = new Grasper(grasperLeft, grasperRight, sonar, this);
-    
-    
+		
+		
 		// OI must be constructed after subsystems. If the OI creates Commands
 		//(which it very likely will), subsystems are not guaranteed to be
 		// constructed yet. Thus, their requires() statements may grab null
 		// pointers. Bad news. Don't move it.
-    oi = new OI();
-  } 
+		oi = new OI();
+	} 
 
-  /**
-   * This function is called every robot packet, no matter the mode. Use
-   * this for items like diagnostics that you want ran during disabled,
-   * autonomous, teleoperated and test.
-   *
-   * <p>This runs after the mode specific periodic functions, but before
-   * LiveWindow and SmartDashboard integrated updating.
-   */
-  @Override
-  public void robotPeriodic() {
-  }
+	/**
+	 * This function is called every robot packet, no matter the mode. Use
+	 * this for items like diagnostics that you want ran during disabled,
+	 * autonomous, teleoperated and test.
+	 *
+	 * <p>This runs after the mode specific periodic functions, but before
+	 * LiveWindow and SmartDashboard integrated updating.
+	 */
+	@Override
+	public void robotPeriodic() {
+	}
 
-  /**
-   * This autonomous (along with the chooser code above) shows how to select
-   * between different autonomous modes using the dashboard. The sendable
-   * chooser code works with the Java SmartDashboard. If you prefer the
-   * LabVIEW Dashboard, remove all of the chooser code and uncomment the
-   * getString line to get the auto name from the text box below the Gyro
-   *
+	/**
+	 * This autonomous (along with the chooser code above) shows how to select
+	 * between different autonomous modes using the dashboard. The sendable
+	 * chooser code works with the Java SmartDashboard. If you prefer the
+	 * LabVIEW Dashboard, remove all of the chooser code and uncomment the
+	 * getString line to get the auto name from the text box below the Gyro
+	 *
 	 * <p>You can add additional auto modes by adding additional commands to the
 	 * chooser code above (like the commented example) or additional comparisons
 	 * to the switch structure below with additional strings & commands.
-   */
-  @Override
-  public void autonomousInit() {
+	 */
+	@Override
+	public void autonomousInit() {
 		autonSelected = autonChooser.getSelected();
 		System.out.println("Auton selected: " + autonSelected);
 		
@@ -226,7 +226,7 @@ public class Robot extends TimedRobot {
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.start();
 		}
-  }
+	}
 
 	/**
 	 * This function is called periodically during autonomous.
@@ -247,25 +247,25 @@ public class Robot extends TimedRobot {
 		}
 	}
 
-  /**
-   * This function is called periodically during operator control.
-   */
-  @Override
-  public void teleopPeriodic() {
+	/**
+	 * This function is called periodically during operator control.
+	 */
+	@Override
+	public void teleopPeriodic() {
 		camera.acquireTargets(false);
 		
-    Scheduler.getInstance().run();
-    
+		Scheduler.getInstance().run();
+		
 		camera.acquireTargets(false);
 		updateToSmartDash();
-  }
+	}
 
-  /**
-   * This function is called periodically during test mode.
-   */
-  @Override
-  public void testPeriodic() {
-  }
+	/**
+	 * This function is called periodically during test mode.
+	 */
+	@Override
+	public void testPeriodic() {
+	}
 	
 	@Override
 	public void disabledInit() {
@@ -275,13 +275,13 @@ public class Robot extends TimedRobot {
 	public void disabledPeriodic() {	
 		camera.acquireTargets(false);
 
-    Scheduler.getInstance().run();
-    
-    camera.acquireTargets(false);
+		Scheduler.getInstance().run();
+		
+		camera.acquireTargets(false);
 		updateToSmartDash();
-  }
-  
-  public void updateToSmartDash()
+	}
+	
+	public void updateToSmartDash()
 	{
 		// Send Gyro val to Dashboard
 		SmartDashboard.putNumber("Gyro Value", gyro.getAngle());
@@ -328,9 +328,9 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putString("Camera option", cameraOptionChooser.getSelected());
 		SmartDashboard.putString("Sonar option", sonarOptionChooser.getSelected());
 		SmartDashboard.putString("Release chosen", releaseChooser.getSelected());
-  }
+	}
 
-  public static void setGyroHasBeenManuallyCalibratedAtLeastOnce(boolean flag) {
-	hasGyroBeenManuallyCalibratedAtLeastOnce = flag;
-  }
+	public static void setGyroHasBeenManuallyCalibratedAtLeastOnce(boolean flag) {
+		hasGyroBeenManuallyCalibratedAtLeastOnce = flag;
+	}
 }
