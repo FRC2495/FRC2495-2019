@@ -60,8 +60,8 @@ public class LimelightCamera implements PIDSource, ICamera {
 				double[] area = {ta};
 				double[] width = {thor};
 				double[] height = {tvert};
-				double[] centerX = {tx * HORIZONTAL_CAMERA_RES_PIXELS / HORIZONTAL_FOV_DEGREES}; // to use same units as HMCamera
-				double[] centerY = {ty * VERTICAL_CAMERA_RES_PIXELS / VERTICAL_FOV_DEGREES}; // to use same units as HMCamera
+				double[] centerX = {tx * HORIZONTAL_CAMERA_RES_PIXELS / HORIZONTAL_FOV_DEGREES + (HORIZONTAL_CAMERA_RES_PIXELS / 2)}; // to use same units as HMCamera
+				double[] centerY = {ty * VERTICAL_CAMERA_RES_PIXELS / VERTICAL_FOV_DEGREES + (VERTICAL_CAMERA_RES_PIXELS / 2)}; // to use same units as HMCamera
 				
 				setLocalTables(area,width,height,centerX,centerY);
 			} else {
