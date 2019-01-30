@@ -81,7 +81,7 @@ public class Robot extends TimedRobot {
 	HMCamera camera;
 	
 	public static ADXRS450_Gyro gyro; // gyro
-	boolean hasGyroBeenManuallyCalibratedAtLeastOnce = false;
+	static boolean hasGyroBeenManuallyCalibratedAtLeastOnce = false;
 	
 	Sonar sonar;
 	
@@ -328,5 +328,9 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putString("Camera option", cameraOptionChooser.getSelected());
 		SmartDashboard.putString("Sonar option", sonarOptionChooser.getSelected());
 		SmartDashboard.putString("Release chosen", releaseChooser.getSelected());
+  }
+
+  public static void setGyroHasBeenManuallyCalibratedAtLeastOnce(boolean flag) {
+	hasGyroBeenManuallyCalibratedAtLeastOnce = flag;
   }
 }
