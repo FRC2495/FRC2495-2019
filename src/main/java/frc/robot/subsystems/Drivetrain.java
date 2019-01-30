@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 import frc.robot.interfaces.*;
 import frc.robot.Robot;
+import frc.robot.sensors.HMCamera;
 import frc.robot.commands.DrivetrainJoystickControl;
 
 
@@ -34,7 +35,23 @@ public class Drivetrain extends Subsystem implements PIDOutput, IDrivetrain {
 		
 	static final int TALON_TIMEOUT_MS = 10;
 	public static final int TICKS_PER_REVOLUTION = 4096;
+
+
+	// turn using camera settings
+	// NOTE: it might make sense to decrease the PID controller period to 0.02 sec (which is the period used by the main loop)
+	public static final double TURN_USING_CAMERA_PID_CONTROLLER_PERIOD_SECONDS = .02; // 0.02 sec = 20 ms 	
 	
+	//public static final double MIN_TURN_USING_CAMERA_PCT_OUTPUT = 0.1;
+	//public static final double MAX_TURN_USING_CAMERA_PCT_OUTPUT = 0.5;
+	
+	public static final double TURN_USING_CAMERA_PROPORTIONAL_GAIN = 0.001; // TODO tune 320 pixels -> 0.3 pct output
+	public static final double TURN_USING_CAMERA_INTEGRAL_GAIN = 0.0;
+	public static final double TURN_USING_CAMERA_DERIVATIVE_GAIN = 0.0;
+	
+	public static final int PIXEL_THRESHOLD = HMCamera.HORIZONTAL_CAMERA_RES_PIXELS / 10; // TODO adjust as needed
+	
+	public final static int TURN_USING_CAMERA_ON_TARGET_MINIMUM_COUNT = 25; // number of times/iterations we need to be on target to really be on target
+
 	
 	// turn settings
 	// NOTE: it might make sense to decrease the PID controller period to 0.02 sec (which is the period used by the main loop)
@@ -78,6 +95,7 @@ public class Drivetrain extends Subsystem implements PIDOutput, IDrivetrain {
 	// variables
 	boolean isMoving; // indicates that the drivetrain is moving using the PID controllers embedded on the motor controllers 
 	boolean isTurning;  // indicates that the drivetrain is turning using the PID controller hereunder
+	boolean isTurningUsingCamera;  // indicates that the drivetrain is turning using the second PID controller hereunder
 	boolean isReallyStalled;
 	
 	double ltac, rtac; // target positions 
@@ -95,9 +113,12 @@ public class Drivetrain extends Subsystem implements PIDOutput, IDrivetrain {
 	Robot robot; // a reference to the robot
 	
 	PIDController turnPidController; // the PID controller used to turn
+
+	HMCamera camera;
+	PIDController turnUsingCameraPidController; // the PID controller used to turn using camera
 	
 	
-	public Drivetrain(WPI_TalonSRX masterLeft_in ,WPI_TalonSRX masterRight_in , BaseMotorController followerLeft_in ,BaseMotorController followerRight_in, ADXRS450_Gyro gyro_in, Robot robot_in) 
+	public Drivetrain(WPI_TalonSRX masterLeft_in ,WPI_TalonSRX masterRight_in , BaseMotorController followerLeft_in ,BaseMotorController followerRight_in, ADXRS450_Gyro gyro_in, Robot robot_in, HMCamera camera_in) 
 	{
 		masterLeft = masterLeft_in;
 		masterRight = masterRight_in;
@@ -105,6 +126,7 @@ public class Drivetrain extends Subsystem implements PIDOutput, IDrivetrain {
 		followerRight = followerRight_in;
 		gyro = gyro_in;	
 		robot = robot_in;
+		camera = camera_in;
 		
 		// Mode of operation during Neutral output may be set by using the setNeutralMode() function.
 		// As of right now, there are two options when setting the neutral mode of a motor controller,
@@ -165,6 +187,15 @@ public class Drivetrain extends Subsystem implements PIDOutput, IDrivetrain {
 		
 		turnPidController.setContinuous(true); // because -180 degrees is the same as 180 degrees (needs input range to be defined first)
 		turnPidController.setAbsoluteTolerance(DEGREE_THRESHOLD); // 1 degree error tolerated
+
+		//creates a second PID controller
+		turnUsingCameraPidController = new PIDController(TURN_USING_CAMERA_PROPORTIONAL_GAIN, TURN_USING_CAMERA_INTEGRAL_GAIN, TURN_USING_CAMERA_DERIVATIVE_GAIN, camera, this, TURN_USING_CAMERA_PID_CONTROLLER_PERIOD_SECONDS);
+    	
+		turnUsingCameraPidController.setInputRange(-HMCamera.HORIZONTAL_CAMERA_RES_PIXELS/2, HMCamera.HORIZONTAL_CAMERA_RES_PIXELS/2); // valid input range 
+		//turnUsingCameraPidController.setOutputRange(-MAX_TURN_USING_CAMERA_PCT_OUTPUT, MAX_TURN_USING_CAMERA_PCT_OUTPUT); // output range NOTE: might need to change signs
+		turnUsingCameraPidController.setOutputRange(-MAX_TURN_PCT_OUTPUT, MAX_TURN_PCT_OUTPUT); // output range NOTE: might need to change signs
+    	
+		turnUsingCameraPidController.setAbsoluteTolerance(PIXEL_THRESHOLD); // error tolerated
 		
 		differentialDrive = new DifferentialDrive(masterLeft, masterRight);
 		differentialDrive.setSafetyEnabled(false); // disables the stupid timeout error when we run in closed loop
@@ -264,6 +295,95 @@ public class Drivetrain extends Subsystem implements PIDOutput, IDrivetrain {
 			if (!DriverStation.getInstance().isAutonomous()
 					|| Calendar.getInstance().getTimeInMillis() - start >= TIMEOUT_MS) {
 				System.out.println("You went over the time limit (turning)");
+				stop();
+				break;
+			}
+
+			try {
+				Thread.sleep(20); // sleeps a little
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+			robot.updateToSmartDash();
+		}		
+		stop();
+	}
+
+	// this method needs to be paired with checkTurnUsingCameraPidController()
+	public void turnUsingCameraPidController()
+	{
+		// switches to percentage vbus
+		stop(); // resets state 
+		
+		turnUsingCameraPidController.setSetpoint(0); // we want to end centered
+		turnUsingCameraPidController.enable(); // begins running
+		
+		isTurningUsingCamera = true;
+		onTargetCount = 0;
+	}
+		
+	public boolean tripleCheckTurnUsingCameraPidController()
+	{
+		if (isTurningUsingCamera) {
+			boolean isOnTarget = turnUsingCameraPidController.onTarget();
+			
+			if (isOnTarget) { // if we are on target in this iteration 
+				onTargetCount++; // we increase the counter
+			} else { // if we are not on target in this iteration
+				if (onTargetCount > 0) { // even though we were on target at least once during a previous iteration
+					onTargetCount = 0; // we reset the counter as we are not on target anymore
+					System.out.println("Triple-check failed (turning using camera).");
+				} else {
+					// we are definitely turning
+				}
+			}
+			
+	        if (onTargetCount > TURN_USING_CAMERA_ON_TARGET_MINIMUM_COUNT) { // if we have met the minimum
+	        	isTurningUsingCamera = false;
+	        }
+			
+			if (!isTurningUsingCamera) {
+				System.out.println("You have reached the target (turning using camera).");
+				stop();				 
+			}
+		}
+		return isTurningUsingCamera;
+	}
+		
+	// do not use in teleop - for auton only
+	public void waitTurnUsingCameraPidController()
+	{
+		long start = Calendar.getInstance().getTimeInMillis();
+
+		while (tripleCheckTurnUsingCameraPidController()) { 		
+			if (!DriverStation.getInstance().isAutonomous()
+					|| Calendar.getInstance().getTimeInMillis() - start >= TIMEOUT_MS) {
+				System.out.println("You went over the time limit (turning using camera)");
+				stop();
+				break;
+			}
+
+			try {
+				Thread.sleep(20); // sleeps a little
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+			robot.updateToSmartDash();
+		}		
+		stop();
+	}
+
+	// do not use in teleop - for auton only
+	public void waitTurnUsingCameraPidControllerOrStalled()
+	{
+		long start = Calendar.getInstance().getTimeInMillis();
+
+		while (tripleCheckTurnUsingCameraPidController() && !tripleCheckIfStalled()) { 		
+			if (!DriverStation.getInstance().isAutonomous()
+					|| Calendar.getInstance().getTimeInMillis() - start >= TIMEOUT_MS) {
+				System.out.println("You went over the time limit (turning using camera)");
 				stop();
 				break;
 			}
@@ -585,6 +705,10 @@ public class Drivetrain extends Subsystem implements PIDOutput, IDrivetrain {
 	
 	public boolean isTurning(){
 		return isTurning;
+	}
+
+	public boolean isTurningUsingCamera() {
+		return isTurningUsingCamera;
 	}
 	
 	// return if stalled

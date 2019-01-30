@@ -165,6 +165,11 @@ public class Robot extends TimedRobot {
 		grasperLeft = new WPI_VictorSPX(Ports.CAN.GRASPER_LEFT);
 		grasperRight = new WPI_VictorSPX(Ports.CAN.GRASPER_RIGHT);
 
+
+		drivetrain = new Drivetrain( frontLeft, frontRight, rearLeft, rearRight, gyro, this, camera);	
+		
+		elevatorControl = new Elevator(elevator, this);
+
 		grasper = new Grasper(grasperLeft, grasperRight, sonar, this);
 		
 		
