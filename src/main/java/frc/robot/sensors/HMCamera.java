@@ -66,14 +66,14 @@ public class HMCamera implements PIDSource, IHMCamera {
 		if (areaSave.length >= 1) {
 			largeIndex = 0;
 	 
-	        //Checking remaining elements of input array
-	        for (int i = 1; i < areaSave.length; i++)
-	        {
-	            if(areaSave[i] > areaSave[largeIndex])
-	            {
-	                largeIndex = i;
-	            }
-	        }
+			//Checking remaining elements of input array
+			for (int i = 1; i < areaSave.length; i++)
+			{
+				if(areaSave[i] > areaSave[largeIndex])
+				{
+					largeIndex = i;
+				}
+			}
 		}
 	}
 

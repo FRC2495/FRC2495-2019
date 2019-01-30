@@ -18,17 +18,17 @@ import frc.robot.Robot;
  */
 public class GyroCalibrate extends InstantCommand {
 
-    public GyroCalibrate() {
-        setRunWhenDisabled(true); // allows running of command when robot is disabled
+	public GyroCalibrate() {
+		setRunWhenDisabled(true); // allows running of command when robot is disabled
 
-        // gyro only supports instant commands, so no need to reserve it
-    }
+		// gyro only supports instant commands, so no need to reserve it
+	}
 
-    // Called once when this command runs
-    @Override
-    protected void initialize() {
-        Robot.gyro.calibrate();
-        Robot.setGyroHasBeenManuallyCalibratedAtLeastOnce(true);
-    }
+	// Called once when this command runs
+	@Override
+	protected void initialize() {
+		Robot.gyro.calibrate();
+		Robot.setGyroHasBeenManuallyCalibratedAtLeastOnce(true);
+	}
 
 }
