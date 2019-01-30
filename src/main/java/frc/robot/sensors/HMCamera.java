@@ -15,19 +15,20 @@ public class HMCamera implements PIDSource, ICamera {
 	
 	NetworkTable nt;
 	double[] area, width, height, centerX, centerY;
-	int largeIndex = BAD_INDEX;
+	int largeAIndex, largeBIndex = BAD_INDEX;
 
 	public static final int HORIZONTAL_CAMERA_RES_PIXELS = 320;
-	private static final int VERTICAL_CAMERA_RES_PIXELS = 240;
+	public static final int VERTICAL_CAMERA_RES_PIXELS = 240;
 	private static final double VERTICAL_FOV_DEGREES = 47;
 	private static final double HORIZONTAL_FOV_DEGREES = 56;
-	private static final int TARGET_HEIGHT_INCHES = 13; // assumes cube is fully facing camera (only side with FIRST logo is visible)
-	private static final double TARGET_WIDTH_INCHES = 13; // assumes cube is fully facing camera (only side with FIRST logo is visible)
+	private static final double TARGET_HEIGHT_INCHES = 5.5; // TODO set proper value
+	private static final double TARGET_WIDTH_INCHES = 2; // TODO set proper value
 
 	private static final int MAX_NT_RETRY = 5;
 	private static final double CAMERA_CATCHUP_DELAY_SECS = 0.250;
 
 	public HMCamera(String networktable) {
+		// nt = NetworkTable.getTable(networktable);
 		nt = NetworkTableInstance.getDefault().getTable(networktable);
 	}
 
@@ -43,12 +44,16 @@ public class HMCamera implements PIDSource, ICamera {
 		double[] def = {}; // Return an empty array by default.
 		int retry_count = 0;
 		setLocalTables(null, null, null, null, null);
-		largeIndex = BAD_INDEX;
+		largeAIndex = BAD_INDEX;
+		largeBIndex = BAD_INDEX;
 
 		// We cannot get arrays atomically but at least we can make sure they
 		// have the same size
 		do {
 			// Get data from NetworkTable
+			//setLocalTables(nt.getNumberArray("area", def), nt.getNumberArray("width", def),
+			//		nt.getNumberArray("height", def), nt.getNumberArray("centerX", def),
+			//		nt.getNumberArray("centerY", def));			
 			setLocalTables(nt.getEntry("area").getDoubleArray(def), nt.getEntry("width").getDoubleArray(def),
 					nt.getEntry("height").getDoubleArray(def), nt.getEntry("centerX").getDoubleArray(def),
 					nt.getEntry("centerY").getDoubleArray(def));
@@ -59,17 +64,39 @@ public class HMCamera implements PIDSource, ICamera {
 
 	private void processInformation() {
 		double[] areaSave = area;
-		if (areaSave.length >= 1) {
-			largeIndex = 0;
+		if (areaSave.length >= 2) {
+			largeAIndex = 0;
+			largeBIndex = 0;
+	        
+	        //Checking first two elements of input array
+	        if(areaSave[0] > areaSave[1])
+	        {
+	            //If first element is greater than second element
+	            largeAIndex = 0;
+	            largeBIndex = 1;
+	        }
+	        else
+	        {
+	            //If second element is greater than first element
+	            largeAIndex = 1;
+	            largeBIndex = 0;
+	        }
 	 
-			//Checking remaining elements of input array
-			for (int i = 1; i < areaSave.length; i++)
-			{
-				if(areaSave[i] > areaSave[largeIndex])
-				{
-					largeIndex = i;
-				}
-			}
+	        //Checking remaining elements of input array
+	        for (int i = 2; i < areaSave.length; i++)
+	        {
+	            if(areaSave[i] > areaSave[largeAIndex])
+	            {
+	                //If element at 'i' is greater than 'firstLargest'
+	                largeBIndex = largeAIndex;
+	                largeAIndex = i;
+	            }
+	            else if (/*areaSave[i] < areaSave[largeAIndex] &&*/ areaSave[i] > areaSave[largeBIndex])
+	            {
+	                //If element at 'i' is smaller than 'firstLargest' and greater than 'secondLargest'
+	                largeBIndex = i;
+	            }
+	        }
 		}
 	}
 
@@ -110,28 +137,57 @@ public class HMCamera implements PIDSource, ICamera {
 		return getNumberOfTargets() > 1; // opening is at least two targets
 	}
 
-	public double getDistanceToTargetUsingVerticalFov() {
-		if (isCoherent() && largeIndex != BAD_INDEX) {
-			double diagTargetDistance = TARGET_HEIGHT_INCHES * (VERTICAL_CAMERA_RES_PIXELS / height[largeIndex]) / 2.0
+	public double getDistanceToTargetAUsingVerticalFov() {
+		if (isCoherent() && largeAIndex != BAD_INDEX) {
+			double diagTargetDistance = TARGET_HEIGHT_INCHES * (VERTICAL_CAMERA_RES_PIXELS / height[largeAIndex]) / 2.0
 					/ Math.tan(Math.toRadians(VERTICAL_FOV_DEGREES / 2));
 			return diagTargetDistance;
 		} else
 			return Double.POSITIVE_INFINITY;
 	}
 	
-	public double getDistanceToTargetUsingHorizontalFov()
+	public double getDistanceToTargetAUsingHorizontalFov()
 	{
-		if (isCoherent() && largeIndex != BAD_INDEX) {
-			double diagTargetDistance = TARGET_WIDTH_INCHES * (HORIZONTAL_CAMERA_RES_PIXELS / width[largeIndex]) / 2.0
+		if (isCoherent() && largeAIndex != BAD_INDEX) {
+			double diagTargetDistance = TARGET_WIDTH_INCHES * (HORIZONTAL_CAMERA_RES_PIXELS / width[largeAIndex]) / 2.0
 					/ Math.tan(Math.toRadians(HORIZONTAL_FOV_DEGREES / 2));
 			return diagTargetDistance;
 		} else
 			return Double.POSITIVE_INFINITY;
 	}
 
-	public double getAngleToTurnToTarget() {
-		if (isCoherent() && largeIndex != BAD_INDEX) {
-			double diff = (getCenterX()[largeIndex] - (HORIZONTAL_CAMERA_RES_PIXELS / 2))
+	public double getDistanceToTargetBUsingVerticalFov() {
+		if (isCoherent() && largeBIndex != BAD_INDEX) {
+			double diagTargetDistance = TARGET_HEIGHT_INCHES * (VERTICAL_CAMERA_RES_PIXELS / height[largeBIndex]) / 2.0
+					/ Math.tan(Math.toRadians(VERTICAL_FOV_DEGREES / 2));
+			return diagTargetDistance;
+		} else
+			return Double.POSITIVE_INFINITY;
+	}
+	
+	public double getDistanceToTargetBUsingHorizontalFov()
+	{
+		if (isCoherent() && largeBIndex != BAD_INDEX) {
+			double diagTargetDistance = TARGET_WIDTH_INCHES * (HORIZONTAL_CAMERA_RES_PIXELS / width[largeBIndex]) / 2.0
+					/ Math.tan(Math.toRadians(HORIZONTAL_FOV_DEGREES / 2));
+			return diagTargetDistance;
+		} else
+			return Double.POSITIVE_INFINITY;
+	}
+
+	public double getAngleToTurnToTargetA() {
+		if (isCoherent() && largeAIndex != BAD_INDEX) {
+			double diff = (getCenterX()[largeAIndex] - (HORIZONTAL_CAMERA_RES_PIXELS / 2))
+					/ HORIZONTAL_CAMERA_RES_PIXELS;
+			double angle = diff * HORIZONTAL_FOV_DEGREES;
+			return angle;
+		} else
+			return 0;
+	}
+
+	public double getAngleToTurnToTargetB() {
+		if (isCoherent() && largeBIndex != BAD_INDEX) {
+			double diff = (getCenterX()[largeBIndex] - (HORIZONTAL_CAMERA_RES_PIXELS / 2))
 					/ HORIZONTAL_CAMERA_RES_PIXELS;
 			double angle = diff * HORIZONTAL_FOV_DEGREES;
 			return angle;
@@ -139,12 +195,40 @@ public class HMCamera implements PIDSource, ICamera {
 			return 0;
 	}
 	
-	public double getPixelDisplacementToCenterToTarget() {
-		if (isCoherent() && largeIndex != BAD_INDEX) {
-			double diff = (getCenterX()[largeIndex] - (HORIZONTAL_CAMERA_RES_PIXELS / 2));
+	public double getDistanceToCompositeTargetUsingVerticalFov()
+	{
+		return (getDistanceToTargetAUsingVerticalFov() + getDistanceToTargetBUsingVerticalFov()) / 2;
+	}
+	
+	public double getDistanceToCompositeTargetUsingHorizontalFov()
+	{
+		return ((getDistanceToTargetAUsingHorizontalFov() + getDistanceToTargetBUsingHorizontalFov()) /2);
+	}
+	
+	public double getAngleToTurnToCompositeTarget()
+	{
+		return (getAngleToTurnToTargetA() + getAngleToTurnToTargetB()) / 2;
+	}
+
+	public double getPixelDisplacementToCenterToTargetA() {
+		if (isCoherent() && largeAIndex != BAD_INDEX) {
+			double diff = (getCenterX()[largeAIndex] - (HORIZONTAL_CAMERA_RES_PIXELS / 2));
 			return diff;
 		} else
 			return 0;
+	}
+
+	public double getPixelDisplacementToCenterToTargetB() {
+		if (isCoherent() && largeBIndex != BAD_INDEX) {
+			double diff = (getCenterX()[largeBIndex] - (HORIZONTAL_CAMERA_RES_PIXELS / 2));
+			return diff;
+		} else
+			return 0;
+	}
+
+	public double getPixelDisplacementToCenterToCompositeTarget()
+	{
+		return ((getPixelDisplacementToCenterToTargetA() + getPixelDisplacementToCenterToTargetB()) /2);
 	}
 
 	public double[] getArea() {
@@ -181,6 +265,7 @@ public class HMCamera implements PIDSource, ICamera {
 	{
 		acquireTargets(false); // we don't want to wait but the lag might be problematic
 		
-		return -getPixelDisplacementToCenterToTarget(); // we are located at the opposite or the displacement we need to shift by
+		return -getPixelDisplacementToCenterToCompositeTarget(); // we are located at the opposite or the displacement we need to shift by
 	}
+
 }

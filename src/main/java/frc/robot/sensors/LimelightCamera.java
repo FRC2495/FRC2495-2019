@@ -127,7 +127,7 @@ public class LimelightCamera implements PIDSource, ICamera {
 		return getNumberOfTargets() > 0; // opening is at least one combined target
 	}
 
-	public double getDistanceToTargetUsingVerticalFov() {
+	public double getDistanceToCompositeTargetUsingVerticalFov() {
 		if (isCoherent() && largeIndex != BAD_INDEX) {
 			double diagTargetDistance = TARGET_HEIGHT_INCHES * (VERTICAL_CAMERA_RES_PIXELS / height[largeIndex]) / 2.0
 					/ Math.tan(Math.toRadians(VERTICAL_FOV_DEGREES / 2));
@@ -136,7 +136,7 @@ public class LimelightCamera implements PIDSource, ICamera {
 			return Double.POSITIVE_INFINITY;
 	}
 	
-	public double getDistanceToTargetUsingHorizontalFov()
+	public double getDistanceToCompositeTargetUsingHorizontalFov()
 	{
 		if (isCoherent() && largeIndex != BAD_INDEX) {
 			double diagTargetDistance = TARGET_WIDTH_INCHES * (HORIZONTAL_CAMERA_RES_PIXELS / width[largeIndex]) / 2.0
@@ -146,7 +146,7 @@ public class LimelightCamera implements PIDSource, ICamera {
 			return Double.POSITIVE_INFINITY;
 	}
 
-	public double getAngleToTurnToTarget() {
+	public double getAngleToTurnToCompositeTarget() {
 		if (isCoherent() && largeIndex != BAD_INDEX) {
 			double diff = (getCenterX()[largeIndex] - (HORIZONTAL_CAMERA_RES_PIXELS / 2))
 					/ HORIZONTAL_CAMERA_RES_PIXELS;
@@ -156,7 +156,7 @@ public class LimelightCamera implements PIDSource, ICamera {
 			return 0;
 	}
 	
-	public double getPixelDisplacementToCenterToTarget() {
+	public double getPixelDisplacementToCenterToCompositeTarget() {
 		if (isCoherent() && largeIndex != BAD_INDEX) {
 			double diff = (getCenterX()[largeIndex] - (HORIZONTAL_CAMERA_RES_PIXELS / 2));
 			return diff;
@@ -198,6 +198,6 @@ public class LimelightCamera implements PIDSource, ICamera {
 	{
 		acquireTargets(false); // we don't want to wait but the lag might be problematic
 		
-		return -getPixelDisplacementToCenterToTarget(); // we are located at the opposite or the displacement we need to shift by
+		return -getPixelDisplacementToCenterToCompositeTarget(); // we are located at the opposite or the displacement we need to shift by
 	}
 }

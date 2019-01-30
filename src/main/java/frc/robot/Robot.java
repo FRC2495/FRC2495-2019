@@ -304,9 +304,9 @@ public class Robot extends TimedRobot {
 		
 		SmartDashboard.putBoolean("isCompromised?", DriverStation.getInstance().isDisabled());
 		
-		SmartDashboard.putNumber("Distance to Target", camera.getDistanceToTargetUsingVerticalFov());
-		SmartDashboard.putNumber("Angle to Target", camera.getAngleToTurnToTarget());
-		SmartDashboard.putNumber("Distance to Target Using Horizontal FOV", camera.getDistanceToTargetUsingHorizontalFov());
+		SmartDashboard.putNumber("Distance to Target", camera.getDistanceToCompositeTargetUsingVerticalFov());
+		SmartDashboard.putNumber("Angle to Target", camera.getAngleToTurnToCompositeTarget());
+		SmartDashboard.putNumber("Distance to Target Using Horizontal FOV", camera.getDistanceToCompositeTargetUsingHorizontalFov());
 		
 		SmartDashboard.putBoolean("Elevator Limit Switch", elevatorControl.getLimitSwitchState());
 		SmartDashboard.putNumber("Elevator Position", elevatorControl.getPosition());
