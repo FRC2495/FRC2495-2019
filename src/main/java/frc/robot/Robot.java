@@ -20,7 +20,7 @@ import com.ctre.phoenix.motorcontrol.can.BaseMotorController;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
-//import frc.robot.interfaces.*;
+import frc.robot.interfaces.*;
 import frc.robot.sensors.*;
 //import frc.robot.commands.*;
 import frc.robot.subsystems.*;
@@ -78,7 +78,7 @@ public class Robot extends TimedRobot {
 
 	// sensors
 	
-	HMCamera camera;
+	ICamera camera;
 	
 	public static ADXRS450_Gyro gyro; // gyro
 	static boolean hasGyroBeenManuallyCalibratedAtLeastOnce = false;
@@ -149,7 +149,8 @@ public class Robot extends TimedRobot {
 		gyro.calibrate(); 
 		gyro.reset();
 
-		camera = new HMCamera("GRIP/myContoursReport"); // TODO switch to Limelight
+		//camera = new HMCamera("GRIP/myContoursReport");
+		camera = new LimelightCamera();
 
 		accelerometer = new HMAccelerometer();
 

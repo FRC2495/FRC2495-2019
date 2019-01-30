@@ -1,8 +1,9 @@
 package frc.robot.interfaces;
 
+import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.PIDSourceType;
 
-public interface IHMCamera {
+public interface ICamera extends PIDSource {
 
 	public boolean isCoherent();
 
@@ -10,7 +11,7 @@ public interface IHMCamera {
 
 	public boolean acquireTargets(boolean waitForNewInfo);
 	
-	public boolean checkForCube();
+	public boolean checkForOpening();
 
 	public double getDistanceToTargetUsingVerticalFov();
 	

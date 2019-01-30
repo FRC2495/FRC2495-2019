@@ -114,11 +114,11 @@ public class Drivetrain extends Subsystem implements PIDOutput, IDrivetrain {
 	
 	PIDController turnPidController; // the PID controller used to turn
 
-	HMCamera camera;
+	ICamera camera;
 	PIDController turnUsingCameraPidController; // the PID controller used to turn using camera
 	
 	
-	public Drivetrain(WPI_TalonSRX masterLeft_in ,WPI_TalonSRX masterRight_in , BaseMotorController followerLeft_in ,BaseMotorController followerRight_in, ADXRS450_Gyro gyro_in, Robot robot_in, HMCamera camera_in) 
+	public Drivetrain(WPI_TalonSRX masterLeft_in ,WPI_TalonSRX masterRight_in , BaseMotorController followerLeft_in ,BaseMotorController followerRight_in, ADXRS450_Gyro gyro_in, Robot robot_in, ICamera camera_in) 
 	{
 		masterLeft = masterLeft_in;
 		masterRight = masterRight_in;

@@ -10,7 +10,7 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import frc.robot.interfaces.*;
 
 
-public class HMCamera implements PIDSource, ICamera {
+public class LimelightCamera implements PIDSource, ICamera {
 	private static final int BAD_INDEX = -1;
 	
 	NetworkTable nt;
@@ -19,16 +19,16 @@ public class HMCamera implements PIDSource, ICamera {
 
 	public static final int HORIZONTAL_CAMERA_RES_PIXELS = 320;
 	private static final int VERTICAL_CAMERA_RES_PIXELS = 240;
-	private static final double VERTICAL_FOV_DEGREES = 47;
-	private static final double HORIZONTAL_FOV_DEGREES = 56;
-	private static final int TARGET_HEIGHT_INCHES = 13; // assumes cube is fully facing camera (only side with FIRST logo is visible)
-	private static final double TARGET_WIDTH_INCHES = 13; // assumes cube is fully facing camera (only side with FIRST logo is visible)
+	private static final double VERTICAL_FOV_DEGREES = 45.7; // see https://www.andymark.com/products/limelight2
+	private static final double HORIZONTAL_FOV_DEGREES = 59.6; 
+	private static final double TARGET_HEIGHT_INCHES = 5.5; // TODO set proper value
+	private static final double TARGET_WIDTH_INCHES = 12; // TODO set proper value
 
 	private static final int MAX_NT_RETRY = 5;
-	private static final double CAMERA_CATCHUP_DELAY_SECS = 0.250;
+	private static final double CAMERA_CATCHUP_DELAY_SECS = 0.50;
 
-	public HMCamera(String networktable) {
-		nt = NetworkTableInstance.getDefault().getTable(networktable);
+	public LimelightCamera() {
+		nt = NetworkTableInstance.getDefault().getTable("limelight");
 	}
 
 	private void setLocalTables(double[] area, double[] width, double[] height, double[] centerX, double[] centerY) {
@@ -38,9 +38,9 @@ public class HMCamera implements PIDSource, ICamera {
 		this.centerX = centerX;
 		this.centerY = centerY;
 	}
-
+	
 	private void updateFromNT() {
-		double[] def = {}; // Return an empty array by default.
+		double def = 0.0; // 0.0 by default
 		int retry_count = 0;
 		setLocalTables(null, null, null, null, null);
 		largeIndex = BAD_INDEX;
@@ -49,9 +49,26 @@ public class HMCamera implements PIDSource, ICamera {
 		// have the same size
 		do {
 			// Get data from NetworkTable
-			setLocalTables(nt.getEntry("area").getDoubleArray(def), nt.getEntry("width").getDoubleArray(def),
-					nt.getEntry("height").getDoubleArray(def), nt.getEntry("centerX").getDoubleArray(def),
-					nt.getEntry("centerY").getDoubleArray(def));
+			double ta = nt.getEntry("ta").getDouble(def);
+			double thor = nt.getEntry("thor").getDouble(def);
+			double tvert = nt.getEntry("tvert").getDouble(def);
+			double tx = nt.getEntry("tx").getDouble(def);
+			double ty = nt.getEntry("ty").getDouble(def);
+			double tv = nt.getEntry("tv").getDouble(def);
+
+			if (tv != 0.0) {
+				double[] area = {ta};
+				double[] width = {thor};
+				double[] height = {tvert};
+				double[] centerX = {tx * HORIZONTAL_CAMERA_RES_PIXELS / HORIZONTAL_FOV_DEGREES}; // to use same units as HMCamera
+				double[] centerY = {ty * VERTICAL_CAMERA_RES_PIXELS / VERTICAL_FOV_DEGREES}; // to use same units as HMCamera
+				
+				setLocalTables(area,width,height,centerX,centerY);
+			} else {
+				double[] empty = {}; // empty array
+
+				setLocalTables(empty,empty,empty,empty,empty);
+			}		
 
 			retry_count++;
 		} while (!isCoherent() && retry_count < MAX_NT_RETRY);
@@ -107,7 +124,7 @@ public class HMCamera implements PIDSource, ICamera {
 	}
 
 	public boolean checkForOpening() {
-		return getNumberOfTargets() > 1; // opening is at least two targets
+		return getNumberOfTargets() > 0; // opening is at least one combined target
 	}
 
 	public double getDistanceToTargetUsingVerticalFov() {
