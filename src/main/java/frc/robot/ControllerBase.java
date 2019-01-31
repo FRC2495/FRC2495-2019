@@ -260,4 +260,22 @@ public class ControllerBase {
 			joysticks[Joysticks.GAMEPAD.ordinal()].setRumble(Joystick.RumbleType.kRightRumble, 0);
 		}		
 	}
+
+	/**
+	 * <pre>
+	 * public void rumble(boolean rumble, Joystick gamepad)
+	 * </pre>
+	 * Rumbles the gamepad
+	 * 
+	 * @param rumble whether or not to set the rumble on
+	 */
+	public static void rumble(boolean rumble, Joystick gamepad) {
+		if (rumble) {
+			gamepad.setRumble(Joystick.RumbleType.kLeftRumble, 1);
+			gamepad.setRumble(Joystick.RumbleType.kRightRumble, 1);
+		} else {
+			gamepad.setRumble(Joystick.RumbleType.kLeftRumble, 0);
+			gamepad.setRumble(Joystick.RumbleType.kRightRumble, 0);
+		}		
+	}
 }
