@@ -149,8 +149,8 @@ public class OI {
 		gamepadLB = new JoystickButton(gamepad, ControllerBase.GamepadButtons.LB);
 		gamepadLB.whenPressed(new ElevatorMoveMidway());
 
-		gamepadY = new JoystickButton(gamepad, ControllerBase.GamepadButtons.Y);
-		gamepadY.whenPressed(new GyroCalibrate()); // TODO reassign to less accessible button
+		//gamepadY = new JoystickButton(gamepad, ControllerBase.GamepadButtons.Y);
+		//gamepadY.whenPressed(new GyroCalibrate()); // TODO reassign to less accessible button
 
 		gamepadX = new JoystickButton(gamepad, ControllerBase.GamepadButtons.X);
 		gamepadX.whenPressed(new ElevatorAndGrasperStop());
@@ -159,7 +159,7 @@ public class OI {
 		gamepadB.whenPressed(new GrasperRelease());
 
 		gamepadA = new JoystickButton(gamepad, ControllerBase.GamepadButtons.A);
-		gamepadA.whenPressed(new GrasperGrasp());
+		gamepadA.whenPressed(new IfRobotEnabled(new GrasperGrasp(),new GyroCalibrate()));
 
 
 		joyRight = new Joystick(Ports.USB.RIGHT);
