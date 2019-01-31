@@ -1,7 +1,7 @@
 package frc.robot.interfaces;
 
 import edu.wpi.first.wpilibj.PIDSource;
-import edu.wpi.first.wpilibj.PIDSourceType;
+//import edu.wpi.first.wpilibj.PIDSourceType;
 
 public interface ICamera extends PIDSource {
 
@@ -29,11 +29,5 @@ public interface ICamera extends PIDSource {
 
 	public double[] getCenterX();
 
-	public double[] getCenterY();
-	
-	public void setPIDSourceType(PIDSourceType pidSource);
-	
-	public PIDSourceType getPIDSourceType();
-	
-	public double pidGet();
+	public double[] getCenterY();	
 }

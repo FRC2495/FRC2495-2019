@@ -19,9 +19,10 @@ import frc.robot.interfaces.*;
 import frc.robot.Robot;
 import frc.robot.sensors.HMCamera;
 import frc.robot.commands.DrivetrainJoystickControl;
+import frc.robot.util.*;
 
 
-public class Drivetrain extends Subsystem implements PIDOutput, IDrivetrain {
+public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, IDrivetrain {
 
 	// general settings
 	static final double DIAMETER_WHEEL_INCHES = 5;
@@ -189,7 +190,7 @@ public class Drivetrain extends Subsystem implements PIDOutput, IDrivetrain {
 		turnPidController.setAbsoluteTolerance(DEGREE_THRESHOLD); // 1 degree error tolerated
 
 		//creates a second PID controller
-		turnUsingCameraPidController = new PIDController(TURN_USING_CAMERA_PROPORTIONAL_GAIN, TURN_USING_CAMERA_INTEGRAL_GAIN, TURN_USING_CAMERA_DERIVATIVE_GAIN, camera, this, TURN_USING_CAMERA_PID_CONTROLLER_PERIOD_SECONDS);
+		turnUsingCameraPidController = new PIDController(TURN_USING_CAMERA_PROPORTIONAL_GAIN, TURN_USING_CAMERA_INTEGRAL_GAIN, TURN_USING_CAMERA_DERIVATIVE_GAIN, camera, new PIDOutput2Adapter(this), TURN_USING_CAMERA_PID_CONTROLLER_PERIOD_SECONDS);
     	
 		turnUsingCameraPidController.setInputRange(-HMCamera.HORIZONTAL_CAMERA_RES_PIXELS/2, HMCamera.HORIZONTAL_CAMERA_RES_PIXELS/2); // valid input range 
 		//turnUsingCameraPidController.setOutputRange(-MAX_TURN_USING_CAMERA_PCT_OUTPUT, MAX_TURN_USING_CAMERA_PCT_OUTPUT); // output range NOTE: might need to change signs
@@ -729,7 +730,21 @@ public class Drivetrain extends Subsystem implements PIDOutput, IDrivetrain {
 		}
 		masterRight.set(ControlMode.PercentOutput, +output);
 		masterLeft.set(ControlMode.PercentOutput, -output);		
-	}	
+	}
+	
+	public void pidWrite2(double output) {
+
+		if(Math.abs(turnUsingCameraPidController.getError()) < DEGREE_THRESHOLD)
+		{
+			output = 0;
+		}
+		if(output != 0 && Math.abs(output) < MIN_TURN_PCT_OUTPUT)
+		{
+			output = Math.signum(output) * MIN_TURN_PCT_OUTPUT;
+		}
+		masterRight.set(ControlMode.PercentOutput, +output);
+		masterLeft.set(ControlMode.PercentOutput, -output);		
+	}
 	
 	// MAKE SURE THAT YOU ARE NOT IN A CLOSED LOOP CONTROL MODE BEFORE CALLING THIS METHOD.
 	// OTHERWISE THIS IS EQUIVALENT TO MOVING TO THE DISTANCE TO THE CURRENT ZERO IN REVERSE! 
