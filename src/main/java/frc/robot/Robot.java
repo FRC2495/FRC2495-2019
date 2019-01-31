@@ -105,6 +105,10 @@ public class Robot extends TimedRobot {
 	BaseMotorController grasperLeft;
 	BaseMotorController grasperRight;
 	
+	// pneumatic devices
+	
+	Compressor compressor; // the compressor's lifecycle needs to be the same as the robot
+	
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -172,7 +176,11 @@ public class Robot extends TimedRobot {
 		elevatorControl = new Elevator(elevator, this);
 
 		grasper = new Grasper(grasperLeft, grasperRight, sonar, this);
-		
+
+		// pneumatic devices
+
+		compressor = new Compressor();
+		compressor.checkCompressor();
 		
 		// OI must be constructed after subsystems. If the OI creates Commands
 		//(which it very likely will), subsystems are not guaranteed to be
