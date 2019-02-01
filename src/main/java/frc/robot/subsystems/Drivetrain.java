@@ -353,6 +353,8 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 		
 		isTurningUsingCamera = true;
 		onTargetCountTurningUsingCamera = 0;
+		isReallyStalled = false;
+		stalledCount = 0;
 	}
 		
 	public boolean tripleCheckTurnUsingCameraPidController()
@@ -443,6 +445,8 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 		
 		isMovingUsingCamera = true;
 		onTargetCountMovingUsingCamera = 0;
+		isReallyStalled = false;
+		stalledCount = 0;
 	}
 		
 	public boolean tripleCheckMoveUsingCameraPidController()
