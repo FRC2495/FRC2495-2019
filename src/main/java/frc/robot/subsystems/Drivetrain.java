@@ -687,12 +687,16 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 	
 	public void stop() {
 		turnPidController.disable(); // exits PID loop
+		turnUsingCameraPidController.disable(); // exits PID loop
+		moveUsingCameraPidController.disable(); // exits PID loop
 		 
 		masterLeft.set(ControlMode.PercentOutput, 0);
 		masterRight.set(ControlMode.PercentOutput, 0);
 		
 		isMoving = false;
 		isTurning = false;
+		isMovingUsingCamera = false;
+		isTurningUsingCamera = false;
 		
 		setNominalAndPeakOutputs(MAX_PCT_OUTPUT); // we undo what me might have changed
 	}
