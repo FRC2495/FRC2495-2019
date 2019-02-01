@@ -221,7 +221,7 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 		turnUsingCameraPidController.setAbsoluteTolerance(PIXEL_THRESHOLD); // error tolerated
 
 		//creates a third PID controller
-		moveUsingCameraPidController = new PIDController(MOVE_USING_CAMERA_PROPORTIONAL_GAIN, MOVE_USING_CAMERA_INTEGRAL_GAIN, MOVE_USING_CAMERA_DERIVATIVE_GAIN, camera, new PIDOutput3Adapter(this), MOVE_USING_CAMERA_PID_CONTROLLER_PERIOD_SECONDS);
+		moveUsingCameraPidController = new PIDController(MOVE_USING_CAMERA_PROPORTIONAL_GAIN, MOVE_USING_CAMERA_INTEGRAL_GAIN, MOVE_USING_CAMERA_DERIVATIVE_GAIN, new PIDSource2Adapter(camera), new PIDOutput3Adapter(this), MOVE_USING_CAMERA_PID_CONTROLLER_PERIOD_SECONDS);
 
 		moveUsingCameraPidController.setInputRange(-HMCamera.SAFE_DISTANCE_INCHES, HMCamera.SAFE_DISTANCE_INCHES); // valid input range 
 		moveUsingCameraPidController.setOutputRange(-MAX_MOVE_USING_CAMERA_PCT_OUTPUT, MAX_MOVE_USING_CAMERA_PCT_OUTPUT); // output range NOTE: might need to change signs
