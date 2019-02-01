@@ -151,7 +151,7 @@ public class OI {
 		gamepadLB = new JoystickButton(gamepad, ControllerBase.GamepadButtons.LB);
 		gamepadLB.whenPressed(new ElevatorMoveMidway());
 
-		//gamepadY = new JoystickButton(gamepad, ControllerBase.GamepadButtons.Y);
+		gamepadY = new JoystickButton(gamepad, ControllerBase.GamepadButtons.Y);
 		//gamepadY.whenPressed(new GyroCalibrate()); // TODO reassign to less accessible button
 		gamepadY.whileHeld(new GamepadRumble(true));
 		gamepadY.whenReleased(new GamepadRumble(false));
