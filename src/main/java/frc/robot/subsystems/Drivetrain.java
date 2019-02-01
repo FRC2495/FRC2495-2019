@@ -1,6 +1,6 @@
 package frc.robot.subsystems;
 
-import java.util.Calendar;
+//import java.util.Calendar;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -10,7 +10,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-import edu.wpi.first.wpilibj.DriverStation;
+//import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -53,6 +53,8 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 	
 	public final static int TURN_USING_CAMERA_ON_TARGET_MINIMUM_COUNT = 25; // number of times/iterations we need to be on target to really be on target
 
+	private final static int TURN_USING_CAMERA_STALLED_MINIMUM_COUNT = TURN_USING_CAMERA_ON_TARGET_MINIMUM_COUNT * 2 + 30; // number of times/iterations we need to be stalled to really be stalled
+
 	
 	// turn settings
 	// NOTE: it might make sense to decrease the PID controller period to 0.02 sec (which is the period used by the main loop)
@@ -86,6 +88,8 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 	public static final int DISTANCE_THRESHOLD_INCHES = 12; // TODO adjust as needed
 	
 	public final static int MOVE_USING_CAMERA_ON_TARGET_MINIMUM_COUNT = 25; // number of times/iterations we need to be on target to really be on target
+
+	private final static int MOVE_USING_CAMERA_STALLED_MINIMUM_COUNT = MOVE_USING_CAMERA_ON_TARGET_MINIMUM_COUNT * 2 + 30; // number of times/iterations we need to be stalled to really be stalled
 
 
 	// move settings
@@ -297,7 +301,7 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 	}
 	
 	// do not use in teleop - for auton only
-	public void waitTurnAngleUsingPidController() {
+	/*public void waitTurnAngleUsingPidController() {
 		long start = Calendar.getInstance().getTimeInMillis();
 
 		while (tripleCheckTurnAngleUsingPidController()) { 		
@@ -317,10 +321,10 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 			robot.updateToSmartDash();
 		}		
 		stop();
-	}
+	}*/
 	
 	// do not use in teleop - for auton only
-	public void waitTurnAngleUsingPidControllerOrStalled() {
+	/*public void waitTurnAngleUsingPidControllerOrStalled() {
 		long start = Calendar.getInstance().getTimeInMillis();
 
 		while (tripleCheckTurnAngleUsingPidController() && !tripleCheckIfStalled()) { 		
@@ -340,7 +344,7 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 			robot.updateToSmartDash();
 		}		
 		stop();
-	}
+	}*/
 
 	// this method needs to be paired with checkTurnUsingCameraPidController()
 	public void turnUsingCameraPidController()
@@ -386,7 +390,7 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 	}
 		
 	// do not use in teleop - for auton only
-	public void waitTurnUsingCameraPidController()
+	/*public void waitTurnUsingCameraPidController()
 	{
 		long start = Calendar.getInstance().getTimeInMillis();
 
@@ -407,10 +411,10 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 			robot.updateToSmartDash();
 		}		
 		stop();
-	}
+	}*/
 
 	// do not use in teleop - for auton only
-	public void waitTurnUsingCameraPidControllerOrStalled()
+	/*public void waitTurnUsingCameraPidControllerOrStalled()
 	{
 		long start = Calendar.getInstance().getTimeInMillis();
 
@@ -431,7 +435,7 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 			robot.updateToSmartDash();
 		}		
 		stop();
-	}
+	}*/
 
 
 	// this method needs to be paired with checkMoveUsingCameraPidController()
@@ -478,7 +482,7 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 	}
 		
 	// do not use in teleop - for auton only
-	public void waitMoveUsingCameraPidController()
+	/*public void waitMoveUsingCameraPidController()
 	{
 		long start = Calendar.getInstance().getTimeInMillis();
 
@@ -499,7 +503,7 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 			robot.updateToSmartDash();
 		}		
 		stop();
-	}
+	}*/
 
 
 	public void moveDistance(double dist) // moves the distance in inch given
@@ -575,7 +579,7 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 	}
 	
 	// do not use in teleop - for auton only
-	public void waitMoveDistance() {
+	/*public void waitMoveDistance() {
 		long start = Calendar.getInstance().getTimeInMillis();
 		
 		while (tripleCheckMoveDistance()) {
@@ -594,7 +598,7 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 			
 			robot.updateToSmartDash();
 		}
-	}
+	}*/
 	
 	private double arclength(int angle) // returns the inches needed to be moved
 	// to turn the specified angle
@@ -657,6 +661,14 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 			if (isTurning && stalledCount > TURN_STALLED_MINIMUM_COUNT) { // if we have met the minimum
 				isReallyStalled = true;
 			}
+
+			if (isMovingUsingCamera && stalledCount > MOVE_USING_CAMERA_STALLED_MINIMUM_COUNT) { // if we have met the minimum
+				isReallyStalled = true;
+			}
+			
+			if (isTurningUsingCamera && stalledCount > TURN_USING_CAMERA_STALLED_MINIMUM_COUNT) { // if we have met the minimum
+				isReallyStalled = true;
+			}
 			
 			if (isReallyStalled) {
 				System.out.println("WARNING: Stall detected!");
@@ -668,7 +680,7 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 	}
 		
 	// do not use in teleop - for auton only
-	public void waitMoveDistanceOrStalled() {
+	/*public void waitMoveDistanceOrStalled() {
 		long start = Calendar.getInstance().getTimeInMillis();
 		
 		while (tripleCheckMoveDistance() && !tripleCheckIfStalled()) {
@@ -687,7 +699,7 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 			
 			robot.updateToSmartDash();
 		}
-	}
+	}*/
 	
 	public void stop() {
 		turnPidController.disable(); // exits PID loop

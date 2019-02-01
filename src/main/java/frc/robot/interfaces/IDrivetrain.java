@@ -10,10 +10,10 @@ public interface IDrivetrain {
 	public boolean tripleCheckTurnAngleUsingPidController();	
 	
 	// do not use in teleop - for auton only
-	public void waitTurnAngleUsingPidController();
+	/*public void waitTurnAngleUsingPidController();*/
 	
 	// do not use in teleop - for auton only
-	public void waitTurnAngleUsingPidControllerOrStalled();
+	/*public void waitTurnAngleUsingPidControllerOrStalled();*/
 	
 	
 	// this method needs to be paired with checkMoveDistance()
@@ -24,7 +24,7 @@ public interface IDrivetrain {
 	public boolean tripleCheckMoveDistance();
 	
 	// do not use in teleop - for auton only
-	public void waitMoveDistance();
+	/*public void waitMoveDistance();*/
 
 	// this method needs to be paired with checkMoveDistance()
 	public void moveDistanceAlongArc(int angle);
@@ -33,7 +33,7 @@ public interface IDrivetrain {
 	public boolean tripleCheckIfStalled();
 		
 	// do not use in teleop - for auton only
-	public void waitMoveDistanceOrStalled();
+	/*public void waitMoveDistanceOrStalled();*/
 	
 	
 	public void stop();
