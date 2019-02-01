@@ -22,7 +22,7 @@ import frc.robot.commands.DrivetrainJoystickControl;
 import frc.robot.util.*;
 
 
-public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, IDrivetrain {
+public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDOutput3, IDrivetrain {
 
 	// general settings
 	static final double DIAMETER_WHEEL_INCHES = 5;
@@ -71,7 +71,23 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, IDri
 	
 	private final static int TURN_STALLED_MINIMUM_COUNT = TURN_ON_TARGET_MINIMUM_COUNT * 2 + 30; // number of times/iterations we need to be stalled to really be stalled
 	
+
+	// move using camera settings
+	// NOTE: it might make sense to decrease the PID controller period to 0.02 sec (which is the period used by the main loop)
+	public static final double MOVE_USING_CAMERA_PID_CONTROLLER_PERIOD_SECONDS = .02; // 0.02 sec = 20 ms 	
 	
+	public static final double MIN_MOVE_USING_CAMERA_PCT_OUTPUT = 0.1;
+	public static final double MAX_MOVE_USING_CAMERA_PCT_OUTPUT = 0.5;
+	
+	public static final double MOVE_USING_CAMERA_PROPORTIONAL_GAIN = 0.01; // TODO tune 12 inches -> 0.12 pct output
+	public static final double MOVE_USING_CAMERA_INTEGRAL_GAIN = 0.0;
+	public static final double MOVE_USING_CAMERA_DERIVATIVE_GAIN = 0.0;
+	
+	public static final int DISTANCE_THRESHOLD_INCHES = 12; // TODO adjust as needed
+	
+	public final static int MOVE_USING_CAMERA_ON_TARGET_MINIMUM_COUNT = 25; // number of times/iterations we need to be on target to really be on target
+
+
 	// move settings
 	static final int PRIMARY_PID_LOOP = 0;
 	
@@ -97,6 +113,7 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, IDri
 	boolean isMoving; // indicates that the drivetrain is moving using the PID controllers embedded on the motor controllers 
 	boolean isTurning;  // indicates that the drivetrain is turning using the PID controller hereunder
 	boolean isTurningUsingCamera;  // indicates that the drivetrain is turning using the second PID controller hereunder
+	boolean isMovingUsingCamera;  // indicates that the drivetrain is turning using the third PID controller hereunder
 	boolean isReallyStalled;
 	
 	double ltac, rtac; // target positions 
@@ -117,6 +134,7 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, IDri
 
 	ICamera camera;
 	PIDController turnUsingCameraPidController; // the PID controller used to turn using camera
+	PIDController moveUsingCameraPidController; // the PID controller used to turn
 	
 	
 	public Drivetrain(WPI_TalonSRX masterLeft_in ,WPI_TalonSRX masterRight_in , BaseMotorController followerLeft_in ,BaseMotorController followerRight_in, ADXRS450_Gyro gyro_in, Robot robot_in, ICamera camera_in) 
@@ -179,6 +197,7 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, IDri
 		
 		// set peak output to max in case if had been reduced previously
 		setNominalAndPeakOutputs(MAX_PCT_OUTPUT);
+
 		
 		//creates a PID controller
 		turnPidController = new PIDController(TURN_PROPORTIONAL_GAIN, TURN_INTEGRAL_GAIN, TURN_DERIVATIVE_GAIN, gyro, this, TURN_PID_CONTROLLER_PERIOD_SECONDS);
@@ -197,6 +216,15 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, IDri
 		turnUsingCameraPidController.setOutputRange(-MAX_TURN_PCT_OUTPUT, MAX_TURN_PCT_OUTPUT); // output range NOTE: might need to change signs
     	
 		turnUsingCameraPidController.setAbsoluteTolerance(PIXEL_THRESHOLD); // error tolerated
+
+		//creates a third PID controller
+		moveUsingCameraPidController = new PIDController(MOVE_USING_CAMERA_PROPORTIONAL_GAIN, MOVE_USING_CAMERA_INTEGRAL_GAIN, MOVE_USING_CAMERA_DERIVATIVE_GAIN, camera, new PIDOutput3Adapter(this), MOVE_USING_CAMERA_PID_CONTROLLER_PERIOD_SECONDS);
+
+		moveUsingCameraPidController.setInputRange(-HMCamera.SAFE_DISTANCE_INCHES, HMCamera.SAFE_DISTANCE_INCHES); // valid input range 
+		moveUsingCameraPidController.setOutputRange(-MAX_MOVE_USING_CAMERA_PCT_OUTPUT, MAX_MOVE_USING_CAMERA_PCT_OUTPUT); // output range NOTE: might need to change signs
+		
+		moveUsingCameraPidController.setAbsoluteTolerance(DISTANCE_THRESHOLD_INCHES); // error tolerated
+		
 		
 		differentialDrive = new DifferentialDrive(masterLeft, masterRight);
 		differentialDrive.setSafetyEnabled(false); // disables the stupid timeout error when we run in closed loop
@@ -399,6 +427,73 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, IDri
 		}		
 		stop();
 	}
+
+
+	// this method needs to be paired with checkMoveUsingCameraPidController()
+	public void moveUsingCameraPidController()
+	{
+		// switches to percentage vbus
+		stop(); // resets state 
+		
+		moveUsingCameraPidController.setSetpoint(0); // we want to end centered
+		moveUsingCameraPidController.enable(); // begins running
+		
+		isMovingUsingCamera = true;
+		onTargetCount = 0;
+	}
+		
+	public boolean tripleCheckMoveUsingCameraPidController()
+	{
+		if (isMovingUsingCamera) {
+			boolean isOnTarget = moveUsingCameraPidController.onTarget();
+			
+			if (isOnTarget) { // if we are on target in this iteration 
+				onTargetCount++; // we increase the counter
+			} else { // if we are not on target in this iteration
+				if (onTargetCount > 0) { // even though we were on target at least once during a previous iteration
+					onTargetCount = 0; // we reset the counter as we are not on target anymore
+					System.out.println("Triple-check failed (moving using camera).");
+				} else {
+					// we are definitely turning
+				}
+			}
+			
+	        if (onTargetCount > MOVE_USING_CAMERA_ON_TARGET_MINIMUM_COUNT) { // if we have met the minimum
+	        	isMovingUsingCamera = false;
+	        }
+			
+			if (!isMovingUsingCamera) {
+				System.out.println("You have reached the target (moving using camera).");
+				stop();				 
+			}
+		}
+		return isMovingUsingCamera;
+	}
+		
+	// do not use in teleop - for auton only
+	public void waitMoveUsingCameraPidController()
+	{
+		long start = Calendar.getInstance().getTimeInMillis();
+
+		while (tripleCheckMoveUsingCameraPidController()) { 		
+			if (!DriverStation.getInstance().isAutonomous()
+					|| Calendar.getInstance().getTimeInMillis() - start >= TIMEOUT_MS) {
+				System.out.println("You went over the time limit (moving using camera)");
+				stop();
+				break;
+			}
+
+			try {
+				Thread.sleep(20); // sleeps a little
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+			robot.updateToSmartDash();
+		}		
+		stop();
+	}
+
 
 	public void moveDistance(double dist) // moves the distance in inch given
 	{
@@ -651,7 +746,7 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, IDri
 	public void joystickControl(Joystick joyLeft, Joystick joyRight, boolean held) // sets talons to
 	// joystick control
 	{
-		if (!isMoving && !isTurning) // if we are already doing a move or turn we don't take over
+		if (!isMoving && !isTurning && !isMovingUsingCamera && !isTurningUsingCamera) // if we are already doing a move or turn we don't take over
 		{
 			if(!held)
 			{
@@ -703,6 +798,10 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, IDri
 	public boolean isMoving() {
 		return isMoving;
 	}
+
+	public boolean isMovingUsingCamera() {
+		return isMovingUsingCamera;
+	}
 	
 	public boolean isTurning(){
 		return isTurning;
@@ -720,11 +819,11 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, IDri
 	@Override
 	public void pidWrite(double output) {
 		
-		if(Math.abs(turnPidController.getError()) < DEGREE_THRESHOLD)
+		if (Math.abs(turnPidController.getError()) < DEGREE_THRESHOLD)
 		{
 			output = 0;
 		}
-		if(output != 0 && Math.abs(output) < MIN_TURN_PCT_OUTPUT)
+		if (output != 0 && Math.abs(output) < MIN_TURN_PCT_OUTPUT)
 		{
 			output = Math.signum(output) * MIN_TURN_PCT_OUTPUT;
 		}
@@ -732,17 +831,33 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, IDri
 		masterLeft.set(ControlMode.PercentOutput, -output);		
 	}
 	
+	@Override
 	public void pidWrite2(double output) {
 
-		if(Math.abs(turnUsingCameraPidController.getError()) < DEGREE_THRESHOLD)
+		if (Math.abs(turnUsingCameraPidController.getError()) < DEGREE_THRESHOLD)
 		{
 			output = 0;
 		}
-		if(output != 0 && Math.abs(output) < MIN_TURN_PCT_OUTPUT)
+		if (output != 0 && Math.abs(output) < MIN_TURN_PCT_OUTPUT)
 		{
 			output = Math.signum(output) * MIN_TURN_PCT_OUTPUT;
 		}
-		masterRight.set(ControlMode.PercentOutput, +output);
+		masterRight.set(ControlMode.PercentOutput, +output); // TODO double-check signs
+		masterLeft.set(ControlMode.PercentOutput, -output);		
+	}
+
+	@Override
+	public void pidWrite3(double output) {
+
+		if (Math.abs(moveUsingCameraPidController.getError()) < DISTANCE_THRESHOLD_INCHES)
+		{
+			output = 0;
+		}
+		if (output != 0 && Math.abs(output) < MIN_TURN_PCT_OUTPUT)
+		{
+			output = Math.signum(output) * MIN_TURN_PCT_OUTPUT;
+		}
+		masterRight.set(ControlMode.PercentOutput, -output); // TODO double-check signs
 		masterLeft.set(ControlMode.PercentOutput, -output);		
 	}
 	

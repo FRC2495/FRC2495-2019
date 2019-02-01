@@ -68,6 +68,8 @@ public class OI {
 
 	public JoystickButton joyRightBtn2;
 	public JoystickButton joyRightBtn3;
+	public JoystickButton joyRightBtn4;
+	public JoystickButton joyRightBtn5;
 	public JoystickButton joyRightBtn6;
 	public JoystickButton joyRightBtn7;
 	public Joystick joyRight;
@@ -172,6 +174,12 @@ public class OI {
 		joyRightBtn6 = new JoystickButton(joyRight, ControllerBase.JoystickButtons.BTN6);
 		joyRightBtn6.whenPressed(new DrivetrainResetEncoders());
 
+		joyRightBtn5 = new JoystickButton(joyRight, ControllerBase.JoystickButtons.BTN5);
+		joyRightBtn5.whenPressed(new DrivetrainMoveUsingCameraPidController());
+
+		joyRightBtn4 = new JoystickButton(joyRight, ControllerBase.JoystickButtons.BTN4);
+		joyRightBtn4.whenPressed(new DrivetrainTurnUsingCameraPidController());
+
 		joyRightBtn3 = new JoystickButton(joyRight, ControllerBase.JoystickButtons.BTN3);
 		//joyRightBtn3.whenPressed();
 
@@ -206,7 +214,7 @@ public class OI {
 		joyLeftBtn3.whenPressed(new DrivetrainMoveDistance(50));
 
 		joyLeftBtn2 = new JoystickButton(joyLeft, ControllerBase.JoystickButtons.BTN2);
-		//joyLeftBtn2.whenPressed();
+		//joyLeftBtn2.whenPressed(new DrivetrainTurnUsingCameraPidController());
 
 
 		// SmartDashboard Buttons

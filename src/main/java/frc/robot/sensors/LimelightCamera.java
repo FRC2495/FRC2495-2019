@@ -24,6 +24,8 @@ public class LimelightCamera implements PIDSource, ICamera {
 	private static final double TARGET_HEIGHT_INCHES = 5.5; // TODO set proper value
 	private static final double TARGET_WIDTH_INCHES = 12; // TODO set proper value
 
+	public static final double SAFE_DISTANCE_INCHES = 120;
+
 	private static final int MAX_NT_RETRY = 5;
 	private static final double CAMERA_CATCHUP_DELAY_SECS = 0.50;
 
@@ -200,4 +202,38 @@ public class LimelightCamera implements PIDSource, ICamera {
 		
 		return -getPixelDisplacementToCenterToCompositeTarget(); // we are located at the opposite or the displacement we need to shift by
 	}
+
+	public void setPIDSource2Type(PIDSourceType pidSource)
+	{
+		// always displacement!
+	}
+
+	public PIDSourceType getPIDSource2Type()
+	{
+		return PIDSourceType.kDisplacement;
+	}
+	
+	public double pidGet2()
+	{
+		acquireTargets(false); // we don't want to wait but the lag might be problematic
+		
+		final double OFFSET_CAMERA_TARGET_INCHES = 10; // we need to leave some space between the camera and the target
+		final double MAX_DISTANCE_TO_TARGET_INCHES = SAFE_DISTANCE_INCHES; // arbitrary very large distance
+		
+		double distanceToTargetReportedByCamera = getDistanceToCompositeTargetUsingHorizontalFov();
+
+		double distance = 0;
+		
+		if (distanceToTargetReportedByCamera <= MAX_DISTANCE_TO_TARGET_INCHES) {
+			if (distanceToTargetReportedByCamera >= OFFSET_CAMERA_TARGET_INCHES) {
+				distance = distanceToTargetReportedByCamera - OFFSET_CAMERA_TARGET_INCHES;
+			} else {
+				System.out.println("WARNING: Already at the target!");
+			}
+		} else {
+			System.out.println("ERROR: Cannot move to infinity and beyond!");
+		}
+
+		return -distance;
+	}	
 }
