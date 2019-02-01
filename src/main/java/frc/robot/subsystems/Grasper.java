@@ -131,7 +131,7 @@ public class Grasper extends Subsystem implements IGrasper{
 	
 	// do not use in teleop - for auton only
 	// This version does NOT rely on the sonar. Use only if sonar does not fulfill expectations.
-	public void waitGraspOrRelease() {
+	/*public void waitGraspOrRelease() {
 		long start = Calendar.getInstance().getTimeInMillis();
 
 		while (true) { 		
@@ -150,7 +150,7 @@ public class Grasper extends Subsystem implements IGrasper{
 			
 			robot.updateToSmartDash();
 		}
-	}
+	}*/
 	
 	public boolean tripleCheckGraspUsingSonar() {
 		if (sonar != null && isGrasping) {
@@ -182,7 +182,7 @@ public class Grasper extends Subsystem implements IGrasper{
 	}
 	
 	// do not use in teleop - for auton only
-	public void waitGraspUsingSonar() {
+	/*public void waitGraspUsingSonar() {
 		long start = Calendar.getInstance().getTimeInMillis();
 		
 		while (tripleCheckGraspUsingSonar()) {
@@ -201,7 +201,7 @@ public class Grasper extends Subsystem implements IGrasper{
 			
 			robot.updateToSmartDash();
 		}
-	}
+	}*/
 	
 	public boolean tripleCheckReleaseUsingSonar() {
 		if (sonar != null && isReleasing) {
@@ -233,7 +233,7 @@ public class Grasper extends Subsystem implements IGrasper{
 	}
 	
 	// do not use in teleop - for auton only
-	public void waitReleaseUsingSonar() {
+	/*public void waitReleaseUsingSonar() {
 		long start = Calendar.getInstance().getTimeInMillis();
 		
 		while (tripleCheckReleaseUsingSonar()) {
@@ -252,7 +252,7 @@ public class Grasper extends Subsystem implements IGrasper{
 			
 			robot.updateToSmartDash();
 		}
-	}
+	}*/
 		
 	// NOTE THAT THIS METHOD WILL IMPACT BOTH OPEN AND CLOSED LOOP MODES
 	public void setNominalAndPeakOutputs(double peakOutput)

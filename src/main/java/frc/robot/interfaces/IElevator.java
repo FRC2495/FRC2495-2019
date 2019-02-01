@@ -18,13 +18,13 @@ public interface IElevator {
 	public boolean checkHome();
 	
 	// do not use in teleop - for auton only
-	public void waitHome();
+	/*public void waitHome();*/
 	
 	// This method should be called to assess the progress of a move
 	public boolean tripleCheckMove();
 
 	// do not use in teleop - for auton only
-	public void waitMove();
+	/*public void waitMove();*/
 	
 	public void moveUp();
 	

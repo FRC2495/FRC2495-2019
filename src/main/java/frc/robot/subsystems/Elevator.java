@@ -238,7 +238,7 @@ public class Elevator extends Subsystem implements IElevator {
 	}
 	
 	// do not use in teleop - for auton only
-	public void waitHome() {
+	/*public void waitHome() {
 		long start = Calendar.getInstance().getTimeInMillis();
 		
 		while (checkHome()) {
@@ -257,7 +257,7 @@ public class Elevator extends Subsystem implements IElevator {
 			
 			robot.updateToSmartDash();
 		}
-	}
+	}*/
 	
 	// This method should be called to assess the progress of a move
 	public boolean tripleCheckMove() {
@@ -296,7 +296,7 @@ public class Elevator extends Subsystem implements IElevator {
 	}
 	
 	// do not use in teleop - for auton only
-	public void waitMove() {
+	/*public void waitMove() {
 		long start = Calendar.getInstance().getTimeInMillis();
 		
 		while (tripleCheckMove()) {
@@ -315,10 +315,9 @@ public class Elevator extends Subsystem implements IElevator {
 			
 			robot.updateToSmartDash();
 		}
-	}
+	}*/
 
 	public void moveUp() {
-		
 		
 		if (hasBeenHomed) {
 			//setPIDParameters();
@@ -337,8 +336,6 @@ public class Elevator extends Subsystem implements IElevator {
 
 	public void moveMidway() {
 		
-		
-		
 		if (hasBeenHomed) {
 			//setPIDParameters();
 			System.out.println("Moving Midway");
@@ -355,8 +352,6 @@ public class Elevator extends Subsystem implements IElevator {
 	}	
 	
 	public void moveDown() {
-		
-		
 		
 		if (hasBeenHomed) {
 			//setPIDParameters();
