@@ -118,7 +118,10 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 	
 	double ltac, rtac; // target positions 
 	
-	private int onTargetCount; // counter indicating how many times/iterations we were on target
+	private int onTargetCountMoving; // counter indicating how many times/iterations we were on target
+	private int onTargetCountTurning; // counter indicating how many times/iterations we were on target
+	private int onTargetCountTurningUsingCamera; // counter indicating how many times/iterations we were on target
+	private int onTargetCountMovingUsingCamera; // counter indicating how many times/iterations we were on target
 	private int stalledCount; // counter indicating how many times/iterations we were stalled
 
 	WPI_TalonSRX masterLeft, masterRight; // motor controllers
@@ -259,7 +262,7 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 		turnPidController.enable(); // begins running
 		
 		isTurning = true;
-		onTargetCount = 0;
+		onTargetCountTurning = 0;
 		isReallyStalled = false;
 		stalledCount = 0;
 	}
@@ -271,17 +274,17 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 			boolean isOnTarget = turnPidController.onTarget();
 			
 			if (isOnTarget) { // if we are on target in this iteration 
-				onTargetCount++; // we increase the counter
+				onTargetCountTurning++; // we increase the counter
 			} else { // if we are not on target in this iteration
-				if (onTargetCount > 0) { // even though we were on target at least once during a previous iteration
-					onTargetCount = 0; // we reset the counter as we are not on target anymore
+				if (onTargetCountTurning > 0) { // even though we were on target at least once during a previous iteration
+					onTargetCountTurning = 0; // we reset the counter as we are not on target anymore
 					System.out.println("Triple-check failed (turning).");
 				} else {
 					// we are definitely turning
 				}
 			}
 			
-			if (onTargetCount > TURN_ON_TARGET_MINIMUM_COUNT) { // if we have met the minimum
+			if (onTargetCountTurning > TURN_ON_TARGET_MINIMUM_COUNT) { // if we have met the minimum
 				isTurning = false;
 			}
 			
@@ -349,7 +352,7 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 		turnUsingCameraPidController.enable(); // begins running
 		
 		isTurningUsingCamera = true;
-		onTargetCount = 0;
+		onTargetCountTurningUsingCamera = 0;
 	}
 		
 	public boolean tripleCheckTurnUsingCameraPidController()
@@ -358,17 +361,17 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 			boolean isOnTarget = turnUsingCameraPidController.onTarget();
 			
 			if (isOnTarget) { // if we are on target in this iteration 
-				onTargetCount++; // we increase the counter
+				onTargetCountTurningUsingCamera++; // we increase the counter
 			} else { // if we are not on target in this iteration
-				if (onTargetCount > 0) { // even though we were on target at least once during a previous iteration
-					onTargetCount = 0; // we reset the counter as we are not on target anymore
+				if (onTargetCountTurningUsingCamera > 0) { // even though we were on target at least once during a previous iteration
+					onTargetCountTurningUsingCamera = 0; // we reset the counter as we are not on target anymore
 					System.out.println("Triple-check failed (turning using camera).");
 				} else {
 					// we are definitely turning
 				}
 			}
 			
-	        if (onTargetCount > TURN_USING_CAMERA_ON_TARGET_MINIMUM_COUNT) { // if we have met the minimum
+	        if (onTargetCountTurningUsingCamera > TURN_USING_CAMERA_ON_TARGET_MINIMUM_COUNT) { // if we have met the minimum
 	        	isTurningUsingCamera = false;
 	        }
 			
@@ -439,7 +442,7 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 		moveUsingCameraPidController.enable(); // begins running
 		
 		isMovingUsingCamera = true;
-		onTargetCount = 0;
+		onTargetCountMovingUsingCamera = 0;
 	}
 		
 	public boolean tripleCheckMoveUsingCameraPidController()
@@ -448,17 +451,17 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 			boolean isOnTarget = moveUsingCameraPidController.onTarget();
 			
 			if (isOnTarget) { // if we are on target in this iteration 
-				onTargetCount++; // we increase the counter
+				onTargetCountMovingUsingCamera++; // we increase the counter
 			} else { // if we are not on target in this iteration
-				if (onTargetCount > 0) { // even though we were on target at least once during a previous iteration
-					onTargetCount = 0; // we reset the counter as we are not on target anymore
+				if (onTargetCountMovingUsingCamera > 0) { // even though we were on target at least once during a previous iteration
+					onTargetCountMovingUsingCamera = 0; // we reset the counter as we are not on target anymore
 					System.out.println("Triple-check failed (moving using camera).");
 				} else {
 					// we are definitely turning
 				}
 			}
 			
-	        if (onTargetCount > MOVE_USING_CAMERA_ON_TARGET_MINIMUM_COUNT) { // if we have met the minimum
+	        if (onTargetCountMovingUsingCamera > MOVE_USING_CAMERA_ON_TARGET_MINIMUM_COUNT) { // if we have met the minimum
 	        	isMovingUsingCamera = false;
 	        }
 			
@@ -525,7 +528,7 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 		masterLeft.set(ControlMode.Position, ltac);
 
 		isMoving = true;
-		onTargetCount = 0;
+		onTargetCountMoving = 0;
 		isReallyStalled = false;
 		stalledCount = 0;
 	}
@@ -539,10 +542,10 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 			boolean isOnTarget = (Math.abs(rerror) < TICK_THRESH && Math.abs(lerror) < TICK_THRESH);
 			
 			if (isOnTarget) { // if we are on target in this iteration 
-				onTargetCount++; // we increase the counter
+				onTargetCountMoving++; // we increase the counter
 			} else { // if we are not on target in this iteration
-				if (onTargetCount > 0) { // even though we were on target at least once during a previous iteration
-					onTargetCount = 0; // we reset the counter as we are not on target anymore
+				if (onTargetCountMoving > 0) { // even though we were on target at least once during a previous iteration
+					onTargetCountMoving = 0; // we reset the counter as we are not on target anymore
 					System.out.println("Triple-check failed (moving).");
 				} else {
 					// we are definitely moving
@@ -555,7 +558,7 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 				}
 			}
 			
-			if (onTargetCount > MOVE_ON_TARGET_MINIMUM_COUNT) { // if we have met the minimum
+			if (onTargetCountMoving > MOVE_ON_TARGET_MINIMUM_COUNT) { // if we have met the minimum
 				isMoving = false;
 			}
 			
@@ -615,7 +618,7 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 		masterLeft.set(ControlMode.Position, -ltac);
 		
 		isMoving = true;
-		onTargetCount = 0;
+		onTargetCountMoving = 0;
 		isReallyStalled = false;
 		stalledCount = 0;
 	}
