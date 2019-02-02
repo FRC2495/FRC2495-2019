@@ -105,6 +105,10 @@ public class Robot extends TimedRobot {
 	BaseMotorController grasperLeft;
 	BaseMotorController grasperRight;
 	
+	public static /*I*/Hinge hingeControl;
+	
+	WPI_TalonSRX hinge; 
+	
 	// pneumatic devices
 	
 	Compressor compressor; // the compressor's lifecycle needs to be the same as the robot
@@ -170,8 +174,11 @@ public class Robot extends TimedRobot {
 		grasperLeft = new WPI_VictorSPX(Ports.CAN.GRASPER_LEFT);
 		grasperRight = new WPI_VictorSPX(Ports.CAN.GRASPER_RIGHT);
 
+		hinge = new WPI_TalonSRX(Ports.CAN.HINGE);
 
 		drivetrain = new Drivetrain( frontLeft, frontRight, rearLeft, rearRight, gyro, this, camera);	
+		
+		hingeControl = new Hinge(hinge, this);
 		
 		elevatorControl = new Elevator(elevator, this);
 
@@ -331,6 +338,17 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putBoolean("Elevator isDown", elevatorControl.isDown());
 		SmartDashboard.putBoolean("Elevator isMidway", elevatorControl.isMidway());
 		SmartDashboard.putBoolean("Elevator isUp", elevatorControl.isUp());
+		
+		SmartDashboard.putBoolean("Hinge Limit Switch", hingeControl.getLimitSwitchState());
+		SmartDashboard.putNumber("Hinge Position", hingeControl.getPosition());
+		SmartDashboard.putNumber("Hinge Enc Position", hingeControl.getEncoderPosition());
+		SmartDashboard.putBoolean("Hinge IsHoming?", hingeControl.isHoming());
+		SmartDashboard.putBoolean("Hinge IsMoving?", hingeControl.isMoving());
+		SmartDashboard.putNumber("Hinge Target", hingeControl.getTarget());
+		SmartDashboard.putBoolean("Hinge Has Been Homed?", hingeControl.hasBeenHomed());
+		SmartDashboard.putBoolean("Hinge isDown", hingeControl.isDown());
+		SmartDashboard.putBoolean("Hinge isMidway", hingeControl.isMidway());
+		SmartDashboard.putBoolean("Hinge isUp", hingeControl.isUp());
 		
 		SmartDashboard.putBoolean("Gyro Manually Calibrated?",hasGyroBeenManuallyCalibratedAtLeastOnce);
 		

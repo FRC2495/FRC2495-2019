@@ -7,14 +7,7 @@ public interface IDrivetrain {
 	// this method needs to be paired with checkTurnAngleUsingPidController()
 	public void turnAngleUsingPidController(double angle);
 	
-	public boolean tripleCheckTurnAngleUsingPidController();	
-	
-	// do not use in teleop - for auton only
-	/*public void waitTurnAngleUsingPidController();*/
-	
-	// do not use in teleop - for auton only
-	/*public void waitTurnAngleUsingPidControllerOrStalled();*/
-	
+	public boolean tripleCheckTurnAngleUsingPidController();
 	
 	// this method needs to be paired with checkMoveDistance()
 	public void moveDistance(double dist);
@@ -22,22 +15,14 @@ public interface IDrivetrain {
 	public void moveDistanceHighSpeed(double dist);
 	
 	public boolean tripleCheckMoveDistance();
-	
-	// do not use in teleop - for auton only
-	/*public void waitMoveDistance();*/
 
 	// this method needs to be paired with checkMoveDistance()
 	public void moveDistanceAlongArc(int angle);
 	
 	// checks if drivetrain might be stalled
 	public boolean tripleCheckIfStalled();
-		
-	// do not use in teleop - for auton only
-	/*public void waitMoveDistanceOrStalled();*/
-	
 	
 	public void stop();
-	
 	
 	public void setPIDParameters();
 	
