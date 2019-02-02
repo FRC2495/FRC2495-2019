@@ -113,6 +113,7 @@ public class Robot extends TimedRobot {
 	
 	Compressor compressor; // the compressor's lifecycle needs to be the same as the robot
 	
+	public static /*I*/Ejector ejector;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -175,6 +176,8 @@ public class Robot extends TimedRobot {
 		grasperRight = new WPI_VictorSPX(Ports.CAN.GRASPER_RIGHT);
 
 		hinge = new WPI_TalonSRX(Ports.CAN.HINGE);
+
+		ejector = new Ejector();
 
 		drivetrain = new Drivetrain( frontLeft, frontRight, rearLeft, rearRight, gyro, this, camera);	
 		

@@ -62,8 +62,8 @@ public class Ports {
 			public static final int BASIN_DOWN = 6;
 			public static final int BASIN_UP = 7;*/
 			
-			// 2018 robot
-			public static final int JACK_DOWN = 0;
-			public static final int JACK_UP = 1;
+			// 2019 robot
+			public static final int EJECTOR_RETRACTED = 0;
+			public static final int EJECTOR_EXTENDED = 1;
 		}
 }
