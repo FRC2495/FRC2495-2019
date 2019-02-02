@@ -103,19 +103,19 @@ public class OI {
 		gamepad = new Joystick(Ports.USB.GAMEPAD);
 
 		gamepadRYp = new GamepadAxis(gamepad, ControllerBase.GamepadAxes.RY);
-		//gamepadRYp.whenPressed();
+		gamepadRYp.whenPressed(new HingeMoveUp());
 
 		gamepadRYn = new GamepadAxis(gamepad, ControllerBase.GamepadAxes.RY,false);
-		//gamepadRYn.whenPressed();
+		gamepadRYn.whenPressed(new HingeMoveUp());
 
 		gamepadRXp = new GamepadAxis(gamepad, ControllerBase.GamepadAxes.RX);
-		//gamepadRXp.whenPressed();
+		gamepadRXp.whenPressed(new HingeMoveUp());
 
 		gamepadRXn = new GamepadAxis(gamepad, ControllerBase.GamepadAxes.RX,false);
-		//gamepadRXn.whenPressed();
+		gamepadRXn.whenPressed(new HingeMoveUp());
 
 		gamepadRT = new GamepadAxis(gamepad, ControllerBase.GamepadAxes.RT);
-		//gamepadRT.whenPressed();
+		gamepadRT.whenPressed(new HingeMoveDown());
 
 		gamepadLT = new GamepadAxis(gamepad, ControllerBase.GamepadAxes.LT);
 		gamepadLT.whenPressed(new ElevatorMoveDown());
@@ -140,13 +140,13 @@ public class OI {
 		//gamepadLS.whenPressed();
 
 		gamePadStart = new JoystickButton(gamepad, ControllerBase.GamepadButtons.START);
-		//gamePadStart.whenPressed();
+		gamePadStart.whenPressed(new HingeHome());
 
 		gamepadBack = new JoystickButton(gamepad, ControllerBase.GamepadButtons.BACK);
 		gamepadBack.whenPressed(new ElevatorHome());
 
 		gamepadRB = new JoystickButton(gamepad, ControllerBase.GamepadButtons.RB);
-		//gamepadRB.whenPressed();
+		gamepadRB.whenPressed(new HingeMoveMidway());
 
 		gamepadLB = new JoystickButton(gamepad, ControllerBase.GamepadButtons.LB);
 		gamepadLB.whenPressed(new ElevatorMoveMidway());
@@ -156,7 +156,7 @@ public class OI {
 		gamepadY.whenReleased(new GamepadRumble(false));
 
 		gamepadX = new JoystickButton(gamepad, ControllerBase.GamepadButtons.X);
-		gamepadX.whenPressed(new ElevatorAndGrasperStop());
+		gamepadX.whenPressed(new HingeElevatorAndGrasperStop());
 
 		gamepadB = new JoystickButton(gamepad, ControllerBase.GamepadButtons.B);
 		gamepadB.whenPressed(new GrasperRelease());
@@ -189,13 +189,13 @@ public class OI {
 		joyLeft = new Joystick(Ports.USB.LEFT);
 		
 		joyLeftBtn10 = new JoystickButton(joyLeft, ControllerBase.JoystickButtons.BTN10);
-		//joyLeftBtn10.whileHeld();
+		joyLeftBtn10.whileHeld(new GrasperJoystickControl());
 
 		joyLeftBtn9 = new JoystickButton(joyLeft, ControllerBase.JoystickButtons.BTN9);
-		//joyLeftBtn9.whileHeld();
+		joyLeftBtn9.whileHeld(new HingeJoystickControl());
 
 		joyLeftBtn8 = new JoystickButton(joyLeft, ControllerBase.JoystickButtons.BTN8);
-		//joyLeftBtn8.whileHeld();
+		joyLeftBtn8.whileHeld(new ElevatorJoystickControl());
 
 		joyLeftBtn7 = new JoystickButton(joyLeft, ControllerBase.JoystickButtons.BTN7);
 		joyLeftBtn7.whenPressed(new DrivetrainStop());
