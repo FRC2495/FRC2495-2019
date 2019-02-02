@@ -3,13 +3,10 @@
  */
 package frc.robot.subsystems;
 
-//import java.util.Calendar;
-
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.BaseMotorController;
 
-//import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -129,29 +126,6 @@ public class Grasper extends Subsystem implements IGrasper{
 		isReleasing = false;
 	}
 	
-	// do not use in teleop - for auton only
-	// This version does NOT rely on the sonar. Use only if sonar does not fulfill expectations.
-	/*public void waitGraspOrRelease() {
-		long start = Calendar.getInstance().getTimeInMillis();
-
-		while (true) { 		
-			if (!DriverStation.getInstance().isAutonomous()
-					|| Calendar.getInstance().getTimeInMillis() - start >= WAIT_MS) {
-				System.out.println("Wait is over");
-				stop();
-				break;
-			}
-
-			try {
-				Thread.sleep(20); // sleeps a little
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			
-			robot.updateToSmartDash();
-		}
-	}*/
-	
 	public boolean tripleCheckGraspUsingSonar() {
 		if (sonar != null && isGrasping) {
 						
@@ -181,28 +155,6 @@ public class Grasper extends Subsystem implements IGrasper{
 		return isGrasping;
 	}
 	
-	// do not use in teleop - for auton only
-	/*public void waitGraspUsingSonar() {
-		long start = Calendar.getInstance().getTimeInMillis();
-		
-		while (tripleCheckGraspUsingSonar()) {
-			if (!DriverStation.getInstance().isAutonomous()
-					|| Calendar.getInstance().getTimeInMillis() - start >= TIMEOUT_MS) {
-				System.out.println("You went over the time limit (grasping)");
-				stop();
-				break;
-			}
-			
-			try {
-				Thread.sleep(20); // sleeps a little
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			
-			robot.updateToSmartDash();
-		}
-	}*/
-	
 	public boolean tripleCheckReleaseUsingSonar() {
 		if (sonar != null && isReleasing) {
 						
@@ -231,28 +183,6 @@ public class Grasper extends Subsystem implements IGrasper{
 		}
 		return isReleasing;
 	}
-	
-	// do not use in teleop - for auton only
-	/*public void waitReleaseUsingSonar() {
-		long start = Calendar.getInstance().getTimeInMillis();
-		
-		while (tripleCheckReleaseUsingSonar()) {
-			if (!DriverStation.getInstance().isAutonomous()
-					|| Calendar.getInstance().getTimeInMillis() - start >= TIMEOUT_MS) {
-				System.out.println("You went over the time limit (releasing)");
-				stop();
-				break;
-			}
-			
-			try {
-				Thread.sleep(20); // sleeps a little
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			
-			robot.updateToSmartDash();
-		}
-	}*/
 		
 	// NOTE THAT THIS METHOD WILL IMPACT BOTH OPEN AND CLOSED LOOP MODES
 	public void setNominalAndPeakOutputs(double peakOutput)

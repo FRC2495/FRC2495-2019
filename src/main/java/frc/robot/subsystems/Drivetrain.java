@@ -1,7 +1,5 @@
 package frc.robot.subsystems;
 
-//import java.util.Calendar;
-
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
@@ -10,7 +8,6 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-//import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -299,52 +296,6 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 		}
 		return isTurning;
 	}
-	
-	// do not use in teleop - for auton only
-	/*public void waitTurnAngleUsingPidController() {
-		long start = Calendar.getInstance().getTimeInMillis();
-
-		while (tripleCheckTurnAngleUsingPidController()) { 		
-			if (!DriverStation.getInstance().isAutonomous()
-					|| Calendar.getInstance().getTimeInMillis() - start >= TIMEOUT_MS) {
-				System.out.println("You went over the time limit (turning)");
-				stop();
-				break;
-			}
-
-			try {
-				Thread.sleep(20); // sleeps a little
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			
-			robot.updateToSmartDash();
-		}		
-		stop();
-	}*/
-	
-	// do not use in teleop - for auton only
-	/*public void waitTurnAngleUsingPidControllerOrStalled() {
-		long start = Calendar.getInstance().getTimeInMillis();
-
-		while (tripleCheckTurnAngleUsingPidController() && !tripleCheckIfStalled()) { 		
-			if (!DriverStation.getInstance().isAutonomous()
-					|| Calendar.getInstance().getTimeInMillis() - start >= TIMEOUT_MS) {
-				System.out.println("You went over the time limit (turning)");
-				stop();
-				break;
-			}
-
-			try {
-				Thread.sleep(20); // sleeps a little
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			
-			robot.updateToSmartDash();
-		}		
-		stop();
-	}*/
 
 	// this method needs to be paired with checkTurnUsingCameraPidController()
 	public void turnUsingCameraPidController()
@@ -388,55 +339,6 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 		}
 		return isTurningUsingCamera;
 	}
-		
-	// do not use in teleop - for auton only
-	/*public void waitTurnUsingCameraPidController()
-	{
-		long start = Calendar.getInstance().getTimeInMillis();
-
-		while (tripleCheckTurnUsingCameraPidController()) { 		
-			if (!DriverStation.getInstance().isAutonomous()
-					|| Calendar.getInstance().getTimeInMillis() - start >= TIMEOUT_MS) {
-				System.out.println("You went over the time limit (turning using camera)");
-				stop();
-				break;
-			}
-
-			try {
-				Thread.sleep(20); // sleeps a little
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			
-			robot.updateToSmartDash();
-		}		
-		stop();
-	}*/
-
-	// do not use in teleop - for auton only
-	/*public void waitTurnUsingCameraPidControllerOrStalled()
-	{
-		long start = Calendar.getInstance().getTimeInMillis();
-
-		while (tripleCheckTurnUsingCameraPidController() && !tripleCheckIfStalled()) { 		
-			if (!DriverStation.getInstance().isAutonomous()
-					|| Calendar.getInstance().getTimeInMillis() - start >= TIMEOUT_MS) {
-				System.out.println("You went over the time limit (turning using camera)");
-				stop();
-				break;
-			}
-
-			try {
-				Thread.sleep(20); // sleeps a little
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			
-			robot.updateToSmartDash();
-		}		
-		stop();
-	}*/
-
 
 	// this method needs to be paired with checkMoveUsingCameraPidController()
 	public void moveUsingCameraPidController()
@@ -481,31 +383,6 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 		return isMovingUsingCamera;
 	}
 		
-	// do not use in teleop - for auton only
-	/*public void waitMoveUsingCameraPidController()
-	{
-		long start = Calendar.getInstance().getTimeInMillis();
-
-		while (tripleCheckMoveUsingCameraPidController()) { 		
-			if (!DriverStation.getInstance().isAutonomous()
-					|| Calendar.getInstance().getTimeInMillis() - start >= TIMEOUT_MS) {
-				System.out.println("You went over the time limit (moving using camera)");
-				stop();
-				break;
-			}
-
-			try {
-				Thread.sleep(20); // sleeps a little
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			
-			robot.updateToSmartDash();
-		}		
-		stop();
-	}*/
-
-
 	public void moveDistance(double dist) // moves the distance in inch given
 	{
 		moveDistance(dist, REDUCED_PCT_OUTPUT);
@@ -577,28 +454,6 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 		}
 		return isMoving;
 	}
-	
-	// do not use in teleop - for auton only
-	/*public void waitMoveDistance() {
-		long start = Calendar.getInstance().getTimeInMillis();
-		
-		while (tripleCheckMoveDistance()) {
-			if (!DriverStation.getInstance().isAutonomous()
-					|| Calendar.getInstance().getTimeInMillis() - start >= TIMEOUT_MS) {
-				System.out.println("You went over the time limit (moving)");
-				stop();
-				break;
-			}
-			
-			try {
-				Thread.sleep(20); // sleeps a little
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			
-			robot.updateToSmartDash();
-		}
-	}*/
 	
 	private double arclength(int angle) // returns the inches needed to be moved
 	// to turn the specified angle
@@ -678,28 +533,6 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 		
 		return isReallyStalled;
 	}
-		
-	// do not use in teleop - for auton only
-	/*public void waitMoveDistanceOrStalled() {
-		long start = Calendar.getInstance().getTimeInMillis();
-		
-		while (tripleCheckMoveDistance() && !tripleCheckIfStalled()) {
-			if (!DriverStation.getInstance().isAutonomous()
-					|| Calendar.getInstance().getTimeInMillis() - start >= TIMEOUT_MS) {
-				System.out.println("You went over the time limit (moving)");
-				stop();
-				break;
-			}
-			
-			try {
-				Thread.sleep(20); // sleeps a little
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			
-			robot.updateToSmartDash();
-		}
-	}*/
 	
 	public void stop() {
 		turnPidController.disable(); // exits PID loop
@@ -773,7 +606,6 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 		{
 			if(!held)
 			{
-
 				//masterRight.set(ControlMode.PercentOutput, joyRight.getY() * .75);
 				//masterLeft.set(ControlMode.PercentOutput, joyLeft.getY() * .75);
 				
@@ -783,7 +615,6 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 			}
 			else
 			{
-				
 				//masterRight.set(ControlMode.PercentOutput, joyRight.getY());
 				//masterLeft.set(ControlMode.PercentOutput, joyLeft.getY());
 				

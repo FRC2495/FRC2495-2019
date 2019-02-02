@@ -1,6 +1,5 @@
 package frc.robot.subsystems;
 
-//import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -10,8 +9,6 @@ import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.ControlMode;
-
-//import java.util.Calendar;
 
 import frc.robot.interfaces.*;
 import frc.robot.Robot;
@@ -67,7 +64,6 @@ public class Elevator extends Subsystem implements IElevator {
 	private int onTargetCount; // counter indicating how many times/iterations we were on target 
 
 	Robot robot; 
-	
 	
 	
 	
@@ -237,28 +233,6 @@ public class Elevator extends Subsystem implements IElevator {
 		return true;
 	}
 	
-	// do not use in teleop - for auton only
-	/*public void waitHome() {
-		long start = Calendar.getInstance().getTimeInMillis();
-		
-		while (checkHome()) {
-			if (!DriverStation.getInstance().isAutonomous()
-					|| Calendar.getInstance().getTimeInMillis() - start >= TIMEOUT_MS) {
-				System.out.println("You went over the time limit (elevator homing)");
-				stop();
-				break;
-			}
-			
-			try {
-				Thread.sleep(20); // sleeps a little
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			
-			robot.updateToSmartDash();
-		}
-	}*/
-	
 	// This method should be called to assess the progress of a move
 	public boolean tripleCheckMove() {
 		if (isMoving) {
@@ -294,28 +268,6 @@ public class Elevator extends Subsystem implements IElevator {
 		}
 		return isMoving; 
 	}
-	
-	// do not use in teleop - for auton only
-	/*public void waitMove() {
-		long start = Calendar.getInstance().getTimeInMillis();
-		
-		while (tripleCheckMove()) {
-			if (!DriverStation.getInstance().isAutonomous()
-					|| Calendar.getInstance().getTimeInMillis() - start >= TIMEOUT_MS) {
-				System.out.println("You went over the time limit (elevator moving)");
-				stop();
-				break;
-			}
-			
-			try {
-				Thread.sleep(20); // sleeps a little
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			
-			robot.updateToSmartDash();
-		}
-	}*/
 
 	public void moveUp() {
 		
