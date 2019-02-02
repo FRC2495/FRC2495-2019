@@ -39,8 +39,8 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 
 
 	// turn using camera settings
-	// NOTE: it might make sense to decrease the PID controller period to 0.02 sec (which is the period used by the main loop)
-	public static final double TURN_USING_CAMERA_PID_CONTROLLER_PERIOD_SECONDS = .02; // 0.02 sec = 20 ms 	
+	// NOTE: it might make sense to decrease the PID controller period below 0.02 sec (which is the period used by the main loop)
+	public static final double TURN_USING_CAMERA_PID_CONTROLLER_PERIOD_SECONDS = .01; // 0.01 sec = 10 ms 	
 	
 	//public static final double MIN_TURN_USING_CAMERA_PCT_OUTPUT = 0.1;
 	//public static final double MAX_TURN_USING_CAMERA_PCT_OUTPUT = 0.5;
@@ -57,8 +57,8 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 
 	
 	// turn settings
-	// NOTE: it might make sense to decrease the PID controller period to 0.02 sec (which is the period used by the main loop)
-	static final double TURN_PID_CONTROLLER_PERIOD_SECONDS = .02; // 0.02 sec = 20 ms 	
+	// NOTE: it might make sense to decrease the PID controller period below 0.02 sec (which is the period used by the main loop)
+	static final double TURN_PID_CONTROLLER_PERIOD_SECONDS = .01; // 0.01 sec = 10 ms 	
 	
 	static final double MIN_TURN_PCT_OUTPUT = Robot.COMPETITION_BOT_CONFIG?0.6:0.3;
 	static final double MAX_TURN_PCT_OUTPUT = Robot.COMPETITION_BOT_CONFIG?0.9:0.8;
@@ -75,8 +75,8 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 	
 
 	// move using camera settings
-	// NOTE: it might make sense to decrease the PID controller period to 0.02 sec (which is the period used by the main loop)
-	public static final double MOVE_USING_CAMERA_PID_CONTROLLER_PERIOD_SECONDS = .02; // 0.02 sec = 20 ms 	
+	// NOTE: it might make sense to decrease the PID controller period below 0.02 sec (which is the period used by the main loop)
+	public static final double MOVE_USING_CAMERA_PID_CONTROLLER_PERIOD_SECONDS = .01; // 0.01 sec = 10 ms 	
 	
 	public static final double MIN_MOVE_USING_CAMERA_PCT_OUTPUT = 0.1;
 	public static final double MAX_MOVE_USING_CAMERA_PCT_OUTPUT = 0.5;
