@@ -1,9 +1,6 @@
 package frc.robot.subsystems;
 
-import java.util.Calendar;
-
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 import frc.robot.interfaces.*;
