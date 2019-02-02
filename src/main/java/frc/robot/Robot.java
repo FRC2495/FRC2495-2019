@@ -20,6 +20,7 @@ import com.ctre.phoenix.motorcontrol.can.BaseMotorController;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
+import frc.robot.auton.CustomAuton;
 import frc.robot.interfaces.*;
 import frc.robot.sensors.*;
 //import frc.robot.commands.*;
@@ -243,9 +244,22 @@ public class Robot extends TimedRobot {
 		//So we are ready for autonomousPeriodic to be called.
 		updateToSmartDash();
 
-		m_autonomousCommand = null; // TODO decide which command to run based on user's selection
+		switch (autonSelected) {
+			case Robot.AUTON_CUSTOM:
+				m_autonomousCommand = new CustomAuton(startPosition, cameraOption, sonarOption, releaseSelected);
 
+				break;
 
+			case Robot.AUTON_DO_NOTHING:
+				m_autonomousCommand = null;
+			
+				break;
+				
+			default:
+
+				break;
+		} // end switch
+	
 		// schedule the autonomous command (example)
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.start();
