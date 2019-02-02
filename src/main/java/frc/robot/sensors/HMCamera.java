@@ -102,14 +102,14 @@ public class HMCamera implements PIDSource, ICamera {
 		}
 	}
 
-	public boolean isCoherent() {
+	public synchronized boolean isCoherent() {
 		boolean result = (area != null && width != null && height != null && centerX != null && centerY != null
 				&& area.length == width.length && area.length == height.length && area.length == centerX.length
 				&& area.length == centerY.length);
 		return result;
 	}
 
-	public int getNumberOfTargets() {
+	public synchronized int getNumberOfTargets() {
 		if (isCoherent()) {
 			int number = area.length;
 			return number; // all tables have the same size so any length
@@ -120,7 +120,7 @@ public class HMCamera implements PIDSource, ICamera {
 		}
 	}
 
-	public boolean acquireTargets(boolean waitForNewInfo) {
+	public synchronized boolean acquireTargets(boolean waitForNewInfo) {
 		if (waitForNewInfo) {
 			Timer.delay(CAMERA_CATCHUP_DELAY_SECS);
 		}
@@ -135,11 +135,11 @@ public class HMCamera implements PIDSource, ICamera {
 		}
 	}
 
-	public boolean checkForOpening() {
+	public synchronized boolean checkForOpening() {
 		return getNumberOfTargets() > 1; // opening is at least two targets
 	}
 
-	public double getDistanceToTargetAUsingVerticalFov() {
+	public synchronized double getDistanceToTargetAUsingVerticalFov() {
 		if (isCoherent() && largeAIndex != BAD_INDEX) {
 			double diagTargetDistance = TARGET_HEIGHT_INCHES * (VERTICAL_CAMERA_RES_PIXELS / height[largeAIndex]) / 2.0
 					/ Math.tan(Math.toRadians(VERTICAL_FOV_DEGREES / 2));
@@ -148,7 +148,7 @@ public class HMCamera implements PIDSource, ICamera {
 			return Double.POSITIVE_INFINITY;
 	}
 	
-	public double getDistanceToTargetAUsingHorizontalFov()
+	public synchronized double getDistanceToTargetAUsingHorizontalFov()
 	{
 		if (isCoherent() && largeAIndex != BAD_INDEX) {
 			double diagTargetDistance = TARGET_WIDTH_INCHES * (HORIZONTAL_CAMERA_RES_PIXELS / width[largeAIndex]) / 2.0
@@ -158,7 +158,7 @@ public class HMCamera implements PIDSource, ICamera {
 			return Double.POSITIVE_INFINITY;
 	}
 
-	public double getDistanceToTargetBUsingVerticalFov() {
+	public synchronized double getDistanceToTargetBUsingVerticalFov() {
 		if (isCoherent() && largeBIndex != BAD_INDEX) {
 			double diagTargetDistance = TARGET_HEIGHT_INCHES * (VERTICAL_CAMERA_RES_PIXELS / height[largeBIndex]) / 2.0
 					/ Math.tan(Math.toRadians(VERTICAL_FOV_DEGREES / 2));
@@ -167,7 +167,7 @@ public class HMCamera implements PIDSource, ICamera {
 			return Double.POSITIVE_INFINITY;
 	}
 	
-	public double getDistanceToTargetBUsingHorizontalFov()
+	public synchronized double getDistanceToTargetBUsingHorizontalFov()
 	{
 		if (isCoherent() && largeBIndex != BAD_INDEX) {
 			double diagTargetDistance = TARGET_WIDTH_INCHES * (HORIZONTAL_CAMERA_RES_PIXELS / width[largeBIndex]) / 2.0
@@ -177,7 +177,7 @@ public class HMCamera implements PIDSource, ICamera {
 			return Double.POSITIVE_INFINITY;
 	}
 
-	public double getAngleToTurnToTargetA() {
+	public synchronized double getAngleToTurnToTargetA() {
 		if (isCoherent() && largeAIndex != BAD_INDEX) {
 			double diff = (getCenterX()[largeAIndex] - (HORIZONTAL_CAMERA_RES_PIXELS / 2))
 					/ HORIZONTAL_CAMERA_RES_PIXELS;
@@ -187,7 +187,7 @@ public class HMCamera implements PIDSource, ICamera {
 			return 0;
 	}
 
-	public double getAngleToTurnToTargetB() {
+	public synchronized double getAngleToTurnToTargetB() {
 		if (isCoherent() && largeBIndex != BAD_INDEX) {
 			double diff = (getCenterX()[largeBIndex] - (HORIZONTAL_CAMERA_RES_PIXELS / 2))
 					/ HORIZONTAL_CAMERA_RES_PIXELS;
@@ -197,22 +197,22 @@ public class HMCamera implements PIDSource, ICamera {
 			return 0;
 	}
 	
-	public double getDistanceToCompositeTargetUsingVerticalFov()
+	public synchronized double getDistanceToCompositeTargetUsingVerticalFov()
 	{
 		return (getDistanceToTargetAUsingVerticalFov() + getDistanceToTargetBUsingVerticalFov()) / 2;
 	}
 	
-	public double getDistanceToCompositeTargetUsingHorizontalFov()
+	public synchronized double getDistanceToCompositeTargetUsingHorizontalFov()
 	{
 		return ((getDistanceToTargetAUsingHorizontalFov() + getDistanceToTargetBUsingHorizontalFov()) /2);
 	}
 	
-	public double getAngleToTurnToCompositeTarget()
+	public synchronized double getAngleToTurnToCompositeTarget()
 	{
 		return (getAngleToTurnToTargetA() + getAngleToTurnToTargetB()) / 2;
 	}
 
-	public double getPixelDisplacementToCenterToTargetA() {
+	public synchronized double getPixelDisplacementToCenterToTargetA() {
 		if (isCoherent() && largeAIndex != BAD_INDEX) {
 			double diff = (getCenterX()[largeAIndex] - (HORIZONTAL_CAMERA_RES_PIXELS / 2));
 			return diff;
@@ -220,7 +220,7 @@ public class HMCamera implements PIDSource, ICamera {
 			return 0;
 	}
 
-	public double getPixelDisplacementToCenterToTargetB() {
+	public synchronized double getPixelDisplacementToCenterToTargetB() {
 		if (isCoherent() && largeBIndex != BAD_INDEX) {
 			double diff = (getCenterX()[largeBIndex] - (HORIZONTAL_CAMERA_RES_PIXELS / 2));
 			return diff;
@@ -228,59 +228,59 @@ public class HMCamera implements PIDSource, ICamera {
 			return 0;
 	}
 
-	public double getPixelDisplacementToCenterToCompositeTarget()
+	public synchronized double getPixelDisplacementToCenterToCompositeTarget()
 	{
 		return ((getPixelDisplacementToCenterToTargetA() + getPixelDisplacementToCenterToTargetB()) /2);
 	}
 
-	public double[] getArea() {
+	public synchronized double[] getArea() {
 		return area;
 	}
 
-	public double[] getWidth() {
+	public synchronized double[] getWidth() {
 		return width;
 	}
 
-	public double[] getHeight() {
+	public synchronized double[] getHeight() {
 		return height;
 	}
 
-	public double[] getCenterX() {
+	public synchronized double[] getCenterX() {
 		return centerX;
 	}
 
-	public double[] getCenterY() {
+	public synchronized double[] getCenterY() {
 		return centerY;
 	}
 	
-	public void setPIDSourceType(PIDSourceType pidSource)
+	public synchronized void setPIDSourceType(PIDSourceType pidSource)
 	{
 		// always displacement!
 	}
 
-	public PIDSourceType getPIDSourceType()
+	public synchronized PIDSourceType getPIDSourceType()
 	{
 		return PIDSourceType.kDisplacement;
 	}
 	
-	public double pidGet()
+	public synchronized double pidGet()
 	{
 		acquireTargets(false); // we don't want to wait but the lag might be problematic
 		
 		return -getPixelDisplacementToCenterToCompositeTarget(); // we are located at the opposite or the displacement we need to shift by
 	}
 
-	public void setPIDSource2Type(PIDSourceType pidSource)
+	public synchronized void setPIDSource2Type(PIDSourceType pidSource)
 	{
 		// always displacement!
 	}
 
-	public PIDSourceType getPIDSource2Type()
+	public synchronized PIDSourceType getPIDSource2Type()
 	{
 		return PIDSourceType.kDisplacement;
 	}
 	
-	public double pidGet2()
+	public synchronized double pidGet2()
 	{
 		acquireTargets(false); // we don't want to wait but the lag might be problematic
 		
