@@ -11,11 +11,11 @@
 
 package frc.robot;
 
-import frc.robot.commands.*;
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.*;
-//import frc.robot.subsystems.*;
+
+import frc.robot.commands.*;
 import frc.robot.Ports;
 import frc.robot.ControllerBase;
 import frc.robot.util.GamepadAxis;
@@ -152,8 +152,7 @@ public class OI {
 		gamepadLB.whenPressed(new ElevatorMoveMidway());
 
 		gamepadY = new JoystickButton(gamepad, ControllerBase.GamepadButtons.Y);
-		//gamepadY.whenPressed(new GyroCalibrate()); // TODO reassign to less accessible button
-		gamepadY.whileHeld(new GamepadRumble(true));
+		gamepadY.whileHeld(new GamepadRumble(true)); // to demonstrate whileHeld()/whenReleased()
 		gamepadY.whenReleased(new GamepadRumble(false));
 
 		gamepadX = new JoystickButton(gamepad, ControllerBase.GamepadButtons.X);
