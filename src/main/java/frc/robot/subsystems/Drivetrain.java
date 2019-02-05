@@ -46,7 +46,7 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 	public static final double TURN_USING_CAMERA_INTEGRAL_GAIN = 0.0;
 	public static final double TURN_USING_CAMERA_DERIVATIVE_GAIN = 0.0;
 	
-	public static final int PIXEL_THRESHOLD = HMCamera.HORIZONTAL_CAMERA_RES_PIXELS / 100; // TODO adjust as needed
+	public static final int PIXEL_THRESHOLD = HMCamera.HORIZONTAL_CAMERA_RES_PIXELS / 20; // about 3 degrees - TODO adjust as needed
 	
 	public final static int TURN_USING_CAMERA_ON_TARGET_MINIMUM_COUNT = 25; // number of times/iterations we need to be on target to really be on target
 
