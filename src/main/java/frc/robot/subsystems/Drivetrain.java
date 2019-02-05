@@ -42,7 +42,7 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 	public static final double MIN_TURN_USING_CAMERA_PCT_OUTPUT = 0.3;
 	public static final double MAX_TURN_USING_CAMERA_PCT_OUTPUT = 0.6;
 	
-	public static final double TURN_USING_CAMERA_PROPORTIONAL_GAIN = 0.01; // TODO tune 320 pixels -> 3.2 pct output
+	public static final double TURN_USING_CAMERA_PROPORTIONAL_GAIN = 0.005; // TODO tune 320 pixels -> 1.6 pct output
 	public static final double TURN_USING_CAMERA_INTEGRAL_GAIN = 0.0;
 	public static final double TURN_USING_CAMERA_DERIVATIVE_GAIN = 0.0;
 	
