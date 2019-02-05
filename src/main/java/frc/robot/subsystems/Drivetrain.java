@@ -39,14 +39,14 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 	// NOTE: it might make sense to decrease the PID controller period below 0.02 sec (which is the period used by the main loop)
 	public static final double TURN_USING_CAMERA_PID_CONTROLLER_PERIOD_SECONDS = .01; // 0.01 sec = 10 ms 	
 	
-	//public static final double MIN_TURN_USING_CAMERA_PCT_OUTPUT = 0.1;
-	//public static final double MAX_TURN_USING_CAMERA_PCT_OUTPUT = 0.5;
+	public static final double MIN_TURN_USING_CAMERA_PCT_OUTPUT = 0.2;
+	public static final double MAX_TURN_USING_CAMERA_PCT_OUTPUT = 0.5;
 	
 	public static final double TURN_USING_CAMERA_PROPORTIONAL_GAIN = 0.001; // TODO tune 320 pixels -> 0.3 pct output
 	public static final double TURN_USING_CAMERA_INTEGRAL_GAIN = 0.0;
 	public static final double TURN_USING_CAMERA_DERIVATIVE_GAIN = 0.0;
 	
-	public static final int PIXEL_THRESHOLD = HMCamera.HORIZONTAL_CAMERA_RES_PIXELS / 10; // TODO adjust as needed
+	public static final int PIXEL_THRESHOLD = HMCamera.HORIZONTAL_CAMERA_RES_PIXELS / 100; // TODO adjust as needed
 	
 	public final static int TURN_USING_CAMERA_ON_TARGET_MINIMUM_COUNT = 25; // number of times/iterations we need to be on target to really be on target
 
@@ -216,8 +216,7 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 		turnUsingCameraPidController = new PIDController(TURN_USING_CAMERA_PROPORTIONAL_GAIN, TURN_USING_CAMERA_INTEGRAL_GAIN, TURN_USING_CAMERA_DERIVATIVE_GAIN, camera, new PIDOutput2Adapter(this), TURN_USING_CAMERA_PID_CONTROLLER_PERIOD_SECONDS);
     	
 		turnUsingCameraPidController.setInputRange(-HMCamera.HORIZONTAL_CAMERA_RES_PIXELS/2, HMCamera.HORIZONTAL_CAMERA_RES_PIXELS/2); // valid input range 
-		//turnUsingCameraPidController.setOutputRange(-MAX_TURN_USING_CAMERA_PCT_OUTPUT, MAX_TURN_USING_CAMERA_PCT_OUTPUT); // output range NOTE: might need to change signs
-		turnUsingCameraPidController.setOutputRange(-MAX_TURN_PCT_OUTPUT, MAX_TURN_PCT_OUTPUT); // output range NOTE: might need to change signs
+		turnUsingCameraPidController.setOutputRange(-MAX_TURN_USING_CAMERA_PCT_OUTPUT, MAX_TURN_USING_CAMERA_PCT_OUTPUT); // output range NOTE: might need to change signs
     	
 		turnUsingCameraPidController.setAbsoluteTolerance(PIXEL_THRESHOLD); // error tolerated
 
@@ -696,9 +695,9 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 		{
 			output = 0;
 		}
-		if (output != 0 && Math.abs(output) < MIN_TURN_PCT_OUTPUT)
+		if (output != 0 && Math.abs(output) < MIN_TURN_USING_CAMERA_PCT_OUTPUT)
 		{
-			output = Math.signum(output) * MIN_TURN_PCT_OUTPUT;
+			output = Math.signum(output) * MIN_TURN_USING_CAMERA_PCT_OUTPUT;
 		}
 		masterRight.set(ControlMode.PercentOutput, +output); // TODO double-check signs
 		masterLeft.set(ControlMode.PercentOutput, -output);		
@@ -713,9 +712,9 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 		{
 			output = 0;
 		}
-		if (output != 0 && Math.abs(output) < MIN_TURN_PCT_OUTPUT)
+		if (output != 0 && Math.abs(output) < MIN_MOVE_USING_CAMERA_PCT_OUTPUT)
 		{
-			output = Math.signum(output) * MIN_TURN_PCT_OUTPUT;
+			output = Math.signum(output) * MIN_MOVE_USING_CAMERA_PCT_OUTPUT;
 		}
 		masterRight.set(ControlMode.PercentOutput, -output); // TODO double-check signs
 		masterLeft.set(ControlMode.PercentOutput, -output);		

@@ -22,7 +22,7 @@ public class LimelightCamera implements PIDSource, ICamera {
 	private static final double VERTICAL_FOV_DEGREES = 45.7; // see https://www.andymark.com/products/limelight2
 	private static final double HORIZONTAL_FOV_DEGREES = 59.6; 
 	private static final double TARGET_HEIGHT_INCHES = 5.5; // TODO set proper value
-	private static final double TARGET_WIDTH_INCHES = 12; // TODO set proper value
+	private static final double TARGET_WIDTH_INCHES = 14.5; // TODO set proper value
 
 	public static final double SAFE_DISTANCE_INCHES = 120;
 
