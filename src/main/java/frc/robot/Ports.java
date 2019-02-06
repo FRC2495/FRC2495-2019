@@ -65,5 +65,7 @@ public class Ports {
 			// 2019 robot
 			public static final int EJECTOR_RETRACTED = 0;
 			public static final int EJECTOR_EXTENDED = 1;
+			public static final int SUCKER_INHALE= 2;
+			public static final int SUCKER_EXHALE = 3;
 		}
 }
