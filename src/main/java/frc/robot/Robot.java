@@ -98,9 +98,11 @@ public class Robot extends TimedRobot {
 	BaseMotorController rearRight;
 	
 	public static /*I*/Elevator elevatorControl;
-	
+	public static /*I*/HabElevator habElevatorControl;
+
 	WPI_TalonSRX elevator;
-	
+	WPI_TalonSRX habElevator;
+
 	public static /*I*/Grasper grasper;
 	
 	BaseMotorController grasperLeft;
@@ -173,6 +175,7 @@ public class Robot extends TimedRobot {
 		rearRight = new WPI_VictorSPX(Ports.CAN.RIGHT_REAR);
 
 		elevator = new WPI_TalonSRX(Ports.CAN.ELEVATOR);
+		habElevator = new WPI_TalonSRX(Ports.CAN.HAB_ELEVATOR);
 
 		grasperLeft = new WPI_VictorSPX(Ports.CAN.GRASPER_LEFT);
 		grasperRight = new WPI_VictorSPX(Ports.CAN.GRASPER_RIGHT);
@@ -186,6 +189,7 @@ public class Robot extends TimedRobot {
 		hingeControl = new Hinge(hinge, this);
 		
 		elevatorControl = new Elevator(elevator, this);
+		habElevatorControl = new HabElevator(habElevator, this); 
 
 		grasper = new Grasper(grasperLeft, grasperRight, sonar, this);
 
