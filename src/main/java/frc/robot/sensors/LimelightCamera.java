@@ -21,8 +21,8 @@ public class LimelightCamera implements PIDSource, ICamera {
 	private static final int VERTICAL_CAMERA_RES_PIXELS = 240;
 	private static final double VERTICAL_FOV_DEGREES = 45.7; // see https://www.andymark.com/products/limelight2
 	private static final double HORIZONTAL_FOV_DEGREES = 59.6; 
-	private static final double TARGET_HEIGHT_INCHES = 5.5; // TODO set proper value
-	private static final double TARGET_WIDTH_INCHES = 14.5; // TODO set proper value
+	private static final double TARGET_HEIGHT_INCHES = 5.5; // TODO set proper value PROPER VALUE IS 5.75 inches
+	private static final double TARGET_WIDTH_INCHES = 14.5;
 
 	public static final double SAFE_DISTANCE_INCHES = 120;
 
@@ -222,7 +222,8 @@ public class LimelightCamera implements PIDSource, ICamera {
 		final double OFFSET_CAMERA_TARGET_INCHES = 10; // we need to leave some space between the camera and the target
 		final double MAX_DISTANCE_TO_TARGET_INCHES = SAFE_DISTANCE_INCHES; // arbitrary very large distance
 		
-		double distanceToTargetReportedByCamera = getDistanceToCompositeTargetUsingHorizontalFov();
+		//double distanceToTargetReportedByCamera = getDistanceToCompositeTargetUsingHorizontalFov();
+		double distanceToTargetReportedByCamera = getDistanceToCompositeTargetUsingVerticalFov();
 
 		double distance = 0;
 		
