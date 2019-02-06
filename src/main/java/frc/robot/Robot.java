@@ -115,6 +115,7 @@ public class Robot extends TimedRobot {
 	Compressor compressor; // the compressor's lifecycle needs to be the same as the robot
 	
 	public static /*I*/Ejector ejector;
+	public static /*I*/Sucker sucker;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -192,6 +193,8 @@ public class Robot extends TimedRobot {
 
 		compressor = new Compressor();
 		compressor.checkCompressor();
+
+		sucker = new Sucker(); 
 		
 		// OI must be constructed after subsystems. If the OI creates Commands
 		//(which it very likely will), subsystems are not guaranteed to be
