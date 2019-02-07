@@ -9,6 +9,7 @@ import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.ControlMode;
+//import com.ctre.phoenix.ParamEnum;
 
 import frc.robot.interfaces.*;
 import frc.robot.Robot;
@@ -104,6 +105,10 @@ public class Elevator extends Subsystem implements IElevator {
 		// CTRE Magnetic Encoder (relative/quadrature) =  4096 units per rotation		
 		elevator.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,	PRIMARY_PID_LOOP, TALON_TIMEOUT_MS);
 		
+		// this will reset the encoder automatically when at or past the reverse limit sensor
+		//elevator.configSetParameter(ParamEnum.eClearPositionOnLimitR, 1, 0, 0, TALON_TIMEOUT_MS);
+		//elevator.configSetParameter(ParamEnum.eClearPositionOnLimitF, 0, 0, 0, TALON_TIMEOUT_MS);		
+
 		isHomingPart1 = false;
 		isHomingPart2 = false;
 		isMoving = false;

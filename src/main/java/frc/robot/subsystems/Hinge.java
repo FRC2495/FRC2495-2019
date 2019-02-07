@@ -9,6 +9,7 @@ import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.ControlMode;
+//import com.ctre.phoenix.ParamEnum;
 
 import frc.robot.interfaces.*;
 //import frc.robot.Ports;
@@ -99,6 +100,10 @@ public class Hinge extends Subsystem implements IHinge {
 		// This ensures the best resolution possible when performing closed-loops in firmware.
 		// CTRE Magnetic Encoder (relative/quadrature) =  4096 units per rotation		
 		hinge.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,	PRIMARY_PID_LOOP, TALON_TIMEOUT_MS);
+
+		// this will reset the encoder automatically when at or past the reverse limit sensor
+		//hinge.configSetParameter(ParamEnum.eClearPositionOnLimitR, 1, 0, 0, TALON_TIMEOUT_MS);
+		//hinge.configSetParameter(ParamEnum.eClearPositionOnLimitF, 0, 0, 0, TALON_TIMEOUT_MS);		
 		
 		isHomingPart1 = false;
 		isHomingPart2 = false;
