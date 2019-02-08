@@ -10,7 +10,7 @@ public class Ports {
 		
 		public static class Analog{
 			public static final int SONAR = 0;
-			public static final int CHECK_PRESSURE = 2;
+			public static final int PRESSURE_SENSOR = 1;
 		}
 		
 		public static class Relay{

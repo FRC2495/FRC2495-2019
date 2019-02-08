@@ -17,7 +17,7 @@ public class PressureSensor {
 	AnalogInput analogPressureSwitch;
 	
 	public PressureSensor() {
-		analogPressureSwitch = new AnalogInput(Ports.Analog.CHECK_PRESSURE); // TODO: Change port for this
+		analogPressureSwitch = new AnalogInput(Ports.Analog.PRESSURE_SENSOR); // TODO: Change port for this
 	}
 
 	public double getPressurePSI(){
