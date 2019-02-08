@@ -68,5 +68,7 @@ public class Ports {
 			public static final int EJECTOR_EXTENDED = 1;
 			public static final int SUCKER_INHALE= 2;
 			public static final int SUCKER_EXHALE = 3;
+			public static final int KICKER_IN = 4;
+			public static final int KICKER_OUT = 5;
 		}
 }
