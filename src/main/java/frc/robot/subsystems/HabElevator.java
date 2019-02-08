@@ -111,8 +111,7 @@ public class HabElevator extends Subsystem implements IHabElevator {
 		isMoving = false;
 		isMovingUp = false;
 
-		elevator.set(ControlMode.PercentOutput,0); // we stop AND MAKE SURE WE DO NOT MOVE WHEN SETTING POSITION
-		elevator.setSelectedSensorPosition(0, PRIMARY_PID_LOOP, TALON_TIMEOUT_MS); // we mark the virtual zero
+		resetEncoder();
 	}
 
 	@Override
@@ -295,5 +294,12 @@ public class HabElevator extends Subsystem implements IHabElevator {
 	
 	public double getTarget() {
 		return tac;
+	}
+
+	// MAKE SURE THAT YOU ARE NOT IN A CLOSED LOOP CONTROL MODE BEFORE CALLING THIS METHOD.
+	// OTHERWISE THIS IS EQUIVALENT TO MOVING TO THE DISTANCE TO THE CURRENT ZERO IN REVERSE! 
+	public void resetEncoder() {
+		elevator.set(ControlMode.PercentOutput,0); // we stop AND MAKE SURE WE DO NOT MOVE WHEN SETTING POSITION
+		elevator.setSelectedSensorPosition(0, PRIMARY_PID_LOOP, TALON_TIMEOUT_MS); // we mark the virtual zero
 	}
 }
