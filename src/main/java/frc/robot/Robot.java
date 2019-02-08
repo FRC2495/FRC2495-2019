@@ -87,6 +87,8 @@ public class Robot extends TimedRobot {
 	Sonar sonar;
 	
 	HMAccelerometer accelerometer;
+
+	public static PressureSensor pressureSensor;
 	
 	// motorized devices
 	
@@ -166,6 +168,8 @@ public class Robot extends TimedRobot {
 		camera = new LimelightCamera();
 
 		accelerometer = new HMAccelerometer();
+
+		pressureSensor = new PressureSensor();
 
 		// motorized devices
 
@@ -335,6 +339,7 @@ public class Robot extends TimedRobot {
 	{
 		// Send Gyro val to Dashboard
 		SmartDashboard.putNumber("Gyro Value", gyro.getAngle());
+		SmartDashboard.putNumber("Pressure", pressureSensor.getPressurePSI());
 			
 		SmartDashboard.putNumber("Right Value", drivetrain.getRightPosition());
 		SmartDashboard.putNumber("Left Value", drivetrain.getLeftPosition());
