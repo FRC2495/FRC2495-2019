@@ -8,10 +8,12 @@
 package frc.robot.auton;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import frc.robot.Robot;
 
 public class CustomAuton extends CommandGroup {
 
 	String startPosition;
+	String mainTarget;
 	String cameraOption;
 	String sonarOption;
 	String release;
@@ -19,9 +21,10 @@ public class CustomAuton extends CommandGroup {
 	/**
 	 * Add your docs here.
 	 */
-	public CustomAuton(String startPosition_in, String cameraOption_in,	String sonarOption_in, String release_in) {
+	public CustomAuton(String startPosition_in, String mainTarget_in, String cameraOption_in,	String sonarOption_in, String release_in) {
 
 		startPosition = startPosition_in;
+		mainTarget = mainTarget_in;
 		cameraOption = cameraOption_in;
 		sonarOption = sonarOption_in;
 		release = release_in; 
@@ -42,5 +45,81 @@ public class CustomAuton extends CommandGroup {
 		// e.g. if Command1 requires chassis, and Command2 requires arm,
 		// a CommandGroup containing them would require both the chassis and the
 		// arm.
+
+		switch (startPosition) {
+			case Robot.START_POSITION_HAB1_LEFT:
+				switch (mainTarget) {
+					case Robot.MAIN_TARGET_ROCKET:
+		
+						break;
+					case Robot.MAIN_TARGET_SHIP:
+		
+						break;	
+					default:
+
+						break;
+				}
+				break;
+
+			case Robot.START_POSITION_HAB1_CENTER:
+				switch (mainTarget) {
+					case Robot.MAIN_TARGET_ROCKET:
+		
+						break;
+					case Robot.MAIN_TARGET_SHIP:
+		
+						break;	
+					default:
+
+						break;
+				}			
+				break;
+				
+			case Robot.START_POSITION_HAB1_RIGHT:
+				switch (mainTarget) {
+					case Robot.MAIN_TARGET_ROCKET:
+		
+						break;
+					case Robot.MAIN_TARGET_SHIP:
+		
+						break;	
+					default:
+
+						break;
+				}
+				break;
+
+			case Robot.START_POSITION_HAB2_LEFT:
+				switch (mainTarget) {
+					case Robot.MAIN_TARGET_ROCKET:
+						addSequential(new Hab2LeftToRocket());
+						break;
+					case Robot.MAIN_TARGET_SHIP:
+						addSequential(new Hab2LeftToRocket());
+						break;	
+					default:
+
+						break;
+				}
+				break;				
+
+			case Robot.START_POSITION_HAB2_RIGHT:
+				switch (mainTarget) {
+					case Robot.MAIN_TARGET_ROCKET:
+						addSequential(new Hab2RightToRocket());
+						break;
+					case Robot.MAIN_TARGET_SHIP:
+						addSequential(new Hab2RightToShip());
+						break;	
+					default:
+
+						break;
+				}
+				break;
+
+			default:
+
+				break;
+		} // end switch
 	}
 }

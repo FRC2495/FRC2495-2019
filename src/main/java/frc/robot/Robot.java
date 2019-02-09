@@ -51,11 +51,18 @@ public class Robot extends TimedRobot {
 	private String autonSelected;
 	private SendableChooser<String> autonChooser = new SendableChooser<>();
 	
-	public static final String START_POSITION_LEFT = "Left";
-	public static final String START_POSITION_CENTER = "Center";
-	public static final String START_POSITION_RIGHT = "Right";
+	public static final String START_POSITION_HAB1_LEFT = "Hab 1 Left";
+	public static final String START_POSITION_HAB1_CENTER = "Hab 1 Center";
+	public static final String START_POSITION_HAB1_RIGHT = "Hab 1 Right";
+	public static final String START_POSITION_HAB2_LEFT = "Hab 2 Left";
+	public static final String START_POSITION_HAB2_RIGHT = "Hab 2 Right";
 	private String startPosition;
 	private SendableChooser<String> startPositionChooser = new SendableChooser<>();
+
+	public static final String MAIN_TARGET_ROCKET = "Rocket";
+	public static final String MAIN_TARGET_SHIP = "Ship";
+	private String mainTarget;
+	private SendableChooser<String> mainTargetChooser = new SendableChooser<>();
 	
 	public static final String CAMERA_OPTION_USE_ALWAYS = "Always";
 	public static final String CAMERA_OPTION_USE_OPEN_LOOP_ONLY = "Open Loop Only";
@@ -134,10 +141,16 @@ public class Robot extends TimedRobot {
 		autonChooser.addOption("My Auto", AUTON_CUSTOM);
 		SmartDashboard.putData("Auto choices", autonChooser);
 		
-		startPositionChooser.setDefaultOption("Left", START_POSITION_LEFT);
-		startPositionChooser.addOption("Center", START_POSITION_CENTER);
-		startPositionChooser.addOption("Right", START_POSITION_RIGHT);
+		startPositionChooser.addOption("Hab 1 Left", START_POSITION_HAB1_LEFT);
+		startPositionChooser.setDefaultOption("Hab 1 Center", START_POSITION_HAB1_CENTER);
+		startPositionChooser.addOption("Hab 1 Right", START_POSITION_HAB1_RIGHT);
+		startPositionChooser.addOption("Hab 2 Left", START_POSITION_HAB2_LEFT);
+		startPositionChooser.addOption("Hab 2 Right", START_POSITION_HAB2_RIGHT);
 		SmartDashboard.putData("Start positions", startPositionChooser);
+
+		mainTargetChooser.setDefaultOption("Rocket", MAIN_TARGET_ROCKET);
+		mainTargetChooser.addOption("Ship", MAIN_TARGET_SHIP);
+		SmartDashboard.putData("Main targets", mainTargetChooser);
 		
 		cameraOptionChooser.addOption("Always", CAMERA_OPTION_USE_ALWAYS);
 		cameraOptionChooser.setDefaultOption("Open Loop Only", CAMERA_OPTION_USE_OPEN_LOOP_ONLY);
@@ -243,6 +256,9 @@ public class Robot extends TimedRobot {
 		
 		startPosition = startPositionChooser.getSelected();
 		System.out.println("Start position: " + startPosition);
+
+		mainTarget = mainTargetChooser.getSelected();
+		System.out.println("Main target: " + mainTarget);
 		
 		cameraOption = cameraOptionChooser.getSelected();
 		System.out.println("Camera option: " + cameraOption);
@@ -259,7 +275,7 @@ public class Robot extends TimedRobot {
 
 		switch (autonSelected) {
 			case Robot.AUTON_CUSTOM:
-				m_autonomousCommand = new CustomAuton(startPosition, cameraOption, sonarOption, releaseSelected);
+				m_autonomousCommand = new CustomAuton(startPosition, mainTarget, cameraOption, sonarOption, releaseSelected);
 
 				break;
 
@@ -393,6 +409,7 @@ public class Robot extends TimedRobot {
 		
 		SmartDashboard.putString("Auton selected", autonChooser.getSelected());	
 		SmartDashboard.putString("Start position", startPositionChooser.getSelected());
+		SmartDashboard.putString("Main target", mainTargetChooser.getSelected());
 		SmartDashboard.putString("Camera option", cameraOptionChooser.getSelected());
 		SmartDashboard.putString("Sonar option", sonarOptionChooser.getSelected());
 		SmartDashboard.putString("Release chosen", releaseChooser.getSelected());
