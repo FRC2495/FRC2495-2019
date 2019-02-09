@@ -18,6 +18,7 @@ public class HabKickerKick extends InstantCommand {
 		super();
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
+		requires(Robot.habKicker);
 	}
 
 	// Called once when the command executes

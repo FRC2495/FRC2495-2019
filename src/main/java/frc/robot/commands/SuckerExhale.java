@@ -18,6 +18,7 @@ public class SuckerExhale extends InstantCommand {
 		super();
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
+		requires(Robot.sucker);
 	}
 
 	// Called once when the command executes
