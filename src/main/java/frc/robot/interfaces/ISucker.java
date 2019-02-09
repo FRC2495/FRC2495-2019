@@ -12,6 +12,4 @@ public interface ISucker {
 	public void setPosition(Position pos);	
 	
 	public Position getPosition();
-	
-	public void waitSetPosition();
 }

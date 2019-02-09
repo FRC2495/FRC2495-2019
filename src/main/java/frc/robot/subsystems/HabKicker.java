@@ -3,12 +3,12 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-import frc.robot.interfaces.IHabKicker.Position;
+import frc.robot.interfaces.IHabKicker;
 import frc.robot.Ports;
 
 
 // a class to raise the outer/main drivetrain (by lowering the inner/mini drivetrain)
-public class HabKicker extends Subsystem {
+public class HabKicker extends Subsystem implements IHabKicker {
 	
 	static final int WAIT_MS = 1000;
 	

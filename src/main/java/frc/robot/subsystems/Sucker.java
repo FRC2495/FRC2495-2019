@@ -3,12 +3,12 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-import frc.robot.interfaces.ISucker.Position;
+import frc.robot.interfaces.ISucker;
 import frc.robot.Ports;
 
 
 // a class to raise the outer/main drivetrain (by lowering the inner/mini drivetrain)
-public class Sucker extends Subsystem {
+public class Sucker extends Subsystem implements ISucker {
 	
 	static final int WAIT_MS = 1000;
 	
