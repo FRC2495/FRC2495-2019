@@ -14,16 +14,16 @@ import frc.robot.interfaces.IHabKicker.Position;
  * Add your docs here.
  */
 public class HabKickerKick extends InstantCommand {
-  public HabKickerKick() {
-    super();
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-  }
+	public HabKickerKick() {
+		super();
+		// Use requires() here to declare subsystem dependencies
+		// eg. requires(chassis);
+	}
 
-  // Called once when the command executes
-  @Override
-  protected void initialize() {
-    Robot.habKicker.setPosition(Position.OUT);
-  }
+	// Called once when the command executes
+	@Override
+	protected void initialize() {
+		Robot.habKicker.setPosition(Position.OUT);
+	}
 
 }

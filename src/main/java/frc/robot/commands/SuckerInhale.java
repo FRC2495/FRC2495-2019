@@ -14,16 +14,16 @@ import frc.robot.interfaces.ISucker.Position;
  * Add your docs here.
  */
 public class SuckerInhale extends InstantCommand {
-  public SuckerInhale() {
-    super();
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-  }
+	public SuckerInhale() {
+		super();
+		// Use requires() here to declare subsystem dependencies
+		// eg. requires(chassis);
+	}
 
-  // Called once when the command executes
-  @Override
-  protected void initialize() {
-    Robot.sucker.setPosition(Position.INHALE);
-  }
+	// Called once when the command executes
+	@Override
+	protected void initialize() {
+		Robot.sucker.setPosition(Position.INHALE);
+	}
 
 }
