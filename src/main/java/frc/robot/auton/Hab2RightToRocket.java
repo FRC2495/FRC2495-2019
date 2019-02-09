@@ -8,7 +8,7 @@
 package frc.robot.auton;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-
+import frc.robot.commands.*;
 public class Hab2RightToRocket extends CommandGroup {
 	/**
 	 * Add your docs here.
@@ -32,81 +32,115 @@ public class Hab2RightToRocket extends CommandGroup {
 		// arm.
 
 		// Move forward 125 in. (started off on RS) 
+		addSequential(new DrivetrainMoveDistance(125));
 
 		// Turn 90 degrees to the right 
+		addSequential(new DrivetrainTurnAngleUsingPidController(90));
 
 		// Move forward 70 in. 
+		addSequential(new DrivetrainMoveDistance(70));
 
 		// Turn 45 degrees to the left 
+		addSequential(new DrivetrainTurnAngleUsingPidController(-45));
 
 		// Vision target (RRF1) 
 
 		// Move backwards 24 in. 
+		addSequential(new DrivetrainMoveDistance(-24));
 
 		// Turn 135 degrees to the right 
+		addSequential(new DrivetrainTurnAngleUsingPidController(-135));
 
-		// Move forward 177 in. (another hatch received from RH) 
+		// Move forward 177 in. (another hatch received from RH)
+		addSequential(new DrivetrainMoveDistance(177)); 
 
 		// Move backwards 24 in. 
+		addSequential(new DrivetrainMoveDistance(-24));
 
 		// Turn 180 degrees 
+		addSequential(new DrivetrainTurnAngleUsingPidController(180));
 
-		// Move forward 177 in. 
+		// Move forward 177 in.
+		addSequential(new DrivetrainMoveDistance(177)); 
 
 		// Vision target (to RRF2) 
 
 		// Move backwards 24 in. 
+		addSequential(new DrivetrainMoveDistance(-24));
 
 		// Turn 180 degrees 
+		addSequential(new DrivetrainTurnAngleUsingPidController(180));
 
-		// Move forward 177 in. (another hatch received from RH) 
+		// Move forward 177 in. (another hatch received from RH)
+		addSequential(new DrivetrainMoveDistance(177)); 
 
 		// Move backwards 24 in. 
+		addSequential(new DrivetrainMoveDistance(-24));
 
 		// Turn 145 degrees to the right  
+		addSequential(new DrivetrainTurnAngleUsingPidController(145));
 
 		// Move forward 234 in. 
+		addSequential(new DrivetrainMoveDistance(234));
 
 		// Turn 35 degrees to the left 
+		addSequential(new DrivetrainTurnAngleUsingPidController(-35));
 
 		// Vision target (to CSR3) 
 
 		// Move backwards 24 in. 
+		addSequential(new DrivetrainMoveDistance(-24));
 
-		// Turn 110 degrees to the left 
+		// Turn 110 degrees to the left
+		addSequential(new DrivetrainTurnAngleUsingPidController(-110)); 
 
-		// Move forward 250 in. (another hatch received form RH) 
+		// Move forward 250 in. (another hatch received form RH)
+		addSequential(new DrivetrainMoveDistance(250)); 
 
 		// Move backward 24 in.  
+		addSequential(new DrivetrainMoveDistance(-24));
 
 		// Turn 113 degrees to the right 
+		addSequential(new DrivetrainTurnAngleUsingPidController(113));
 
-		// Move forward 254 in. 
+		// Move forward 254 in.
+		addSequential(new DrivetrainMoveDistance(254));
 
 		// Turn 67 degrees to the left 
+		addSequential(new DrivetrainTurnAngleUsingPidController(-67));
 
 		// Vision target (to CSR2) 
 
 		// Move backwards 24 in. 
+		addSequential(new DrivetrainMoveDistance(-24));
 
 		// Turn 110 degrees to the left 
+		addSequential(new DrivetrainTurnAngleUsingPidController(-110));
 
 		// Move forward 254 in. (another hatch received from RH) 
+		addSequential(new DrivetrainMoveDistance(254));
 
 		// Move backwards 24 in.  
+		addSequential(new DrivetrainMoveDistance(-24));
 
 		// Turn 116 degrees to the left 
+		addSequential(new DrivetrainTurnAngleUsingPidController(-116));
 
 		// Move forward 276 in. 
+		addSequential(new DrivetrainMoveDistance(276));
 
 		// Turn 64 degrees to the right  
+		addSequential(new DrivetrainTurnAngleUsingPidController(64));
 
 		// Visual delivery (CSL1) 
 
 		// Move backwards 24 in. 
+		addSequential(new DrivetrainMoveDistance(-24));
 
 		// Turn 90 degrees to the left  
+		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
 
-		// Move fow205 in. (robot is now in front of HAB)   
+		// Move foward 205 in. (robot is now in front of HAB)
+		addSequential(new DrivetrainMoveDistance(205));   
 	}
 }

@@ -8,6 +8,7 @@
 package frc.robot.auton;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import frc.robot.commands.*;
 
 public class Hab2LeftToShip extends CommandGroup {
 	/**
@@ -32,81 +33,120 @@ public class Hab2LeftToShip extends CommandGroup {
 		// arm.
 
 		// Move forward 76 in. (started off on LS) 
+		addSequential(new DrivetrainMoveDistance(76));
 
 		// Turn 90 degrees to the right 
+		addSequential(new DrivetrainTurnAngleUsingPidController(90));
 
 		// Move forward 42 in. 
+		addSequential(new DrivetrainMoveDistance(42));
 
 		// Turn 90 degrees to the left 
+		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
 
 		// Vision targeting (CSLF) 
+		// TODO
 
 		// Reverse 2 ft. 
+		addSequential(new DrivetrainMoveDistance(-24));
 
 		// Turn 90 degrees to the left 
+		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
 
 		// Move forward 124 in. 
+		addSequential(new DrivetrainMoveDistance(124));
 
 		// Turn 90 degrees to the left 
+		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
 
-		// Move forward 76 in. (to LH) 
+		// Move forward 76 in. (to LH)
+		addSequential(new DrivetrainMoveDistance(76)); 
 
 		// Reverse 76 in. (from LH) 
+		addSequential(new DrivetrainMoveDistance(-76));
 
 		// Turn 90 degrees to the left 
+		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
 
-		// Move forward 145 in. (to line up with CSRF)   
+		// Move forward 145 in. (to line up with CSRF) 
+		addSequential(new DrivetrainMoveDistance(145));
 
 		// Turn 90 degrees to the left 
+		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
 
 		// Vision targeting (CSRF) 
 
 		// Reverse 2 ft. 
+		addSequential(new DrivetrainMoveDistance(-24));
 
 		// Turn 90 degrees to the right 
+		addSequential(new DrivetrainTurnAngleUsingPidController(90));
 
 		// Move forward 145 in. 
+		addSequential(new DrivetrainMoveDistance(145));
 
 		// Turn 90 degrees to the left 
+		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
 
 		// Move forward 76 in. (to LH) 
+		addSequential(new DrivetrainMoveDistance(76));
 
 		// Reverse 2 ft  
+		addSequential(new DrivetrainMoveDistance(-24));
 
-		// Turn 180 degrees to the left  
+		// Turn 180 degrees to the left
+		addSequential(new DrivetrainTurnAngleUsingPidController(-180));  
 
 		// Move forward 177 in. 
+		addSequential(new DrivetrainMoveDistance(177));
 
 		// Reverse 2 ft 
+		addSequential(new DrivetrainMoveDistance(-24));
 
 		// Turn 180 degrees to the left  
+		addSequential(new DrivetrainTurnAngleUsingPidController(-180));
 
-		// Move forward 177 in.  
+		// Move forward 177 in.
+		addSequential(new DrivetrainMoveDistance(177));
 
 		// Reverse 76 in. 
+		addSequential(new DrivetrainMoveDistance(-76));
 
 		// Turn 90 degrees to the left 
+		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
 
 		// Move forward 124 in. 
+		addSequential(new DrivetrainMoveDistance(124));
 
 		// Turn 90 degrees to the left 
+		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
 
 		// Move forward 106  
+		addSequential(new DrivetrainMoveDistance(106));
 
 		// Turn 90 degrees to the right 
+		addSequential(new DrivetrainTurnAngleUsingPidController(90));
 
 		// Reverse 2 ft. 
+		addSequential(new DrivetrainMoveDistance(-24));
 
 		// Turn 90 degrees to the right 
+		addSequential(new DrivetrainTurnAngleUsingPidController(90));
 
 		// Move forward 160 in. 
+		addSequential(new DrivetrainMoveDistance(160));
 
 		// Turn 90 degrees to the right 
+		addSequential(new DrivetrainTurnAngleUsingPidController(90));
 
 		// Move forward 76 in. 
+		addSequential(new DrivetrainMoveDistance(76));
 
 		// Turn 90 degrees to the left 
+		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
 
 		// Move forward 230 in. 
+		addSequential(new DrivetrainMoveDistance(230));
+
 	}
 }
