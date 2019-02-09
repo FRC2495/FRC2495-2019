@@ -33,7 +33,7 @@ public class Hab2RightToShip extends CommandGroup {
 		// arm.
 
 		// Move forward 76 in. (from RS) 
-		
+		addSequential(new DrivetrainMoveDistance(76));		
 
 		// Turn 90 degrees to the left 
 		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
@@ -44,7 +44,8 @@ public class Hab2RightToShip extends CommandGroup {
 		// Turn 90 degrees to the right 
 		addSequential(new DrivetrainTurnAngleUsingPidController(90));
 
-		// Vision Target (to 
+		// Vision Target
+		// TODO
 
 		// Reverse 24 in. 
 		addSequential(new DrivetrainMoveDistance(-24));
@@ -76,6 +77,7 @@ public class Hab2RightToShip extends CommandGroup {
 		addSequential(new DrivetrainTurnAngleUsingPidController(90));
 
 		// Vision target (CSRF) 
+		// TODO
 
 		// Reverse 24 in. 
 		addSequential(new DrivetrainMoveDistance(-24));
@@ -92,6 +94,8 @@ public class Hab2RightToShip extends CommandGroup {
 		// Move forward 76 in. (to RH) 
 		addSequential(new DrivetrainMoveDistance(76));
 
+		// ?
+
 		// Reverse 24 in.
 		addSequential(new DrivetrainMoveDistance(-24));
 		
@@ -101,14 +105,18 @@ public class Hab2RightToShip extends CommandGroup {
 		// Move forward 177 in. 
 		addSequential(new DrivetrainMoveDistance(177));
 
+		// ?
+
 		// Revers 24 in. 
 		addSequential(new DrivetrainMoveDistance(-24));
 		
-		//turn 180 degrees
+		// turn 180 degrees
 		addSequential(new DrivetrainTurnAngleUsingPidController(180));  
 
 		// Move forward 177 in.  
 		addSequential(new DrivetrainMoveDistance(177));
+
+		// ?
 
 		// Reverse 76 in. 
 		addSequential(new DrivetrainMoveDistance(-76));

@@ -44,6 +44,7 @@ public class Hab2RightToRocket extends CommandGroup {
 		addSequential(new DrivetrainTurnAngleUsingPidController(-45));
 
 		// Vision target (RRF1) 
+		// TODO
 
 		// Move backwards 24 in. 
 		addSequential(new DrivetrainMoveDistance(-24));
@@ -51,8 +52,10 @@ public class Hab2RightToRocket extends CommandGroup {
 		// Turn 135 degrees to the right 
 		addSequential(new DrivetrainTurnAngleUsingPidController(-135));
 
-		// Move forward 177 in. (another hatch received from RH)
+		// Move forward 177 in.
 		addSequential(new DrivetrainMoveDistance(177)); 
+
+		// (another hatch received from RH)
 
 		// Move backwards 24 in. 
 		addSequential(new DrivetrainMoveDistance(-24));
@@ -64,6 +67,7 @@ public class Hab2RightToRocket extends CommandGroup {
 		addSequential(new DrivetrainMoveDistance(177)); 
 
 		// Vision target (to RRF2) 
+		// TODO
 
 		// Move backwards 24 in. 
 		addSequential(new DrivetrainMoveDistance(-24));
@@ -71,8 +75,10 @@ public class Hab2RightToRocket extends CommandGroup {
 		// Turn 180 degrees 
 		addSequential(new DrivetrainTurnAngleUsingPidController(180));
 
-		// Move forward 177 in. (another hatch received from RH)
+		// Move forward 177 in.
 		addSequential(new DrivetrainMoveDistance(177)); 
+
+		// (another hatch received from RH)
 
 		// Move backwards 24 in. 
 		addSequential(new DrivetrainMoveDistance(-24));
@@ -87,6 +93,7 @@ public class Hab2RightToRocket extends CommandGroup {
 		addSequential(new DrivetrainTurnAngleUsingPidController(-35));
 
 		// Vision target (to CSR3) 
+		// TODO
 
 		// Move backwards 24 in. 
 		addSequential(new DrivetrainMoveDistance(-24));
@@ -94,8 +101,10 @@ public class Hab2RightToRocket extends CommandGroup {
 		// Turn 110 degrees to the left
 		addSequential(new DrivetrainTurnAngleUsingPidController(-110)); 
 
-		// Move forward 250 in. (another hatch received form RH)
+		// Move forward 250 in. 
 		addSequential(new DrivetrainMoveDistance(250)); 
+
+		// (another hatch received form RH)
 
 		// Move backward 24 in.  
 		addSequential(new DrivetrainMoveDistance(-24));
@@ -110,6 +119,7 @@ public class Hab2RightToRocket extends CommandGroup {
 		addSequential(new DrivetrainTurnAngleUsingPidController(-67));
 
 		// Vision target (to CSR2) 
+		// TODO
 
 		// Move backwards 24 in. 
 		addSequential(new DrivetrainMoveDistance(-24));
@@ -133,6 +143,7 @@ public class Hab2RightToRocket extends CommandGroup {
 		addSequential(new DrivetrainTurnAngleUsingPidController(64));
 
 		// Visual delivery (CSL1) 
+		// TODO
 
 		// Move backwards 24 in. 
 		addSequential(new DrivetrainMoveDistance(-24));
