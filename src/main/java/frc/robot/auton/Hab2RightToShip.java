@@ -148,7 +148,7 @@ public class Hab2RightToShip extends CommandGroup {
 		// Turn 90 degrees to the right 
 		addSequential(new DrivetrainTurnAngleUsingPidController(90));
 
-		// Move forward 145 in. 
+		// Move forward 145 in. (is that the right distance?)
 		addSequential(new DrivetrainMoveDistance(145));
 
 		// Turn 90 degrees to the right 

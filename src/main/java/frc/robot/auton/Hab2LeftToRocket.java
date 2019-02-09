@@ -47,6 +47,8 @@ public class Hab2LeftToRocket extends CommandGroup {
 		// Vision delivery (to RLF1) 
 		// TODO
 
+		// shouldn't we move backwards 24 inches here?
+
 		// Turn 135 degrees to the left 
 		addSequential(new DrivetrainTurnAngleUsingPidController(-135));
 
@@ -56,7 +58,7 @@ public class Hab2LeftToRocket extends CommandGroup {
 		// (another hatch received from LH)
 
 		// Move backwards 24 in. 
-		addSequential(new DrivetrainMoveDistance(24));
+		addSequential(new DrivetrainMoveDistance(-24));
 
 		// Turn 180 degrees to the left  
 		addSequential(new DrivetrainTurnAngleUsingPidController(-180));
@@ -84,7 +86,7 @@ public class Hab2LeftToRocket extends CommandGroup {
 		// Turn 145 degrees to the left
 		addSequential(new DrivetrainTurnAngleUsingPidController(-145)); 
 
-		// Move 258 in. forward  
+		// Move 258 in. forward (is that the correct distance?)
 		addSequential(new DrivetrainMoveDistance(258));
 
 		// Turn 35 degrees to the right
@@ -99,7 +101,7 @@ public class Hab2LeftToRocket extends CommandGroup {
 		// Turn 110 degrees to the right  
 		addSequential(new DrivetrainTurnAngleUsingPidController(110));
 
-		// Move forward 258 in.
+		// Move forward 258 in. (is that the correct distance?)
 		addSequential(new DrivetrainMoveDistance(258));
 
 		// (another hatch received from LH)
@@ -110,7 +112,7 @@ public class Hab2LeftToRocket extends CommandGroup {
 		// Turn 113 degrees to the left 
 		addSequential(new DrivetrainTurnAngleUsingPidController(-113));
 
-		// Move forward 278 in.  
+		// Move forward 278 in. (is that the correct distance?) 
 		addSequential(new DrivetrainMoveDistance(278));
 
 		// Turn 67 degrees to the right  

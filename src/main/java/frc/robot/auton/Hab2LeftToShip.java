@@ -139,10 +139,12 @@ public class Hab2LeftToShip extends CommandGroup {
 		// Reverse 2 ft. 
 		addSequential(new DrivetrainMoveDistance(-24));
 
+		// is something missing here?
+
 		// Turn 90 degrees to the right 
 		addSequential(new DrivetrainTurnAngleUsingPidController(90));
 
-		// Move forward 160 in. 
+		// Move forward 160 in. (is that the right distance?)
 		addSequential(new DrivetrainMoveDistance(160));
 
 		// Turn 90 degrees to the right 
