@@ -214,10 +214,10 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 
 		//creates a second PID controller
 		turnUsingCameraPidController = new PIDController(TURN_USING_CAMERA_PROPORTIONAL_GAIN, TURN_USING_CAMERA_INTEGRAL_GAIN, TURN_USING_CAMERA_DERIVATIVE_GAIN, camera, new PIDOutput2Adapter(this), TURN_USING_CAMERA_PID_CONTROLLER_PERIOD_SECONDS);
-    	
+		
 		turnUsingCameraPidController.setInputRange(-HMCamera.HORIZONTAL_CAMERA_RES_PIXELS/2, HMCamera.HORIZONTAL_CAMERA_RES_PIXELS/2); // valid input range 
 		turnUsingCameraPidController.setOutputRange(-MAX_TURN_USING_CAMERA_PCT_OUTPUT, MAX_TURN_USING_CAMERA_PCT_OUTPUT); // output range NOTE: might need to change signs
-    	
+		
 		turnUsingCameraPidController.setAbsoluteTolerance(PIXEL_THRESHOLD); // error tolerated
 
 		//creates a third PID controller
@@ -327,9 +327,9 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 				}
 			}
 			
-	        if (onTargetCountTurningUsingCamera > TURN_USING_CAMERA_ON_TARGET_MINIMUM_COUNT) { // if we have met the minimum
-	        	isTurningUsingCamera = false;
-	        }
+			if (onTargetCountTurningUsingCamera > TURN_USING_CAMERA_ON_TARGET_MINIMUM_COUNT) { // if we have met the minimum
+				isTurningUsingCamera = false;
+			}
 			
 			if (!isTurningUsingCamera) {
 				System.out.println("You have reached the target (turning using camera).");
@@ -370,9 +370,9 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 				}
 			}
 			
-	        if (onTargetCountMovingUsingCamera > MOVE_USING_CAMERA_ON_TARGET_MINIMUM_COUNT) { // if we have met the minimum
-	        	isMovingUsingCamera = false;
-	        }
+			if (onTargetCountMovingUsingCamera > MOVE_USING_CAMERA_ON_TARGET_MINIMUM_COUNT) { // if we have met the minimum
+				isMovingUsingCamera = false;
+			}
 			
 			if (!isMovingUsingCamera) {
 				System.out.println("You have reached the target (moving using camera).");
