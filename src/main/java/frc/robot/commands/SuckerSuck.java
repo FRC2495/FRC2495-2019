@@ -20,7 +20,7 @@ public class SuckerSuck extends CommandGroup {
 
 	public SuckerSuck() {
 
-		for ( int x = 0; x < ITERATIONS; x++)
+		for ( int i = 0; i < ITERATIONS; i++)
 		{
 			addSequential(new SuckerExhale());
 			addSequential(new WaitCommand(TIMEOUT_EXHALE_S));
