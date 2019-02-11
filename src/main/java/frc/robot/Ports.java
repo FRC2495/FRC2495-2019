@@ -70,5 +70,7 @@ public class Ports {
 			public static final int SUCKER_EXHALE = 3;
 			public static final int KICKER_IN = 4;
 			public static final int KICKER_OUT = 5;
+			public static final int HOOK_UP = 6;
+			public static final int HOOK_DOWN = 7;
 		}
 }
