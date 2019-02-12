@@ -268,6 +268,7 @@ public class ControllerBase {
 	 * Rumbles the gamepad
 	 * 
 	 * @param rumble whether or not to set the rumble on
+	 * @param gamepad reference to gamepad
 	 */
 	public static void rumble(boolean rumble, Joystick gamepad) {
 		if (rumble) {

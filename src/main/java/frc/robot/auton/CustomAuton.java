@@ -20,6 +20,12 @@ public class CustomAuton extends CommandGroup {
 
 	/**
 	 * Add your docs here.
+	 * 
+	 * @param startPosition_in starting position
+	 * @param mainTarget_in main target
+	 * @param cameraOption_in camera option
+	 * @param sonarOption_in sonar option
+	 * @param release_in release option
 	 */
 	public CustomAuton(String startPosition_in, String mainTarget_in, String cameraOption_in,	String sonarOption_in, String release_in) {
 
