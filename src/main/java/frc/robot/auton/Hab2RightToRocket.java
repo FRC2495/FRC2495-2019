@@ -86,8 +86,8 @@ public class Hab2RightToRocket extends CommandGroup {
 		// Turn 145 degrees to the right  
 		addSequential(new DrivetrainTurnAngleUsingPidController(145));
 
-		// Move forward 234 in. 
-		addSequential(new DrivetrainMoveDistance(234));
+		// Move forward 258 in. 
+		addSequential(new DrivetrainMoveDistance(258));
 
 		// Turn 35 degrees to the left 
 		addSequential(new DrivetrainTurnAngleUsingPidController(-35));
