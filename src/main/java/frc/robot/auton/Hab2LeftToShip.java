@@ -148,7 +148,7 @@ public class Hab2LeftToShip extends CommandGroup {
 		addSequential(new DrivetrainMoveDistance(160));
 
 		// Turn 90 degrees to the left
-		addSequential(new DrivetrainTurnAngleUsingPidController(90));
+		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
 
 		// Move forward 145 in. 
 		addSequential(new DrivetrainMoveDistance(145));
