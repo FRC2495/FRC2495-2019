@@ -73,6 +73,8 @@ public class OI {
 	public JoystickButton joyRightBtn5;
 	public JoystickButton joyRightBtn6;
 	public JoystickButton joyRightBtn7;
+	public JoystickButton joyRightBtn8;
+	public JoystickButton joyRightBtn9;
 	public Joystick joyRight;
 
 	public JoystickButton gamepadA;
@@ -167,6 +169,12 @@ public class OI {
 
 
 		joyRight = new Joystick(Ports.USB.RIGHT);
+
+		joyRightBtn9 = new JoystickButton(joyRight, ControllerBase.JoystickButtons.BTN7);
+		joyRightBtn9.whenPressed(new EjectorSetPosition(IEjector.Position.EXTENDED));
+
+		joyRightBtn8 = new JoystickButton(joyRight, ControllerBase.JoystickButtons.BTN7);
+		joyRightBtn8.whenPressed(new EjectorSetPosition(IEjector.Position.RETRACTED));
 		
 		joyRightBtn7 = new JoystickButton(joyRight, ControllerBase.JoystickButtons.BTN7);
 		joyRightBtn7.whenPressed(new DrivetrainStop());
@@ -181,10 +189,12 @@ public class OI {
 		joyRightBtn4.whenPressed(new DrivetrainTurnUsingCameraPidController());
 
 		joyRightBtn3 = new JoystickButton(joyRight, ControllerBase.JoystickButtons.BTN3);
-		joyRightBtn3.whenPressed(new EjectorSetPosition(IEjector.Position.EXTENDED));
+		//joyRightBtn3.whenPressed(new EjectorSetPosition(IEjector.Position.EXTENDED));
+		joyRightBtn3.whenPressed(new GrasperRelease());
 
 		joyRightBtn2 = new JoystickButton(joyRight, ControllerBase.JoystickButtons.BTN2);
-		joyRightBtn2.whenPressed(new EjectorSetPosition(IEjector.Position.RETRACTED));
+		//joyRightBtn2.whenPressed(new EjectorSetPosition(IEjector.Position.RETRACTED));
+		joyRightBtn2.whenPressed(new GrasperGrasp());
 
 
 		joyLeft = new Joystick(Ports.USB.LEFT);
