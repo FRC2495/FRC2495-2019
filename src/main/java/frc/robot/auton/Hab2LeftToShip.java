@@ -32,8 +32,8 @@ public class Hab2LeftToShip extends CommandGroup {
 		// a CommandGroup containing them would require both the chassis and the
 		// arm.
 
-		// Move forward 76 in. (started off on LS) 
-		addSequential(new DrivetrainMoveDistance(76));
+		// Move forward 88 in. (started off on LS) 
+		addSequential(new DrivetrainMoveDistance(88));
 
 		// Turn 90 degrees to the right 
 		addSequential(new DrivetrainTurnAngleUsingPidController(90));

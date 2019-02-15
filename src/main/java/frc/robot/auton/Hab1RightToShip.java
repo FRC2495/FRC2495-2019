@@ -32,8 +32,8 @@ public class Hab1RightToShip extends CommandGroup {
 		// a CommandGroup containing them would require both the chassis and the
 		// arm.
 
-		// Move forward 76 in. (from RS) 
-		addSequential(new DrivetrainMoveDistance(76));		
+		// Move forward 88 in. (from RS) 
+		addSequential(new DrivetrainMoveDistance(88));		
 
 		// Turn 90 degrees to the left 
 		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
@@ -47,120 +47,13 @@ public class Hab1RightToShip extends CommandGroup {
 		// Vision Target
 		addSequential(new HatchPanelDeliver());
 
-		// Reverse 24 in. 
-		addSequential(new DrivetrainMoveDistance(-24));
+		// moving forward 133 in.
+		addSequential(new DrivetrainMoveDistance(133));
 
-		// Turn 90 degrees to the right 
-		addSequential(new DrivetrainTurnAngleUsingPidController(90));
-
-		// Move forward 124 in. 
-		addSequential(new DrivetrainMoveDistance(124));
-
-		// Turn 90 degrees to the right 
-		addSequential(new DrivetrainTurnAngleUsingPidController(90));
-
-		// Move forward 76 in. (to RH) 
-		addSequential(new DrivetrainMoveDistance(76));
-
-		// ?
-
-		// Reverse 76 in. (from RH) 
-		addSequential(new DrivetrainMoveDistance(-76));
-
-		// Turn 90 degrees to the right 
-		addSequential(new DrivetrainTurnAngleUsingPidController(90));
-
-		// Move forward 145 in. (to line up with CSRF)
-		addSequential(new DrivetrainMoveDistance(145)); 
-
-		// Turn 90 degrees to the right 
-		addSequential(new DrivetrainTurnAngleUsingPidController(90));
-
-		// Vision target (CSRF) 
-		// TODO
-
-		// Reverse 24 in. 
-		addSequential(new DrivetrainMoveDistance(-24));
-
-		// Turn 90 degrees to the left 
-		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
-
-		// Move forward 145 in. 
-		addSequential(new DrivetrainMoveDistance(145));
-
-		// Turn 90 degrees to the right 
-		addSequential(new DrivetrainTurnAngleUsingPidController(90));
-
-		// Move forward 76 in. (to RH) 
-		addSequential(new DrivetrainMoveDistance(76));
-
-		// ?
-
-		// Reverse 24 in.
-		addSequential(new DrivetrainMoveDistance(-24));
+		// vision targeting
+		addSequential (new HatchPanelDeliver());
 		
-		// Turn 180 degrees
-		addSequential(new DrivetrainTurnAngleUsingPidController(180)); 
+		addSequential(new RightToShip());
 
-		// Move forward 177 in. 
-		addSequential(new DrivetrainMoveDistance(177));
-
-		// ?
-
-		// Revers 24 in. 
-		addSequential(new DrivetrainMoveDistance(-24));
-		
-		// turn 180 degrees
-		addSequential(new DrivetrainTurnAngleUsingPidController(180));  
-
-		// Move forward 177 in.  
-		addSequential(new DrivetrainMoveDistance(177));
-
-		// ?
-
-		// Reverse 76 in. 
-		addSequential(new DrivetrainMoveDistance(-76));
-
-		// Turn 90 degrees to the right  
-		addSequential(new DrivetrainTurnAngleUsingPidController(90));
-
-		// Move forward 124 in. 
-		addSequential(new DrivetrainMoveDistance(124));
-
-		// Turn 90 degrees to the right  
-		addSequential(new DrivetrainTurnAngleUsingPidController(90));
-
-		// Move forward 106 in. 
-		addSequential(new DrivetrainMoveDistance(106));
-		
-		//turn 90 degrees to the left
-		addSequential(new DrivetrainTurnAngleUsingPidController(-90)); 
-
-		// Reverse 24 in.
-		addSequential(new DrivetrainMoveDistance(-24)); 
-		
-		// turn left 
-		// TODO
-		
-		//move forward 160 in. 
-		addSequential(new DrivetrainMoveDistance(160));
-
-		// Turn 90 degrees to the right 
-		addSequential(new DrivetrainTurnAngleUsingPidController(90));
-
-		// Move forward 145 in. (is that the right distance?)
-		addSequential(new DrivetrainMoveDistance(145));
-
-		// Turn 90 degrees to the right 
-		addSequential(new DrivetrainTurnAngleUsingPidController(90));
-
-		// Move forward 76 in.  
-		addSequential(new DrivetrainMoveDistance(76));
-
-		// Turn 90 degrees to the right 
-		addSequential(new DrivetrainTurnAngleUsingPidController(90));
-
-		// Move forward 230 in. 
-		addSequential(new DrivetrainMoveDistance(230));
 	}
 }
