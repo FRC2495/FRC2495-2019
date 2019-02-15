@@ -45,7 +45,7 @@ public class Hab1RightToShip extends CommandGroup {
 		addSequential(new DrivetrainTurnAngleUsingPidController(90));
 
 		// Vision Target
-		// TODO
+		addSequential(new HatchPanelDeliver());
 
 		// Reverse 24 in. 
 		addSequential(new DrivetrainMoveDistance(-24));
