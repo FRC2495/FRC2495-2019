@@ -44,10 +44,10 @@ public class Hab2LeftToShip extends CommandGroup {
 		// Turn 90 degrees to the left 
 		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
 
-		// Vision targeting (CSLF) 
-		// TODO
+		// Vision targeting (CRLF) 
+		addSequential(new HatchPanelDeliver());
 
-		// Reverse 2 ft. 
+		// Move backwards 24 inches 
 		addSequential(new DrivetrainMoveDistance(-24));
 
 		// Turn 90 degrees to the left 
@@ -62,7 +62,7 @@ public class Hab2LeftToShip extends CommandGroup {
 		// Move forward 76 in. (to LH)
 		addSequential(new DrivetrainMoveDistance(76)); 
 
-		// ?
+		// (another hatch received by LH)
 
 		// Reverse 76 in. (from LH) 
 		addSequential(new DrivetrainMoveDistance(-76));
@@ -76,10 +76,10 @@ public class Hab2LeftToShip extends CommandGroup {
 		// Turn 90 degrees to the left 
 		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
 
-		// Vision targeting (CSRF) 
-		// TODO
+		// Vision targeting (CSLF) 
+		addSequential(new HatchPanelDeliver());
 
-		// Reverse 2 ft. 
+		// Move backwards 24 in. 
 		addSequential(new DrivetrainMoveDistance(-24));
 
 		// Turn 90 degrees to the right 
@@ -94,9 +94,9 @@ public class Hab2LeftToShip extends CommandGroup {
 		// Move forward 76 in. (to LH) 
 		addSequential(new DrivetrainMoveDistance(76));
 
-		// ?
+		// (another hatch recieved from LH)
 
-		// Reverse 2 ft  
+		// Move backwards 24 in.  
 		addSequential(new DrivetrainMoveDistance(-24));
 
 		// Turn 180 degrees to the left
@@ -107,7 +107,7 @@ public class Hab2LeftToShip extends CommandGroup {
 
 		// ?
 
-		// Reverse 2 ft 
+		// Move backwards 24 in. 
 		addSequential(new DrivetrainMoveDistance(-24));
 
 		// Turn 180 degrees to the left  
@@ -118,7 +118,7 @@ public class Hab2LeftToShip extends CommandGroup {
 
 		// ?
 
-		// Reverse 76 in. 
+		// Move backwards 76 in. 
 		addSequential(new DrivetrainMoveDistance(-76));
 
 		// Turn 90 degrees to the left 
@@ -136,28 +136,33 @@ public class Hab2LeftToShip extends CommandGroup {
 		// Turn 90 degrees to the right 
 		addSequential(new DrivetrainTurnAngleUsingPidController(90));
 
-		// Reverse 2 ft. 
+		// ??
+
+		// Move backwards 24 in. 
 		addSequential(new DrivetrainMoveDistance(-24));
 
-		// is something missing here?
+		// another step is missing, will fix when recieved
+		//(lines 144 through 152 need to be changed when correct info is given)
 
-		// Turn 90 degrees to the right 
-		addSequential(new DrivetrainTurnAngleUsingPidController(90));
-
-		// Move forward 160 in. (is that the right distance?)
+		// Move forward 160 in. 
 		addSequential(new DrivetrainMoveDistance(160));
 
-		// Turn 90 degrees to the right 
-		addSequential(new DrivetrainTurnAngleUsingPidController(90));
+		// Turn 90 degrees to the left
+		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
+
+		// Move forward 145 in. 
+		addSequential(new DrivetrainMoveDistance(145));
+
+		// Turn 90 degrees to the left 
+		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
 
 		// Move forward 76 in. 
 		addSequential(new DrivetrainMoveDistance(76));
 
 		// Turn 90 degrees to the left 
 		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
-
+		
 		// Move forward 230 in. 
 		addSequential(new DrivetrainMoveDistance(230));
-
 	}
 }
