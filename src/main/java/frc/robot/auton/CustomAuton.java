@@ -56,10 +56,10 @@ public class CustomAuton extends CommandGroup {
 			case Robot.START_POSITION_HAB1_LEFT:
 				switch (mainTarget) {
 					case Robot.MAIN_TARGET_ROCKET:
-		
+		            addSequential(new Hab1LeftToRocket());
 						break;
 					case Robot.MAIN_TARGET_SHIP:
-		
+					addSequential(new Hab1LeftToShip());
 						break;	
 					default:
 
@@ -84,10 +84,10 @@ public class CustomAuton extends CommandGroup {
 			case Robot.START_POSITION_HAB1_RIGHT:
 				switch (mainTarget) {
 					case Robot.MAIN_TARGET_ROCKET:
-		
+		                addSequential(new Hab1RightToRocket());
 						break;
 					case Robot.MAIN_TARGET_SHIP:
-		
+		                addSequential(new Hab1RightToShip());
 						break;	
 					default:
 
@@ -101,7 +101,7 @@ public class CustomAuton extends CommandGroup {
 						addSequential(new Hab2LeftToRocket());
 						break;
 					case Robot.MAIN_TARGET_SHIP:
-						addSequential(new Hab2LeftToRocket());
+						addSequential(new Hab2LeftToShip());
 						break;	
 					default:
 
