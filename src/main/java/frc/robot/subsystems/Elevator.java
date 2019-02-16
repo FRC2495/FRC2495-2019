@@ -24,13 +24,12 @@ public class Elevator extends Subsystem implements IElevator {
 	
 	static final int TIMEOUT_MS = 15000;	
 	
-	public static final double GEAR_RATIO = 15.0; // TODO change if needed
+	public static final double GEAR_RATIO = 45.0; // TODO change if needed
 	
-	public static final int LENGTH_OF_TRAVEL_INCHES = 64; // TODO set proper value
+	public static final int LENGTH_OF_TRAVEL_INCHES = 52; // TODO set proper value
 	
 	static final double VIRTUAL_HOME_OFFSET_INCHES = 0.1; // position of virtual home compared to physical home
 	
-	static final double HOMING_PCT_OUTPUT = 0.4; // ~homing speed
 	static final double MAX_PCT_OUTPUT = 1.0; // ~full speed
 	
 	static final int TALON_TIMEOUT_MS = 10;
@@ -43,8 +42,9 @@ public class Elevator extends Subsystem implements IElevator {
 	static final int SLOT_0 = 0;
 	
 	static final double REDUCED_PCT_OUTPUT = 0.5;
+	static final double SUPER_REDUCED_PCT_OUTPUT = 0.4;
 	
-	static final double MOVE_PROPORTIONAL_GAIN = 0.6;
+	static final double MOVE_PROPORTIONAL_GAIN = 0.1;
 	static final double MOVE_INTEGRAL_GAIN = 0.0;
 	static final double MOVE_DERIVATIVE_GAIN = 0.0;
 	
@@ -174,6 +174,7 @@ public class Elevator extends Subsystem implements IElevator {
 		
 		//setPIDParameters();
 		System.out.println("Moving Up");
+		setNominalAndPeakOutputs(MAX_PCT_OUTPUT);
 
 		tac = +convertInchesToRev(LENGTH_OF_TRAVEL_INCHES) * TICKS_PER_REVOLUTION;
 		elevator.set(ControlMode.Position,tac);
@@ -187,6 +188,14 @@ public class Elevator extends Subsystem implements IElevator {
 		
 		//setPIDParameters();
 		System.out.println("Moving Midway");
+		if (isDown())
+		{
+			setNominalAndPeakOutputs(MAX_PCT_OUTPUT);
+		}
+		else
+		{
+			setNominalAndPeakOutputs(REDUCED_PCT_OUTPUT);
+		}
 
 		tac = +convertInchesToRev(LENGTH_OF_TRAVEL_INCHES / 2) * TICKS_PER_REVOLUTION;
 		elevator.set(ControlMode.Position,tac);
@@ -200,8 +209,9 @@ public class Elevator extends Subsystem implements IElevator {
 		
 		//setPIDParameters();
 		System.out.println("Moving Down");
+		setNominalAndPeakOutputs(SUPER_REDUCED_PCT_OUTPUT);
 
-		tac = +convertInchesToRev(0)* TICKS_PER_REVOLUTION;
+		tac = +convertInchesToRev(LENGTH_OF_TRAVEL_INCHES / 32)* TICKS_PER_REVOLUTION;
 		elevator.set(ControlMode.Position,tac);
 		
 		isMoving = true;
