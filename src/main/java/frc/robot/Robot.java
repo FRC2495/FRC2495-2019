@@ -380,10 +380,8 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putBoolean("Elevator Limit Switch", elevatorControl.getLimitSwitchState());
 		SmartDashboard.putNumber("Elevator Position", elevatorControl.getPosition());
 		SmartDashboard.putNumber("Elevator Enc Position", elevatorControl.getEncoderPosition());
-		SmartDashboard.putBoolean("Elevator IsHoming?", elevatorControl.isHoming());
 		SmartDashboard.putBoolean("Elevator IsMoving?", elevatorControl.isMoving());
 		SmartDashboard.putNumber("Elevator Target", elevatorControl.getTarget());
-		SmartDashboard.putBoolean("Elevator Has Been Homed?", elevatorControl.hasBeenHomed());
 		SmartDashboard.putBoolean("Elevator isDown", elevatorControl.isDown());
 		SmartDashboard.putBoolean("Elevator isMidway", elevatorControl.isMidway());
 		SmartDashboard.putBoolean("Elevator isUp", elevatorControl.isUp());
