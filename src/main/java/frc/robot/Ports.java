@@ -1,7 +1,6 @@
 package frc.robot;
 
 public class Ports {
-		// TODO REMOVE UNUSED PORTS
 
 		public static class Digital{
 			public static final int CHECK_PRESSURE = 0;
@@ -64,12 +63,12 @@ public class Ports {
 			public static final int BASIN_UP = 7;*/
 			
 			// 2019 robot
-			public static final int EJECTOR_RETRACTED = 0;
-			public static final int EJECTOR_EXTENDED = 1;
-			public static final int SUCKER_INHALE= 2;
-			public static final int SUCKER_EXHALE = 3;
-			public static final int KICKER_IN = 4;
-			public static final int KICKER_OUT = 5;
+			public static final int KICKER_OUT = 0;
+			public static final int KICKER_IN = 1;		
+			public static final int SUCKER_EXHALE = 2;
+			public static final int SUCKER_INHALE= 3;
+			public static final int EJECTOR_RETRACTED = 4;
+			public static final int EJECTOR_EXTENDED = 5;			
 			public static final int HOOK_UP = 6;
 			public static final int HOOK_DOWN = 7;
 		}
