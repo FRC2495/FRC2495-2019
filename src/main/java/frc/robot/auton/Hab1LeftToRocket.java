@@ -44,7 +44,7 @@ public class Hab1LeftToRocket extends CommandGroup {
 		// Turn 45 degrees to the right  
 		addSequential(new DrivetrainTurnAngleUsingPidController(45));
 		
-		// Calls the common commands LeftToRocket 
+		// Calls the common command LeftToRocket 
 		addSequential(new LeftToRocket());		
 	}
 }

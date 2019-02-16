@@ -47,8 +47,8 @@ public class Hab2LeftToShip extends CommandGroup {
 		// Vision targeting (CRLF) 
 		addSequential(new HatchPanelDeliver());
 
+		// Calls the common command LeftToShip
 		addSequential(new LeftToShip());
-
 	}
 }
 

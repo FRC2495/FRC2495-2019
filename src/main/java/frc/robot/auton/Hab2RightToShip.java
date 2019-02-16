@@ -47,7 +47,7 @@ public class Hab2RightToShip extends CommandGroup {
 		// Vision Target (CSLF)
 		addSequential(new HatchPanelDeliver());
 
+		// Calls the common command RightToShip
 		addSequential(new RightToShip());
-
 	}
 }

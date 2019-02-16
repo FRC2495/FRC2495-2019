@@ -53,7 +53,7 @@ public class Hab1RightToShip extends CommandGroup {
 		// vision targeting
 		addSequential (new HatchPanelDeliver());
 		
+		// Calls the common command RightToShip
 		addSequential(new RightToShip());
-
 	}
 }

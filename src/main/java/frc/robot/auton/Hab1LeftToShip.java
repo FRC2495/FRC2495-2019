@@ -38,8 +38,7 @@ public class Hab1LeftToShip extends CommandGroup {
 		// vision targeting
 		addSequential (new HatchPanelDeliver());
 		
+		// Calls the common command LeftToShip
 		addSequential(new LeftToShip());
-
-
 	}
 }
