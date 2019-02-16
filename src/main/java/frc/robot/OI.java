@@ -158,8 +158,9 @@ public class OI {
 		gamepadLB.whenPressed(new ElevatorMoveMidway());
 
 		gamepadY = new JoystickButton(gamepad, ControllerBase.GamepadButtons.Y);
-		gamepadY.whileHeld(new GamepadRumble(true)); // to demonstrate whileHeld()/whenReleased()
-		gamepadY.whenReleased(new GamepadRumble(false));
+		//gamepadY.whileHeld(new GamepadRumble(true)); // to demonstrate whileHeld()/whenReleased()
+		//gamepadY.whenReleased(new GamepadRumble(false));
+		gamepadY.whenPressed(new HabElevatorMoveUp());
 
 		gamepadX = new JoystickButton(gamepad, ControllerBase.GamepadButtons.X);
 		gamepadX.whenPressed(new HingeElevatorAndGrasperStop());

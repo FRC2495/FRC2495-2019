@@ -24,9 +24,9 @@ public class HabElevator extends Subsystem implements IHabElevator {
 	
 	static final int TIMEOUT_MS = 15000;	
 	
-	public static final double GEAR_RATIO = 1.0; // TODO change if needed
+	public static final double GEAR_RATIO = 60.0; // TODO change if needed
 	
-	public static final int LENGTH_OF_TRAVEL_INCHES = 37; // TODO set proper value
+	public static final int LENGTH_OF_TRAVEL_INCHES = 20; // TODO set proper value
 	
 	static final double MAX_PCT_OUTPUT = 1.0; // ~full speed
 	
@@ -72,12 +72,12 @@ public class HabElevator extends Subsystem implements IHabElevator {
 		// Mode of operation during Neutral output may be set by using the setNeutralMode() function.
 		// As of right now, there are two options when setting the neutral mode of a motor controller,
 		// brake and coast.	
-		elevator.setNeutralMode(NeutralMode.Brake);
+		elevator.setNeutralMode(NeutralMode.Coast);
 		
 		// Sensor phase is the term used to explain sensor direction.
 		// In order for limit switches and closed-loop features to function properly the sensor and motor has to be in-phase.
 		// This means that the sensor position must move in a positive direction as the motor controller drives positive output.
-		elevator.setSensorPhase(true);
+		elevator.setSensorPhase(false);
 
 		// Enables limit switches
 		elevator.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen, TALON_TIMEOUT_MS);
@@ -88,7 +88,7 @@ public class HabElevator extends Subsystem implements IHabElevator {
 		// Note: Regardless of invert value, the LEDs will blink green when positive output is requested (by robot code or firmware closed loop).
 		// Only the motor leads are inverted. This feature ensures that sensor phase and limit switches will properly match the LED pattern
 		// (when LEDs are green => forward limit switch and soft limits are being checked). 	
-		elevator.setInverted(false); // invert if required
+		elevator.setInverted(true); // invert if required
 		
 		setPIDParameters();
 		
@@ -167,7 +167,7 @@ public class HabElevator extends Subsystem implements IHabElevator {
 		//setPIDParameters();
 		System.out.println("Moving Up");
 
-		tac = -convertInchesToRev(LENGTH_OF_TRAVEL_INCHES) * TICKS_PER_REVOLUTION;
+		tac = +convertInchesToRev(LENGTH_OF_TRAVEL_INCHES) * TICKS_PER_REVOLUTION;
 		elevator.set(ControlMode.Position,tac);
 		
 		isMoving = true;
@@ -179,7 +179,7 @@ public class HabElevator extends Subsystem implements IHabElevator {
 		//setPIDParameters();
 		System.out.println("Moving Midway");
 
-		tac = -convertInchesToRev(LENGTH_OF_TRAVEL_INCHES / 2) * TICKS_PER_REVOLUTION;
+		tac = +convertInchesToRev(LENGTH_OF_TRAVEL_INCHES / 2) * TICKS_PER_REVOLUTION;
 		elevator.set(ControlMode.Position,tac);
 		
 		isMoving = true;
@@ -224,11 +224,11 @@ public class HabElevator extends Subsystem implements IHabElevator {
 	}
 
 	private double convertInchesToRev(double inches) {
-		return inches / PERIMETER_PULLEY_INCHES * GEAR_RATIO;
+		return -inches / PERIMETER_PULLEY_INCHES * GEAR_RATIO;
 	}
 
 	private double convertRevtoInches(double rev) {
-		return rev * PERIMETER_PULLEY_INCHES / GEAR_RATIO;
+		return -rev * PERIMETER_PULLEY_INCHES / GEAR_RATIO;
 	}
 
 	public void stay() {	 		

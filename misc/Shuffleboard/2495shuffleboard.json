@@ -2238,6 +2238,17 @@
               "Colors/Color when true": "#7CFC00FF",
               "Colors/Color when false": "#8B0000FF"
             }
+          },
+          "7,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Elevator Enc Position",
+              "_title": "SmartDashboard/Elevator Enc Position"
+            }
           }
         }
       }
@@ -2489,7 +2500,7 @@
   "windowGeometry": {
     "x": 0.0,
     "y": 0.0,
-    "width": 1920.0,
-    "height": 1160.0
+    "width": 1553.5999755859375,
+    "height": 881.5999755859375
   }
 }
