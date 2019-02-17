@@ -143,12 +143,12 @@ public class OI {
 		//gamepadLS.whenPressed();
 
 		gamePadStart = new JoystickButton(gamepad, ControllerBase.GamepadButtons.START);
-		//gamePadStart.whenPressed(new HingeHome());
-		gamePadStart.whenPressed(new HookSwitchUp());
+		gamePadStart.whenPressed(new HingeHome());
+		//gamePadStart.whenPressed(new HookSwitchUp());
 
 		gamepadBack = new JoystickButton(gamepad, ControllerBase.GamepadButtons.BACK);
 		//gamepadBack.whenPressed(new ElevatorHome());
-		gamepadBack.whenPressed(new HookSwitchDown());
+		//gamepadBack.whenPressed(new HookSwitchDown());
 
 		gamepadRB = new JoystickButton(gamepad, ControllerBase.GamepadButtons.RB);
 		gamepadRB.whenPressed(new HingeMoveMidway());

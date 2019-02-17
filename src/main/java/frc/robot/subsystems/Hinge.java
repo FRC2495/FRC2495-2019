@@ -132,6 +132,10 @@ public class Hinge extends Subsystem implements IHinge {
 		return hinge.getSensorCollection().isRevLimitSwitchClosed();
 	}
 
+	public boolean getForwardLimitSwitchState() {
+		return hinge.getSensorCollection().isFwdLimitSwitchClosed();
+	}
+
 	// Private. We move until we reach the limit switch (in open loop). This gives us the physical zero
 	private void homePart1() {
 		// we assume that the reverse limit switch is enabled
