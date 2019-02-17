@@ -67,9 +67,9 @@ public class Ports {
 			public static final int KICKER_IN = 1;		
 			public static final int SUCKER_EXHALE = 2;
 			public static final int SUCKER_INHALE= 3;
-			public static final int EJECTOR_RETRACTED = 4;
-			public static final int EJECTOR_EXTENDED = 5;			
-			public static final int HOOK_UP = 6;
-			public static final int HOOK_DOWN = 7;
+			public static final int EJECTOR_RETRACTED = 5;
+			public static final int EJECTOR_EXTENDED = 4;			
+			public static final int HOOK_UP = 7;
+			public static final int HOOK_DOWN = 6;
 		}
 }
