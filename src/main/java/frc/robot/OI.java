@@ -118,7 +118,8 @@ public class OI {
 		gamepadRXn.whenPressed(new HingeMoveUp());
 
 		gamepadRT = new GamepadAxis(gamepad, ControllerBase.GamepadAxes.RT);
-		gamepadRT.whenPressed(new HingeMoveDown());
+		//gamepadRT.whenPressed(new HingeMoveDown());
+		gamepadRT.whenPressed(new HingeDownWithEjectorUp());
 
 		gamepadLT = new GamepadAxis(gamepad, ControllerBase.GamepadAxes.LT);
 		gamepadLT.whenPressed(new ElevatorMoveDown());
@@ -167,7 +168,8 @@ public class OI {
 
 		gamepadB = new JoystickButton(gamepad, ControllerBase.GamepadButtons.B);
 		//gamepadB.whenPressed(new GrasperTimedRelease(2));
-		gamepadB.whenPressed(new HookSwitchDown());
+		//gamepadB.whenPressed(new HookSwitchDown());
+		gamepadB.whileHeld(new HookSwitchDown());
 
 		gamepadA = new JoystickButton(gamepad, ControllerBase.GamepadButtons.A);
 		//gamepadA.whenPressed(new IfRobotEnabled(new GrasperTimedGrasp(2),new FullCalibrateAndReset()));
