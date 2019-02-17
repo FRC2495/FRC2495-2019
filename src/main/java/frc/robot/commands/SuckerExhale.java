@@ -24,6 +24,7 @@ public class SuckerExhale extends InstantCommand {
 	// Called once when the command executes
 	@Override
 	protected void initialize() {
+		System.out.println("SuckerExhale: initialize");
 		Robot.sucker.setPosition(Position.EXHALE);
 	}
 

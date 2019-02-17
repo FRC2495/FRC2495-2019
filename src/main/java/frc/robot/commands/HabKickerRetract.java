@@ -24,6 +24,7 @@ public class HabKickerRetract extends InstantCommand {
 	// Called once when the command executes
 	@Override
 	protected void initialize() {
+		System.out.println("HabKickerRetract: initialize");
 		Robot.habKicker.setPosition(Position.IN);
 	}
 

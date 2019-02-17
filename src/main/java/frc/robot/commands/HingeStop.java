@@ -37,6 +37,7 @@ public class HingeStop extends InstantCommand {
 	// Called once when this command runs
 	@Override
 	protected void initialize() {
+		System.out.println("HingeStop: initialize");
 		Robot.hingeControl.stop();
 	}
 

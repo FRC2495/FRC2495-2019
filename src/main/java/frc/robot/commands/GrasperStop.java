@@ -37,6 +37,7 @@ public class GrasperStop extends InstantCommand {
 	// Called once when this command runs
 	@Override
 	protected void initialize() {
+		System.out.println("GrasperStop: initialize");
 		Robot.grasper.stop();
 	}
 

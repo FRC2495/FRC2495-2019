@@ -27,6 +27,7 @@ public class GyroCalibrate extends InstantCommand {
 	// Called once when this command runs
 	@Override
 	protected void initialize() {
+		System.out.println("GyroCalibrate: initialize");
 		Robot.gyro.calibrate();
 		Robot.setGyroHasBeenManuallyCalibratedAtLeastOnce(true);
 	}

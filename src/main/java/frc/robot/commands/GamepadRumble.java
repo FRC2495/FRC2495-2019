@@ -24,6 +24,8 @@ public class GamepadRumble extends InstantCommand {
 	// Called once when this command runs
 	@Override
 	protected void initialize() {
+		
+		System.out.println("GamepadRumble: initialize");
 		ControllerBase.rumble(m_rumble, Robot.oi.getGamepad());
 	}
 

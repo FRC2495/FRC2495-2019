@@ -27,6 +27,7 @@ public class HabElevatorResetEncoder extends InstantCommand {
 	// Called once when this command runs
 	@Override
 	protected void initialize() {
+		System.out.println("HabElevatorResetEncoder: initialize");
 		Robot.habElevatorControl.resetEncoder();
 	}
 

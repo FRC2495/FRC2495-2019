@@ -37,6 +37,7 @@ public class DrivetrainStop extends InstantCommand {
 	// Called once when this command runs
 	@Override
 	protected void initialize() {
+		System.out.println("DrivetrainResetEncoders: stop");
 		Robot.drivetrain.stop();
 	}
 

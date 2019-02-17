@@ -39,6 +39,7 @@ public class EjectorSetPosition extends InstantCommand {
 	// Called once when this command runs
 	@Override
 	protected void initialize() {
+		System.out.println("EjectorSetPosition: initialize");
 		Robot.ejector.setPosition(m_position);
 	}
 

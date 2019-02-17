@@ -27,6 +27,7 @@ public class DrivetrainResetEncoders extends InstantCommand {
 	// Called once when this command runs
 	@Override
 	protected void initialize() {
+		System.out.println("DrivetrainResetEncoders: initialize");
 		Robot.drivetrain.resetEncoders();
 	}
 

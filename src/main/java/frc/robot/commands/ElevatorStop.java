@@ -37,6 +37,7 @@ public class ElevatorStop extends InstantCommand {
 	// Called once when this command runs
 	@Override
 	protected void initialize() {
+		System.out.println("ElevatorStop: initialize");
 		Robot.elevatorControl.stop();
 	}
 

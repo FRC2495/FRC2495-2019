@@ -24,6 +24,7 @@ public class HookSwitchUp extends InstantCommand {
 	// Called once when the command executes
 	@Override
 	protected void initialize() {
+		System.out.println("HookSwitchUp: initialize");
 		Robot.hook.setPosition(Position.UP);
 	}
 
