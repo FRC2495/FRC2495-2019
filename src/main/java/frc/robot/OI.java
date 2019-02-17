@@ -18,7 +18,6 @@ import edu.wpi.first.wpilibj.buttons.*;
 import frc.robot.commands.*;
 import frc.robot.Ports;
 import frc.robot.ControllerBase;
-import frc.robot.interfaces.IEjector;
 import frc.robot.util.GamepadAxis;
 
 
@@ -175,10 +174,10 @@ public class OI {
 		joyRight = new Joystick(Ports.USB.RIGHT);
 
 		joyRightBtn9 = new JoystickButton(joyRight, ControllerBase.JoystickButtons.BTN7);
-		joyRightBtn9.whenPressed(new EjectorSetPosition(IEjector.Position.EXTENDED));
+		joyRightBtn9.whenPressed(new EjectorExtend());
 
 		joyRightBtn8 = new JoystickButton(joyRight, ControllerBase.JoystickButtons.BTN7);
-		joyRightBtn8.whenPressed(new EjectorSetPosition(IEjector.Position.RETRACTED));
+		joyRightBtn8.whenPressed(new EjectorRetract());
 		
 		joyRightBtn7 = new JoystickButton(joyRight, ControllerBase.JoystickButtons.BTN7);
 		joyRightBtn7.whenPressed(new DrivetrainStop());
