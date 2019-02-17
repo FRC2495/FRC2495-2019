@@ -28,7 +28,7 @@ public class GrasperTimedGrasp extends TimedCommand {
 	@Override
 	protected void initialize() {
 		System.out.println("GrasperTimedGrasp: initialize");
-		Robot.grasper.release();
+		Robot.grasper.grasp();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
