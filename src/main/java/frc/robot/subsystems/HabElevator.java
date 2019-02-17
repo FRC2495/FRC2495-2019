@@ -40,6 +40,7 @@ public class HabElevator extends Subsystem implements IHabElevator {
 	static final int SLOT_0 = 0;
 	
 	static final double REDUCED_PCT_OUTPUT = 0.5;
+	static final double SUPER_REDUCED_PCT_OUTPUT = 0.4;
 	
 	static final double MOVE_PROPORTIONAL_GAIN = 0.6;
 	static final double MOVE_INTEGRAL_GAIN = 0.0;
@@ -166,6 +167,7 @@ public class HabElevator extends Subsystem implements IHabElevator {
 	public void moveUp() {	
 		//setPIDParameters();
 		System.out.println("Moving Up");
+		setNominalAndPeakOutputs(MAX_PCT_OUTPUT);
 
 		tac = +convertInchesToRev(LENGTH_OF_TRAVEL_INCHES) * TICKS_PER_REVOLUTION;
 		elevator.set(ControlMode.Position,tac);
@@ -178,6 +180,14 @@ public class HabElevator extends Subsystem implements IHabElevator {
 	public void moveMidway() {
 		//setPIDParameters();
 		System.out.println("Moving Midway");
+		if (isDown())
+		{
+			setNominalAndPeakOutputs(MAX_PCT_OUTPUT);
+		}
+		else
+		{
+			setNominalAndPeakOutputs(REDUCED_PCT_OUTPUT);
+		}
 
 		tac = +convertInchesToRev(LENGTH_OF_TRAVEL_INCHES / 2) * TICKS_PER_REVOLUTION;
 		elevator.set(ControlMode.Position,tac);
@@ -190,6 +200,7 @@ public class HabElevator extends Subsystem implements IHabElevator {
 	public void moveDown() {
 		//setPIDParameters();
 		System.out.println("Moving Down");
+		setNominalAndPeakOutputs(SUPER_REDUCED_PCT_OUTPUT);
 
 		tac = +convertInchesToRev(0)* TICKS_PER_REVOLUTION;
 		elevator.set(ControlMode.Position,tac);

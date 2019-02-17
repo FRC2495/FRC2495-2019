@@ -60,7 +60,6 @@ public class Elevator extends Subsystem implements IElevator {
 	WPI_TalonSRX elevator;
 	
 	double tac;
-	boolean hasBeenHomed = false;
 
 	private int onTargetCount; // counter indicating how many times/iterations we were on target 
 
