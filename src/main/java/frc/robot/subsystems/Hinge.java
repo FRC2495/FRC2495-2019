@@ -26,7 +26,7 @@ public class Hinge extends Subsystem implements IHinge {
 	public static final int ANGLE_TO_TRAVEL_TICKS = Robot.COMPETITION_BOT_CONFIG?120000:160000; // TODO set proper value
 	public static final int FAKE_HOME_POSITION_TICKS = ANGLE_TO_TRAVEL_TICKS; 
 	
-	static final double VIRTUAL_HOME_OFFSET_TICKS = 6000; // position of virtual home compared to physical home
+	static final double VIRTUAL_HOME_OFFSET_TICKS = 1000; // position of virtual home compared to physical home
 	
 	static final double HOMING_PCT_OUTPUT = 0.2; // ~homing speed
 	static final double MAX_PCT_OUTPUT = 0.4; // ~full speed

@@ -1441,6 +1441,17 @@
               "Layout/Label position": "BOTTOM",
               "_children": []
             }
+          },
+          "6,4": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Basic Subsystem",
+              "_source0": "network_table:///LiveWindow/Grasper",
+              "_title": "Grasper"
+            }
           }
         }
       }
@@ -2248,6 +2259,19 @@
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Elevator Enc Position",
               "_title": "SmartDashboard/Elevator Enc Position"
+            }
+          },
+          "7,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/Hinge Forward Limit Switch",
+              "_title": "/SmartDashboard/Hinge Forward Limit Switch",
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
             }
           }
         }
