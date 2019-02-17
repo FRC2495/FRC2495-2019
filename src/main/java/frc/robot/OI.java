@@ -197,11 +197,12 @@ public class OI {
 
 		joyRightBtn3 = new JoystickButton(joyRight, ControllerBase.JoystickButtons.BTN3);
 		//joyRightBtn3.whenPressed(new EjectorSetPosition(IEjector.Position.EXTENDED));
-		joyRightBtn3.whenPressed(new GrasperTimedRelease(2));
+		//joyRightBtn3.whenPressed(new GrasperTimedRelease(2));
+		joyRightBtn3.whileHeld(new GrasperRelease());
 
 		joyRightBtn2 = new JoystickButton(joyRight, ControllerBase.JoystickButtons.BTN2);
 		//joyRightBtn2.whenPressed(new EjectorSetPosition(IEjector.Position.RETRACTED));
-		joyRightBtn2.whenPressed(new GrasperTimedGrasp(2));
+		joyRightBtn2.whileHeld(new GrasperGrasp());
 
 
 		joyLeft = new Joystick(Ports.USB.LEFT);
