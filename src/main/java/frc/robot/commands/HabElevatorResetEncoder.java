@@ -21,7 +21,7 @@ public class HabElevatorResetEncoder extends InstantCommand {
 	public HabElevatorResetEncoder() {
 		setRunWhenDisabled(true); // allows running of command when robot is disabled
 
-		// gyro only supports instant commands, so no need to reserve it
+		requires(Robot.habElevatorControl);
 	}
 
 	// Called once when this command runs
