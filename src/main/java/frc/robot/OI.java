@@ -163,7 +163,7 @@ public class OI {
 		gamepadY.whenPressed(new HabElevatorMoveUp());
 
 		gamepadX = new JoystickButton(gamepad, ControllerBase.GamepadButtons.X);
-		gamepadX.whenPressed(new HingeElevatorAndGrasperStop());
+		gamepadX.whenPressed(new HingeElevatorsAndGrasperStop());
 
 		gamepadB = new JoystickButton(gamepad, ControllerBase.GamepadButtons.B);
 		gamepadB.whenPressed(new GrasperRelease());
