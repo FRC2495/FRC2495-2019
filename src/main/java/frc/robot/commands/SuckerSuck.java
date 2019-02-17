@@ -11,37 +11,34 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
 
 public class SuckerSuck extends CommandGroup {
+
+	final double TIMEOUT_INHALE_FAST_S = 0.2;
+	final double TIMEOUT_EXHALE_FAST_S =  0.2;  
+	final int FAST_ITERATIONS = 15;
+
+	final double TIMEOUT_INHALE_SLOW_S = 0.5;
+	final double TIMEOUT_EXHALE_SLOW_S =  0.5;  
+	final int SLOW_ITERATIONS = 25;
+
 	/**
 	 * Add your docs here.
 	 */
-	final double TIMEOUT_INHALE_S = 0.2;
-	final double TIMEOUT_EXHALE_S =  0.2;  
-	final int ITERATIONS = 40; 
-
 	public SuckerSuck() {
 
-		for ( int i = 0; i < ITERATIONS; i++)
+		for (int i = 0; i < FAST_ITERATIONS; i++)
 		{
 			addSequential(new SuckerExhale());
-			addSequential(new WaitCommand(TIMEOUT_EXHALE_S));
+			addSequential(new WaitCommand(TIMEOUT_EXHALE_FAST_S));
 			addSequential(new SuckerInhale());
-			addSequential(new WaitCommand(TIMEOUT_INHALE_S));
+			addSequential(new WaitCommand(TIMEOUT_INHALE_FAST_S));
 		}
-		// Add Commands here:
-		// e.g. addSequential(new Command1());
-		// addSequential(new Command2());
-		// these will run in order.
 
-		// To run multiple commands at the same time,
-		// use addParallel()
-		// e.g. addParallel(new Command1());
-		// addSequential(new Command2());
-		// Command1 and Command2 will run in parallel.
-
-		// A command group will require all of the subsystems that each member
-		// would require.
-		// e.g. if Command1 requires chassis, and Command2 requires arm,
-		// a CommandGroup containing them would require both the chassis and the
-		// arm.
+		for (int i = 0; i < SLOW_ITERATIONS; i++)
+		{
+			addSequential(new SuckerExhale());
+			addSequential(new WaitCommand(TIMEOUT_EXHALE_SLOW_S));
+			addSequential(new SuckerInhale());
+			addSequential(new WaitCommand(TIMEOUT_INHALE_SLOW_S));
+		}		
 	}
 }
