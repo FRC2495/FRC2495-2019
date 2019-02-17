@@ -173,10 +173,10 @@ public class OI {
 
 		joyRight = new Joystick(Ports.USB.RIGHT);
 
-		joyRightBtn9 = new JoystickButton(joyRight, ControllerBase.JoystickButtons.BTN7);
+		joyRightBtn9 = new JoystickButton(joyRight, ControllerBase.JoystickButtons.BTN9);
 		joyRightBtn9.whenPressed(new EjectorExtend());
 
-		joyRightBtn8 = new JoystickButton(joyRight, ControllerBase.JoystickButtons.BTN7);
+		joyRightBtn8 = new JoystickButton(joyRight, ControllerBase.JoystickButtons.BTN8);
 		joyRightBtn8.whenPressed(new EjectorRetract());
 		
 		joyRightBtn7 = new JoystickButton(joyRight, ControllerBase.JoystickButtons.BTN7);
