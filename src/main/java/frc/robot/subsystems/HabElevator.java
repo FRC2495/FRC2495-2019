@@ -26,7 +26,7 @@ public class HabElevator extends Subsystem implements IHabElevator {
 	
 	public static final double GEAR_RATIO = 60.0; // TODO change if needed
 	
-	public static final int LENGTH_OF_TRAVEL_INCHES = 22; // TODO set proper value
+	public static final int LENGTH_OF_TRAVEL_INCHES = 23; // TODO set proper value
 	
 	static final double MAX_PCT_OUTPUT = 1.0; // ~full speed
 	
