@@ -75,6 +75,8 @@ public class OI {
 	public JoystickButton joyRightBtn7;
 	public JoystickButton joyRightBtn8;
 	public JoystickButton joyRightBtn9;
+	public JoystickButton joyRightBtn10;
+	public JoystickButton joyRightBtn11;
 	public Joystick joyRight;
 
 	public JoystickButton gamepadA;
@@ -177,6 +179,12 @@ public class OI {
 		gamepadA.whenPressed(new IfRobotEnabled(new HookSwitchUp(),new FullCalibrateAndReset()));
 
 		joyRight = new Joystick(Ports.USB.RIGHT);
+
+		joyRightBtn11 = new JoystickButton(joyRight, ControllerBase.JoystickButtons.BTN11);
+		//joyRightBtn11.whenPressed(xxx);
+
+		joyRightBtn10 = new JoystickButton(joyRight, ControllerBase.JoystickButtons.BTN10);
+		//joyRightBtn10.whenPressed(xxx);
 
 		joyRightBtn9 = new JoystickButton(joyRight, ControllerBase.JoystickButtons.BTN9);
 		joyRightBtn9.whenPressed(new EjectorExtend());
