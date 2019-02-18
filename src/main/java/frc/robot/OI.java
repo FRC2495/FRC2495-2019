@@ -164,7 +164,8 @@ public class OI {
 		//gamepadY.whenReleased(new GamepadRumble(false));
 		//gamepadY.whenPressed(new HabElevatorMoveUp());
 		//gamepadY.whenPressed(new SuckerSuck());
-		gamepadY.whenPressed(new EndGame());
+		//gamepadY.whenPressed(new EndGame());
+		gamepadY.whenPressed(new IfNuclearOptionEnabled(new EndGame(), new DoNothing()));
 
 		gamepadX = new JoystickButton(gamepad, ControllerBase.GamepadButtons.X);
 		gamepadX.whenPressed(new HingeElevatorsAndGrasperStop());
@@ -180,7 +181,7 @@ public class OI {
 
 		joyRight = new Joystick(Ports.USB.RIGHT);
 
-		joyRightBtn11 = new JoystickButton(joyRight, ControllerBase.JoystickButtons.BTN11);
+		joyRightBtn11 = new JoystickButton(joyRight, ControllerBase.JoystickButtons.BTN11); // currently used for nuclear option
 		//joyRightBtn11.whenPressed(xxx);
 
 		joyRightBtn10 = new JoystickButton(joyRight, ControllerBase.JoystickButtons.BTN10);
@@ -211,6 +212,7 @@ public class OI {
 
 		joyRightBtn2 = new JoystickButton(joyRight, ControllerBase.JoystickButtons.BTN2);
 		//joyRightBtn2.whenPressed(new EjectorSetPosition(IEjector.Position.RETRACTED));
+		//joyRightBtn2.whenPressed(new GrasperTimedGrasp(2));
 		joyRightBtn2.whileHeld(new GrasperGrasp());
 
 
