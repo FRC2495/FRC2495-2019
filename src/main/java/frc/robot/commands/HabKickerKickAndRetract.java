@@ -8,12 +8,16 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 
-public class EndGame extends CommandGroup {
+public class HabKickerKickAndRetract extends CommandGroup {
+
+  final double TIMEOUT_KICK_S = 0.5;
+
   /**
    * Add your docs here.
    */
-  public EndGame() {
+  public HabKickerKickAndRetract() {
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
@@ -31,10 +35,8 @@ public class EndGame extends CommandGroup {
     // a CommandGroup containing them would require both the chassis and the
     // arm.
 
-    addSequential(new HabElevatorMoveUp());
-    addSequential(new HabKickerKickAndRetract());
-    addSequential(new SuckerFastSuck());
-    addParallel(new SuckerSlowSuck());
-    addSequential(new HabElevatorMoveDown());
+    addSequential(new HabKickerKick());
+    addSequential(new WaitCommand(TIMEOUT_KICK_S));
+    addSequential(new HabKickerRetract());
   }
 }

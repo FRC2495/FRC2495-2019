@@ -161,7 +161,8 @@ public class OI {
 		//gamepadY.whileHeld(new GamepadRumble(true)); // to demonstrate whileHeld()/whenReleased()
 		//gamepadY.whenReleased(new GamepadRumble(false));
 		//gamepadY.whenPressed(new HabElevatorMoveUp());
-		gamepadY.whenPressed(new SuckerSuck());
+		//gamepadY.whenPressed(new SuckerSuck());
+		gamepadY.whenPressed(new EndGame());
 
 		gamepadX = new JoystickButton(gamepad, ControllerBase.GamepadButtons.X);
 		gamepadX.whenPressed(new HingeElevatorsAndGrasperStop());
