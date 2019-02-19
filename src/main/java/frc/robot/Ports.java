@@ -8,10 +8,10 @@ public class Ports {
 		//
 		// The radio is automatically set to 10.24.95.1
 		// The Rio is set to static 10.24.95.2
-		// The Limelight is set to 10.24.95.11. Pressing the reset button will revert to DHCP
+		// The Limelight is set to 10.24.95.11 but note that pressing the reset button will revert to DHCP.
 		// The Raspberry Pi running FRCVision is set to static 10.24.95.12
 		//
-		// If a device cannot be accessed (e.g. because its addressed was somehow obtained via DHCP and mDNS is not working),
+		// If a device cannot be accessed (e.g. because its address was somehow obtained via DHCP and mDNS is not working),
 		// use Angry IP Scanner to find it!
 
 
