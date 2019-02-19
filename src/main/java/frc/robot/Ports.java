@@ -2,6 +2,19 @@ package frc.robot;
 
 public class Ports {
 
+		// IP (v4) addresses
+		// The purpose of this section is to serve as a reminder of what static IP (v4) addresses are used so they are consistent
+		// between the competition and practice robots.
+		//
+		// The radio is automatically set to 10.24.95.1
+		// The Rio is set to static 10.24.95.2
+		// The Limelight is set to 10.24.95.11. Pressing the reset button will revert to DHCP
+		// The Raspberry Pi running FRCVision is set to static 10.24.95.12
+		//
+		// If a device cannot be accessed (e.g. because its addressed was somehow obtained via DHCP and mDNS is not working),
+		// use Angry IP Scanner to find it!
+
+
 		public static class Digital{
 			public static final int CHECK_PRESSURE = 0;
 			
