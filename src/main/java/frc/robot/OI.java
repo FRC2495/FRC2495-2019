@@ -173,11 +173,13 @@ public class OI {
 		gamepadB = new JoystickButton(gamepad, ControllerBase.GamepadButtons.B);
 		//gamepadB.whenPressed(new GrasperTimedRelease(2));
 		//gamepadB.whenPressed(new HookSwitchDown());
-		gamepadB.whileHeld(new HookSwitchDown());
+		//gamepadB.whileHeld(new HookSwitchDown());
+		gamepadB.whenPressed(new GrasperRelease());
 
 		gamepadA = new JoystickButton(gamepad, ControllerBase.GamepadButtons.A);
 		//gamepadA.whenPressed(new IfRobotEnabled(new GrasperTimedGrasp(2),new FullCalibrateAndReset()));
-		gamepadA.whenPressed(new IfRobotEnabled(new HookSwitchUp(),new FullCalibrateAndReset()));
+		//gamepadA.whenPressed(new IfRobotEnabled(new HookSwitchUp(),new FullCalibrateAndReset()));
+		gamepadA.whenPressed(new IfRobotEnabled(new GrasperGrasp(),new FullCalibrateAndReset()));
 
 		joyRight = new Joystick(Ports.USB.RIGHT);
 
@@ -208,12 +210,14 @@ public class OI {
 		joyRightBtn3 = new JoystickButton(joyRight, ControllerBase.JoystickButtons.BTN3);
 		//joyRightBtn3.whenPressed(new EjectorSetPosition(IEjector.Position.EXTENDED));
 		//joyRightBtn3.whenPressed(new GrasperTimedRelease(2));
-		joyRightBtn3.whileHeld(new GrasperRelease());
+		//joyRightBtn3.whileHeld(new GrasperRelease());
+		joyRightBtn3.whenPressed(new EjectorExtend());
 
 		joyRightBtn2 = new JoystickButton(joyRight, ControllerBase.JoystickButtons.BTN2);
 		//joyRightBtn2.whenPressed(new EjectorSetPosition(IEjector.Position.RETRACTED));
 		//joyRightBtn2.whenPressed(new GrasperTimedGrasp(2));
-		joyRightBtn2.whileHeld(new GrasperGrasp());
+		//joyRightBtn2.whileHeld(new GrasperGrasp());
+		joyRightBtn2.whenPressed(new EjectorRetract());
 
 
 		joyLeft = new Joystick(Ports.USB.LEFT);
@@ -247,6 +251,7 @@ public class OI {
 
 		joyLeftBtn2 = new JoystickButton(joyLeft, ControllerBase.JoystickButtons.BTN2);
 		//joyLeftBtn2.whenPressed(new DrivetrainTurnUsingCameraPidController());
+		joyLeftBtn2.whileHeld(new HookSwitchDown());
 
 
 		// SmartDashboard Buttons
