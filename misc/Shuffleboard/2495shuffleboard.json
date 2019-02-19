@@ -1400,7 +1400,7 @@
                 {
                   "_type": "Voltage View",
                   "_source0": "network_table:///LiveWindow/Ungrouped/AnalogInput[2]",
-                  "_title": "/LiveWindow/Ungrouped/AnalogInput[2]",
+                  "_title": "AnalogInput[2]",
                   "Range/Min": 0.0,
                   "Range/Max": 5.0,
                   "Range/Center": 0.0,
@@ -2550,25 +2550,6 @@
         "hgap": 16.0,
         "vgap": 16.0,
         "tiles": {
-          "0,0": {
-            "size": [
-              5,
-              4
-            ],
-            "content": {
-              "_type": "Camera Stream",
-              "_source0": "camera_server://rPi Camera 0",
-              "_title": "rPi Camera 0",
-              "Crosshair/Show crosshair": true,
-              "Crosshair/Crosshair color": "#FFFFFFFF",
-              "Controls/Show controls": true,
-              "Controls/Rotation": "NONE",
-              "compression": -1.0,
-              "fps": -1,
-              "imageWidth": -1,
-              "imageHeight": -1
-            }
-          },
           "5,0": {
             "size": [
               5,
@@ -2586,6 +2567,25 @@
               "fps": -1,
               "imageWidth": -1,
               "imageHeight": -1
+            }
+          },
+          "0,0": {
+            "size": [
+              5,
+              4
+            ],
+            "content": {
+              "_type": "Camera Stream",
+              "_source0": "camera_server://rPi Camera 0",
+              "_title": "rPi Camera 0",
+              "Crosshair/Show crosshair": true,
+              "Crosshair/Crosshair color": "#FFFFFFFF",
+              "Controls/Show controls": true,
+              "Controls/Rotation": "NONE",
+              "compression": -1.0,
+              "fps": -1,
+              "imageWidth": 0,
+              "imageHeight": 0
             }
           }
         }

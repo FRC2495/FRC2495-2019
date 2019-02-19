@@ -30,5 +30,12 @@ public class CargoDeliver extends CommandGroup {
 		// e.g. if Command1 requires chassis, and Command2 requires arm,
 		// a CommandGroup containing them would require both the chassis and the
 		// arm.
+
+		addSequential(new DrivetrainTurnUsingCameraPidController());
+		addSequential(new DrivetrainMoveUsingCameraPidControllerWithStallDetection()); // TODO subtract offset around 6 inches
+		addSequential(new HingeMoveMidway());
+		addSequential(new GrasperTimedRelease(2));
+		addParallel(new HingeMoveUp());  
+		addSequential(new DrivetrainMoveDistance(-24 /* -  offset */));	// TODO subtract offset around 6 inches
 	}
 }

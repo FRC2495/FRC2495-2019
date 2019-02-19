@@ -14,6 +14,8 @@ public class HatchPanelDeliver extends CommandGroup {
 	 * Add your docs here.
 	 */
 	public HatchPanelDeliver() {
+		// check for target
+
 		// Add Commands here:
 		// e.g. addSequential(new Command1());
 		// addSequential(new Command2());
@@ -30,5 +32,11 @@ public class HatchPanelDeliver extends CommandGroup {
 		// e.g. if Command1 requires chassis, and Command2 requires arm,
 		// a CommandGroup containing them would require both the chassis and the
 		// arm.
+
+		addSequential(new DrivetrainTurnUsingCameraPidController());
+		addSequential(new DrivetrainMoveUsingCameraPidControllerWithStallDetection());
+		addParallel(new HookTimedSwitchDown(2.0));
+		addSequential(new DrivetrainMoveDistance(-24));
 	}
+
 }
