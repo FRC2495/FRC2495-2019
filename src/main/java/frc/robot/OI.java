@@ -174,12 +174,12 @@ public class OI {
 		//gamepadB.whenPressed(new GrasperTimedRelease(2));
 		//gamepadB.whenPressed(new HookSwitchDown());
 		//gamepadB.whileHeld(new HookSwitchDown());
-		gamepadB.whenPressed(new GrasperRelease());
+		gamepadB.whileHeld(new GrasperRelease());
 
 		gamepadA = new JoystickButton(gamepad, ControllerBase.GamepadButtons.A);
 		//gamepadA.whenPressed(new IfRobotEnabled(new GrasperTimedGrasp(2),new FullCalibrateAndReset()));
 		//gamepadA.whenPressed(new IfRobotEnabled(new HookSwitchUp(),new FullCalibrateAndReset()));
-		gamepadA.whenPressed(new IfRobotEnabled(new GrasperGrasp(),new FullCalibrateAndReset()));
+		gamepadA.whileHeld(new IfRobotEnabled(new GrasperGrasp(),new FullCalibrateAndReset()));
 
 		joyRight = new Joystick(Ports.USB.RIGHT);
 
