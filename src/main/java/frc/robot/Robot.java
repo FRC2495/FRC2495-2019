@@ -86,14 +86,14 @@ public class Robot extends TimedRobot {
 
 	// sensors
 	
-	ICamera camera;
+	public static ICamera camera;
 	
 	public static ADXRS450_Gyro gyro; // gyro
 	static boolean hasGyroBeenManuallyCalibratedAtLeastOnce = false;
 	
-	Sonar sonar;
+	public static Sonar sonar;
 	
-	HMAccelerometer accelerometer;
+	public static HMAccelerometer accelerometer;
 
 	public static PressureSensor pressureSensor;
 	

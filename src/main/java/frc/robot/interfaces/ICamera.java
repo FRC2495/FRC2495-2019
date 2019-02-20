@@ -31,4 +31,8 @@ public interface ICamera extends PIDSource, PIDSource2 {
 	public double[] getCenterX();
 
 	public double[] getCenterY();	
+
+	public void setOffsetBetweenCameraAndTarget(double offset);
+
+	public double getOffsetBetweenCameraAndTarget();
 }

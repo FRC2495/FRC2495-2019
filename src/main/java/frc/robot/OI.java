@@ -19,6 +19,7 @@ import frc.robot.commands.*;
 import frc.robot.Ports;
 import frc.robot.ControllerBase;
 import frc.robot.util.GamepadAxis;
+import frc.robot.sensors.LimelightCamera;
 
 
 /**
@@ -204,7 +205,7 @@ public class OI {
 		joyRightBtn6.whenPressed(new DrivetrainResetEncoders());
 
 		joyRightBtn5 = new JoystickButton(joyRight, ControllerBase.JoystickButtons.BTN5);
-		joyRightBtn5.whenPressed(new DrivetrainMoveUsingCameraPidController());
+		joyRightBtn5.whenPressed(new DrivetrainMoveUsingCameraPidController(LimelightCamera.OFFSET_CAMERA_HATCH_INCHES));
 
 		joyRightBtn4 = new JoystickButton(joyRight, ControllerBase.JoystickButtons.BTN4);
 		joyRightBtn4.whenPressed(new DrivetrainTurnUsingCameraPidController());

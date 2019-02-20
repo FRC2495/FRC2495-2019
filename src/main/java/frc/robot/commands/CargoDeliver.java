@@ -9,6 +9,8 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
+import frc.robot.sensors.*;
+
 public class CargoDeliver extends CommandGroup {
 	/**
 	 * Add your docs here.
@@ -32,10 +34,10 @@ public class CargoDeliver extends CommandGroup {
 		// arm.
 
 		addSequential(new DrivetrainTurnUsingCameraPidController());
-		addSequential(new DrivetrainMoveUsingCameraPidControllerWithStallDetection()); // TODO subtract offset around 6 inches
+		addSequential(new DrivetrainMoveUsingCameraPidControllerWithStallDetection(LimelightCamera.OFFSET_CAMERA_PORT_INCHES));
 		addSequential(new HingeMoveMidway());
 		addSequential(new GrasperTimedRelease(2));
 		addParallel(new HingeMoveUp());  
-		addSequential(new DrivetrainMoveDistance(-24 /* -  offset */));	// TODO subtract offset around 6 inches
+		addSequential(new DrivetrainMoveDistance(-24 + LimelightCamera.OFFSET_CAMERA_PORT_INCHES-LimelightCamera.OFFSET_CAMERA_HATCH_INCHES));
 	}
 }

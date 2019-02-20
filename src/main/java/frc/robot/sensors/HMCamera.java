@@ -26,8 +26,17 @@ public class HMCamera implements PIDSource, ICamera {
 
 	public static final double SAFE_DISTANCE_INCHES = 120;	
 
+	public static final double MIN_OFFSET_CAMERA_TARGET_INCHES = 0;
+	public static final double DEFAULT_OFFSET_CAMERA_TARGET_INCHES = 10; // we need to leave some space between the camera and the target
+	public static final double MAX_OFFSET_CAMERA_TARGET_INCHES = 36;
+
+	public static final double OFFSET_CAMERA_HATCH_INCHES = 10;
+	public static final double OFFSET_CAMERA_PORT_INCHES = 24;
+
 	private static final int MAX_NT_RETRY = 5;
 	private static final double CAMERA_CATCHUP_DELAY_SECS = 0.250;
+
+	private double offsetCameraTargetInches = DEFAULT_OFFSET_CAMERA_TARGET_INCHES;
 
 	public HMCamera(String networktable) {
 		// nt = NetworkTable.getTable(networktable);
@@ -288,16 +297,16 @@ public class HMCamera implements PIDSource, ICamera {
 	{
 		acquireTargets(false); // we don't want to wait but the lag might be problematic
 		
-		final double OFFSET_CAMERA_TARGET_INCHES = 10; // we need to leave some space between the camera and the target
 		final double MAX_DISTANCE_TO_TARGET_INCHES = SAFE_DISTANCE_INCHES; // arbitrary very large distance
 		
-		double distanceToTargetReportedByCamera = getDistanceToCompositeTargetUsingHorizontalFov();
+		//double distanceToTargetReportedByCamera = getDistanceToCompositeTargetUsingHorizontalFov();
+		double distanceToTargetReportedByCamera = getDistanceToCompositeTargetUsingVerticalFov();
 
 		double distance = 0;
 		
 		if (distanceToTargetReportedByCamera <= MAX_DISTANCE_TO_TARGET_INCHES) {
-			if (distanceToTargetReportedByCamera >= OFFSET_CAMERA_TARGET_INCHES) {
-				distance = distanceToTargetReportedByCamera - OFFSET_CAMERA_TARGET_INCHES;
+			if (distanceToTargetReportedByCamera >= offsetCameraTargetInches) {
+				distance = distanceToTargetReportedByCamera - offsetCameraTargetInches;
 			} else {
 				System.out.println("WARNING: Already at the target!");
 			}
@@ -306,5 +315,13 @@ public class HMCamera implements PIDSource, ICamera {
 		}
 
 		return -distance;
+	}
+
+	public synchronized void setOffsetBetweenCameraAndTarget(double offset) {
+		offsetCameraTargetInches = Math.max(Math.min(offset,MAX_OFFSET_CAMERA_TARGET_INCHES),MIN_OFFSET_CAMERA_TARGET_INCHES);
+	}
+
+	public synchronized double getOffsetBetweenCameraAndTarget() {
+		return offsetCameraTargetInches;
 	}
 }

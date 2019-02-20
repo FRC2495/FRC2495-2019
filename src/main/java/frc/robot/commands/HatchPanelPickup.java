@@ -9,6 +9,8 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
+import frc.robot.sensors.*;
+
 public class HatchPanelPickup extends CommandGroup {
   /**
    * Add your docs here.
@@ -34,7 +36,7 @@ public class HatchPanelPickup extends CommandGroup {
     addSequential(new HingeMoveUp());
     addSequential(new EjectorExtend());
     addSequential(new DrivetrainTurnUsingCameraPidController());
-    addSequential(new DrivetrainMoveUsingCameraPidControllerWithStallDetection()); 
-    addSequential(new DrivetrainMoveDistance( - 24));
+    addSequential(new DrivetrainMoveUsingCameraPidControllerWithStallDetection(LimelightCamera.OFFSET_CAMERA_HATCH_INCHES)); 
+    addSequential(new DrivetrainMoveDistance(-24));
   }
 }

@@ -9,6 +9,8 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
+import frc.robot.sensors.*;
+
 public class HatchPanelDeliver extends CommandGroup {
 	/**
 	 * Add your docs here.
@@ -34,7 +36,7 @@ public class HatchPanelDeliver extends CommandGroup {
 		// arm.
 
 		addSequential(new DrivetrainTurnUsingCameraPidController());
-		addSequential(new DrivetrainMoveUsingCameraPidControllerWithStallDetection());
+		addSequential(new DrivetrainMoveUsingCameraPidControllerWithStallDetection(LimelightCamera.OFFSET_CAMERA_HATCH_INCHES));
 		addParallel(new HookTimedSwitchDown(2.0));
 		addSequential(new DrivetrainMoveDistance(-24));
 	}
