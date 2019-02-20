@@ -190,13 +190,13 @@ public class OI {
 		//joyRightBtn11.whenPressed(xxx);
 
 		joyRightBtn10 = new JoystickButton(joyRight, ControllerBase.JoystickButtons.BTN10);
-		//joyRightBtn10.whenPressed(xxx);
+		joyRightBtn10.whenPressed(new CargoDeliver());
 
 		joyRightBtn9 = new JoystickButton(joyRight, ControllerBase.JoystickButtons.BTN9);
-		joyRightBtn9.whenPressed(new EjectorExtend());
+		joyRightBtn9.whenPressed(new HatchPanelDeliver());
 
 		joyRightBtn8 = new JoystickButton(joyRight, ControllerBase.JoystickButtons.BTN8);
-		joyRightBtn8.whenPressed(new EjectorRetract());
+		joyRightBtn8.whenPressed(new HatchPanelPickup());
 		
 		joyRightBtn7 = new JoystickButton(joyRight, ControllerBase.JoystickButtons.BTN7);
 		joyRightBtn7.whenPressed(new DrivetrainStop());
