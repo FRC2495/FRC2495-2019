@@ -696,7 +696,7 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 
 		// calling disable() on controller will force a call to pidWrite with zero output
 		// which we need to handle by not doing anything that could have a side effect 
-		if (output != 0 && Math.abs(turnUsingCameraPidController.getError()) < DEGREE_THRESHOLD)
+		if (output != 0 && Math.abs(turnUsingCameraPidController.getError()) < PIXEL_THRESHOLD)
 		{
 			output = 0;
 		}
