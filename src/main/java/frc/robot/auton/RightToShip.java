@@ -32,8 +32,10 @@ public class RightToShip extends CommandGroup {
 		// a CommandGroup containing them would require both the chassis and the
 		// arm.
 
+		//TODO Add in specifically where to target
+
 		// Move backwards 24 in. 
-		addSequential(new DrivetrainMoveDistance(-24));
+		//addSequential(new DrivetrainMoveDistance(-24));
 
 		// Turn 90 degrees to the right 
 		addSequential(new DrivetrainTurnAngleUsingPidController(90));
@@ -48,6 +50,7 @@ public class RightToShip extends CommandGroup {
 		addSequential(new DrivetrainMoveDistance(76));
 
 		// (another hatched recieved from RH)
+		addSequential(new HatchPanelPickup());
 
 		// Move back 76 in. (from RH) 
 		addSequential(new DrivetrainMoveDistance(-76));
@@ -65,7 +68,7 @@ public class RightToShip extends CommandGroup {
 		addSequential(new HatchPanelDeliver());
 
 		// Move back 24 in. 
-		addSequential(new DrivetrainMoveDistance(-24));
+		//addSequential(new DrivetrainMoveDistance(-24));
 
 		// Turn 90 degrees to the left 
 		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
@@ -80,9 +83,10 @@ public class RightToShip extends CommandGroup {
 		addSequential(new DrivetrainMoveDistance(76));
 
 		// (another hatch recieved from RH)
+		addSequential(new HatchPanelPickup());
 
 		// Move backwards 24 in.
-		addSequential(new DrivetrainMoveDistance(-24));
+		//addSequential(new DrivetrainMoveDistance(-24));
 		
 		// Turn 180 degrees to the right 
 		addSequential(new DrivetrainTurnAngleUsingPidController(180)); 
@@ -93,7 +97,7 @@ public class RightToShip extends CommandGroup {
 		// ?
 
 		// Move backwards 24 in. 
-		addSequential(new DrivetrainMoveDistance(-24));
+		//addSequential(new DrivetrainMoveDistance(-24));
 		
 		// turn 180 degrees to the right
 		addSequential(new DrivetrainTurnAngleUsingPidController(180));  
@@ -124,7 +128,7 @@ public class RightToShip extends CommandGroup {
 		// ??
 
 		// Move backwards 24 in.
-		addSequential(new DrivetrainMoveDistance(-24)); 
+		//addSequential(new DrivetrainMoveDistance(-24)); 
 		
 		// turn left 
 		// (lines 144 through 152 need to be changed when correct info is given)

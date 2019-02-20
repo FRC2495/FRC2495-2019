@@ -32,8 +32,10 @@ public class LeftToShip extends CommandGroup {
 		// a CommandGroup containing them would require both the chassis and the
 		// arm.
 
+		//TODO Add in specfically where to target
+
 		// Move backwards 24 inches 
-		addSequential(new DrivetrainMoveDistance(-24));
+		//addSequential(new DrivetrainMoveDistance(-24));
 
 		// Turn 90 degrees to the left 
 		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
@@ -48,6 +50,7 @@ public class LeftToShip extends CommandGroup {
 		addSequential(new DrivetrainMoveDistance(76)); 
 
 		// (another hatch received by LH)
+		addSequential(new HatchPanelPickup());
 
 		// Reverse 76 in. (from LH) 
 		addSequential(new DrivetrainMoveDistance(-76));
@@ -65,7 +68,7 @@ public class LeftToShip extends CommandGroup {
 		addSequential(new HatchPanelDeliver());
 
 		// Move backwards 24 in. 
-		addSequential(new DrivetrainMoveDistance(-24));
+		//addSequential(new DrivetrainMoveDistance(-24));
 
 		// Turn 90 degrees to the right 
 		addSequential(new DrivetrainTurnAngleUsingPidController(90));
@@ -80,9 +83,10 @@ public class LeftToShip extends CommandGroup {
 		addSequential(new DrivetrainMoveDistance(76));
 
 		// (another hatch recieved from LH)
+		addSequential(new HatchPanelPickup());
 
 		// Move backwards 24 in.  
-		addSequential(new DrivetrainMoveDistance(-24));
+		//addSequential(new DrivetrainMoveDistance(-24));
 
 		// Turn 180 degrees to the left
 		addSequential(new DrivetrainTurnAngleUsingPidController(-180));  
@@ -93,7 +97,7 @@ public class LeftToShip extends CommandGroup {
 		// ?
 
 		// Move backwards 24 in. 
-		addSequential(new DrivetrainMoveDistance(-24));
+		//addSequential(new DrivetrainMoveDistance(-24));
 
 		// Turn 180 degrees to the left  
 		addSequential(new DrivetrainTurnAngleUsingPidController(-180));
@@ -124,7 +128,7 @@ public class LeftToShip extends CommandGroup {
 		// ??
 
 		// Move backwards 24 in. 
-		addSequential(new DrivetrainMoveDistance(-24));
+		//addSequential(new DrivetrainMoveDistance(-24));
 
 		// another step is missing, will fix when recieved
 		//(lines 144 through 152 need to be changed when correct info is given)

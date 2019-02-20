@@ -37,41 +37,44 @@ public class LeftToRocket extends CommandGroup {
 		addSequential(new HatchPanelDeliver());
 
 		// Move 24 inches back
-		addSequential(new DrivetrainMoveDistance(-24));
+		//addSequential(new DrivetrainMoveDistance(-24));
 
 		// Turn 135 degrees to the left 
 		addSequential(new DrivetrainTurnAngleUsingPidController(-135));
 
 		// Move forward 177 in.  
-		addSequential(new DrivetrainMoveDistance(177)); 
+		//addSequential(new DrivetrainMoveDistance(177));
+		addSequential(new DrivetrainMoveDistance(177-48)); 
 
 		// (another hatch received from LH)
+		addSequential(new HatchPanelPickup()); 
 
 		// Move backwards 24 in. 
-		addSequential(new DrivetrainMoveDistance(-24));
+		//addSequential(new DrivetrainMoveDistance(-24));
 
 		// Turn 180 degrees to the left  
 		addSequential(new DrivetrainTurnAngleUsingPidController(-180));
 
 		// Move forward 177 in.  
-		addSequential(new DrivetrainMoveDistance(177));
+		addSequential(new DrivetrainMoveDistance(177-48));
 
 		// Vision delivery (to RLF2) 
 		addSequential(new HatchPanelDeliver()); 
 
 		// Move backwards 24 in. 
-		addSequential(new DrivetrainMoveDistance(-24));
+		//addSequential(new DrivetrainMoveDistance(-24));
 
 		// Turn 180 degrees to the left 
 		addSequential(new DrivetrainTurnAngleUsingPidController(-180));
 
 		// Move forward 177 in.
-		addSequential(new DrivetrainMoveDistance(177));
+		addSequential(new DrivetrainMoveDistance(177-48));
 
 		// (another hatch received from LH)
+		addSequential(new HatchPanelPickup());
 
 		// Move backwards 24 in. 
-		addSequential(new DrivetrainMoveDistance(-24));
+		//addSequential(new DrivetrainMoveDistance(-24));
 
 		// Turn 145 degrees to the left
 		addSequential(new DrivetrainTurnAngleUsingPidController(-145)); 
@@ -83,21 +86,22 @@ public class LeftToRocket extends CommandGroup {
 		addSequential(new DrivetrainTurnAngleUsingPidController(35));  
 
 		// Vision target (to CSL3) 
-		addSequential(new CargoDeliver());
+		addSequential(new HatchPanelDeliver());
 
 		// Move backwards 24 in. 
-		addSequential(new DrivetrainMoveDistance(-24));
+		// addSequential(new DrivetrainMoveDistance(-24));
 
 		// Turn 110 degrees to the right  
 		addSequential(new DrivetrainTurnAngleUsingPidController(110));
 
-		// Move forward 258 in. (is that the correct distance?)
-		addSequential(new DrivetrainMoveDistance(258));
+		// Move forward 258 in. 
+		addSequential(new DrivetrainMoveDistance(258-48));
 
 		// (another hatch received from LH)
+		addSequential(new HatchPanelPickup());
 
 		// Move backwards 24 in. 
-		addSequential(new DrivetrainMoveDistance(-24));
+		// addSequential(new DrivetrainMoveDistance(-24));
 
 		// Turn 113 degrees to the left 
 		addSequential(new DrivetrainTurnAngleUsingPidController(-113));
@@ -109,21 +113,22 @@ public class LeftToRocket extends CommandGroup {
 		addSequential(new DrivetrainTurnAngleUsingPidController(67));
 
 		// Vision target (to CSL2) 
-		addSequential(new CargoDeliver());
+		addSequential(new HatchPanelDeliver());
 
 		// Move backwards 24 in. 
-		addSequential(new DrivetrainMoveDistance(-24));
+		// addSequential(new DrivetrainMoveDistance(-24));
 
 		// Turn 110 degrees to the right 
 		addSequential(new DrivetrainTurnAngleUsingPidController(110));
 
 		// Move forward 254 in.
-		addSequential(new DrivetrainMoveDistance(254)); 
+		addSequential(new DrivetrainMoveDistance(254-48)); 
 
 		// (received another hatch from LH)
+		addSequential(new HatchPanelPickup());
 
 		// Move backwards 24 in. 
-		addSequential(new DrivetrainMoveDistance(-24));
+		// addSequential(new DrivetrainMoveDistance(-24));
 
 		// Turn 116 degrees to the right 
 		addSequential(new DrivetrainTurnAngleUsingPidController(116));
@@ -135,10 +140,10 @@ public class LeftToRocket extends CommandGroup {
 		addSequential(new DrivetrainTurnAngleUsingPidController(64));
 
 		// Visual targeting (to CSL1) 
-		addSequential(new CargoDeliver());
+		addSequential(new HatchPanelDeliver());
 
 		// Move backwards 24 in. 
-		addSequential(new DrivetrainMoveDistance(-24));
+		// addSequential(new DrivetrainMoveDistance(-24));
 
 		// Turn 90 degrees to the right 
 		addSequential(new DrivetrainTurnAngleUsingPidController(90));

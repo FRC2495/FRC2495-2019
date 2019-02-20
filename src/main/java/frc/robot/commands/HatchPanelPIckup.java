@@ -9,11 +9,11 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class HatchPanelPIckup extends CommandGroup {
+public class HatchPanelPickup extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public HatchPanelPIckup() {
+  public HatchPanelPickup() {
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
