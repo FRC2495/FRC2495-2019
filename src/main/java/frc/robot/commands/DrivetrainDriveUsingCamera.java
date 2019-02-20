@@ -14,6 +14,8 @@ import frc.robot.subsystems.Drivetrain;
 public class DrivetrainDriveUsingCamera extends Command {
 
 	private double offsetCameraTarget;
+	private int onTargetCountTurningUsingCamera; // counter indicating how many times/iterations we were on target
+	private int onTargetCountMovingUsingCamera; // counter indicating how many times/iterations we were on target
 
 	// offset should be LimelightCamera.OFFSET_CAMERA_PORT_INCHES or LimelightCamera.OFFSET_CAMERA_HATCH_INCHES
 	public DrivetrainDriveUsingCamera(double offset) {
@@ -31,6 +33,9 @@ public class DrivetrainDriveUsingCamera extends Command {
 		System.out.println("DrivetrainDriveUsingCamera: initialize");
 
 		Robot.camera.setOffsetBetweenCameraAndTarget(offsetCameraTarget);
+
+		onTargetCountTurningUsingCamera = 0;
+		onTargetCountMovingUsingCamera = 0;
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -46,7 +51,13 @@ public class DrivetrainDriveUsingCamera extends Command {
 		if (Math.abs(pixelDisplacement) < Drivetrain.PIXEL_THRESHOLD)
 		{
 			turnPctOutput = 0;
+			onTargetCountTurningUsingCamera++; // we increase the counter
 		}
+		else
+		{
+			onTargetCountTurningUsingCamera = 0; // we reset the counter as we are not on target anymore
+		}
+
 		if (Math.abs(turnPctOutput) < Drivetrain.MIN_TURN_USING_CAMERA_PCT_OUTPUT)
 		{
 			turnPctOutput = Math.signum(turnPctOutput) * Drivetrain.MIN_TURN_USING_CAMERA_PCT_OUTPUT;
@@ -55,7 +66,13 @@ public class DrivetrainDriveUsingCamera extends Command {
 		if (Math.abs(distance) < Drivetrain.DISTANCE_THRESHOLD_INCHES)
 		{
 			movePctOutput = 0;
+			onTargetCountMovingUsingCamera++; // we increase the counter
 		}
+		else
+		{
+			onTargetCountMovingUsingCamera = 0; // we reset the counter as we are not on target anymore
+		}
+
 		if (Math.abs(movePctOutput) < Drivetrain.MIN_MOVE_USING_CAMERA_PCT_OUTPUT)
 		{
 			movePctOutput = Math.signum(movePctOutput) * Drivetrain.MIN_MOVE_USING_CAMERA_PCT_OUTPUT;
@@ -67,7 +84,8 @@ public class DrivetrainDriveUsingCamera extends Command {
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return false; // we run forever (unless interrupted) TODO add stop condition
+		return onTargetCountTurningUsingCamera > Drivetrain.TURN_USING_CAMERA_ON_TARGET_MINIMUM_COUNT
+		&& onTargetCountMovingUsingCamera > Drivetrain.MOVE_USING_CAMERA_ON_TARGET_MINIMUM_COUNT;
 	}
 
 	// Called once after isFinished returns true
