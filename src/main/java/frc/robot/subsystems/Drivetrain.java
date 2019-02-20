@@ -50,7 +50,7 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 	
 	public final static int TURN_USING_CAMERA_ON_TARGET_MINIMUM_COUNT = 25; // number of times/iterations we need to be on target to really be on target
 
-	private final static int TURN_USING_CAMERA_STALLED_MINIMUM_COUNT = TURN_USING_CAMERA_ON_TARGET_MINIMUM_COUNT * 2 + 30; // number of times/iterations we need to be stalled to really be stalled
+	public final static int TURN_USING_CAMERA_STALLED_MINIMUM_COUNT = TURN_USING_CAMERA_ON_TARGET_MINIMUM_COUNT * 2 + 30; // number of times/iterations we need to be stalled to really be stalled
 
 	
 	// turn settings
@@ -86,7 +86,7 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 	
 	public final static int MOVE_USING_CAMERA_ON_TARGET_MINIMUM_COUNT = 25; // number of times/iterations we need to be on target to really be on target
 
-	private final static int MOVE_USING_CAMERA_STALLED_MINIMUM_COUNT = MOVE_USING_CAMERA_ON_TARGET_MINIMUM_COUNT * 2 + 30; // number of times/iterations we need to be stalled to really be stalled
+	public final static int MOVE_USING_CAMERA_STALLED_MINIMUM_COUNT = MOVE_USING_CAMERA_ON_TARGET_MINIMUM_COUNT * 2 + 30; // number of times/iterations we need to be stalled to really be stalled
 
 
 	// move settings
@@ -103,7 +103,7 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 	
 	static final int TALON_TICK_THRESH = 128;
 	static final double TICK_THRESH = TALON_TICK_THRESH * 4;
-	static final double TICK_PER_100MS_THRESH = 64; // about a tenth of a rotation per second 
+	public static final double TICK_PER_100MS_THRESH = 64; // about a tenth of a rotation per second 
 
 	private final static int MOVE_ON_TARGET_MINIMUM_COUNT = 10; // number of times/iterations we need to be on target to really be on target
 
@@ -487,7 +487,7 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 	
 	// return if drivetrain might be stalled
 	public boolean tripleCheckIfStalled() {
-		if (isMoving || isTurning) {
+		if (isMoving || isTurning || isMovingUsingCamera || isTurningUsingCamera) {
 			
 			double rvelocity = getRightEncoderVelocity();
 			double lvelocity = getLeftEncoderVelocity();

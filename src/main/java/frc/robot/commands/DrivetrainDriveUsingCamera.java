@@ -16,6 +16,7 @@ public class DrivetrainDriveUsingCamera extends Command {
 	private double offsetCameraTarget;
 	private int onTargetCountTurningUsingCamera; // counter indicating how many times/iterations we were on target
 	private int onTargetCountMovingUsingCamera; // counter indicating how many times/iterations we were on target
+	private int stalledCount;
 
 	// offset should be LimelightCamera.OFFSET_CAMERA_PORT_INCHES or LimelightCamera.OFFSET_CAMERA_HATCH_INCHES
 	public DrivetrainDriveUsingCamera(double offset) {
@@ -36,6 +37,7 @@ public class DrivetrainDriveUsingCamera extends Command {
 
 		onTargetCountTurningUsingCamera = 0;
 		onTargetCountMovingUsingCamera = 0;
+		stalledCount = 0;
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -84,14 +86,30 @@ public class DrivetrainDriveUsingCamera extends Command {
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return onTargetCountTurningUsingCamera > Drivetrain.TURN_USING_CAMERA_ON_TARGET_MINIMUM_COUNT
-		&& onTargetCountMovingUsingCamera > Drivetrain.MOVE_USING_CAMERA_ON_TARGET_MINIMUM_COUNT;
+
+		double rvelocity = Robot.drivetrain.getRightEncoderVelocity();
+		double lvelocity = Robot.drivetrain.getLeftEncoderVelocity();
+		
+		boolean isStalled = (Math.abs(rvelocity) < Drivetrain.TICK_PER_100MS_THRESH
+			&& Math.abs(lvelocity) < Drivetrain.TICK_PER_100MS_THRESH);
+		
+		if (isStalled) { // if we are stalled in this iteration 
+			stalledCount++; // we increase the counter
+		} else { // if we are not stalled in this iteration
+				stalledCount = 0; // we reset the counter as we are not stalled anymore
+		}
+
+		return (onTargetCountTurningUsingCamera > Drivetrain.TURN_USING_CAMERA_ON_TARGET_MINIMUM_COUNT
+			&& onTargetCountMovingUsingCamera > Drivetrain.MOVE_USING_CAMERA_ON_TARGET_MINIMUM_COUNT)
+		|| (stalledCount > Drivetrain.TURN_USING_CAMERA_STALLED_MINIMUM_COUNT
+			&& stalledCount > Drivetrain.MOVE_USING_CAMERA_STALLED_MINIMUM_COUNT);
 	}
 
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
 		System.out.println("DrivetrainDriveUsingCamera: end");
+		Robot.drivetrain.stop(); // to reset the state machine
 	}
 
 	// Called when another command which requires one or more of the same
