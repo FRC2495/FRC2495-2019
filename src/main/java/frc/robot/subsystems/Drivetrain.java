@@ -623,6 +623,11 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 			}
 		}
 	}	
+
+	// offers direct access to raw arcade drive functionality
+	public void arcadeDrive(double movePctOutput, double turnPctOutput) {
+		differentialDrive.arcadeDrive(-turnPctOutput, movePctOutput); // TODO double-check signs
+	}
 	
 	public int getRightEncoderPosition() {
 		return (int) (masterRight.getSelectedSensorPosition(PRIMARY_PID_LOOP));
