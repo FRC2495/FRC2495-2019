@@ -10,7 +10,7 @@ package frc.robot.auton;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.Robot;
 
-public class CustomAuton extends CommandGroup {
+public class HatchPanelCustomAuton extends CommandGroup {
 
 	String startPosition;
 	String mainTarget;
@@ -27,7 +27,7 @@ public class CustomAuton extends CommandGroup {
 	 * @param sonarOption_in sonar option
 	 * @param release_in release option
 	 */
-	public CustomAuton(String startPosition_in, String mainTarget_in, String cameraOption_in,	String sonarOption_in, String release_in) {
+	public HatchPanelCustomAuton(String startPosition_in, String mainTarget_in, String cameraOption_in,	String sonarOption_in, String release_in) {
 
 		startPosition = startPosition_in;
 		mainTarget = mainTarget_in;

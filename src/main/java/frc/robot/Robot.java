@@ -20,7 +20,7 @@ import com.ctre.phoenix.motorcontrol.can.BaseMotorController;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
-import frc.robot.auton.CustomAuton;
+import frc.robot.auton.HatchPanelCustomAuton;
 import frc.robot.interfaces.*;
 import frc.robot.sensors.*;
 //import frc.robot.commands.*;
@@ -50,6 +50,11 @@ public class Robot extends TimedRobot {
 	public static final String AUTON_CUSTOM = "My Auto";
 	private String autonSelected;
 	private SendableChooser<String> autonChooser = new SendableChooser<>();
+
+	public static final String GAME_PIECE_HATCH_PANEL = "Hatch Panel";
+	public static final String GAME_PIECE_CARGO = "Cargo";
+	private String gamePieceSelected;
+	private SendableChooser<String> gamePieceChooser = new SendableChooser<>();
 	
 	public static final String START_POSITION_HAB1_LEFT = "Hab 1 Left";
 	public static final String START_POSITION_HAB1_CENTER_LEFT = "Hab 1 Center Left";
@@ -142,6 +147,10 @@ public class Robot extends TimedRobot {
 		autonChooser.setDefaultOption("Do Nothing", AUTON_DO_NOTHING);
 		autonChooser.addOption("My Auto", AUTON_CUSTOM);
 		SmartDashboard.putData("Auto choices", autonChooser);
+
+		gamePieceChooser.setDefaultOption("Hatch Panel", GAME_PIECE_HATCH_PANEL);
+		gamePieceChooser.addOption("Cargo", GAME_PIECE_CARGO);
+		SmartDashboard.putData("Game Piece choices", gamePieceChooser);
 		
 		startPositionChooser.addOption("Hab 1 Left", START_POSITION_HAB1_LEFT);
 		startPositionChooser.setDefaultOption("Hab 1 Center Left", START_POSITION_HAB1_CENTER_LEFT);
@@ -258,6 +267,9 @@ public class Robot extends TimedRobot {
 		autonSelected = autonChooser.getSelected();
 		System.out.println("Auton selected: " + autonSelected);
 		
+		gamePieceSelected = gamePieceChooser.getSelected();
+		System.out.println("Game Piece: " + gamePieceSelected);
+
 		startPosition = startPositionChooser.getSelected();
 		System.out.println("Start position: " + startPosition);
 
@@ -279,8 +291,19 @@ public class Robot extends TimedRobot {
 
 		switch (autonSelected) {
 			case Robot.AUTON_CUSTOM:
-				m_autonomousCommand = new CustomAuton(startPosition, mainTarget, cameraOption, sonarOption, releaseSelected);
+				switch (gamePieceSelected) {
+					case Robot.GAME_PIECE_HATCH_PANEL:
+						m_autonomousCommand = new HatchPanelCustomAuton(startPosition, mainTarget, cameraOption, sonarOption, releaseSelected);
+						break;
 
+					case Robot.GAME_PIECE_CARGO:
+						//m_autonomousCommand = new CargoCustomAuton(startPosition, mainTarget, cameraOption, sonarOption, releaseSelected);
+						break;
+					
+					default:
+						// nothing
+						break;
+				}
 				break;
 
 			case Robot.AUTON_DO_NOTHING:
@@ -289,7 +312,7 @@ public class Robot extends TimedRobot {
 				break;
 				
 			default:
-
+				// nothing
 				break;
 		} // end switch
 	
