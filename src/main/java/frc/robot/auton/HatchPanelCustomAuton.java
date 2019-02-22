@@ -73,7 +73,7 @@ public class HatchPanelCustomAuton extends CommandGroup {
 						addSequential(new HatchPanelHab1CenterLeftToRocket());
 						break;
 					case Robot.MAIN_TARGET_SHIP:
-		
+						addSequential(new HatchPanelHab1CenterLeftToShip());
 						break;	
 					default:
 						// nothing
@@ -87,7 +87,7 @@ public class HatchPanelCustomAuton extends CommandGroup {
 						addSequential(new HatchPanelHab1CenterRightToRocket());
 						break;
 					case Robot.MAIN_TARGET_SHIP:
-		
+						addSequential(new HatchPanelHab1CenterRightToShip());
 						break;	
 					default:
 						// nothing
