@@ -10,11 +10,11 @@ package frc.robot.auton;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.commands.*;
 
-public class Hab1CenterLeftToRocket extends CommandGroup {
+public class HatchPanelHab1RightToShip extends CommandGroup {
 	/**
 	 * Add your docs here.
 	 */
-	public Hab1CenterLeftToRocket() {
+	public HatchPanelHab1RightToShip() {
 		// Add Commands here:
 		// e.g. addSequential(new Command1());
 		// addSequential(new Command2());
@@ -32,22 +32,28 @@ public class Hab1CenterLeftToRocket extends CommandGroup {
 		// a CommandGroup containing them would require both the chassis and the
 		// arm.
 
-		// Move forward 95 in.  (Started on LS) 
-		addSequential(new DrivetrainMoveDistance(95));
+		// Move forward 88 in. (from RS) 
+		addSequential(new DrivetrainMoveDistance(88));		
 
 		// Turn 90 degrees to the left 
 		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
 
-		// Move forward 95 in. 
-		addSequential(new DrivetrainMoveDistance(95));  
+		// Move forward 42 in. 
+		addSequential(new DrivetrainMoveDistance(42));
 
-		// Turn 60 degrees to the right  
-		addSequential(new DrivetrainTurnAngleUsingPidController(60));
+		// Turn 90 degrees to the right 
+		addSequential(new DrivetrainTurnAngleUsingPidController(90));
+
+		// Vision Target
+		addSequential(new HatchPanelDeliver());
+
+		// moving forward 133 in.
+		addSequential(new DrivetrainMoveDistance(133));
+
+		// vision targeting
+		addSequential (new HatchPanelDeliver());
 		
-		// Move forward 36 in.  
-		addSequential(new DrivetrainMoveDistance(36));
-
-		// Vision delivery (to RLF1) 
-		addSequential(new HatchPanelDeliver());	
+		// Calls the common command RightToShip
+		addSequential(new RightToShip());
 	}
 }

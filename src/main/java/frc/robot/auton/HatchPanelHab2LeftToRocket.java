@@ -10,11 +10,11 @@ package frc.robot.auton;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.commands.*;
 
-public class Hab1CenterRightToShip extends CommandGroup {
+public class HatchPanelHab2LeftToRocket extends CommandGroup {
 	/**
 	 * Add your docs here.
 	 */
-	public Hab1CenterRightToShip() {
+	public HatchPanelHab2LeftToRocket() {
 		// Add Commands here:
 		// e.g. addSequential(new Command1());
 		// addSequential(new Command2());
@@ -32,10 +32,19 @@ public class Hab1CenterRightToShip extends CommandGroup {
 		// a CommandGroup containing them would require both the chassis and the
 		// arm.
 
-		// moving forward 133 in.
-		addSequential(new DrivetrainMoveDistance(133));
+		// Move forward 125 in.  (Started on LS) 
+		addSequential(new DrivetrainMoveDistance(125));
 
-		// vision targeting
-		addSequential (new HatchPanelDeliver());
+		// Turn 90 degrees to the left 
+		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
+
+		// Move forward 70 in. 
+		addSequential(new DrivetrainMoveDistance(70));  
+
+		// Turn 45 degrees to the right  
+		addSequential(new DrivetrainTurnAngleUsingPidController(45));
+
+		// Calls the common commands of LeftToRocket
+		addSequential(new LeftToRocket());
 	}
 }
