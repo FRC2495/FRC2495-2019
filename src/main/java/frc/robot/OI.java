@@ -190,7 +190,7 @@ public class OI {
 		//joyRightBtn11.whenPressed(xxx);
 
 		joyRightBtn10 = new JoystickButton(joyRight, ControllerBase.JoystickButtons.BTN10);
-		joyRightBtn10.whenPressed(new CargoDeliver());
+		joyRightBtn10.whenPressed(new CargoDeliverRocket());
 
 		joyRightBtn9 = new JoystickButton(joyRight, ControllerBase.JoystickButtons.BTN9);
 		joyRightBtn9.whenPressed(new HatchPanelDeliver());

@@ -11,11 +11,11 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 import frc.robot.sensors.*;
 
-public class CargoDeliver extends CommandGroup {
+public class CargoDeliverRocket extends CommandGroup {
 	/**
 	 * Add your docs here.
 	 */
-	public CargoDeliver() {
+	public CargoDeliverRocket() {
 		// Add Commands here:
 		// e.g. addSequential(new Command1());
 		// addSequential(new Command2());
