@@ -52,7 +52,8 @@ public class Robot extends TimedRobot {
 	private SendableChooser<String> autonChooser = new SendableChooser<>();
 	
 	public static final String START_POSITION_HAB1_LEFT = "Hab 1 Left";
-	public static final String START_POSITION_HAB1_CENTER = "Hab 1 Center";
+	public static final String START_POSITION_HAB1_CENTER_LEFT = "Hab 1 Center Left";
+	public static final String START_POSITION_HAB1_CENTER_RIGHT = "Hab 1 Center Right";
 	public static final String START_POSITION_HAB1_RIGHT = "Hab 1 Right";
 	public static final String START_POSITION_HAB2_LEFT = "Hab 2 Left";
 	public static final String START_POSITION_HAB2_RIGHT = "Hab 2 Right";
@@ -143,7 +144,8 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putData("Auto choices", autonChooser);
 		
 		startPositionChooser.addOption("Hab 1 Left", START_POSITION_HAB1_LEFT);
-		startPositionChooser.setDefaultOption("Hab 1 Center", START_POSITION_HAB1_CENTER);
+		startPositionChooser.setDefaultOption("Hab 1 Center Left", START_POSITION_HAB1_CENTER_LEFT);
+		startPositionChooser.addOption("Hab 1 Center Right", START_POSITION_HAB1_CENTER_RIGHT);
 		startPositionChooser.addOption("Hab 1 Right", START_POSITION_HAB1_RIGHT);
 		startPositionChooser.addOption("Hab 2 Left", START_POSITION_HAB2_LEFT);
 		startPositionChooser.addOption("Hab 2 Right", START_POSITION_HAB2_RIGHT);
