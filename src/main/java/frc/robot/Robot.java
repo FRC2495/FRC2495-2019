@@ -21,6 +21,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import frc.robot.auton.HatchPanelCustomAuton;
+import frc.robot.auton.CargoCustomAuton;
 import frc.robot.interfaces.*;
 import frc.robot.sensors.*;
 //import frc.robot.commands.*;
@@ -297,7 +298,7 @@ public class Robot extends TimedRobot {
 						break;
 
 					case Robot.GAME_PIECE_CARGO:
-						//m_autonomousCommand = new CargoCustomAuton(startPosition, mainTarget, cameraOption, sonarOption, releaseSelected);
+						m_autonomousCommand = new CargoCustomAuton(startPosition, mainTarget, cameraOption, sonarOption, releaseSelected);
 						break;
 					
 					default:
