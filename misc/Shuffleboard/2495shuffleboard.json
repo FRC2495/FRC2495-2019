@@ -2691,17 +2691,6 @@
               "_title": "SmartDashboard/Distance to Target"
             }
           },
-          "9,4": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Distance to Target Using Horizontal FOV",
-              "_title": "SmartDashboard/Distance to Target Using Horizontal FOV"
-            }
-          },
           "0,4": {
             "size": [
               1,
@@ -2765,6 +2754,17 @@
               "_title": "SmartDashboard/Elevator IsMoving?",
               "Colors/Color when true": "#7CFC00FF",
               "Colors/Color when false": "#8B0000FF"
+            }
+          },
+          "9,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Limelight_PipelineName",
+              "_title": "SmartDashboard/Limelight_PipelineName"
             }
           }
         }
