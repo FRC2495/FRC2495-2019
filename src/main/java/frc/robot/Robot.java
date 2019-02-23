@@ -151,7 +151,7 @@ public class Robot extends TimedRobot {
 
 		gamePieceChooser.setDefaultOption("Hatch Panel", GAME_PIECE_HATCH_PANEL);
 		gamePieceChooser.addOption("Cargo", GAME_PIECE_CARGO);
-		SmartDashboard.putData("Game Piece choices", gamePieceChooser);
+		SmartDashboard.putData("Game piece choices", gamePieceChooser);
 		
 		startPositionChooser.addOption("Hab 1 Left", START_POSITION_HAB1_LEFT);
 		startPositionChooser.setDefaultOption("Hab 1 Center Left", START_POSITION_HAB1_CENTER_LEFT);
@@ -269,7 +269,7 @@ public class Robot extends TimedRobot {
 		System.out.println("Auton selected: " + autonSelected);
 		
 		gamePieceSelected = gamePieceChooser.getSelected();
-		System.out.println("Game Piece: " + gamePieceSelected);
+		System.out.println("Game piece: " + gamePieceSelected);
 
 		startPosition = startPositionChooser.getSelected();
 		System.out.println("Start position: " + startPosition);
@@ -443,6 +443,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putBoolean("Grasper IsReleasing?", grasper.isReleasing());
 		
 		SmartDashboard.putString("Auton selected", autonChooser.getSelected());	
+		SmartDashboard.putString("Game piece", gamePieceChooser.getSelected());	
 		SmartDashboard.putString("Start position", startPositionChooser.getSelected());
 		SmartDashboard.putString("Main target", mainTargetChooser.getSelected());
 		SmartDashboard.putString("Camera option", cameraOptionChooser.getSelected());
