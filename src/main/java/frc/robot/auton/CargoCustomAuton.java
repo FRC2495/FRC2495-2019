@@ -112,7 +112,7 @@ public class CargoCustomAuton extends CommandGroup {
 			case Robot.START_POSITION_HAB2_LEFT:
 				switch (mainTarget) {
 					case Robot.MAIN_TARGET_ROCKET:
-						//addSequential(new CargoHab2LeftToRocket());
+						addSequential(new CargoHab2LeftToRocket());
 						break;
 					case Robot.MAIN_TARGET_SHIP:
 						//addSequential(new CargoHab2LeftToShip());

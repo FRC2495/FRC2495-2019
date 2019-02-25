@@ -10,11 +10,11 @@ package frc.robot.auton;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.commands.*;
 
-public class CargoHab1RightToRocket extends CommandGroup {
+public class CargoHab1RightToShip extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public CargoHab1RightToRocket() {
+  public CargoHab1RightToShip() {
    // Move foward 133 inches
    addSequential(new DrivetrainMoveDistance(133));
 
