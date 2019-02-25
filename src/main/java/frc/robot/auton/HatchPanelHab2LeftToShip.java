@@ -44,7 +44,7 @@ public class HatchPanelHab2LeftToShip extends CommandGroup {
 		// Turn 90 degrees to the left 
 		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
 
-		// Vision targeting (CRLF) 
+		// Vision targeting (CSLF) 
 		addSequential(new HatchPanelDeliver());
 
 		// Calls the common command LeftToShip
