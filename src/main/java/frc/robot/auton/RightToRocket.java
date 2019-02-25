@@ -39,8 +39,11 @@ public class RightToRocket extends CommandGroup {
 		// Move backwards 24 in. 
 		//addSequential(new DrivetrainMoveDistance(-24));
 
-		// Turn 135 degrees to the right 
-		addSequential(new DrivetrainTurnAngleUsingPidController(135));
+		// Turn 150 degrees to the right 
+		addSequential(new DrivetrainTurnAngleUsingPidController(150));
+
+		// Move back 24 inches
+		addSequential(new DrivetrainMoveDistance(-24));
 
 		// Move forward 177 in.
 		addSequential(new DrivetrainMoveDistance(177-48)); 
@@ -51,11 +54,14 @@ public class RightToRocket extends CommandGroup {
 		// Move backwards 24 in. 
 		//addSequential(new DrivetrainMoveDistance(-24));
 
-		// Turn 180 degrees to the right
-		addSequential(new DrivetrainTurnAngleUsingPidController(180));
+		// Turn 180 degrees to the left
+		addSequential(new DrivetrainTurnAngleUsingPidController(-180));
 
 		// Move forward 177 in.
 		addSequential(new DrivetrainMoveDistance(177-48)); 
+
+		// Turn 35 to the left 
+		addSequential(new DrivetrainTurnAngleUsingPidController(-35));
 
 		// Vision target (to RRF2) 
 		addSequential(new HatchPanelDeliver());
@@ -63,8 +69,8 @@ public class RightToRocket extends CommandGroup {
 		// Move backwards 24 in. 
 		//addSequential(new DrivetrainMoveDistance(-24));
 
-		// Turn 180 degrees to the right
-		addSequential(new DrivetrainTurnAngleUsingPidController(180));
+		// Turn 150 degrees to the right
+		addSequential(new DrivetrainTurnAngleUsingPidController(150));
 
 		// Move forward 177 in.
 		addSequential(new DrivetrainMoveDistance(177-48)); 
@@ -75,9 +81,11 @@ public class RightToRocket extends CommandGroup {
 		// Move backwards 24 in. 
 		//addSequential(new DrivetrainMoveDistance(-24));
 
-		// Turn 145 degrees to the right  
-		addSequential(new DrivetrainTurnAngleUsingPidController(145));
+		// Turn 180 degrees to the left  
+		addSequential(new DrivetrainTurnAngleUsingPidController(-180));
 
+		// undetermined below 
+		
 		// Move forward 234 in. 
 		addSequential(new DrivetrainMoveDistance(234));
 

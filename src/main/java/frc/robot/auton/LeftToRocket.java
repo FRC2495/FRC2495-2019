@@ -40,7 +40,9 @@ public class LeftToRocket extends CommandGroup {
 		//addSequential(new DrivetrainMoveDistance(-24));
 
 		// Turn 135 degrees to the left 
-		addSequential(new DrivetrainTurnAngleUsingPidController(-135));
+		addSequential(new DrivetrainTurnAngleUsingPidController(-150));
+
+		// Move 24 inches back
 
 		// Move forward 177 in.  
 		//addSequential(new DrivetrainMoveDistance(177));
@@ -52,11 +54,13 @@ public class LeftToRocket extends CommandGroup {
 		// Move backwards 24 in. 
 		//addSequential(new DrivetrainMoveDistance(-24));
 
-		// Turn 180 degrees to the left  
-		addSequential(new DrivetrainTurnAngleUsingPidController(-180));
+		// Turn 180 degrees to the right  
+		addSequential(new DrivetrainTurnAngleUsingPidController(180));
 
 		// Move forward 177 in.  
 		addSequential(new DrivetrainMoveDistance(177-48));
+
+		addSequential(new DrivetrainTurnAngleUsingPidController(30));
 
 		// Vision delivery (to RLF2) 
 		addSequential(new HatchPanelDeliver()); 
@@ -65,7 +69,7 @@ public class LeftToRocket extends CommandGroup {
 		//addSequential(new DrivetrainMoveDistance(-24));
 
 		// Turn 180 degrees to the left 
-		addSequential(new DrivetrainTurnAngleUsingPidController(-180));
+		addSequential(new DrivetrainTurnAngleUsingPidController(-150));
 
 		// Move forward 177 in.
 		addSequential(new DrivetrainMoveDistance(177-48));
@@ -76,8 +80,10 @@ public class LeftToRocket extends CommandGroup {
 		// Move backwards 24 in. 
 		//addSequential(new DrivetrainMoveDistance(-24));
 
-		// Turn 145 degrees to the left
-		addSequential(new DrivetrainTurnAngleUsingPidController(-145)); 
+		// Turn 180 degrees to the right
+		addSequential(new DrivetrainTurnAngleUsingPidController(180)); 
+
+		// un determined below 
 
 		// Move 258 in. forward 
 		addSequential(new DrivetrainMoveDistance(258));

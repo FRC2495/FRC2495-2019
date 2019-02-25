@@ -32,14 +32,14 @@ public class HatchPanelHab2LeftToRocket extends CommandGroup {
 		// a CommandGroup containing them would require both the chassis and the
 		// arm.
 
-		// Move forward 130 in.  (Started on LS) 
-		addSequential(new DrivetrainMoveDistance(130));
+		// Move forward 125 in.  (Started on LS) 
+		addSequential(new DrivetrainMoveDistance(125));
 
 		// Turn 90 degrees to the left 
 		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
 
-		// Move forward 75 in. 
-		addSequential(new DrivetrainMoveDistance(75));  
+		// Move forward 70 in. 
+		addSequential(new DrivetrainMoveDistance(70));  
 
 		// Turn 45 degrees to the right  
 		addSequential(new DrivetrainTurnAngleUsingPidController(45));
