@@ -208,8 +208,8 @@ public class Robot extends TimedRobot {
 		elevator = new WPI_TalonSRX(Ports.CAN.ELEVATOR);
 		habElevator = new WPI_TalonSRX(Ports.CAN.HAB_ELEVATOR);
 
-		grasperLeft = new WPI_VictorSPX(Ports.CAN.GRASPER_LEFT);
-		grasperRight = new WPI_VictorSPX(Ports.CAN.GRASPER_RIGHT);
+		grasperLeft = COMPETITION_BOT_CONFIG?new WPI_VictorSPX(Ports.CAN.GRASPER_LEFT):new WPI_TalonSRX(Ports.CAN.GRASPER_LEFT);
+		grasperRight = COMPETITION_BOT_CONFIG?new WPI_VictorSPX(Ports.CAN.GRASPER_RIGHT):new WPI_TalonSRX(Ports.CAN.GRASPER_RIGHT);
 
 		hinge = new WPI_TalonSRX(Ports.CAN.HINGE);
 
