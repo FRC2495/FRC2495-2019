@@ -32,9 +32,24 @@ public class HatchPanelHab1LeftToShip extends CommandGroup {
 		// a CommandGroup containing them would require both the chassis and the
 		// arm.
 
-		// moving forward 133 in.
-		addSequential(new DrivetrainMoveDistance(133));
+		// moving forward 164 in.
+		addSequential(new DrivetrainMoveDistance(116));
 
+		// turn 90 to the left 
+		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
+
+		// move forward 12 inch 
+		addSequential(new DrivetrainMoveDistance(12));
+
+		// turn 90 to the right 
+		addSequential(new DrivetrainTurnAngleUsingPidController(90));
+
+		// mode forward 29 
+		addSequential(new DrivetrainMoveDistance(29));
+
+		// trun 90 to the right 
+		addSequential(new DrivetrainTurnAngleUsingPidController(90));
+		
 		// vision targeting
 		addSequential (new HatchPanelDeliver());
 		
