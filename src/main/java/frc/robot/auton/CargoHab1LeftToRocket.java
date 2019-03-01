@@ -52,5 +52,8 @@ public class CargoHab1LeftToRocket extends CommandGroup {
 
     // deliver RLC1 
     addSequential(new CargoDeliverRocket());
+
+    // 
+    addSequential(new LeftToRocket());
   }
 }
