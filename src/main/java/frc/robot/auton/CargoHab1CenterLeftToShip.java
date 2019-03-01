@@ -37,5 +37,7 @@ public class CargoHab1CenterLeftToShip extends CommandGroup {
 
 		// vision targeting
 		addSequential (new CargoDeliverShip());
+
+		addSequential(new LeftToShip());
 	}
 }
