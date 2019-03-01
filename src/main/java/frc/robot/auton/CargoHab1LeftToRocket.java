@@ -10,55 +10,47 @@ package frc.robot.auton;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.commands.*;
 
-
 public class CargoHab1LeftToRocket extends CommandGroup {
   /**
    * Add your docs here.
    */
   public CargoHab1LeftToRocket() {
-    // Move foward 133 inches
-    addSequential(new DrivetrainMoveDistance(133));
+    // Add Commands here:
+    // e.g. addSequential(new Command1());
+    // addSequential(new Command2());
+    // these will run in order.
 
-    //Vision Delivery (to CSLF)
-    addSequential(new CargoDeliverShip());
+    // To run multiple commands at the same time,
+    // use addParallel()
+    // e.g. addParallel(new Command1());
+    // addSequential(new Command2());
+    // Command1 and Command2 will run in parallel.
 
-    //Move back 24 inches
-    //addSequential(new DrivetrainMoveDistance(-24));
+    // A command group will require all of the subsystems that each member
+    // would require.
+    // e.g. if Command1 requires chassis, and Command2 requires arm,
+    // a CommandGroup containing them would require both the chassis and the
+    // arm.
 
-    //Turn 90 degress to the left
+    // move forward 95 in
+    addSequential(new DrivetrainMoveDistance(95));
+
+    // turn 90 left 
     addSequential(new DrivetrainTurnAngleUsingPidController(-90));
 
-    //Move foward 105 inches foward
-    addSequential(new DrivetrainMoveDistance(105));
+    // move forward 75 in 
+    addSequential(new DrivetrainMoveDistance(75));
 
-    //Turn 90 degrees to the left 
-    addSequential(new DrivetrainTurnAngleUsingPidController(-90));
-
-    //Move foward 151 inches
-    addSequential(new DrivetrainMoveDistance(151));
-
-    //Recieve hatchpanel (from LH)
-    addSequential(new HatchPanelPickup());
-
-    //Turn 180 degrees to the right 
-    addSequential(new DrivetrainTurnAngleUsingPidController(180));
-
-    //Move foward 151 inches
-    addSequential(new DrivetrainMoveDistance(151));
-
-    //Turn 90 degress to the right
+    // turn 90 right 
     addSequential(new DrivetrainTurnAngleUsingPidController(90));
 
-    //Move foward 105 inches foward
-    addSequential(new DrivetrainMoveDistance(105));
+    // move dorward  23 in 
+    addSequential(new DrivetrainMoveDistance(23));
 
-    //Turn 90 degrees to the left 
+    // turn 90 left 
     addSequential(new DrivetrainTurnAngleUsingPidController(-90));
 
-    //Move foward 44 inches 
-    addSequential(new DrivetrainMoveDistance(44));
-
-    //Vision Delivery (to CSLF)
-    addSequential(new HatchPanelDeliver());
+    // deliver RLC1 
+    addSequential(new CargoDeliverRocket());
   }
 }
