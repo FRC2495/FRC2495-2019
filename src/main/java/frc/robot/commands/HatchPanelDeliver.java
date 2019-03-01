@@ -15,7 +15,7 @@ public class HatchPanelDeliver extends CommandGroup {
 	/**
 	 * Add your docs here.
 	 */
-	public HatchPanelDeliver() {
+	public HatchPanelDeliver(int level) {
 		// check for target
 
 		// Add Commands here:
@@ -37,8 +37,34 @@ public class HatchPanelDeliver extends CommandGroup {
 
 		addSequential(new DrivetrainTurnUsingCameraPidController());
 		addSequential(new DrivetrainMoveUsingCameraPidControllerWithStallDetection(LimelightCamera.OFFSET_CAMERA_HATCH_INCHES));
+		
+		switch(level){
+			default:
+			//nothing
+			break;
+
+			case 1:
+			addSequential(new ElevatorMoveDown());
+			break;
+
+			case 2:
+			//Rocket Level 2
+			addSequential(new ElevatorMoveMidway());
+			break;
+
+			case 3:
+			//Rocket Level 3
+			addSequential(new ElevatorMoveUp());
+			break;
+		}
+
 		addParallel(new HookTimedSwitchDown(2.0));
 		addSequential(new DrivetrainMoveDistance(-24));
+		addParallel(new ElevatorMoveDown());
+	}
+
+	public HatchPanelDeliver(){
+		this(1);
 	}
 
 }

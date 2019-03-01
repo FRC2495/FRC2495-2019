@@ -15,7 +15,7 @@ public class CargoDeliverRocket extends CommandGroup {
 	/**
 	 * Add your docs here.
 	 */
-	public CargoDeliverRocket() {
+	public CargoDeliverRocket(int level) {
 		// Add Commands here:
 		// e.g. addSequential(new Command1());
 		// addSequential(new Command2());
@@ -36,8 +36,33 @@ public class CargoDeliverRocket extends CommandGroup {
 		addSequential(new DrivetrainTurnUsingCameraPidController());
 		addSequential(new DrivetrainMoveUsingCameraPidControllerWithStallDetection(LimelightCamera.OFFSET_CAMERA_PORT_INCHES));
 		addSequential(new HingeMoveMidway());
+
+		switch(level){
+			default:
+			//nothing
+			break;
+
+			case 1:
+			addSequential(new ElevatorMoveDown());
+			break;
+
+			case 2:
+			addSequential(new ElevatorMoveMidway());
+			break;
+
+			case 3:
+			addSequential(new ElevatorMoveUp());
+			break;
+		}
+		
 		addSequential(new GrasperTimedRelease(2));
 		addParallel(new HingeMoveUp());  
+		//addSequential(new ElevatorMoveDown);
 		addSequential(new DrivetrainMoveDistance(-24 + LimelightCamera.OFFSET_CAMERA_PORT_INCHES-LimelightCamera.OFFSET_CAMERA_HATCH_INCHES));
+	}
+
+	//Overloaded Constructor defaulted to level 1
+	public CargoDeliverRocket() {
+		this(1);
 	}
 }
