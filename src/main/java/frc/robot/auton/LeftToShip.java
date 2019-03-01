@@ -37,8 +37,131 @@ public class LeftToShip extends CommandGroup {
 		// Move backwards 24 inches 
 		//addSequential(new DrivetrainMoveDistance(-24));
 
-		// Turn 90 degrees to the left 
+		// Move backward -70 in
+		addSequential(new DrivetrainMoveDistance(-70));
+
+		// Turn 90 to the right 
+		addSequential(new DrivetrainTurnAngleUsingPidController(90));
+
+		//move 218 in forward 
+		addSequential(new DrivetrainMoveDistance(218));
+
+		//moce 90 to the right 
+		addSequential(new DrivetrainTurnAngleUsingPidController(90));
+
+		// move 54 forward 
+		addSequential(new DrivetrainMoveDistance(54));
+
+		//moce 90 to the left  
 		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
+
+		// (another hatch received by LH)
+		addSequential(new HatchPanelPickup());
+
+		// move back 24 
+		//
+
+		//turn 90 to the left 
+		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
+
+		// move 54 forward 
+		addSequential(new DrivetrainMoveDistance(54));
+
+		//turn 90 to the left 
+		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
+
+		//move 254 in forward 
+		addSequential(new DrivetrainMoveDistance(254));
+
+		//turn 90 to the right 
+		addSequential(new DrivetrainTurnAngleUsingPidController(90));
+
+		// Vision targeting (CSLT) 
+		addSequential(new HatchPanelDeliver());
+
+		//move back 70 in
+		addSequential(new DrivetrainMoveDistance(-70));
+
+		// turn right 90 
+		addSequential(new DrivetrainTurnAngleUsingPidController(90));
+
+		// turn right 90 
+		addSequential(new DrivetrainTurnAngleUsingPidController(90));
+
+		// move forward 54 
+		addSequential(new DrivetrainMoveDistance(54));
+
+		//turn 90 to the left 
+		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
+		
+		// (another hatch received by LH)
+		addSequential(new HatchPanelPickup());
+
+		// move backward 128 in 
+		addSequential(new DrivetrainMoveDistance(-128));
+
+		// trun 90 to the left 
+		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
+
+		// move forward 86 
+		addSequential(new DrivetrainMoveDistance(86));
+
+		//rotate around 180 (left) 
+		addSequential(new DrivetrainTurnAngleUsingPidController(-180));
+
+		// deilver CSLF
+		addSequential(new HatchPanelDeliver());
+
+		// move 90 to the left 
+		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
+
+		// move xxx forward 
+		addSequential(new DrivetrainMoveDistance(116));
+
+		// turn 90 left 
+		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
+
+		// move forward 113
+		addSequential(new DrivetrainMoveDistance(113));
+
+		// turn right 90 
+		addSequential(new DrivetrainTurnAngleUsingPidController(90));
+
+		// move forward 39 in 
+		addSequential(new DrivetrainMoveDistance(39));
+
+		// turn 90 left 
+		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
+
+		// (another hatch received by LH)
+		addSequential(new HatchPanelPickup());
+
+		// turn 180 (left)
+		addSequential(new DrivetrainTurnAngleUsingPidController(-180));
+
+		// move forward xx
+		addSequential(new DrivetrainMoveDistance(177));
+
+		//turn 90 right 
+		addSequential(new DrivetrainTurnAngleUsingPidController(90));
+		
+		// move forward 24 in
+		addSequential(new DrivetrainMoveDistance(24));
+
+		// turn left 90 
+		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
+
+		// move forward xxx 
+		addSequential(new DrivetrainMoveDistance(35));
+
+		// turn left 90 
+		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
+
+		// deilver RLC1
+		addSequential(new HatchPanelDeliver());
+		/*
+		// Turn 90 degrees to the right 
+		//addSequential(new DrivetrainTurnAngleUsingPidController(90));
 
 		// Move forward 124 in. 
 		addSequential(new DrivetrainMoveDistance(124));
@@ -153,6 +276,7 @@ public class LeftToShip extends CommandGroup {
 		
 		// Move forward 230 in. 
 		addSequential(new DrivetrainMoveDistance(230));
+		 */
 	}
 }
 
