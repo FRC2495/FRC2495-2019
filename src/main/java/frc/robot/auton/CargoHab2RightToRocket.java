@@ -10,14 +10,14 @@ package frc.robot.auton;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.commands.*;
 
-public class CargoHab2LeftToRocket extends CommandGroup {
+public class CargoHab2RightToRocket extends CommandGroup {
 
-	public CargoHab2LeftToRocket() {
+	public CargoHab2RightToRocket() {
         // move forward 252 in
         addSequential(new DrivetrainMoveDistance(252));
 
-        // turn left 90deg
-        addSequential(new DrivetrainTurnAngleUsingPidController(-90));
+        // turn Right 90
+        addSequential(new DrivetrainTurnAngleUsingPidController(90));
         
         // move forward 79 in (original 100)
         addSequential(new DrivetrainMoveDistance(79));
@@ -25,7 +25,7 @@ public class CargoHab2LeftToRocket extends CommandGroup {
         // vision target RFC1
         addSequential(new CargoDeliverRocket());
 
-        //
-        addSequential(new LeftToRocket());
+        // 
+        addSequential(new RightToRocket());
 	}
 }
