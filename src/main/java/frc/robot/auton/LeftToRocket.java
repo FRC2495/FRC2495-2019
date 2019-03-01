@@ -32,6 +32,8 @@ public class LeftToRocket extends CommandGroup {
 		// a CommandGroup containing them would require both the chassis and the
 		// arm.
 
+		//TO DO find a way back in front of the HAB
+
 		
 		// Vision delivery (to RLF1) 
 		addSequential(new HatchPanelDeliver());
@@ -39,14 +41,17 @@ public class LeftToRocket extends CommandGroup {
 		// Move 24 inches back
 		//addSequential(new DrivetrainMoveDistance(-24));
 
-		// Turn 135 degrees to the left 
-		addSequential(new DrivetrainTurnAngleUsingPidController(-150));
+		// Turn 61 degrees to the left
+		addSequential(new DrivetrainTurnAngleUsingPidController(-61));
 
-		// Move 24 inches back
+		// Move forward 13 in.  
+		addSequential(new DrivetrainMoveDistance(13)); 
 
-		// Move forward 177 in.  
-		//addSequential(new DrivetrainMoveDistance(177));
-		addSequential(new DrivetrainMoveDistance(177-48)); 
+		//Turn 90 degrees to the left 
+		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
+
+		//Move foward 136 inches
+		addSequential(new DrivetrainMoveDistance(136));
 
 		// (another hatch received from LH)
 		addSequential(new HatchPanelPickup()); 
@@ -54,13 +59,17 @@ public class LeftToRocket extends CommandGroup {
 		// Move backwards 24 in. 
 		//addSequential(new DrivetrainMoveDistance(-24));
 
-		// Turn 180 degrees to the right  
-		addSequential(new DrivetrainTurnAngleUsingPidController(180));
+		// Move backwards 136 inches
+		addSequential(new DrivetrainMoveDistance(-136));
 
-		// Move forward 177 in.  
-		addSequential(new DrivetrainMoveDistance(177-48));
+		// Turn 90 degrees to the right  
+		addSequential(new DrivetrainTurnAngleUsingPidController(90));
 
-		addSequential(new DrivetrainTurnAngleUsingPidController(30));
+		// Move backwards 13 in.  
+		addSequential(new DrivetrainMoveDistance(13));
+
+		//Turn 61 degrees to the right
+		addSequential(new DrivetrainTurnAngleUsingPidController(61));
 
 		// Vision delivery (to RLF2) 
 		addSequential(new HatchPanelDeliver()); 
@@ -68,11 +77,17 @@ public class LeftToRocket extends CommandGroup {
 		// Move backwards 24 in. 
 		//addSequential(new DrivetrainMoveDistance(-24));
 
-		// Turn 180 degrees to the left 
-		addSequential(new DrivetrainTurnAngleUsingPidController(-150));
+		// Turn 61 degrees to the left 
+		addSequential(new DrivetrainTurnAngleUsingPidController(-61));
 
-		// Move forward 177 in.
-		addSequential(new DrivetrainMoveDistance(177-48));
+		// Move forward 13 in.
+		addSequential(new DrivetrainMoveDistance(13));
+
+		// Turn 90 degrees to the left
+		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
+
+		// Move foward 136 inches 
+		addSequential(new DrivetrainMoveDistance(136));
 
 		// (another hatch received from LH)
 		addSequential(new HatchPanelPickup());
@@ -80,16 +95,26 @@ public class LeftToRocket extends CommandGroup {
 		// Move backwards 24 in. 
 		//addSequential(new DrivetrainMoveDistance(-24));
 
-		// Turn 180 degrees to the right
-		addSequential(new DrivetrainTurnAngleUsingPidController(180)); 
+		// Move back 136 inches 
+		addSequential(new DrivetrainMoveDistance(136));
 
-		// un determined below 
+		// Turn 90 degrees to the right
+		addSequential(new DrivetrainTurnAngleUsingPidController(90)); 
 
-		// Move 258 in. forward 
-		addSequential(new DrivetrainMoveDistance(258));
+		// Move 13 in.forward 
+		addSequential(new DrivetrainMoveDistance(13));
 
-		// Turn 35 degrees to the right
-		addSequential(new DrivetrainTurnAngleUsingPidController(35));  
+		// Turn 90 degrees to the right
+		addSequential(new DrivetrainTurnAngleUsingPidController(90)); 
+		
+		// Move foward 106 inches
+		addSequential(new DrivetrainMoveDistance(106));
+
+		// Turn 90 degreesto the right 
+		addSequential(new DrivetrainTurnAngleUsingPidController(90));
+
+		// Move foward 64 inches
+		addSequential(new DrivetrainMoveDistance(64));
 
 		// Vision target (to CSL3) 
 		addSequential(new HatchPanelDeliver());
@@ -97,11 +122,20 @@ public class LeftToRocket extends CommandGroup {
 		// Move backwards 24 in. 
 		// addSequential(new DrivetrainMoveDistance(-24));
 
-		// Turn 110 degrees to the right  
-		addSequential(new DrivetrainTurnAngleUsingPidController(110));
+		// Move backwards 64 inches
+		addSequential(new DrivetrainMoveDistance(-64));
 
-		// Move forward 258 in. 
-		addSequential(new DrivetrainMoveDistance(258-48));
+		// Turn 90 degrees to the left  
+		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
+
+		// Move forward 13 in. 
+		addSequential(new DrivetrainMoveDistance(13));
+
+		// Turn 90 degrees to the left
+		addSequential(new DrivetrainTurnAngleUsingPidController(90));
+
+		// Move foward 136 inches 
+		addSequential(new DrivetrainMoveDistance(136));
 
 		// (another hatch received from LH)
 		addSequential(new HatchPanelPickup());
@@ -109,14 +143,26 @@ public class LeftToRocket extends CommandGroup {
 		// Move backwards 24 in. 
 		// addSequential(new DrivetrainMoveDistance(-24));
 
-		// Turn 113 degrees to the left 
-		addSequential(new DrivetrainTurnAngleUsingPidController(-113));
+		// Move backwards 136 inches 
+		addSequential(new DrivetrainMoveDistance(-136));
 
-		// Move forward 254 in.
-		addSequential(new DrivetrainMoveDistance(254));
+		// Turn 90 degrees to the right 
+		addSequential(new DrivetrainTurnAngleUsingPidController(90));
 
-		// Turn 67 degrees to the right  
-		addSequential(new DrivetrainTurnAngleUsingPidController(67));
+		// Move backwards 13 in.
+		addSequential(new DrivetrainMoveDistance(-13));
+
+		// Turn 90 degrees to the right  
+		addSequential(new DrivetrainTurnAngleUsingPidController(90));
+
+		// Move foward 127 inches 
+		addSequential(new DrivetrainMoveDistance(127));
+
+		// Turn 90 degrees to the right 
+		addSequential(new DrivetrainTurnAngleUsingPidController(90));
+
+		// Move foward 64 inches 
+		addSequential(new DrivetrainMoveDistance(64));
 
 		// Vision target (to CSL2) 
 		addSequential(new HatchPanelDeliver());
@@ -124,11 +170,26 @@ public class LeftToRocket extends CommandGroup {
 		// Move backwards 24 in. 
 		// addSequential(new DrivetrainMoveDistance(-24));
 
-		// Turn 110 degrees to the right 
-		addSequential(new DrivetrainTurnAngleUsingPidController(110));
+		// Move backwards 64 inches 
+		addSequential(new DrivetrainMoveDistance(-64));
 
-		// Move forward 254 in.
-		addSequential(new DrivetrainMoveDistance(254-48)); 
+		// Turn 90 degrees to the left 
+		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
+
+		// Move backwards 127 in.
+		addSequential(new DrivetrainMoveDistance(127)); 
+
+		// Turn 90 degrees to the left  
+		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
+
+		// Move forward 13 in. 
+		addSequential(new DrivetrainMoveDistance(13));
+
+		// Turn 90 degrees to the left
+		addSequential(new DrivetrainTurnAngleUsingPidController(90));
+
+		// Move foward 136 inches 
+		addSequential(new DrivetrainMoveDistance(136));
 
 		// (received another hatch from LH)
 		addSequential(new HatchPanelPickup());
@@ -136,14 +197,26 @@ public class LeftToRocket extends CommandGroup {
 		// Move backwards 24 in. 
 		// addSequential(new DrivetrainMoveDistance(-24));
 
-		// Turn 116 degrees to the right 
-		addSequential(new DrivetrainTurnAngleUsingPidController(116));
+		// Move backwards 136 inches 
+		addSequential(new DrivetrainMoveDistance(-136));
 
-		// Move forward 276 in.
-		addSequential(new DrivetrainMoveDistance(276));
+		// Turn 90 degrees to the right 
+		addSequential(new DrivetrainTurnAngleUsingPidController(90));
 
-		// Turn 64 degrees to the right 
-		addSequential(new DrivetrainTurnAngleUsingPidController(64));
+		// Move forward 13 in.
+		addSequential(new DrivetrainMoveDistance(13));
+
+		// Turn 90 degrees to the right 
+		addSequential(new DrivetrainTurnAngleUsingPidController(90));
+
+		// Move foward 149 inches
+		addSequential(new DrivetrainMoveDistance(149));
+
+		// Turn 90 degrees to the right 
+		addSequential(new DrivetrainTurnAngleUsingPidController(90));
+
+		// Move foward 64 inches 
+		addSequential(new DrivetrainMoveDistance(64));
 
 		// Visual targeting (to CSL1) 
 		addSequential(new HatchPanelDeliver());

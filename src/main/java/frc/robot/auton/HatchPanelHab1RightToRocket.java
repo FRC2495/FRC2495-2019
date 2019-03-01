@@ -32,21 +32,19 @@ public class HatchPanelHab1RightToRocket extends CommandGroup {
 		// a CommandGroup containing them would require both the chassis and the
 		// arm.
 
-		// Move forward 95 in. (started off on RS) 
-		addSequential(new DrivetrainMoveDistance(95));
+		// Move forward 119 in. (started off on RS) 
+		addSequential(new DrivetrainMoveDistance(119));
 
 		// Turn 90 degrees to the right 
 		addSequential(new DrivetrainTurnAngleUsingPidController(90));
 
-		// Move forward 34 in. 
-		addSequential(new DrivetrainMoveDistance(34));
+		// Move forward 80 in. 
+		addSequential(new DrivetrainMoveDistance(80));
 
-		// Turn 60 degrees to the left 
-		addSequential(new DrivetrainTurnAngleUsingPidController(-60));
+		// Turn 61 degrees to the left 
+		addSequential(new DrivetrainTurnAngleUsingPidController(-61));
 
-		// Move forward 35 inches 
-		addSequential(new DrivetrainMoveDistance(35));
-		
+
 		// Calls the common commands of RightToRocket
 		addSequential(new RightToRocket());
 	}
