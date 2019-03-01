@@ -56,10 +56,10 @@ public class CargoCustomAuton extends CommandGroup {
 			case Robot.START_POSITION_HAB1_LEFT:
 				switch (mainTarget) {
 					case Robot.MAIN_TARGET_ROCKET:
-		            	//addSequential(new CargoHab1LeftToRocket());
+		            	addSequential(new CargoHab1LeftToRocket());
 						break;
 					case Robot.MAIN_TARGET_SHIP:
-						//addSequential(new CargoHab1LeftToShip());
+						addSequential(new CargoHab1LeftToShip());
 						break;	
 					default:
 						// nothing
@@ -70,10 +70,10 @@ public class CargoCustomAuton extends CommandGroup {
 			case Robot.START_POSITION_HAB1_CENTER_LEFT:
 				switch (mainTarget) {
 					case Robot.MAIN_TARGET_ROCKET:
-						//addSequential(new CargoHab1CenterLeftToRocket());
+						addSequential(new CargoHab1CenterLeftToRocket());
 						break;
 					case Robot.MAIN_TARGET_SHIP:
-						//addSequential(new CargoHab1CenterLeftToShip());
+						addSequential(new CargoHab1CenterLeftToShip());
 						break;	
 					default:
 						// nothing
@@ -84,10 +84,10 @@ public class CargoCustomAuton extends CommandGroup {
 				case Robot.START_POSITION_HAB1_CENTER_RIGHT:
 				switch (mainTarget) {
 					case Robot.MAIN_TARGET_ROCKET:
-						//addSequential(new CargoHab1CenterRightToRocket());
+						addSequential(new CargoHab1CenterRightToRocket());
 						break;
 					case Robot.MAIN_TARGET_SHIP:
-						//addSequential(new CargoHab1CenterRightToShip());
+						addSequential(new CargoHab1CenterRightToShip());
 						break;	
 					default:
 						// nothing
@@ -98,10 +98,10 @@ public class CargoCustomAuton extends CommandGroup {
 			case Robot.START_POSITION_HAB1_RIGHT:
 				switch (mainTarget) {
 					case Robot.MAIN_TARGET_ROCKET:
-		            	//addSequential(new CargoHab1RightToRocket());
+		            	addSequential(new CargoHab1RightToRocket());
 						break;
 					case Robot.MAIN_TARGET_SHIP:
-		                //addSequential(new CargoHab1RightToShip());
+		                addSequential(new CargoHab1RightToShip());
 						break;	
 					default:
 						// nothing
@@ -115,7 +115,7 @@ public class CargoCustomAuton extends CommandGroup {
 						addSequential(new CargoHab2LeftToRocket());
 						break;
 					case Robot.MAIN_TARGET_SHIP:
-						//addSequential(new CargoHab2LeftToShip());
+						addSequential(new CargoHab2LeftToShip());
 						break;	
 					default:
 						// nothing
@@ -126,10 +126,10 @@ public class CargoCustomAuton extends CommandGroup {
 			case Robot.START_POSITION_HAB2_RIGHT:
 				switch (mainTarget) {
 					case Robot.MAIN_TARGET_ROCKET:
-						//addSequential(new CargoHab2RightToRocket());
+						addSequential(new CargoHab2RightToRocket());
 						break;
 					case Robot.MAIN_TARGET_SHIP:
-						//addSequential(new CargoHab2RightToShip());
+						addSequential(new CargoHab2RightToShip());
 						break;	
 					default:
 						// nothing
