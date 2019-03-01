@@ -10,11 +10,11 @@ package frc.robot.auton;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.commands.*;
 
-public class CargoHab1LeftToRocket extends CommandGroup {
+public class CargoHab1CenterLeftToRocket extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public CargoHab1LeftToRocket() {
+  public CargoHab1CenterLeftToRocket() {
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
@@ -32,6 +32,28 @@ public class CargoHab1LeftToRocket extends CommandGroup {
     // a CommandGroup containing them would require both the chassis and the
     // arm.
 
-    // stuff
+    // move forward 95 in
+    addSequential(new DrivetrainMoveDistance(95));
+
+    // turn 90 left 
+    addSequential(new DrivetrainTurnAngleUsingPidController(-90));
+
+    // move forward 75 in 
+    addSequential(new DrivetrainMoveDistance(75));
+
+    // turn 90 right 
+    addSequential(new DrivetrainTurnAngleUsingPidController(90));
+
+    // move dorward  23 in 
+    addSequential(new DrivetrainMoveDistance(23));
+
+    // turn 90 left 
+    addSequential(new DrivetrainTurnAngleUsingPidController(-90));
+
+    // deliver RLC1 
+    addSequential(new CargoDeliverRocket());
+
+    // 
+    addSequential(new LeftToRocket());
   }
 }
