@@ -13,19 +13,19 @@ import frc.robot.commands.*;
 public class CargoHab2LeftToRocket extends CommandGroup {
 
 	public CargoHab2LeftToRocket() {
-	// move forward 252 in
-	addSequential(new DrivetrainMoveDistance(252));
+		// move forward 252 in
+		addSequential(new DrivetrainMoveDistance(252));
 
-	// turn left 90deg
-	addSequential(new DrivetrainTurnAngleUsingPidController(-90));
-	
-	// move forward 79 in (original 100)
-	addSequential(new DrivetrainMoveDistance(79));
+		// turn left 90deg
+		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
+		
+		// move forward 79 in (original 100)
+		addSequential(new DrivetrainMoveDistance(79));
 
-	// vision target RFC1
-	addSequential(new CargoDeliverRocket());
+		// vision target RFC1
+		addSequential(new CargoDeliverRocket());
 
-	//
-	addSequential(new LeftToRocket());
+		//
+		addSequential(new LeftToRocket());
 	}
 }
