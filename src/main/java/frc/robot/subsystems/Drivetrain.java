@@ -22,7 +22,7 @@ import frc.robot.util.*;
 public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDOutput3, IDrivetrain {
 
 	// general settings
-	static final double DIAMETER_WHEEL_INCHES = 5;
+	static final double DIAMETER_WHEEL_INCHES = Robot.COMPETITION_BOT_CONFIG?6:6; //5; TODO set proper diameter
 	public static final double PERIMETER_WHEEL_INCHES = DIAMETER_WHEEL_INCHES * Math.PI;
 	
 	static final int TIMEOUT_MS = 15000;	
