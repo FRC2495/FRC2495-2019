@@ -22,7 +22,7 @@ public class CargoHab1LeftToShip extends CommandGroup {
 
 		//Turn right to face Bay 1
 		addSequential(new DrivetrainTurnAngleUsingPidController(90));
-
+/*
 		//Deliver hatch panel
 		addSequential(new HatchPanelDeliver(1));
 
