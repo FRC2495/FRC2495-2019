@@ -41,7 +41,7 @@ public class HatchPanelHab1LeftToShip extends CommandGroup {
 
 		//Turn right to face Bay 1
 		addSequential(new DrivetrainTurnAngleUsingPidController(105));
-/*
+
 		//Deliver hatch panel
 		addSequential(new HatchPanelDeliver(1));
 
@@ -50,8 +50,8 @@ public class HatchPanelHab1LeftToShip extends CommandGroup {
 		//so the straight drive can help correct any misalignments
 		addSequential(new DrivetrainTurnAngleUsingPidController(108));
 
-		//Drive torwards loading station 
-		addSequential(new DrivetrainMoveDistance(205));
+		//Drive torwards loading station . Changing from 205 as its overshooting
+		addSequential(new DrivetrainMoveDistance(175));
 
 		//Turn and face the loading station
 		addSequential(new DrivetrainTurnAngleUsingPidController(-18));
@@ -63,7 +63,7 @@ public class HatchPanelHab1LeftToShip extends CommandGroup {
 		addSequential(new DrivetrainTurnAngleUsingPidController(180));
 
 		//Drive some distance, until limelight can comfortably see the target
-		addSequential(new DrivetrainMoveDistance(100));
+		/*addSequential(new DrivetrainMoveDistance(100));
 		
 		//Go deliver the hatchpanel at level 1.  Adjust the path to taget using vision
 		addSequential(new HatchPanelDeliver(1));
