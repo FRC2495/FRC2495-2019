@@ -37,11 +37,14 @@ public class CargoDeliverShip extends CommandGroup {
 
 		//addSequential(new DrivetrainTurnUsingCameraPidController());
 		//addSequential(new DrivetrainMoveUsingCameraPidControllerWithStallDetection(LimelightCamera.OFFSET_CAMERA_PORT_INCHES));
-		addSequential(new DrivetrainDriveUsingCamera(LimelightCamera.OFFSET_CAMERA_PORT_INCHES));
+		final int MAGIC_DISTANCE_INCHES = 6;
+		addSequential(new DrivetrainDriveUsingCamera(LimelightCamera.OFFSET_CAMERA_PORT_INCHES + MAGIC_DISTANCE_INCHES));
+		addSequential(new DrivetrainTurnUsingCameraPidController());
 		
 		addSequential(new ElevatorMoveMidway());
 
-		addSequential(new DrivetrainMoveDistanceWithStallDetection(12)); // TODO consider removing
+		addSequential(new DrivetrainMoveDistanceWithStallDetection(MAGIC_DISTANCE_INCHES + 12)); // moves forward a little
+		//addSequential(new DrivetrainMoveDistanceWithStallDetection(12)); // TODO consider removing
 
 		addSequential(new GrasperTimedRelease(2));
 		addParallel(new HingeMoveUp());  

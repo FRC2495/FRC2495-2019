@@ -37,7 +37,9 @@ public class HatchPanelDeliver extends CommandGroup {
 
 		//addSequential(new DrivetrainTurnUsingCameraPidController());
 		//addSequential(new DrivetrainMoveUsingCameraPidControllerWithStallDetection(LimelightCamera.OFFSET_CAMERA_HATCH_INCHES));
-		addSequential(new DrivetrainDriveUsingCamera(LimelightCamera.OFFSET_CAMERA_HATCH_INCHES));
+		final int MAGIC_DISTANCE_INCHES = 12;
+		addSequential(new DrivetrainDriveUsingCamera(LimelightCamera.OFFSET_CAMERA_HATCH_INCHES + MAGIC_DISTANCE_INCHES));
+		addSequential(new DrivetrainTurnUsingCameraPidController());
 
 		switch(level){
 			default:
@@ -59,7 +61,9 @@ public class HatchPanelDeliver extends CommandGroup {
 			break;
 		}
 
-		addSequential(new DrivetrainMoveDistanceWithStallDetection(12)); // TODO consider removing
+		addSequential(new DrivetrainMoveDistanceWithStallDetection(MAGIC_DISTANCE_INCHES));
+
+		//addSequential(new DrivetrainMoveDistanceWithStallDetection(12)); // TODO consider removing
 
 		addParallel(new HookTimedSwitchDown(2.0));
 		addSequential(new DrivetrainMoveDistance(-24));
