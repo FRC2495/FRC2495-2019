@@ -57,8 +57,8 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 	// NOTE: it might make sense to decrease the PID controller period below 0.02 sec (which is the period used by the main loop)
 	static final double TURN_PID_CONTROLLER_PERIOD_SECONDS = .01; // 0.01 sec = 10 ms 	
 	
-	static final double MIN_TURN_PCT_OUTPUT = Robot.COMPETITION_BOT_CONFIG?0.6:0.3;
-	static final double MAX_TURN_PCT_OUTPUT = Robot.COMPETITION_BOT_CONFIG?0.9:0.8;
+	static final double MIN_TURN_PCT_OUTPUT = Robot.COMPETITION_BOT_CONFIG?0.6:0.6;
+	static final double MAX_TURN_PCT_OUTPUT = Robot.COMPETITION_BOT_CONFIG?0.9:0.9;
 	
 	static final double TURN_PROPORTIONAL_GAIN = 0.04;
 	static final double TURN_INTEGRAL_GAIN = 0.0;
@@ -94,8 +94,8 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 	
 	static final int SLOT_0 = 0;
 	
-	static final double REDUCED_PCT_OUTPUT = Robot.COMPETITION_BOT_CONFIG?0.4:0.3;
-	static final double HIGH_PCT_OUTPUT = Robot.COMPETITION_BOT_CONFIG?0.5:0.4;
+	static final double REDUCED_PCT_OUTPUT = Robot.COMPETITION_BOT_CONFIG?0.4:0.4;
+	static final double HIGH_PCT_OUTPUT = Robot.COMPETITION_BOT_CONFIG?0.5:0.5;
 	
 	static final double MOVE_PROPORTIONAL_GAIN = 0.4;
 	static final double MOVE_INTEGRAL_GAIN = 0.0;
