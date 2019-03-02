@@ -47,8 +47,8 @@ public class DrivetrainDriveUsingCamera extends Command {
 		double pixelDisplacement = Robot.camera.pidGet(); // gets the pixel displacement *FROM*/compared to the target (error to use to turn/steer)
 		double distance = Robot.camera.pidGet2(); // gets the distance/position *FROM*/compared to the target (error to use to move)
 
-		double turnPctOutput = -pixelDisplacement * Drivetrain.TURN_USING_CAMERA_PROPORTIONAL_GAIN; // TODO double-check sign
-		double movePctOutput = -distance * Drivetrain.MOVE_USING_CAMERA_PROPORTIONAL_GAIN; // TODO double-check sign
+		double turnPctOutput = -pixelDisplacement * Drivetrain.TURN_USING_CAMERA_PROPORTIONAL_GAIN * 4; // TODO double-check sign
+		double movePctOutput = +distance * Drivetrain.MOVE_USING_CAMERA_PROPORTIONAL_GAIN * 2; // TODO double-check sign
 
 		if (Math.abs(pixelDisplacement) < Drivetrain.PIXEL_THRESHOLD)
 		{

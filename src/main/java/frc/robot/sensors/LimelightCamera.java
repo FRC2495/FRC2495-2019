@@ -24,7 +24,7 @@ public class LimelightCamera implements PIDSource, ICamera {
 	private static final double TARGET_HEIGHT_INCHES = 5.5; // TODO set proper value PROPER VALUE IS 5.75 inches
 	private static final double TARGET_WIDTH_INCHES = 14.5;
 
-	public static final double SAFE_DISTANCE_INCHES = 120;
+	public static final double SAFE_DISTANCE_INCHES = 240;
 
 	public static final double MIN_OFFSET_CAMERA_TARGET_INCHES = 0;
 	public static final double DEFAULT_OFFSET_CAMERA_TARGET_INCHES = 10; // we need to leave some space between the camera and the target

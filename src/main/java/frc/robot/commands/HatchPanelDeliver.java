@@ -44,7 +44,7 @@ public class HatchPanelDeliver extends CommandGroup {
 			break;
 
 			case 1:
-			addSequential(new ElevatorMoveDown());
+			//addSequential(new ElevatorMoveDown()); // TODO restore this line
 			break;
 
 			case 2:
