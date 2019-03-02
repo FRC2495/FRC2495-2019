@@ -16,6 +16,20 @@ public class CargoHab1LeftToShip extends CommandGroup {
 	 * Add your docs here.
 	 */
 	public CargoHab1LeftToShip() {
+	
+		addSequential(new DrivetrainMoveDistance(195.3));
+
+		addSequential(new DrivetrainTurnAngleUsingPidController(90));
+
+		addSequential(new HatchPanelDeliver(1));
+
+		addSequential(new DrivetrainTurnAngleUsingPidController(108));
+
+		addSequential(new DrivetrainTurnAngleUsingPidController(-18));
+
+		addSequential(new HatchPanelPickup());
+
+	/* Manoj: Commenting below as the path suggestion has changed.
 		// Move foward 133 inches
 		addSequential(new DrivetrainMoveDistance(133));
 
@@ -60,5 +74,6 @@ public class CargoHab1LeftToShip extends CommandGroup {
 
 		//Vision Delivery (to CSLF)
 		addSequential(new HatchPanelDeliver());
+	*/
 	}
 }
