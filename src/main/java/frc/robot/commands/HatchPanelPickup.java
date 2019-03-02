@@ -38,8 +38,13 @@ public class HatchPanelPickup extends CommandGroup {
 
 		//addSequential(new DrivetrainTurnUsingCameraPidController());
 		//addSequential(new DrivetrainMoveUsingCameraPidControllerWithStallDetection(LimelightCamera.OFFSET_CAMERA_HATCH_INCHES)); 
-		addSequential(new DrivetrainDriveUsingCamera(LimelightCamera.OFFSET_CAMERA_HATCH_INCHES));
-		addSequential(new DrivetrainMoveDistanceWithStallDetection(12)); // TODO consider removing
+    
+    final int MAGIC_DISTANCE_INCHES = 12;
+    addSequential(new DrivetrainDriveUsingCamera(LimelightCamera.OFFSET_CAMERA_HATCH_INCHES + MAGIC_DISTANCE_INCHES));
+    addSequential(new DrivetrainTurnUsingCameraPidController());
+    addSequential(new DrivetrainMoveDistanceWithStallDetection(MAGIC_DISTANCE_INCHES));
+
+		//addSequential(new DrivetrainMoveDistanceWithStallDetection(12)); // TODO consider removing
 		
 		addSequential(new DrivetrainMoveDistance(-24));
 	}
