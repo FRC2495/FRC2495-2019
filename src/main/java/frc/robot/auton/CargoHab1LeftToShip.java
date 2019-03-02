@@ -18,7 +18,7 @@ public class CargoHab1LeftToShip extends CommandGroup {
 	public CargoHab1LeftToShip() {
 	
 		//Move straight from Hab1 LS to Bay 1
-		addSequential(new DrivetrainMoveDistance(195.3));
+/*		addSequential(new DrivetrainMoveDistance(195.3));
 
 		//Turn right to face Bay 1
 		addSequential(new DrivetrainTurnAngleUsingPidController(90));
