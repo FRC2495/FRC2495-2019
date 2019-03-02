@@ -12,53 +12,53 @@ import frc.robot.commands.*;
 
 
 public class CargoHab1LeftToShip extends CommandGroup {
-  /**
-   * Add your docs here.
-   */
-  public CargoHab1LeftToShip() {
-    // Move foward 133 inches
-    addSequential(new DrivetrainMoveDistance(133));
+	/**
+	 * Add your docs here.
+	 */
+	public CargoHab1LeftToShip() {
+		// Move foward 133 inches
+		addSequential(new DrivetrainMoveDistance(133));
 
-    //Vision Delivery (to CSLF)
-    addSequential(new CargoDeliverRocket());
+		//Vision Delivery (to CSLF)
+		addSequential(new CargoDeliverRocket());
 
-    //Move back 24 inches
-    //addSequential(new DrivetrainMoveDistance(-24));
+		//Move back 24 inches
+		//addSequential(new DrivetrainMoveDistance(-24));
 
-    //Turn 90 degress to the right
-    addSequential(new DrivetrainTurnAngleUsingPidController(90));
+		//Turn 90 degress to the right
+		addSequential(new DrivetrainTurnAngleUsingPidController(90));
 
-    //Move foward 105 inches foward
-    addSequential(new DrivetrainMoveDistance(105));
+		//Move foward 105 inches foward
+		addSequential(new DrivetrainMoveDistance(105));
 
-    //Turn 90 degrees to the left 
-    addSequential(new DrivetrainTurnAngleUsingPidController(-90));
+		//Turn 90 degrees to the left 
+		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
 
-    //Move foward 151 inches
-    addSequential(new DrivetrainMoveDistance(151));
+		//Move foward 151 inches
+		addSequential(new DrivetrainMoveDistance(151));
 
-    //Recieve hatchpanel (from LH)
-    addSequential(new HatchPanelPickup());
+		//Recieve hatchpanel (from LH)
+		addSequential(new HatchPanelPickup());
 
-    //Turn 180 degrees to the right 
-    addSequential(new DrivetrainTurnAngleUsingPidController(180));
+		//Turn 180 degrees to the right 
+		addSequential(new DrivetrainTurnAngleUsingPidController(180));
 
-    //Move foward 151 inches
-    addSequential(new DrivetrainMoveDistance(151));
+		//Move foward 151 inches
+		addSequential(new DrivetrainMoveDistance(151));
 
-    //Turn 90 degress to the right
-    addSequential(new DrivetrainTurnAngleUsingPidController(90));
+		//Turn 90 degress to the right
+		addSequential(new DrivetrainTurnAngleUsingPidController(90));
 
-    //Move foward 105 inches foward
-    addSequential(new DrivetrainMoveDistance(105));
+		//Move foward 105 inches foward
+		addSequential(new DrivetrainMoveDistance(105));
 
-    //Turn 90 degrees to the left 
-    addSequential(new DrivetrainTurnAngleUsingPidController(-90));
+		//Turn 90 degrees to the left 
+		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
 
-    //Move foward 44 inches 
-    addSequential(new DrivetrainMoveDistance(44));
+		//Move foward 44 inches 
+		addSequential(new DrivetrainMoveDistance(44));
 
-    //Vision Delivery (to CSLF)
-    addSequential(new HatchPanelDeliver());
-  }
+		//Vision Delivery (to CSLF)
+		addSequential(new HatchPanelDeliver());
+	}
 }
