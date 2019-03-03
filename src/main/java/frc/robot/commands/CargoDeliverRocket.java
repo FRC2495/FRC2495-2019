@@ -37,7 +37,7 @@ public class CargoDeliverRocket extends CommandGroup {
 
 		//addSequential(new DrivetrainTurnUsingCameraPidController());
 		//addSequential(new DrivetrainMoveUsingCameraPidControllerWithStallDetection(LimelightCamera.OFFSET_CAMERA_PORT_INCHES));
-		final int MAGIC_DISTANCE_INCHES = 6;
+		final int MAGIC_DISTANCE_INCHES = 12;
 		addSequential(new DrivetrainDriveUsingCamera(LimelightCamera.OFFSET_CAMERA_PORT_INCHES + MAGIC_DISTANCE_INCHES));
 		addSequential(new DrivetrainTurnUsingCameraPidController());
 
