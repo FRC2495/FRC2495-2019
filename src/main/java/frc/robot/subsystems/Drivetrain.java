@@ -266,6 +266,24 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 		isReallyStalled = false;
 		stalledCount = 0;
 	}
+
+	// this method needs to be paired with checkTurnAngleUsingPidController()
+	public void turnToPreviousKnownHeadingUsingPidController() {
+		// switches to percentage vbus
+		stop(); // resets state
+		
+		// we do NOT reset the gyro since we want to go back to zero
+
+		double heading = 0; // go back to zero
+		
+		turnPidController.setSetpoint(heading); // sets the heading
+		turnPidController.enable(); // begins running
+		
+		isTurning = true;
+		onTargetCountTurning = 0;
+		isReallyStalled = false;
+		stalledCount = 0;
+	}	
 		
 	// This method checks that we are within target up to ON_TARGET_MINIMUM_COUNT times
 	// It relies on its own counter
