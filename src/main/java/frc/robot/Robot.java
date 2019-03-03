@@ -67,6 +67,7 @@ public class Robot extends TimedRobot {
 	private SendableChooser<String> startPositionChooser = new SendableChooser<>();
 
 	public static final String MAIN_TARGET_ROCKET = "Rocket";
+	public static final String MAIN_TARGET_SHIP_BAY0 = "Ship Bay 0";
 	public static final String MAIN_TARGET_SHIP_BAY1 = "Ship Bay 1";
 	public static final String MAIN_TARGET_SHIP_BAY2 = "Ship Bay 2";
 	public static final String MAIN_TARGET_SHIP_BAY3 = "Ship Bay 3";
@@ -164,7 +165,8 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putData("Start positions", startPositionChooser);
 
 		mainTargetChooser.addOption("Rocket", MAIN_TARGET_ROCKET);
-		mainTargetChooser.setDefaultOption("Ship Bay 1", MAIN_TARGET_SHIP_BAY1);
+		mainTargetChooser.setDefaultOption("Ship Bay 0", MAIN_TARGET_SHIP_BAY0);
+		mainTargetChooser.addOption("Ship Bay 1", MAIN_TARGET_SHIP_BAY1);
 		mainTargetChooser.addOption("Ship Bay 2", MAIN_TARGET_SHIP_BAY2);
 		mainTargetChooser.addOption("Ship Bay 3", MAIN_TARGET_SHIP_BAY3);
 		SmartDashboard.putData("Main targets", mainTargetChooser);
