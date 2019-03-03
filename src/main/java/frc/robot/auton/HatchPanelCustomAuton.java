@@ -58,7 +58,7 @@ public class HatchPanelCustomAuton extends CommandGroup {
 					case Robot.MAIN_TARGET_ROCKET:
 		            	addSequential(new HatchPanelHab1LeftToRocket());
 						break;
-					case Robot.MAIN_TARGET_SHIP:
+					case Robot.MAIN_TARGET_SHIP_BAY1:
 						addSequential(new HatchPanelHab1LeftToShip());
 						break;	
 					default:
@@ -72,7 +72,7 @@ public class HatchPanelCustomAuton extends CommandGroup {
 					case Robot.MAIN_TARGET_ROCKET:
 						addSequential(new HatchPanelHab1CenterLeftToRocket());
 						break;
-					case Robot.MAIN_TARGET_SHIP:
+					case Robot.MAIN_TARGET_SHIP_BAY1:
 						addSequential(new HatchPanelHab1CenterLeftToShip());
 						break;	
 					default:
@@ -86,7 +86,7 @@ public class HatchPanelCustomAuton extends CommandGroup {
 					case Robot.MAIN_TARGET_ROCKET:
 						addSequential(new HatchPanelHab1CenterRightToRocket());
 						break;
-					case Robot.MAIN_TARGET_SHIP:
+					case Robot.MAIN_TARGET_SHIP_BAY1:
 						addSequential(new HatchPanelHab1CenterRightToShip());
 						break;	
 					default:
@@ -100,7 +100,7 @@ public class HatchPanelCustomAuton extends CommandGroup {
 					case Robot.MAIN_TARGET_ROCKET:
 		                addSequential(new HatchPanelHab1RightToRocket());
 						break;
-					case Robot.MAIN_TARGET_SHIP:
+					case Robot.MAIN_TARGET_SHIP_BAY1:
 		                addSequential(new HatchPanelHab1RightToShip());
 						break;	
 					default:
@@ -114,7 +114,7 @@ public class HatchPanelCustomAuton extends CommandGroup {
 					case Robot.MAIN_TARGET_ROCKET:
 						addSequential(new HatchPanelHab2LeftToRocket());
 						break;
-					case Robot.MAIN_TARGET_SHIP:
+					case Robot.MAIN_TARGET_SHIP_BAY1:
 						addSequential(new HatchPanelHab2LeftToShip());
 						break;	
 					default:
@@ -128,7 +128,7 @@ public class HatchPanelCustomAuton extends CommandGroup {
 					case Robot.MAIN_TARGET_ROCKET:
 						addSequential(new HatchPanelHab2RightToRocket());
 						break;
-					case Robot.MAIN_TARGET_SHIP:
+					case Robot.MAIN_TARGET_SHIP_BAY1:
 						addSequential(new HatchPanelHab2RightToShip());
 						break;	
 					default:

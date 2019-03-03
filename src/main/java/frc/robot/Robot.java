@@ -67,7 +67,9 @@ public class Robot extends TimedRobot {
 	private SendableChooser<String> startPositionChooser = new SendableChooser<>();
 
 	public static final String MAIN_TARGET_ROCKET = "Rocket";
-	public static final String MAIN_TARGET_SHIP = "Ship";
+	public static final String MAIN_TARGET_SHIP_BAY1 = "Ship Bay 1";
+	public static final String MAIN_TARGET_SHIP_BAY2 = "Ship Bay 2";
+	public static final String MAIN_TARGET_SHIP_BAY3 = "Ship Bay 3";
 	private String mainTarget;
 	private SendableChooser<String> mainTargetChooser = new SendableChooser<>();
 	
@@ -161,12 +163,14 @@ public class Robot extends TimedRobot {
 		startPositionChooser.addOption("Hab 2 Right", START_POSITION_HAB2_RIGHT);
 		SmartDashboard.putData("Start positions", startPositionChooser);
 
-		mainTargetChooser.setDefaultOption("Rocket", MAIN_TARGET_ROCKET);
-		mainTargetChooser.addOption("Ship", MAIN_TARGET_SHIP);
+		mainTargetChooser.addOption("Rocket", MAIN_TARGET_ROCKET);
+		mainTargetChooser.setDefaultOption("Ship Bay 1", MAIN_TARGET_SHIP_BAY1);
+		mainTargetChooser.addOption("Ship Bay 2", MAIN_TARGET_SHIP_BAY2);
+		mainTargetChooser.addOption("Ship Bay 3", MAIN_TARGET_SHIP_BAY3);
 		SmartDashboard.putData("Main targets", mainTargetChooser);
 		
-		cameraOptionChooser.addOption("Always", CAMERA_OPTION_USE_ALWAYS);
-		cameraOptionChooser.setDefaultOption("Open Loop Only", CAMERA_OPTION_USE_OPEN_LOOP_ONLY);
+		cameraOptionChooser.setDefaultOption("Always", CAMERA_OPTION_USE_ALWAYS);
+		cameraOptionChooser.addOption("Open Loop Only", CAMERA_OPTION_USE_OPEN_LOOP_ONLY);
 		cameraOptionChooser.addOption("Closed Loop Only", CAMERA_OPTION_USE_CLOSED_LOOP_ONLY);
 		cameraOptionChooser.addOption("Never", CAMERA_OPTION_USE_NEVER);		
 		SmartDashboard.putData("Camera options", cameraOptionChooser);
