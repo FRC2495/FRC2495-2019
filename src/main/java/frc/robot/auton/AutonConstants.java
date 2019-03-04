@@ -13,18 +13,22 @@ public class AutonConstants {
     //Distance from front of Hab2 to the center of Bay1 (tape)
     public static final double HAB2_TO_BAY1=212.80;
 
-    //Distance from Hab1 to reach the Bay1 of the ship
-    public static final double HAB1_CARGOSHIP_BAY1_TOTAL_DISTANCE = 195.33;
-
-    //Distance from Hab1 to reach the Bay1 of the ship
-    public static final double HAB1_CARGOSHIP_BAY2_TOTAL_DISTANCE = 195.33;
-
-    //Distance from Hab1 to reach the Bay1 of the ship
-    public static final double HAB1_CARGOSHIP_BAY3_TOTAL_DISTANCE = 195.33;
-
     // Distance between bays
     public static final double CARGO_BAY1_TO_BAY2 = 21.75;
     public static final double CARGO_BAY1_TO_BAY3 = 43.5;
+
+    //Distance from Hab1 to reach the Bay1 of the ship
+    public static final double HAB1_CARGOSHIP_BAY1_TOTAL_DISTANCE = 195.33;
+
+    // TODO: maybe fix this
+    // previously, it was the same distance as HAB1_CARGOSHIP_BAY1_TOTAL_DISTANCE
+    //Distance from Hab1 to reach the Bay2 of the ship
+    public static final double HAB1_CARGOSHIP_BAY2_TOTAL_DISTANCE = HAB1_CARGOSHIP_BAY1_TOTAL_DISTANCE + CARGO_BAY1_TO_BAY2;
+
+    // TODO: maybe fix this one too
+    // previously, it was the same distance as HAB1_CARGOSHIP_BAY1_TOTAL_DISTANCE
+    //Distance from Hab1 to reach the Bay3 of the ship
+    public static final double HAB1_CARGOSHIP_BAY3_TOTAL_DISTANCE = HAB1_CARGOSHIP_BAY1_TOTAL_DISTANCE + CARGO_BAY1_TO_BAY3;
 
     //What we decided to use.  Tweak as necessary based on observation
     //Distance robot to drive straight before making a turn.  
