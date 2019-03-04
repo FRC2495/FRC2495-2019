@@ -10,14 +10,14 @@ package frc.robot.auton;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.commands.*;
 
-public class CargoHab2LeftToShip extends CommandGroup {
+public class CargoHab2RightToShipBay1 extends CommandGroup {
 
-	public CargoHab2LeftToShip() {
+	public CargoHab2RightToShipBay1() {
 		// move forward 210 in
 		addSequential(new DrivetrainMoveDistance(210));
 
-		// turn 90 degrees left
-		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
+		// turn 90 degrees right
+		addSequential(new DrivetrainTurnAngleUsingPidController(90));
 		
 		// move forward 91in
 		addSequential(new DrivetrainMoveDistance(91));
@@ -28,20 +28,20 @@ public class CargoHab2LeftToShip extends CommandGroup {
 		// reverse 24in
 		addSequential(new DrivetrainMoveDistance(-24));
 
-		// turn left 90deg
-		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
+		// turn right 90deg
+		addSequential(new DrivetrainTurnAngleUsingPidController(90));
 
 		// move forward 205in
 		addSequential(new DrivetrainMoveDistance(205));
 
-		// turn right 90deg
-		addSequential(new DrivetrainTurnAngleUsingPidController(90));
+		// turn left 90deg
+		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
 
 		// move forward 24in
 		addSequential(new DrivetrainMoveDistance(24));
 
-		// turn left 90deg
-		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
+		// turn right 90deg
+		addSequential(new DrivetrainTurnAngleUsingPidController(90));
 
 		// |--> version target feeder
 		addSequential(new HatchPanelPickup());
@@ -71,14 +71,14 @@ public class CargoHab2LeftToShip extends CommandGroup {
 		// reverse 208in
 		addSequential(new DrivetrainMoveDistance(-208));
 
-		// turn left 90deg
-		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
+		// turn right 90deg
+		addSequential(new DrivetrainTurnAngleUsingPidController(90));
 
 		// move forward 106in
 		addSequential(new DrivetrainMoveDistance(106));
 
-		// turn left 90deg
-		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
+		// turn right 90deg
+		addSequential(new DrivetrainTurnAngleUsingPidController(90));
 
 		// |--> vision target CSRF
 		addSequential(new HatchPanelDeliver());
@@ -86,14 +86,14 @@ public class CargoHab2LeftToShip extends CommandGroup {
 		// reverse 24in
 		addSequential(new DrivetrainMoveDistance(-24));
 
-		// turn left 90deg
-		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
+		// turn right 90deg
+		addSequential(new DrivetrainTurnAngleUsingPidController(90));
 
 		// move forward 106in
 		addSequential(new DrivetrainMoveDistance(106));
 
-		// turn left 90deg
-		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
+		// turn right 90deg
+		addSequential(new DrivetrainTurnAngleUsingPidController(90));
 
 		// move forward 208in
 		addSequential(new DrivetrainMoveDistance(208));
@@ -104,20 +104,20 @@ public class CargoHab2LeftToShip extends CommandGroup {
 		// reverse 208in
 		addSequential(new DrivetrainMoveDistance(208));
 
-		// turn left 90deg
-		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
+		// turn right 90deg
+		addSequential(new DrivetrainTurnAngleUsingPidController(90));
 
 		// move forward 93in
 		addSequential(new DrivetrainMoveDistance(93));
 
-		// turn left 90deg
-		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
+		// turn right 90deg
+		addSequential(new DrivetrainTurnAngleUsingPidController(90));
 
 		// move forward 40in (?)
 		addSequential(new DrivetrainMoveDistance(40));
 
-		// turn right 90deg
-		addSequential(new DrivetrainTurnAngleUsingPidController(90));
+		// turn left 90deg
+		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
 
 		// |--> vision target CSR3
 		addSequential(new HatchPanelDeliver());
@@ -125,14 +125,14 @@ public class CargoHab2LeftToShip extends CommandGroup {
 		// reverse 40in
 		addSequential(new DrivetrainMoveDistance(-40));
 
-		// turn left 90deg
-		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
+		// turn right 90deg
+		addSequential(new DrivetrainTurnAngleUsingPidController(90));
 
 		// move forward 93in
 		addSequential(new DrivetrainMoveDistance(93));
 
-		// turn left 90deg
-		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
+		// turn right 90deg
+		addSequential(new DrivetrainTurnAngleUsingPidController(90));
 
 		// move forward 208in
 		addSequential(new DrivetrainMoveDistance(208));
@@ -143,14 +143,14 @@ public class CargoHab2LeftToShip extends CommandGroup {
 		// reverse 208in
 		addSequential(new DrivetrainMoveDistance(-208));
 
-		// turn left 90deg
-		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
+		// turn right 90deg
+		addSequential(new DrivetrainTurnAngleUsingPidController(90));
 
 		// move forward 93in
 		addSequential(new DrivetrainMoveDistance(93));
 
-		// turn left 90deg
-		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
+		// turn right 90deg
+		addSequential(new DrivetrainTurnAngleUsingPidController(90));
 
 		// move forward 44 in
 		addSequential(new DrivetrainMoveDistance(44));

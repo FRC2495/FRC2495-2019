@@ -10,38 +10,19 @@ package frc.robot.auton;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.commands.*;
 
-public class HatchPanelHab1LeftToShip extends CommandGroup {
+
+public class CargoHab1LeftToShipBay1 extends CommandGroup {
 	/**
 	 * Add your docs here.
 	 */
-	public HatchPanelHab1LeftToShip() {
-		// Add Commands here:
-		// e.g. addSequential(new Command1());
-		// addSequential(new Command2());
-		// these will run in order.
-
-		// To run multiple commands at the same time,
-		// use addParallel()
-		// e.g. addParallel(new Command1());
-		// addSequential(new Command2());
-		// Command1 and Command2 will run in parallel.
-
-		// A command group will require all of the subsystems that each member
-		// would require.
-		// e.g. if Command1 requires chassis, and Command2 requires arm,
-		// a CommandGroup containing them would require both the chassis and the
-		// arm.
-
+	public CargoHab1LeftToShipBay1() {
+	
 		//Move straight from Hab1 LS to Bay 1
-		addSequential(new DrivetrainMoveDistance(100));
-
-		addSequential(new DrivetrainTurnAngleUsingPidController(-15));
-		
-		addSequential(new DrivetrainMoveDistance(95.3));
+/*		addSequential(new DrivetrainMoveDistance(195.3));
 
 		//Turn right to face Bay 1
-		addSequential(new DrivetrainTurnAngleUsingPidController(105));
-
+		addSequential(new DrivetrainTurnAngleUsingPidController(90));
+/*
 		//Deliver hatch panel
 		addSequential(new HatchPanelDeliver(1));
 
@@ -50,8 +31,8 @@ public class HatchPanelHab1LeftToShip extends CommandGroup {
 		//so the straight drive can help correct any misalignments
 		addSequential(new DrivetrainTurnAngleUsingPidController(108));
 
-		//Drive torwards loading station . Changing from 205 as its overshooting
-		addSequential(new DrivetrainMoveDistance(175));
+		//Drive torwards loading station 
+		addSequential(new DrivetrainMoveDistance(205));
 
 		//Turn and face the loading station
 		addSequential(new DrivetrainTurnAngleUsingPidController(-18));
@@ -63,7 +44,7 @@ public class HatchPanelHab1LeftToShip extends CommandGroup {
 		addSequential(new DrivetrainTurnAngleUsingPidController(180));
 
 		//Drive some distance, until limelight can comfortably see the target
-		/*addSequential(new DrivetrainMoveDistance(100));
+		addSequential(new DrivetrainMoveDistance(100));
 		
 		//Go deliver the hatchpanel at level 1.  Adjust the path to taget using vision
 		addSequential(new HatchPanelDeliver(1));
@@ -78,30 +59,50 @@ public class HatchPanelHab1LeftToShip extends CommandGroup {
 		addSequential(new HatchPanelPickup());
 
 	/* Manoj: Commenting below as the path suggestion has changed.
-		
-		// moving forward 164 in.
-		addSequential(new DrivetrainMoveDistance(116));
+		// Move foward 133 inches
+		addSequential(new DrivetrainMoveDistance(133));
 
-		// turn 90 to the left 
+		//Vision Delivery (to CSLF)
+		addSequential(new CargoDeliverRocket());
+
+		//Move back 24 inches
+		//addSequential(new DrivetrainMoveDistance(-24));
+
+		//Turn 90 degress to the right
+		addSequential(new DrivetrainTurnAngleUsingPidController(90));
+
+		//Move foward 105 inches foward
+		addSequential(new DrivetrainMoveDistance(105));
+
+		//Turn 90 degrees to the left 
 		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
 
-		// move forward 12 inch 
-		addSequential(new DrivetrainMoveDistance(12));
+		//Move foward 151 inches
+		addSequential(new DrivetrainMoveDistance(151));
 
-		// turn 90 to the right 
+		//Recieve hatchpanel (from LH)
+		addSequential(new HatchPanelPickup());
+
+		//Turn 180 degrees to the right 
+		addSequential(new DrivetrainTurnAngleUsingPidController(180));
+
+		//Move foward 151 inches
+		addSequential(new DrivetrainMoveDistance(151));
+
+		//Turn 90 degress to the right
 		addSequential(new DrivetrainTurnAngleUsingPidController(90));
 
-		// mode forward 29 
-		addSequential(new DrivetrainMoveDistance(29));
+		//Move foward 105 inches foward
+		addSequential(new DrivetrainMoveDistance(105));
 
-		// trun 90 to the right 
-		addSequential(new DrivetrainTurnAngleUsingPidController(90));
-		
-		// vision targeting
-		addSequential (new HatchPanelDeliver());
-		
-		// Calls the common command LeftToShip
-		addSequential(new LeftToShip());
+		//Turn 90 degrees to the left 
+		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
+
+		//Move foward 44 inches 
+		addSequential(new DrivetrainMoveDistance(44));
+
+		//Vision Delivery (to CSLF)
+		addSequential(new HatchPanelDeliver());
 	*/
 	}
 }
