@@ -12,11 +12,11 @@ import frc.robot.commands.*;
 import frc.robot.auton.AutonConstants;
 
 
-public class CargoHab2LeftToShipBay1 extends CommandGroup {
+public class CargoHab2LeftToShipBay3 extends CommandGroup {
 	/**
 	 * Add your docs here.
 	 */
-	public CargoHab2LeftToShipBay1() {
+	public CargoHab2LeftToShipBay3() {
 
 		final int TURN_DIRECTION = 1;  //When you are on Left side this is 1 and its -1 when on right side.
 		final int BAY_TO_LOADING_ADJUSTMENT = -30; //driving diagonaly from cargo ship towards loadingstation, if it is overshoots or under, use this to make adjustments
@@ -31,7 +31,7 @@ public class CargoHab2LeftToShipBay1 extends CommandGroup {
 		//THe full distance to bay is split as a straight path, then turn slightly and then cover the rest of the distance
 		
 		//Now move straight distance
-		addSequential(new DrivetrainMoveDistance(AutonConstants.HAB2_CARGOSHIP_DISTANCE_BEFORE_TURN));
+		addSequential(new DrivetrainMoveDistance(AutonConstants.HAB2_CARGOSHIP_DISTANCE_BEFORE_TURN + AutonConstants.CARGO_BAY1_TO_BAY3));
 
 		//Make a slight turn
 		addSequential(new DrivetrainTurnAngleUsingPidController(-TURN_DIRECTION*AutonConstants.HAB_TO_BAY_ANGLE));
@@ -53,12 +53,12 @@ public class CargoHab2LeftToShipBay1 extends CommandGroup {
 		//...to crossline of Hab2line and line perpendicular to loading station
 		//angle of turn is inverse tan (rise/run) -- calculate from center of robot
 		rise = AutonConstants.SHIP_TO_LONGSIDE-AutonConstants.LOADINGSTATION_TO_LONGSIDE-AutonConstants.BACKUP_AFTER_DELIVERY-(AutonConstants.ROBOT_LENGTH/2);
-		run  = AutonConstants.HAB2_CARGOSHIP_BAY1_TOTAL_DISTANCE;
+		run  = AutonConstants.HAB2_CARGOSHIP_BAY1_TOTAL_DISTANCE + AutonConstants.CARGO_BAY1_TO_BAY3; // hab 2 to bay 3 = hab 1 to bay 1 + bay 1-to-3 distance
 		bayToLoadingTurnAngle = (int) Math.toDegrees(Math.atan(rise/run));
 
 		addSequential(new DrivetrainTurnAngleUsingPidController(TURN_DIRECTION*(bayToLoadingTurnAngle+90)));
 
-		//Drive torwards loading station.  This is the hypotnuse of the triangle between hab2line, bay1 and crossline 
+		//Drive torwards loading station.  This is the hypotnuse of the triangle between hab2line, bay3 and crossline 
 		bayToLoadingDistance = Math.sqrt(Math.pow(rise,2)+Math.pow(run,2));
 		addSequential(new DrivetrainMoveDistance(bayToLoadingDistance+BAY_TO_LOADING_ADJUSTMENT));
 

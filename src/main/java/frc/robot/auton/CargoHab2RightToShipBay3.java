@@ -9,16 +9,13 @@ package frc.robot.auton;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.commands.*;
-import frc.robot.auton.AutonConstants;
 
-
-public class CargoHab2LeftToShipBay1 extends CommandGroup {
+public class CargoHab2RightToShipBay3 extends CommandGroup {
 	/**
 	 * Add your docs here.
 	 */
-	public CargoHab2LeftToShipBay1() {
-
-		final int TURN_DIRECTION = 1;  //When you are on Left side this is 1 and its -1 when on right side.
+	public CargoHab2RightToShipBay3() {
+		final int TURN_DIRECTION = -1;  //When you are on Left side this is 1 and its -1 when on right side.
 		final int BAY_TO_LOADING_ADJUSTMENT = -30; //driving diagonaly from cargo ship towards loadingstation, if it is overshoots or under, use this to make adjustments
 		double rise;
 		double run;
@@ -26,22 +23,22 @@ public class CargoHab2LeftToShipBay1 extends CommandGroup {
 		double bayToLoadingDistance;
 		//int bayPosition = 1 ;
 
-		//Move straight from Hab2 LS to Bay 1
+		//Move straight from Hab2 RS to Bay 1
 		//Since the straight line is very close the ship, robot may not turn.  So we will make a slight turn
 		//THe full distance to bay is split as a straight path, then turn slightly and then cover the rest of the distance
 		
 		//Now move straight distance
-		addSequential(new DrivetrainMoveDistance(AutonConstants.HAB2_CARGOSHIP_DISTANCE_BEFORE_TURN));
+		addSequential(new DrivetrainMoveDistance(AutonConstants.HAB2_CARGOSHIP_DISTANCE_BEFORE_TURN + AutonConstants.CARGO_BAY1_TO_BAY3));
 
 		//Make a slight turn
-		addSequential(new DrivetrainTurnAngleUsingPidController(-TURN_DIRECTION*AutonConstants.HAB_TO_BAY_ANGLE));
+		addSequential(new DrivetrainTurnAngleUsingPidController(TURN_DIRECTION*AutonConstants.HAB_TO_BAY_ANGLE));
 		
 		//remainder of the distance
 		addSequential(new DrivetrainMoveDistance(AutonConstants.HAB2_CARGOSHIP_BAY1_TOTAL_DISTANCE-AutonConstants.HAB2_CARGOSHIP_DISTANCE_BEFORE_TURN));
 
 		//Turn right to face Bay 1
 		//If Robot had gone straight it would have turned 90.  Since it made a slight turn, need to compensate for that too
-		addSequential(new DrivetrainTurnAngleUsingPidController(TURN_DIRECTION*(AutonConstants.HAB_TO_BAY_ANGLE+90)));
+		addSequential(new DrivetrainTurnAngleUsingPidController(-TURN_DIRECTION*(AutonConstants.HAB_TO_BAY_ANGLE+90)));
 
 		//Deliver cargo.  Will use camera to align and go straight and deliver.
 		//Then it will move back 24 inches.
@@ -53,7 +50,7 @@ public class CargoHab2LeftToShipBay1 extends CommandGroup {
 		//...to crossline of Hab2line and line perpendicular to loading station
 		//angle of turn is inverse tan (rise/run) -- calculate from center of robot
 		rise = AutonConstants.SHIP_TO_LONGSIDE-AutonConstants.LOADINGSTATION_TO_LONGSIDE-AutonConstants.BACKUP_AFTER_DELIVERY-(AutonConstants.ROBOT_LENGTH/2);
-		run  = AutonConstants.HAB2_CARGOSHIP_BAY1_TOTAL_DISTANCE;
+		run  = AutonConstants.HAB2_CARGOSHIP_BAY1_TOTAL_DISTANCE + AutonConstants.CARGO_BAY1_TO_BAY3;
 		bayToLoadingTurnAngle = (int) Math.toDegrees(Math.atan(rise/run));
 
 		addSequential(new DrivetrainTurnAngleUsingPidController(TURN_DIRECTION*(bayToLoadingTurnAngle+90)));
@@ -66,7 +63,7 @@ public class CargoHab2LeftToShipBay1 extends CommandGroup {
 		addSequential(new DrivetrainTurnAngleUsingPidController(-TURN_DIRECTION*(bayToLoadingTurnAngle-90)));
 
 		//Now robot is facing the loading station.  
-		// Calls the common command LeftToShip
-		addSequential(new LeftToShip());
+		// Calls the common command RightToShip
+		addSequential(new RightToShip());
 	}
 }
