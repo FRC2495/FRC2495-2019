@@ -34,6 +34,8 @@ public class AutonConstants {
     //Distance robot to drive straight before making a turn.  
     //The ship is close to the path so have to appraoch at angle in order to turn
     public static final double HAB1_CARGOSHIP_DISTANCE_BEFORE_TURN = 100;
+    // The total here would be the difference between the distance of hab2<->1 and the hab1 cargoship distance between turn
+    public static final double HAB2_CARGOSHIP_DISTANCE_BEFORE_TURN = HAB1_CARGOSHIP_DISTANCE_BEFORE_TURN + (HAB2_TO_BAY1 - HAB1_CARGOSHIP_BAY1_TOTAL_DISTANCE);
  
     //How much angle to turn on our way to the ship
     public static final int HAB_TO_BAY_ANGLE = 15;
