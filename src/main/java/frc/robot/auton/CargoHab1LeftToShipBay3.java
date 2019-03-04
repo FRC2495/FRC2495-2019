@@ -53,7 +53,7 @@ public class CargoHab1LeftToShipBay3 extends CommandGroup {
 		//...to crossline of Hab2line and line perpendicular to loading station
 		//angle of turn is inverse tan (rise/run) -- calculate from center of robot
 		rise = AutonConstants.SHIP_TO_LONGSIDE-AutonConstants.LOADINGSTATION_TO_LONGSIDE-AutonConstants.BACKUP_AFTER_DELIVERY-(AutonConstants.ROBOT_LENGTH/2);
-		run  = AutonConstants.HAB2_TO_BAY1 + AutonConstants.CARGO_BAY1_TO_BAY3; // hab 2 to bay 3 = hab 1 to bay 1 + bay 1-to-3 distance
+		run  = AutonConstants.HAB2_TO_BAY1_TOTAL_DISTANCE + AutonConstants.CARGO_BAY1_TO_BAY3; // hab 2 to bay 3 = hab 1 to bay 1 + bay 1-to-3 distance
 		bayToLoadingTurnAngle = (int) Math.toDegrees(Math.atan(rise/run));
 
 		addSequential(new DrivetrainTurnAngleUsingPidController(TURN_DIRECTION*(bayToLoadingTurnAngle+90)));
