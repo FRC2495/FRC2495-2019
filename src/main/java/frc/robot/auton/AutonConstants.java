@@ -11,7 +11,7 @@ public class AutonConstants {
     public static final double LOADINGSTATION_TO_LONGSIDE = 27.44;
 
     //Distance from front of Hab2 to the center of Bay1 (tape)
-    public static final double HAB2_TO_BAY1_TOTAL_DISTANCE=212.80;
+    public static final double HAB2_CARGOSHIP_BAY1_TOTAL_DISTANCE=212.80;
 
     // Distance between bays
     public static final double CARGO_BAY1_TO_BAY2 = 21.75;
@@ -35,7 +35,7 @@ public class AutonConstants {
     //The ship is close to the path so have to appraoch at angle in order to turn
     public static final double HAB1_CARGOSHIP_DISTANCE_BEFORE_TURN = 100;
     // The total here would be the difference between the distance of hab2<->1 and the hab1 cargoship distance between turn
-    public static final double HAB2_CARGOSHIP_DISTANCE_BEFORE_TURN = HAB1_CARGOSHIP_DISTANCE_BEFORE_TURN + (HAB2_TO_BAY1_TOTAL_DISTANCE - HAB1_CARGOSHIP_BAY1_TOTAL_DISTANCE);
+    public static final double HAB2_CARGOSHIP_DISTANCE_BEFORE_TURN = HAB1_CARGOSHIP_DISTANCE_BEFORE_TURN + (HAB2_CARGOSHIP_BAY1_TOTAL_DISTANCE - HAB1_CARGOSHIP_BAY1_TOTAL_DISTANCE);
  
     //How much angle to turn on our way to the ship
     public static final int HAB_TO_BAY_ANGLE = 15;
