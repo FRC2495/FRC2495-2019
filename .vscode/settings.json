@@ -11,5 +11,6 @@
     ".project": true
   },
   "wpilib.online": true,
-  "maven.view": "flat"
+  "maven.view": "flat",
+  "java.dependency.packagePresentation": "flat"
 }

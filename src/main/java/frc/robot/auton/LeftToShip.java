@@ -34,6 +34,13 @@ public class LeftToShip extends CommandGroup {
 
 		//TODO Add in specfically where to target
 
+		//Pickup hatchpanel
+		addSequential(new HatchPanelPickup());
+
+		//Turn around to face the rocket (not precise, but in that direction)
+		addSequential(new DrivetrainTurnAngleUsingPidController(AutonConstants.LOADING_TO_SHIP_ANGLE));
+
+/* Commented by Manoj as the Auton strategy has changed
 		// Move backwards 24 inches 
 		//addSequential(new DrivetrainMoveDistance(-24));
 
