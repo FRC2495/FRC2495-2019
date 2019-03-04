@@ -59,16 +59,16 @@ public class HatchPanelCustomAuton extends CommandGroup {
 						addSequential(new HatchPanelHab1LeftToRocket());
 						break;
 					case Robot.MAIN_TARGET_SHIP_BAY0:
-						//addSequential(new HatchPanelHab1LeftToShip());
+						//addSequential(new HatchPanelHab1LeftToShipBay0());
 						break;
 					case Robot.MAIN_TARGET_SHIP_BAY1:
 						addSequential(new HatchPanelHab1LeftToShipBay1());
 						break;
 					case Robot.MAIN_TARGET_SHIP_BAY2:
-						//addSequential(new HatchPanelHab1LeftToShip());
+						//addSequential(new HatchPanelHab1LeftToShipBay1());
 						break;
 					case Robot.MAIN_TARGET_SHIP_BAY3:
-						//addSequential(new HatchPanelHab1LeftToShip());
+						//addSequential(new HatchPanelHab1LeftToShipBay2());
 						break;
 					default:
 						// nothing
@@ -85,13 +85,13 @@ public class HatchPanelCustomAuton extends CommandGroup {
 						addSequential(new HatchPanelHab1CenterLeftToShipBay0());
 						break;
 					case Robot.MAIN_TARGET_SHIP_BAY1:
-						//addSequential(new HatchPanelHab1CenterLeftToShip());
+						//addSequential(new HatchPanelHab1CenterLeftToShipBay1());
 						break;
 					case Robot.MAIN_TARGET_SHIP_BAY2:
-						//addSequential(new HatchPanelHab1CenterLeftToShip());
+						//addSequential(new HatchPanelHab1CenterLeftToShipBay2());
 						break;
 					case Robot.MAIN_TARGET_SHIP_BAY3:
-						//addSequential(new HatchPanelHab1CenterLeftToShip());
+						//addSequential(new HatchPanelHab1CenterLeftToShipbay3());
 						break;
 					default:
 						// nothing
@@ -108,13 +108,13 @@ public class HatchPanelCustomAuton extends CommandGroup {
 						addSequential(new HatchPanelHab1CenterRightToShipBay0());
 						break;
 					case Robot.MAIN_TARGET_SHIP_BAY1:
-						//addSequential(new HatchPanelHab1CenterRightToShip());
+						//addSequential(new HatchPanelHab1CenterRightToShipBay1());
 						break;
 					case Robot.MAIN_TARGET_SHIP_BAY2:
-						//addSequential(new HatchPanelHab1CenterRightToShip());
+						//addSequential(new HatchPanelHab1CenterRightToShipBay2());
 						break;
 					case Robot.MAIN_TARGET_SHIP_BAY3:
-						//addSequential(new HatchPanelHab1CenterRightToShip());
+						//addSequential(new HatchPanelHab1CenterRightToShipBay3());
 						break;
 					default:
 						// nothing
@@ -128,16 +128,16 @@ public class HatchPanelCustomAuton extends CommandGroup {
 						addSequential(new HatchPanelHab1RightToRocket());
 						break;
 					case Robot.MAIN_TARGET_SHIP_BAY0:
-						//addSequential(new HatchPanelHab1RightToShip());
+						//addSequential(new HatchPanelHab1RightToShipBay0());
 						break;
 					case Robot.MAIN_TARGET_SHIP_BAY1:
 						addSequential(new HatchPanelHab1RightToShipBay1());
 						break;
 					case Robot.MAIN_TARGET_SHIP_BAY2:
-						//addSequential(new HatchPanelHab1RightToShip());
+						//addSequential(new HatchPanelHab1RightToShipBay2());
 						break;
 					case Robot.MAIN_TARGET_SHIP_BAY3:
-						//addSequential(new HatchPanelHab1RightToShip());
+						//addSequential(new HatchPanelHab1RightToShipbay3());
 						break;	
 					default:
 						// nothing
@@ -151,16 +151,16 @@ public class HatchPanelCustomAuton extends CommandGroup {
 						addSequential(new HatchPanelHab2LeftToRocket());
 						break;
 					case Robot.MAIN_TARGET_SHIP_BAY0:
-						//addSequential(new HatchPanelHab2LeftToShip());
+						//addSequential(new HatchPanelHab2LeftToShipBay0());
 						break;	
 					case Robot.MAIN_TARGET_SHIP_BAY1:
 						addSequential(new HatchPanelHab2LeftToShipBay1());
 						break;
 					case Robot.MAIN_TARGET_SHIP_BAY2:
-						//addSequential(new HatchPanelHab2LeftToShip());
+						//addSequential(new HatchPanelHab2LeftToShipBay1());
 						break;
 					case Robot.MAIN_TARGET_SHIP_BAY3:
-						//addSequential(new HatchPanelHab2LeftToShip());
+						//addSequential(new HatchPanelHab2LeftToShipBay2());
 						break;
 					default:
 						// nothing
@@ -174,16 +174,16 @@ public class HatchPanelCustomAuton extends CommandGroup {
 						addSequential(new HatchPanelHab2RightToRocket());
 						break;
 					case Robot.MAIN_TARGET_SHIP_BAY0:
-						//addSequential(new HatchPanelHab2RightToShip());
+						//addSequential(new HatchPanelHab2RightToShipBay0());
 						break;
 					case Robot.MAIN_TARGET_SHIP_BAY1:
 						addSequential(new HatchPanelHab2RightToShipBay1());
 						break;
 					case Robot.MAIN_TARGET_SHIP_BAY2:
-						//addSequential(new HatchPanelHab2RightToShip());
+						//addSequential(new HatchPanelHab2RightToShipBay2());
 						break;
 					case Robot.MAIN_TARGET_SHIP_BAY3:
-						//addSequential(new HatchPanelHab2RightToShip());
+						//addSequential(new HatchPanelHab2RightToShipBay3());
 						break;	
 					default:
 						// nothing
