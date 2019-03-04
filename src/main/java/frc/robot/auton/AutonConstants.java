@@ -22,6 +22,10 @@ public class AutonConstants {
     //Distance from Hab1 to reach the Bay1 of the ship
     public static final double HAB1_CARGOSHIP_BAY3_TOTAL_DISTANCE = 195.33;
 
+    // Distance between bays
+    public static final double CARGO_BAY1_TO_BAY2 = 21.75;
+    public static final double CARGO_BAY1_TO_BAY3 = 43.5;
+
     //What we decided to use.  Tweak as necessary based on observation
     //Distance robot to drive straight before making a turn.  
     //The ship is close to the path so have to appraoch at angle in order to turn
