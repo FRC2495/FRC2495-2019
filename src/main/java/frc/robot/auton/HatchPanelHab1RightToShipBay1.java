@@ -40,7 +40,7 @@ public class HatchPanelHab1RightToShipBay1 extends CommandGroup {
 		double bayToLoadingDistance;
 		//int bayPosition = 1 ;
 
-		//Move straight from Hab1 LS to Bay 1
+		//Move straight from Hab1 RS to Bay 1
 		//Since the straight line is very close the ship, robot may not turn.  So we will make a slight turn
 		//THe full distance to bay is split as a straight path, then turn slightly and then cover the rest of the distance
 		
@@ -80,8 +80,8 @@ public class HatchPanelHab1RightToShipBay1 extends CommandGroup {
 		addSequential(new DrivetrainTurnAngleUsingPidController(-TURN_DIRECTION*(bayToLoadingTurnAngle-90)));
 
 		//Now robot is facing the loading station.  
-		// Calls the common command LeftToShip
-		addSequential(new LeftToShip());
+		// Calls the common command RightToShip
+		addSequential(new RightToShip());
 
 
 		//Drive some distance, until limelight can comfortably see the target
