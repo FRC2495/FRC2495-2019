@@ -25,6 +25,12 @@ public class RightToShip extends CommandGroup {
 		// e.g. addParallel(new Command1());
 		// addSequential(new Command2());
 		// Command1 and Command2 will run in parallel.
+		
+		//Pickup hatchpanel
+		addSequential(new HatchPanelPickup());
+
+		//Turn around to face the rocket (not precise, but in that direction)
+		addSequential(new DrivetrainTurnAngleUsingPidController(-AutonConstants.LOADING_TO_SHIP_ANGLE));
 
 		// A command group will require all of the subsystems that each member
 		// would require.
@@ -34,6 +40,7 @@ public class RightToShip extends CommandGroup {
 
 		//TODO Add in specifically where to target
 
+		/*
 		// Move backwards 24 in. 
 		//addSequential(new DrivetrainMoveDistance(-24));
 
@@ -153,5 +160,6 @@ public class RightToShip extends CommandGroup {
 
 		// Move forward 230 in. 
 		addSequential(new DrivetrainMoveDistance(230));
+		*/
 	}
 }
