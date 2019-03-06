@@ -11,12 +11,27 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.commands.*;
 import frc.robot.auton.AutonConstants;
 
-
-public class CargoHab2LeftToShipBay2 extends CommandGroup {
+public class HatchPanelHab2LeftToShipBay2 extends CommandGroup {
 	/**
 	 * Add your docs here.
 	 */
-	public CargoHab2LeftToShipBay2() {
+	public HatchPanelHab2LeftToShipBay2() {
+		// Add Commands here:
+		// e.g. addSequential(new Command1());
+		// addSequential(new Command2());
+		// these will run in order.
+
+		// To run multiple commands at the same time,
+		// use addParallel()
+		// e.g. addParallel(new Command1());
+		// addSequential(new Command2());
+		// Command1 and Command2 will run in parallel.
+
+		// A command group will require all of the subsystems that each member
+		// would require.
+		// e.g. if Command1 requires chassis, and Command2 requires arm,
+		// a CommandGroup containing them would require both the chassis and the
+		// arm.
 
 		final int TURN_DIRECTION = 1;  //When you are on Left side this is 1 and its -1 when on right side.
 		final int BAY_TO_LOADING_ADJUSTMENT = -30; //driving diagonaly from cargo ship towards loadingstation, if it is overshoots or under, use this to make adjustments
@@ -26,12 +41,12 @@ public class CargoHab2LeftToShipBay2 extends CommandGroup {
 		double bayToLoadingDistance;
 		//int bayPosition = 1 ;
 
-		//Move straight from Hab2 LS to Bay 1
+		//Move straight from Hab1 RS to Bay 1
 		//Since the straight line is very close the ship, robot may not turn.  So we will make a slight turn
 		//THe full distance to bay is split as a straight path, then turn slightly and then cover the rest of the distance
 		
 		//Now move straight distance
-		addSequential(new DrivetrainMoveDistance(AutonConstants.HAB2_CARGOSHIP_DISTANCE_BEFORE_TURN + AutonConstants.CARGOSHIP_BAY1_TO_BAY2));
+		addSequential(new DrivetrainMoveDistance(AutonConstants.HAB2_CARGOSHIP_DISTANCE_BEFORE_TURN));
 		
 		//straighten robot after jump
 		addSequential(new DrivetrainTurnToPreviousKnownHeadingUsingPidController());
@@ -40,15 +55,15 @@ public class CargoHab2LeftToShipBay2 extends CommandGroup {
 		addSequential(new DrivetrainTurnAngleUsingPidController(-TURN_DIRECTION*AutonConstants.HAB_TO_BAY_ANGLE));
 		
 		//remainder of the distance
-		addSequential(new DrivetrainMoveDistance(AutonConstants.HAB2_CARGOSHIP_BAY1_TOTAL_DISTANCE-AutonConstants.HAB2_CARGOSHIP_DISTANCE_BEFORE_TURN));
+		addSequential(new DrivetrainMoveDistance(AutonConstants.HAB1_CARGOSHIP_BAY2_TOTAL_DISTANCE-AutonConstants.HAB1_CARGOSHIP_DISTANCE_BEFORE_TURN));
 
 		//Turn right to face Bay 1
 		//If Robot had gone straight it would have turned 90.  Since it made a slight turn, need to compensate for that too
 		addSequential(new DrivetrainTurnAngleUsingPidController(TURN_DIRECTION*(AutonConstants.HAB_TO_BAY_ANGLE+90)));
 
-		//Deliver cargo.  Will use camera to align and go straight and deliver.
+		//Deliver hatch panel.  Will use camera to align and go straight and deliver.
 		//Then it will move back 24 inches.
-		addSequential(new CargoDeliverShip());
+		addSequential(new HatchPanelDeliver());
 
 		//Turn towards the Loading Station.   
 		//Not eactly pointed to loading station but a few feet in front of it 
@@ -56,10 +71,11 @@ public class CargoHab2LeftToShipBay2 extends CommandGroup {
 		//...to crossline of Hab2line and line perpendicular to loading station
 		//angle of turn is inverse tan (rise/run) -- calculate from center of robot
 		rise = AutonConstants.SHIP_TO_LONGSIDE-AutonConstants.LOADINGSTATION_TO_LONGSIDE-AutonConstants.BACKUP_AFTER_DELIVERY-(AutonConstants.ROBOT_LENGTH/2);
-		run  = AutonConstants.HAB2_CARGOSHIP_BAY1_TOTAL_DISTANCE + AutonConstants.CARGOSHIP_BAY1_TO_BAY2;
+		run  = AutonConstants.HAB2_CARGOSHIP_BAY2_TOTAL_DISTANCE;
 		bayToLoadingTurnAngle = (int) Math.toDegrees(Math.atan(rise/run));
 
 		addSequential(new DrivetrainTurnAngleUsingPidController(TURN_DIRECTION*(bayToLoadingTurnAngle+90)));
+
 
 		//Drive torwards loading station.  This is the hypotnuse of the triangle between hab2line, bay1 and crossline 
 		bayToLoadingDistance = Math.sqrt(Math.pow(rise,2)+Math.pow(run,2));
@@ -71,5 +87,45 @@ public class CargoHab2LeftToShipBay2 extends CommandGroup {
 		//Now robot is facing the loading station.  
 		// Calls the common command LeftToShip
 		addSequential(new LeftToShip());
+
+
+		//Drive some distance, until limelight can comfortably see the target
+		/*addSequential(new DrivetrainMoveDistance(100));
+		
+		//Go deliver the hatchpanel at level 1.  Adjust the path to taget using vision
+		addSequential(new HatchPanelDeliver(1));
+
+		//Turn around to face the loading station (not precise, but in that direction)
+		addSequential(new DrivetrainTurnAngleUsingPidController(180));
+
+		//Drive some distance, until limelight can comfortably see the target
+		addSequential(new DrivetrainMoveDistance(100));
+
+		//Go pickup the hatchpanel.  Adjust the path to taget using vision
+		addSequential(new HatchPanelPickup());
+
+		/* Move forward 88 in. (from RS) 
+		addSequential(new DrivetrainMoveDistance(88));		
+
+		// Turn 90 degrees to the left 
+		addSequential(new DrivetrainTurnAngleUsingPidController(-90));
+
+		// Move forward 42 in. 
+		addSequential(new DrivetrainMoveDistance(42));
+
+		// Turn 90 degrees to the right 
+		addSequential(new DrivetrainTurnAngleUsingPidController(90));
+
+		// Vision Target
+		addSequential(new HatchPanelDeliver());
+
+		// moving forward 133 in.
+		addSequential(new DrivetrainMoveDistance(133));
+
+		// vision targeting
+		addSequential (new HatchPanelDeliver());
+		
+		// Calls the common command RightToShips
+		addSequential(new RightToShip());*/
 	}
 }

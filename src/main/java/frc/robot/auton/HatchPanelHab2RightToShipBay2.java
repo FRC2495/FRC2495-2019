@@ -47,9 +47,13 @@ public class HatchPanelHab2RightToShipBay2 extends CommandGroup {
 		//Now move straight distance
 		addSequential(new DrivetrainMoveDistance(AutonConstants.HAB2_CARGOSHIP_DISTANCE_BEFORE_TURN + AutonConstants.CARGOSHIP_BAY1_TO_BAY2));
 
+
 		//Make a slight turn
 		addSequential(new DrivetrainTurnAngleUsingPidController(TURN_DIRECTION*AutonConstants.HAB_TO_BAY_ANGLE));
 		
+		//straighten robot after jump
+		addSequential(new DrivetrainTurnToPreviousKnownHeadingUsingPidController());
+
 		//remainder of the distance
 		addSequential(new DrivetrainMoveDistance(AutonConstants.HAB2_CARGOSHIP_BAY1_TOTAL_DISTANCE-AutonConstants.HAB1_CARGOSHIP_DISTANCE_BEFORE_TURN));
 
