@@ -32,6 +32,9 @@ public class CargoHab2LeftToShipBay3 extends CommandGroup {
 		
 		//Now move straight distance
 		addSequential(new DrivetrainMoveDistance(AutonConstants.HAB2_CARGOSHIP_DISTANCE_BEFORE_TURN + AutonConstants.CARGOSHIP_BAY1_TO_BAY3));
+		
+		//straighten robot after jump
+		addSequential(new DrivetrainTurnToPreviousKnownHeadingUsingPidController());
 
 		//Make a slight turn
 		addSequential(new DrivetrainTurnAngleUsingPidController(-TURN_DIRECTION*AutonConstants.HAB_TO_BAY_ANGLE));
