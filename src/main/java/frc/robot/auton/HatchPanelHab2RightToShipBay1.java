@@ -48,14 +48,14 @@ public class HatchPanelHab2RightToShipBay1 extends CommandGroup {
 		addSequential(new DrivetrainMoveDistance(AutonConstants.HAB2_CARGOSHIP_DISTANCE_BEFORE_TURN));
 
 		//Make a slight turn
-		addSequential(new DrivetrainTurnAngleUsingPidController(-TURN_DIRECTION*AutonConstants.HAB_TO_BAY_ANGLE));
+		addSequential(new DrivetrainTurnAngleUsingPidController(TURN_DIRECTION*AutonConstants.HAB_TO_BAY_ANGLE));
 		
 		//remainder of the distance
 		addSequential(new DrivetrainMoveDistance(AutonConstants.HAB2_CARGOSHIP_BAY1_TOTAL_DISTANCE-AutonConstants.HAB2_CARGOSHIP_DISTANCE_BEFORE_TURN));
 
 		//Turn right to face Bay 1
 		//If Robot had gone straight it would have turned 90.  Since it made a slight turn, need to compensate for that too
-		addSequential(new DrivetrainTurnAngleUsingPidController(TURN_DIRECTION*(AutonConstants.HAB_TO_BAY_ANGLE+90)));
+		addSequential(new DrivetrainTurnAngleUsingPidController(-TURN_DIRECTION*(AutonConstants.HAB_TO_BAY_ANGLE+90)));
 
 		//Deliver hatch panel.  Will use camera to align and go straight and deliver.
 		//Then it will move back 24 inches.
