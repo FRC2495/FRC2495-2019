@@ -28,7 +28,7 @@ public class CargoHab2RightToShipBay3 extends CommandGroup {
 		//THe full distance to bay is split as a straight path, then turn slightly and then cover the rest of the distance
 		
 		//Now move straight distance
-		addSequential(new DrivetrainMoveDistance(AutonConstants.HAB2_CARGOSHIP_DISTANCE_BEFORE_TURN + AutonConstants.CARGO_BAY1_TO_BAY3));
+		addSequential(new DrivetrainMoveDistance(AutonConstants.HAB2_CARGOSHIP_DISTANCE_BEFORE_TURN + AutonConstants.CARGOSHIP_BAY1_TO_BAY3));
 
 		//Make a slight turn
 		addSequential(new DrivetrainTurnAngleUsingPidController(TURN_DIRECTION*AutonConstants.HAB_TO_BAY_ANGLE));
@@ -50,7 +50,7 @@ public class CargoHab2RightToShipBay3 extends CommandGroup {
 		//...to crossline of Hab2line and line perpendicular to loading station
 		//angle of turn is inverse tan (rise/run) -- calculate from center of robot
 		rise = AutonConstants.SHIP_TO_LONGSIDE-AutonConstants.LOADINGSTATION_TO_LONGSIDE-AutonConstants.BACKUP_AFTER_DELIVERY-(AutonConstants.ROBOT_LENGTH/2);
-		run  = AutonConstants.HAB2_CARGOSHIP_BAY1_TOTAL_DISTANCE + AutonConstants.CARGO_BAY1_TO_BAY3;
+		run  = AutonConstants.HAB2_CARGOSHIP_BAY1_TOTAL_DISTANCE + AutonConstants.CARGOSHIP_BAY1_TO_BAY3;
 		bayToLoadingTurnAngle = (int) Math.toDegrees(Math.atan(rise/run));
 
 		addSequential(new DrivetrainTurnAngleUsingPidController(TURN_DIRECTION*(bayToLoadingTurnAngle+90)));
