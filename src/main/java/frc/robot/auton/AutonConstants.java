@@ -10,13 +10,19 @@ public class AutonConstants {
     //Distance from the center of the loading station to the long side of the field
     public static final double LOADINGSTATION_TO_LONGSIDE = 27.44;
 
-    //Distance from front of Hab2 to the center of Bay1 (tape)
-    public static final double HAB2_CARGOSHIP_BAY1_TOTAL_DISTANCE=212.80;
-
     // Distance between bays
     public static final double CARGO_BAY1_TO_BAY2 = 21.75;
     public static final double CARGO_BAY1_TO_BAY3 = 43.5;
+   
+    //Distance from front of Hab2 to the center of Bay1 (tape)
+    public static final double HAB2_CARGOSHIP_BAY1_TOTAL_DISTANCE=212.80;
 
+    //Distance from front of Hab2 to the center of Bay2 (tape)
+    public static final double HAB2_CARGOSHIP_BAY2_TOTAL_DISTANCE = HAB2_CARGOSHIP_BAY1_TOTAL_DISTANCE + CARGO_BAY1_TO_BAY2;
+
+    //Distance from front of Hab2 to the center of Bay3 (tape)
+    public static final double HAB2_CARGOSHIP_BAY3_TOTAL_DISTANCE = HAB2_CARGOSHIP_BAY1_TOTAL_DISTANCE + CARGO_BAY1_TO_BAY3;
+ 
     //Distance from Hab1 to reach the Bay1 of the ship
     public static final double HAB1_CARGOSHIP_BAY1_TOTAL_DISTANCE = 195.33;
 

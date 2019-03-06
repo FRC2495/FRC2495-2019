@@ -9,6 +9,7 @@ package frc.robot.auton;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.commands.*;
+import frc.robot.auton.AutonConstants;
 
 public class HatchPanelHab1LeftToShipBay2 extends CommandGroup {
 	/**
@@ -51,7 +52,7 @@ public class HatchPanelHab1LeftToShipBay2 extends CommandGroup {
 		addSequential(new DrivetrainTurnAngleUsingPidController(-TURN_DIRECTION*AutonConstants.HAB_TO_BAY_ANGLE));
 		
 		//remainder of the distance
-		addSequential(new DrivetrainMoveDistance(AutonConstants.HAB1_CARGOSHIP_BAY1_TOTAL_DISTANCE-AutonConstants.HAB1_CARGOSHIP_DISTANCE_BEFORE_TURN));
+		addSequential(new DrivetrainMoveDistance(AutonConstants.HAB1_CARGOSHIP_BAY2_TOTAL_DISTANCE-AutonConstants.HAB1_CARGOSHIP_DISTANCE_BEFORE_TURN));
 
 		//Turn right to face Bay 1
 		//If Robot had gone straight it would have turned 90.  Since it made a slight turn, need to compensate for that too
@@ -67,10 +68,11 @@ public class HatchPanelHab1LeftToShipBay2 extends CommandGroup {
 		//...to crossline of Hab2line and line perpendicular to loading station
 		//angle of turn is inverse tan (rise/run) -- calculate from center of robot
 		rise = AutonConstants.SHIP_TO_LONGSIDE-AutonConstants.LOADINGSTATION_TO_LONGSIDE-AutonConstants.BACKUP_AFTER_DELIVERY-(AutonConstants.ROBOT_LENGTH/2);
-		run  = AutonConstants.HAB2_CARGOSHIP_BAY1_TOTAL_DISTANCE;
+		run  = AutonConstants.HAB2_CARGOSHIP_BAY2_TOTAL_DISTANCE;
 		bayToLoadingTurnAngle = (int) Math.toDegrees(Math.atan(rise/run));
 
 		addSequential(new DrivetrainTurnAngleUsingPidController(TURN_DIRECTION*(bayToLoadingTurnAngle+90)));
+
 
 		//Drive torwards loading station.  This is the hypotnuse of the triangle between hab2line, bay1 and crossline 
 		bayToLoadingDistance = Math.sqrt(Math.pow(rise,2)+Math.pow(run,2));
@@ -80,8 +82,8 @@ public class HatchPanelHab1LeftToShipBay2 extends CommandGroup {
 		addSequential(new DrivetrainTurnAngleUsingPidController(-TURN_DIRECTION*(bayToLoadingTurnAngle-90)));
 
 		//Now robot is facing the loading station.  
-		// Calls the common command RightToShip
-		addSequential(new RightToShip());
+		// Calls the common command LeftToShip
+		addSequential(new LeftToShip());
 
 
 		//Drive some distance, until limelight can comfortably see the target

@@ -9,6 +9,7 @@ package frc.robot.auton;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.commands.*;
+import frc.robot.auton.AutonConstants;
 
 public class HatchPanelHab1RightToShipBay1 extends CommandGroup {
 	/**
@@ -71,6 +72,7 @@ public class HatchPanelHab1RightToShipBay1 extends CommandGroup {
 		bayToLoadingTurnAngle = (int) Math.toDegrees(Math.atan(rise/run));
 
 		addSequential(new DrivetrainTurnAngleUsingPidController(TURN_DIRECTION*(bayToLoadingTurnAngle+90)));
+
 
 		//Drive torwards loading station.  This is the hypotnuse of the triangle between hab2line, bay1 and crossline 
 		bayToLoadingDistance = Math.sqrt(Math.pow(rise,2)+Math.pow(run,2));
