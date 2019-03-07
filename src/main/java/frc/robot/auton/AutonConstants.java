@@ -15,7 +15,7 @@ public class AutonConstants {
     public static final double CARGOSHIP_BAY1_TO_BAY3 = 43.5;
    
     //Distance from front of Hab2 to the center of Bay1 (tape)
-    public static final double HAB2_CARGOSHIP_BAY1_TOTAL_DISTANCE = 212.80;
+    public static final double HAB2_CARGOSHIP_BAY1_TOTAL_DISTANCE = 242.3;
 
     //Distance from front of Hab2 to the center of Bay2 (tape)
     public static final double HAB2_CARGOSHIP_BAY2_TOTAL_DISTANCE = HAB2_CARGOSHIP_BAY1_TOTAL_DISTANCE + CARGOSHIP_BAY1_TO_BAY2;
