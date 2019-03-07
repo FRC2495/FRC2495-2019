@@ -41,10 +41,13 @@ public class HatchPanelHab2LeftToShipBay2 extends CommandGroup {
 		double bayToLoadingDistance;
 		//int bayPosition = 1 ;
 
-		//Move straight from Hab1 RS to Bay 1
+		//Move straight from Hab1 LS to Bay 1
 		//Since the straight line is very close the ship, robot may not turn.  So we will make a slight turn
 		//THe full distance to bay is split as a straight path, then turn slightly and then cover the rest of the distance
-		
+
+		// sets the initial heading as the first known heading
+		addSequential(new GyroReset());
+
 		//Now move straight distance
 		addSequential(new DrivetrainMoveDistance(AutonConstants.HAB2_CARGOSHIP_DISTANCE_BEFORE_TURN));
 		
@@ -55,7 +58,7 @@ public class HatchPanelHab2LeftToShipBay2 extends CommandGroup {
 		addSequential(new DrivetrainTurnAngleUsingPidController(-TURN_DIRECTION*AutonConstants.HAB_TO_BAY_ANGLE));
 		
 		//remainder of the distance
-		addSequential(new DrivetrainMoveDistance(AutonConstants.HAB1_CARGOSHIP_BAY2_TOTAL_DISTANCE-AutonConstants.HAB1_CARGOSHIP_DISTANCE_BEFORE_TURN));
+		addSequential(new DrivetrainMoveDistance((AutonConstants.HAB2_CARGOSHIP_BAY2_TOTAL_DISTANCE-AutonConstants.HAB2_CARGOSHIP_DISTANCE_BEFORE_TURN)/Math.cos(Math.toRadians(AutonConstants.HAB_TO_BAY_ANGLE))));
 
 		//Turn right to face Bay 1
 		//If Robot had gone straight it would have turned 90.  Since it made a slight turn, need to compensate for that too
@@ -82,7 +85,7 @@ public class HatchPanelHab2LeftToShipBay2 extends CommandGroup {
 		addSequential(new DrivetrainMoveDistance(bayToLoadingDistance+BAY_TO_LOADING_ADJUSTMENT));
 
 		//Turn and face the loading station
-		addSequential(new DrivetrainTurnAngleUsingPidController(-TURN_DIRECTION*(bayToLoadingTurnAngle-90)));
+		addSequential(new DrivetrainTurnAngleUsingPidController(-TURN_DIRECTION*(bayToLoadingTurnAngle)));
 
 		//Now robot is facing the loading station.  
 		// Calls the common command LeftToShip
