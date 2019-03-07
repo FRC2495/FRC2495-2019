@@ -52,7 +52,7 @@ public class HatchPanelHab1LeftToShipBay2 extends CommandGroup {
 		addSequential(new DrivetrainTurnAngleUsingPidController(-TURN_DIRECTION*AutonConstants.HAB_TO_BAY_ANGLE));
 		
 		//remainder of the distance
-		addSequential(new DrivetrainMoveDistance(AutonConstants.HAB1_CARGOSHIP_BAY2_TOTAL_DISTANCE-AutonConstants.HAB1_CARGOSHIP_DISTANCE_BEFORE_TURN));
+		addSequential(new DrivetrainMoveDistance((AutonConstants.HAB1_CARGOSHIP_BAY2_TOTAL_DISTANCE-AutonConstants.HAB1_CARGOSHIP_DISTANCE_BEFORE_TURN)/Math.cos(Math.toRadians(AutonConstants.HAB_TO_BAY_ANGLE))));
 
 		//Turn right to face Bay 1
 		//If Robot had gone straight it would have turned 90.  Since it made a slight turn, need to compensate for that too
@@ -74,12 +74,12 @@ public class HatchPanelHab1LeftToShipBay2 extends CommandGroup {
 		addSequential(new DrivetrainTurnAngleUsingPidController(TURN_DIRECTION*(bayToLoadingTurnAngle+90)));
 
 
-		//Drive torwards loading station.  This is the hypotnuse of the triangle between hab2line, bay1 and crossline 
+		//Drive torwards loading station.  This is the hypothenuse of the triangle between hab2line, bay1 and crossline 
 		bayToLoadingDistance = Math.sqrt(Math.pow(rise,2)+Math.pow(run,2));
 		addSequential(new DrivetrainMoveDistance(bayToLoadingDistance+BAY_TO_LOADING_ADJUSTMENT));
 
 		//Turn and face the loading station
-		addSequential(new DrivetrainTurnAngleUsingPidController(-TURN_DIRECTION*(bayToLoadingTurnAngle-90)));
+		addSequential(new DrivetrainTurnAngleUsingPidController(-TURN_DIRECTION*(bayToLoadingTurnAngle)));
 
 		//Now robot is facing the loading station.  
 		// Calls the common command LeftToShip
