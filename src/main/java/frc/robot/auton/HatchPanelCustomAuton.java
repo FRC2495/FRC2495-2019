@@ -160,7 +160,7 @@ public class HatchPanelCustomAuton extends CommandGroup {
 						addSequential(new HatchPanelHab2LeftToShipBay1());
 						break;
 					case Robot.MAIN_TARGET_SHIP_BAY3:
-						//addSequential(new HatchPanelHab2LeftToShipBay2());
+						addSequential(new HatchPanelHab2LeftToShipBay2());
 						break;
 					default:
 						// nothing
