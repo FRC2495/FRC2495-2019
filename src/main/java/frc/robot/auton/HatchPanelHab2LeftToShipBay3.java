@@ -68,9 +68,6 @@ public class HatchPanelHab2LeftToShipBay3 extends CommandGroup {
 		//Then it will move back 24 inches.
 		addSequential(new HatchPanelDeliver());
 
-		// straighten ourselves a little
-		addSequential(new DrivetrainTurnToPreviousKnownHeadingUsingPidController());
-
 		//Turn towards the Loading Station.   
 		//Not eactly pointed to loading station but a few feet in front of it 
 		//Calculate the angle turn from 2 feet from Bay (remember hatchpanel deliver will move back 2 feet)
