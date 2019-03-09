@@ -40,26 +40,28 @@ public class HatchPanelHab2RightToShipBay2 extends CommandGroup {
 		double bayToLoadingDistance;
 		//int bayPosition = 1 ;
 
-		//Move straight from Hab1 RS to Bay 1
+		//Move straight from Hab2 RS to Bay 1
 		//Since the straight line is very close the ship, robot may not turn.  So we will make a slight turn
 		//THe full distance to bay is split as a straight path, then turn slightly and then cover the rest of the distance
 		
+		// sets the initial heading as the first known heading
+		addSequential(new GyroReset());
+
 		//Now move straight distance
-		addSequential(new DrivetrainMoveDistance(AutonConstants.HAB2_CARGOSHIP_DISTANCE_BEFORE_TURN + AutonConstants.CARGOSHIP_BAY1_TO_BAY2));
-
-
-		//Make a slight turn
-		addSequential(new DrivetrainTurnAngleUsingPidController(TURN_DIRECTION*AutonConstants.HAB_TO_BAY_ANGLE));
+		addSequential(new DrivetrainMoveDistance(AutonConstants.HAB2_CARGOSHIP_DISTANCE_BEFORE_TURN));
 		
 		//straighten robot after jump
 		addSequential(new DrivetrainTurnToPreviousKnownHeadingUsingPidController());
 
+		//Make a slight turn
+		addSequential(new DrivetrainTurnAngleUsingPidController(-TURN_DIRECTION*AutonConstants.HAB_TO_BAY_ANGLE));
+		
 		//remainder of the distance
-		addSequential(new DrivetrainMoveDistance(AutonConstants.HAB2_CARGOSHIP_BAY1_TOTAL_DISTANCE-AutonConstants.HAB1_CARGOSHIP_DISTANCE_BEFORE_TURN));
+		addSequential(new DrivetrainMoveDistance((AutonConstants.HAB2_CARGOSHIP_BAY2_TOTAL_DISTANCE-AutonConstants.HAB2_CARGOSHIP_DISTANCE_BEFORE_TURN)/Math.cos(Math.toRadians(AutonConstants.HAB_TO_BAY_ANGLE))));
 
 		//Turn right to face Bay 1
 		//If Robot had gone straight it would have turned 90.  Since it made a slight turn, need to compensate for that too
-		addSequential(new DrivetrainTurnAngleUsingPidController(-TURN_DIRECTION*(AutonConstants.HAB_TO_BAY_ANGLE+90)));
+		addSequential(new DrivetrainTurnAngleUsingPidController(TURN_DIRECTION*(AutonConstants.HAB_TO_BAY_ANGLE+90)));
 
 		//Deliver hatch panel.  Will use camera to align and go straight and deliver.
 		//Then it will move back 24 inches.
@@ -71,17 +73,19 @@ public class HatchPanelHab2RightToShipBay2 extends CommandGroup {
 		//...to crossline of Hab2line and line perpendicular to loading station
 		//angle of turn is inverse tan (rise/run) -- calculate from center of robot
 		rise = AutonConstants.SHIP_TO_LONGSIDE-AutonConstants.LOADINGSTATION_TO_LONGSIDE-AutonConstants.BACKUP_AFTER_DELIVERY-(AutonConstants.ROBOT_LENGTH/2);
-		run  = AutonConstants.HAB2_CARGOSHIP_BAY1_TOTAL_DISTANCE + AutonConstants.CARGOSHIP_BAY1_TO_BAY2;
+		run  = AutonConstants.HAB2_CARGOSHIP_BAY2_TOTAL_DISTANCE;
 		bayToLoadingTurnAngle = (int) Math.toDegrees(Math.atan(rise/run));
 
 		addSequential(new DrivetrainTurnAngleUsingPidController(TURN_DIRECTION*(bayToLoadingTurnAngle+90)));
+
 
 		//Drive torwards loading station.  This is the hypotnuse of the triangle between hab2line, bay1 and crossline 
 		bayToLoadingDistance = Math.sqrt(Math.pow(rise,2)+Math.pow(run,2));
 		addSequential(new DrivetrainMoveDistance(bayToLoadingDistance+BAY_TO_LOADING_ADJUSTMENT));
 
 		//Turn and face the loading station
-		addSequential(new DrivetrainTurnAngleUsingPidController(-TURN_DIRECTION*(bayToLoadingTurnAngle-90)));
+		addSequential(new DrivetrainTurnAngleUsingPidController(-TURN_DIRECTION*(bayToLoadingTurnAngle)));
+
 
 		//Now robot is facing the loading station.  
 		// Calls the common command RightToShip
