@@ -52,7 +52,7 @@ public class HatchPanelHab1RightToShipBay1 extends CommandGroup {
 		addSequential(new DrivetrainTurnAngleUsingPidController(-TURN_DIRECTION*AutonConstants.HAB_TO_BAY_ANGLE));
 		
 		//remainder of the distance
-		addSequential(new DrivetrainMoveDistance((AutonConstants.HAB1_CARGOSHIP_BAY1_TOTAL_DISTANCE-AutonConstants.HAB1_CARGOSHIP_DISTANCE_BEFORE_TURN)/Math.cos(Math.toRadians(AutonConstants.HAB_TO_BAY_ANGLE))));
+		addSequential(new DrivetrainMoveDistanceHighSpeed((AutonConstants.HAB1_CARGOSHIP_BAY1_TOTAL_DISTANCE-AutonConstants.HAB1_CARGOSHIP_DISTANCE_BEFORE_TURN)/Math.cos(Math.toRadians(AutonConstants.HAB_TO_BAY_ANGLE))));
 
 		//Turn right to face Bay 1
 		//If Robot had gone straight it would have turned 90.  Since it made a slight turn, need to compensate for that too

@@ -160,7 +160,7 @@ public class HatchPanelCustomAuton extends CommandGroup {
 						addSequential(new HatchPanelHab2LeftToShipBay1());
 						break;
 					case Robot.MAIN_TARGET_SHIP_BAY3:
-						//addSequential(new HatchPanelHab2LeftToShipBay2());
+						addSequential(new HatchPanelHab2LeftToShipBay2());
 						break;
 					default:
 						// nothing
@@ -180,10 +180,10 @@ public class HatchPanelCustomAuton extends CommandGroup {
 						addSequential(new HatchPanelHab2RightToShipBay1());
 						break;
 					case Robot.MAIN_TARGET_SHIP_BAY2:
-						//addSequential(new HatchPanelHab2RightToShipBay2());
+						addSequential(new HatchPanelHab2RightToShipBay2());
 						break;
 					case Robot.MAIN_TARGET_SHIP_BAY3:
-						//addSequential(new HatchPanelHab2RightToShipBay3());
+						addSequential(new HatchPanelHab2RightToShipBay3());
 						break;	
 					default:
 						// nothing
