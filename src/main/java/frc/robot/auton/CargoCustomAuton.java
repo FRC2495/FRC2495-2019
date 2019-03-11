@@ -65,13 +65,13 @@ public class CargoCustomAuton extends CommandGroup {
 						//addSequential(new CargoHab1LeftToShipBay0());
 						break;
 					case Robot.MAIN_TARGET_SHIP_BAY1:
-						addSequential(new CargoHab1LeftToShipBay1());
+						addSequential(new CargoHab1LeftToShipBay1(autonOption));
 						break;
 					case Robot.MAIN_TARGET_SHIP_BAY2:
-						addSequential(new CargoHab1LeftToShipBay2());
+						addSequential(new CargoHab1LeftToShipBay2(autonOption));
 						break;
 					case Robot.MAIN_TARGET_SHIP_BAY3:
-						addSequential(new CargoHab1LeftToShipBay3());
+						addSequential(new CargoHab1LeftToShipBay3(autonOption));
 						break;
 					default:
 						// nothing
@@ -134,13 +134,13 @@ public class CargoCustomAuton extends CommandGroup {
 						//addSequential(new CargoHab1RightToShipBay0());
 						break;
 					case Robot.MAIN_TARGET_SHIP_BAY1:
-		 				addSequential(new CargoHab1RightToShipBay1());
+		 				addSequential(new CargoHab1RightToShipBay1(autonOption));
 						break;
 					case Robot.MAIN_TARGET_SHIP_BAY2:
-						addSequential(new CargoHab1RightToShipBay2());
+						addSequential(new CargoHab1RightToShipBay2(autonOption));
 						break;
 					case Robot.MAIN_TARGET_SHIP_BAY3:
-						addSequential(new CargoHab1RightToShipBay3());
+						addSequential(new CargoHab1RightToShipBay3(autonOption));
 						break;	
 					default:
 						// nothing
@@ -157,13 +157,13 @@ public class CargoCustomAuton extends CommandGroup {
 						//addSequential(new CargoHab2LeftToShipBay0());
 						break;
 					case Robot.MAIN_TARGET_SHIP_BAY1:
-						addSequential(new CargoHab2LeftToShipBay1());
+						addSequential(new CargoHab2LeftToShipBay1(autonOption));
 						break;
 					case Robot.MAIN_TARGET_SHIP_BAY2:
-						addSequential(new CargoHab2LeftToShipBay2());
+						addSequential(new CargoHab2LeftToShipBay2(autonOption));
 						break;
 					case Robot.MAIN_TARGET_SHIP_BAY3:
-						addSequential(new CargoHab2LeftToShipBay3());
+						addSequential(new CargoHab2LeftToShipBay3(autonOption));
 						break;
 					default:
 						// nothing
@@ -180,13 +180,13 @@ public class CargoCustomAuton extends CommandGroup {
 						//addSequential(new CargoHab2RightToShipBay0());
 						break;
 					case Robot.MAIN_TARGET_SHIP_BAY1:
-						addSequential(new CargoHab2RightToShipBay1());
+						addSequential(new CargoHab2RightToShipBay1(autonOption));
 						break;
 					case Robot.MAIN_TARGET_SHIP_BAY2:
-						addSequential(new CargoHab2RightToShipBay2());
+						addSequential(new CargoHab2RightToShipBay2(autonOption));
 						break;
 					case Robot.MAIN_TARGET_SHIP_BAY3:
-						addSequential(new CargoHab2RightToShipBay3());
+						addSequential(new CargoHab2RightToShipBay3(autonOption));
 						break;
 					default:
 						// nothing

@@ -14,7 +14,7 @@ public class CargoHab2RightToShipBay1 extends CommandGroup {
 	/**
 	 * Add your docs here.
 	 */
-	public CargoHab2RightToShipBay1() {
+	public CargoHab2RightToShipBay1(String autonOption) {
 		// Add Commands here:
 		// e.g. addSequential(new Command1());
 		// addSequential(new Command2());

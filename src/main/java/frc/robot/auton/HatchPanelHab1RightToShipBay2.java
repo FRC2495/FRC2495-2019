@@ -16,7 +16,7 @@ public class HatchPanelHab1RightToShipBay2 extends CommandGroup {
 	/**
 	 * Add your docs here.
 	 */
-	public HatchPanelHab1RightToShipBay2() {
+	public HatchPanelHab1RightToShipBay2(String autonOption) {
 		// Add Commands here:
 		// e.g. addSequential(new Command1());
 		// addSequential(new Command2());
