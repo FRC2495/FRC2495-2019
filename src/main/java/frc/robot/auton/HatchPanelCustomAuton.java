@@ -82,7 +82,7 @@ public class HatchPanelCustomAuton extends CommandGroup {
 			case Robot.START_POSITION_HAB1_CENTER_LEFT:
 				switch (mainTarget) {
 					case Robot.MAIN_TARGET_ROCKET:
-						addSequential(new HatchPanelHab1CenterLeftToRocket());
+						//addSequential(new HatchPanelHab1CenterLeftToRocket());
 						break;
 					case Robot.MAIN_TARGET_SHIP_BAY0:
 						addSequential(new HatchPanelHab1CenterLeftToShipBay0());
@@ -105,7 +105,7 @@ public class HatchPanelCustomAuton extends CommandGroup {
 				case Robot.START_POSITION_HAB1_CENTER_RIGHT:
 				switch (mainTarget) {
 					case Robot.MAIN_TARGET_ROCKET:
-						addSequential(new HatchPanelHab1CenterRightToRocket());
+						//addSequential(new HatchPanelHab1CenterRightToRocket());
 						break;
 					case Robot.MAIN_TARGET_SHIP_BAY0:
 						addSequential(new HatchPanelHab1CenterRightToShipBay0());
