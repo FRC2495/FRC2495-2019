@@ -36,6 +36,8 @@ public class HatchPanelDeliver extends CommandGroup {
 		// a CommandGroup containing them would require both the chassis and the
 		// arm.
 
+		addSequential(new EjectorRetract());
+
 		//addSequential(new DrivetrainTurnUsingCameraPidController());
 		//addSequential(new DrivetrainMoveUsingCameraPidControllerWithStallDetection(LimelightCamera.OFFSET_CAMERA_HATCH_INCHES));
 		final int MAGIC_DISTANCE_INCHES = 20;
@@ -62,7 +64,7 @@ public class HatchPanelDeliver extends CommandGroup {
 			break;
 		}
 
-		addSequential(new TimedCommand(0.5));
+		//addSequential(new TimedCommand(0.5));
 
 		addSequential(new DrivetrainMoveDistanceWithStallDetection(MAGIC_DISTANCE_INCHES + 12));
 
@@ -71,6 +73,8 @@ public class HatchPanelDeliver extends CommandGroup {
 		addParallel(new HookTimedSwitchDown(2.0));
 		addSequential(new DrivetrainMoveDistance(-24));
 		//addParallel(new ElevatorMoveDown()); // TODO restore this line
+
+		addSequential(new EjectorExtend());
 	}
 
 	public HatchPanelDeliver(){
