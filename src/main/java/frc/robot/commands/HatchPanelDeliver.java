@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.TimedCommand;
 
 import frc.robot.sensors.*;
 
@@ -37,7 +38,7 @@ public class HatchPanelDeliver extends CommandGroup {
 
 		//addSequential(new DrivetrainTurnUsingCameraPidController());
 		//addSequential(new DrivetrainMoveUsingCameraPidControllerWithStallDetection(LimelightCamera.OFFSET_CAMERA_HATCH_INCHES));
-		final int MAGIC_DISTANCE_INCHES = 12;
+		final int MAGIC_DISTANCE_INCHES = 20;
 		addSequential(new DrivetrainDriveUsingCamera(LimelightCamera.OFFSET_CAMERA_HATCH_INCHES + MAGIC_DISTANCE_INCHES));
 		addSequential(new DrivetrainTurnUsingCameraPidController());
 
@@ -60,6 +61,8 @@ public class HatchPanelDeliver extends CommandGroup {
 			addSequential(new ElevatorMoveUp());
 			break;
 		}
+
+		addSequential(new TimedCommand(0.5));
 
 		addSequential(new DrivetrainMoveDistanceWithStallDetection(MAGIC_DISTANCE_INCHES + 12));
 
