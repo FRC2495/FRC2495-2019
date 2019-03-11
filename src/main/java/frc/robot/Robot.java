@@ -192,8 +192,8 @@ public class Robot extends TimedRobot {
 		releaseChooser.addOption("Don't release", GRASPER_OPTION_DONT_RELEASE);
 		SmartDashboard.putData("Release options", releaseChooser);
 
-		releaseChooser.setDefaultOption("Reload", AUTON_OPTION_RELOAD);
-		releaseChooser.addOption("Don't Reload", AUTON_OPTION_DONT_RELOAD);
+		autonOptionChooser.setDefaultOption("Reload", AUTON_OPTION_RELOAD);
+		autonOptionChooser.addOption("Don't Reload", AUTON_OPTION_DONT_RELOAD);
 		SmartDashboard.putData("Auton options", autonOptionChooser);		
 
 
@@ -467,6 +467,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putString("Camera option", cameraOptionChooser.getSelected());
 		SmartDashboard.putString("Sonar option", sonarOptionChooser.getSelected());
 		SmartDashboard.putString("Release chosen", releaseChooser.getSelected());
+		SmartDashboard.putString("Auton option", autonOptionChooser.getSelected());
 	}
 
 	public static void setGyroHasBeenManuallyCalibratedAtLeastOnce(boolean flag) {
