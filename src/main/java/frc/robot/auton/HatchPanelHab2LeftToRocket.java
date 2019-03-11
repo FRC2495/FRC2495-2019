@@ -14,7 +14,7 @@ public class HatchPanelHab2LeftToRocket extends CommandGroup {
 	/**
 	 * Add your docs here.
 	 */
-	public HatchPanelHab2LeftToRocket() {
+	public HatchPanelHab2LeftToRocket(String autonOption) {
 		// Add Commands here:
 		// e.g. addSequential(new Command1());
 		// addSequential(new Command2());
