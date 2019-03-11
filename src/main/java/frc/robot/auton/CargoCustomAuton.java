@@ -17,6 +17,7 @@ public class CargoCustomAuton extends CommandGroup {
 	String cameraOption;
 	String sonarOption;
 	String release;
+	String autonOption;
 
 	/**
 	 * Add your docs here.
@@ -26,14 +27,16 @@ public class CargoCustomAuton extends CommandGroup {
 	 * @param cameraOption_in camera option
 	 * @param sonarOption_in sonar option
 	 * @param release_in release option
+	 * @param autonOption_in auton option
 	 */
-	public CargoCustomAuton(String startPosition_in, String mainTarget_in, String cameraOption_in,	String sonarOption_in, String release_in) {
+	public CargoCustomAuton(String startPosition_in, String mainTarget_in, String cameraOption_in,	String sonarOption_in, String release_in, String autonOption_in) {
 
 		startPosition = startPosition_in;
 		mainTarget = mainTarget_in;
 		cameraOption = cameraOption_in;
 		sonarOption = sonarOption_in;
-		release = release_in; 
+		release = release_in;
+		autonOption = autonOption_in;
 
 		// Add Commands here:
 		// e.g. addSequential(new Command1());

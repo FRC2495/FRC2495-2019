@@ -93,6 +93,11 @@ public class Robot extends TimedRobot {
 	private String releaseSelected;
 	private SendableChooser<String> releaseChooser = new SendableChooser<>();
 
+	public static final String AUTON_OPTION_RELOAD = "Reload";
+	public static final String AUTON_OPTION_DONT_RELOAD = "Don't Reload"; 
+	private String autonOption;
+	private SendableChooser<String> autonOptionChooser = new SendableChooser<>();
+
 
 	// sensors
 	
@@ -186,6 +191,10 @@ public class Robot extends TimedRobot {
 		releaseChooser.setDefaultOption("Release", GRASPER_OPTION_RELEASE);
 		releaseChooser.addOption("Don't release", GRASPER_OPTION_DONT_RELEASE);
 		SmartDashboard.putData("Release options", releaseChooser);
+
+		releaseChooser.setDefaultOption("Reload", AUTON_OPTION_RELOAD);
+		releaseChooser.addOption("Don't Reload", AUTON_OPTION_DONT_RELOAD);
+		SmartDashboard.putData("Auton options", autonOptionChooser);		
 
 
 		// sensors
@@ -291,6 +300,9 @@ public class Robot extends TimedRobot {
 		
 		releaseSelected = releaseChooser.getSelected();
 		System.out.println("Release chosen: " + releaseSelected);
+
+		autonOption = autonOptionChooser.getSelected();
+		System.out.println("Auton option: " + autonOption);
 		
 		//At this point we should know what auto run, where we started, and where our plates are located.
 		//So we are ready for autonomousPeriodic to be called.
@@ -300,11 +312,11 @@ public class Robot extends TimedRobot {
 			case Robot.AUTON_CUSTOM:
 				switch (gamePieceSelected) {
 					case Robot.GAME_PIECE_HATCH_PANEL:
-						m_autonomousCommand = new HatchPanelCustomAuton(startPosition, mainTarget, cameraOption, sonarOption, releaseSelected);
+						m_autonomousCommand = new HatchPanelCustomAuton(startPosition, mainTarget, cameraOption, sonarOption, releaseSelected, autonOption);
 						break;
 
 					case Robot.GAME_PIECE_CARGO:
-						m_autonomousCommand = new CargoCustomAuton(startPosition, mainTarget, cameraOption, sonarOption, releaseSelected);
+						m_autonomousCommand = new CargoCustomAuton(startPosition, mainTarget, cameraOption, sonarOption, releaseSelected, autonOption);
 						break;
 					
 					default:
