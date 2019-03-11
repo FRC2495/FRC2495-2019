@@ -33,7 +33,7 @@ public class HatchPanelHab1CenterLeftToShipBay0 extends CommandGroup {
 		// arm.
 
 		// moving forward 133 in.
-		addSequential(new DrivetrainMoveDistance(133));
+		addSequential(new DrivetrainMoveDistance(AutonConstants.HAB1_CARGOSHIP_DISTANCE_BEFORE_TURN));
 
 		// vision targeting
 		addSequential (new HatchPanelDeliver());
