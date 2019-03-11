@@ -50,7 +50,7 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 	
 	public final static int TURN_USING_CAMERA_ON_TARGET_MINIMUM_COUNT = 10; //25; // number of times/iterations we need to be on target to really be on target
 
-	public final static int TURN_USING_CAMERA_STALLED_MINIMUM_COUNT = TURN_USING_CAMERA_ON_TARGET_MINIMUM_COUNT * 2 + 30; // number of times/iterations we need to be stalled to really be stalled
+	public final static int TURN_USING_CAMERA_STALLED_MINIMUM_COUNT = TURN_USING_CAMERA_ON_TARGET_MINIMUM_COUNT * 2 + 10; // number of times/iterations we need to be stalled to really be stalled
 
 	
 	// turn settings
@@ -86,7 +86,7 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 	
 	public final static int MOVE_USING_CAMERA_ON_TARGET_MINIMUM_COUNT = 10; //25; // number of times/iterations we need to be on target to really be on target
 
-	public final static int MOVE_USING_CAMERA_STALLED_MINIMUM_COUNT = MOVE_USING_CAMERA_ON_TARGET_MINIMUM_COUNT * 2 + 30; // number of times/iterations we need to be stalled to really be stalled
+	public final static int MOVE_USING_CAMERA_STALLED_MINIMUM_COUNT = MOVE_USING_CAMERA_ON_TARGET_MINIMUM_COUNT * 2 + 10; // number of times/iterations we need to be stalled to really be stalled
 
 
 	// move settings
