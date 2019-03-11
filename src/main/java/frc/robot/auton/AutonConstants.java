@@ -10,6 +10,13 @@ public class AutonConstants {
     //Distance from the center of the loading station to the long side of the field
     public static final double LOADINGSTATION_TO_LONGSIDE = 27.44;
 
+    //Distance from the center cargo bay tape to the long side of the field
+    //Shortside = 27' = 324".  Half point = 162.  Half point to center bay tape ~ 10.88" (so 162-10.88)
+    public static final double CENTERBAY_TO_LONGSIDE = 151.12;
+
+    //Distance from HAB to Cargo ship
+    public static final double HAB_TO_CARGOSHIP = 124.97;
+
     // Distance between bays
     public static final double CARGOSHIP_BAY1_TO_BAY2 = 21.75;
     public static final double CARGOSHIP_BAY1_TO_BAY3 = 43.5;
