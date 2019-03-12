@@ -69,6 +69,8 @@ public class HabElevator extends Subsystem implements IHabElevator {
 		elevator = elevator_in;
 		
 		robot = robot_in;
+
+		elevator.configFactoryDefault();
 		
 		// Mode of operation during Neutral output may be set by using the setNeutralMode() function.
 		// As of right now, there are two options when setting the neutral mode of a motor controller,

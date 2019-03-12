@@ -150,6 +150,11 @@ public class Drivetrain extends Subsystem implements PIDOutput, PIDOutput2, PIDO
 		gyro = gyro_in;	
 		robot = robot_in;
 		camera = camera_in;
+
+		masterLeft.configFactoryDefault();
+		followerLeft.configFactoryDefault();
+		masterRight.configFactoryDefault();
+		followerRight.configFactoryDefault();
 		
 		// Mode of operation during Neutral output may be set by using the setNeutralMode() function.
 		// As of right now, there are two options when setting the neutral mode of a motor controller,

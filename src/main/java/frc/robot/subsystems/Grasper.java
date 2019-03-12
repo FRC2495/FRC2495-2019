@@ -57,6 +57,9 @@ public class Grasper extends Subsystem implements IGrasper{
 		grasperRight = grasperRight_in;
 		
 		robot = robot_in;
+
+		grasperLeft.configFactoryDefault();
+		grasperRight.configFactoryDefault();
 		
 		// Mode of operation during Neutral output may be set by using the setNeutralMode() function.
 		// As of right now, there are two options when setting the neutral mode of a motor controller,

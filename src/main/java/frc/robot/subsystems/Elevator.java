@@ -71,6 +71,8 @@ public class Elevator extends Subsystem implements IElevator {
 		elevator = elevator_in;
 		
 		robot = robot_in;
+
+		elevator.configFactoryDefault();
 		
 		// Mode of operation during Neutral output may be set by using the setNeutralMode() function.
 		// As of right now, there are two options when setting the neutral mode of a motor controller,
