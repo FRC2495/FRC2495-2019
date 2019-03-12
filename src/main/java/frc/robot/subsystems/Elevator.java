@@ -26,7 +26,9 @@ public class Elevator extends Subsystem implements IElevator {
 	
 	public static final double GEAR_RATIO = 45.0; // TODO change if needed
 	
-	public static final int LENGTH_OF_TRAVEL_INCHES = 52; // TODO set proper value
+	public static final int LENGTH_OF_TRAVEL_INCHES = 52; // TODO set proper value. IN REALITY THIS SHOULD CORRESPOND TO 56 INCHES PROVIDED THE ELEVATOR CAN HANDLE IT
+
+	public static final int PLUS_OFFSET_INCHES = 6; // TODO set proper value
 	
 	static final double VIRTUAL_HOME_OFFSET_INCHES = 0.1; // position of virtual home compared to physical home
 	
@@ -185,6 +187,20 @@ public class Elevator extends Subsystem implements IElevator {
 		onTargetCount = 0;
 	}
 
+	public void moveUpPlus() {
+		
+		//setPIDParameters();
+		System.out.println("Moving Up Plus");
+		setNominalAndPeakOutputs(MAX_PCT_OUTPUT);
+
+		tac = +convertInchesToRev(LENGTH_OF_TRAVEL_INCHES + PLUS_OFFSET_INCHES) * TICKS_PER_REVOLUTION;
+		elevator.set(ControlMode.Position,tac);
+		
+		isMoving = true;
+		isMovingUp = true;
+		onTargetCount = 0;
+	}
+
 	public void moveMidway() {
 		
 		//setPIDParameters();
@@ -204,7 +220,28 @@ public class Elevator extends Subsystem implements IElevator {
 		isMoving = true;
 		isMovingUp = true;
 		onTargetCount = 0;
-	}	
+	}
+	
+	public void moveMidwayPlus() {
+		
+		//setPIDParameters();
+		System.out.println("Moving Midway Plus");
+		if (isDown())
+		{
+			setNominalAndPeakOutputs(MAX_PCT_OUTPUT);
+		}
+		else
+		{
+			setNominalAndPeakOutputs(REDUCED_PCT_OUTPUT);
+		}
+
+		tac = +convertInchesToRev(LENGTH_OF_TRAVEL_INCHES / 2 + PLUS_OFFSET_INCHES) * TICKS_PER_REVOLUTION;
+		elevator.set(ControlMode.Position,tac);
+		
+		isMoving = true;
+		isMovingUp = true;
+		onTargetCount = 0;
+	}
 	
 	public void moveDown() {
 		
@@ -217,6 +254,27 @@ public class Elevator extends Subsystem implements IElevator {
 		
 		isMoving = true;
 		isMovingUp = false;
+		onTargetCount = 0;
+	}
+
+	public void moveDownPlus() { // from a control point of view down plus is closer to midway than down
+		
+		//setPIDParameters();
+		System.out.println("Moving Down Plus");
+		if (isDown())
+		{
+			setNominalAndPeakOutputs(MAX_PCT_OUTPUT); // we may still need to go up
+		}
+		else
+		{
+			setNominalAndPeakOutputs(REDUCED_PCT_OUTPUT); //  we have a margin so reduced pct output should be small enough
+		}
+
+		tac = +convertInchesToRev(PLUS_OFFSET_INCHES)* TICKS_PER_REVOLUTION;
+		elevator.set(ControlMode.Position,tac);
+		
+		isMoving = true;
+		isMovingUp = true; // we need to stay there
 		onTargetCount = 0;
 	}
 

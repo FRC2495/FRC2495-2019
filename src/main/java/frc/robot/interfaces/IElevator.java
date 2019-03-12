@@ -11,10 +11,16 @@ public interface IElevator {
 	public boolean tripleCheckMove();
 	
 	public void moveUp();
+
+	public void moveUpPlus();
 	
 	public void moveMidway();
+
+	public void moveMidwayPlus();
 	
 	public void moveDown();
+
+	public void moveDownPlus();
 
 	public double getPosition();
 
