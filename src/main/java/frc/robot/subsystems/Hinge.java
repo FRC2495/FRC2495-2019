@@ -28,8 +28,8 @@ public class Hinge extends Subsystem implements IHinge {
 	
 	static final double VIRTUAL_HOME_OFFSET_TICKS = 1000; // position of virtual home compared to physical home
 	
-	static final double HOMING_PCT_OUTPUT = 0.2; // ~homing speed
-	static final double MAX_PCT_OUTPUT = 0.4; // ~full speed
+	static final double HOMING_PCT_OUTPUT = 0.4; // ~homing speed
+	static final double MAX_PCT_OUTPUT = 0.8; // ~full speed
 	
 	static final int TALON_TIMEOUT_MS = 10;
 	public static final int TICKS_PER_REVOLUTION = 4096;
