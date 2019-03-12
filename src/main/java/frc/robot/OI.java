@@ -125,26 +125,31 @@ public class OI {
 		gamepadRT.whenPressed(new HingeDownWithEjectorRetracted());
 
 		gamepadLT = new GamepadAxis(gamepad, ControllerBase.GamepadAxes.LT);
-		gamepadLT.whenPressed(new ElevatorMoveDown());
+		gamepadLT.whenPressed(new ElevatorMoveDown()); // always fully down regardless of hinge position
+		//gamepadLT.whenPressed(new IfCargoPotentiallyLoaded(new ElevatorMoveDownPlus(),new ElevatorMoveDown()));
 
 		gamepadLYp = new GamepadAxis(gamepad, ControllerBase.GamepadAxes.LY);
-		gamepadLYp.whenPressed(new ElevatorMoveUp());
+		//gamepadLYp.whenPressed(new ElevatorMoveUp());
+		gamepadLYp.whenPressed(new IfCargoPotentiallyLoaded(new ElevatorMoveUp/*Plus*/(),new ElevatorMoveUp()));
 
 		gamepadLYn = new GamepadAxis(gamepad, ControllerBase.GamepadAxes.LY,false);
-		gamepadLYn.whenPressed(new ElevatorMoveUp());
+		//gamepadLYn.whenPressed(new ElevatorMoveUp());
+		gamepadLYn.whenPressed(new IfCargoPotentiallyLoaded(new ElevatorMoveUp/*Plus*/(),new ElevatorMoveUp()));
 
 		gamepadLXp = new GamepadAxis(gamepad, ControllerBase.GamepadAxes.LX);
-		gamepadLXp.whenPressed(new ElevatorMoveUp());
+		//gamepadLXp.whenPressed(new ElevatorMoveUp());
+		gamepadLXp.whenPressed(new IfCargoPotentiallyLoaded(new ElevatorMoveUp/*Plus*/(),new ElevatorMoveUp()));
 
 		gamepadLXn = new GamepadAxis(gamepad, ControllerBase.GamepadAxes.LX,false);
-		gamepadLXn.whenPressed(new ElevatorMoveUp());
+		//gamepadLXn.whenPressed(new ElevatorMoveUp());
+		gamepadLXn.whenPressed(new IfCargoPotentiallyLoaded(new ElevatorMoveUp/*Plus*/(),new ElevatorMoveUp()));
 		
 		
 		gamepadRS = new JoystickButton(gamepad, ControllerBase.GamepadButtons.RS);
 		//gamepadRS.whenPressed();
 
 		gamepadLS = new JoystickButton(gamepad, ControllerBase.GamepadButtons.LS);
-		//gamepadLS.whenPressed();
+		gamepadLS.whenPressed(new ElevatorMoveDownPlus()); // This is so that the down button always goes down
 
 		gamePadStart = new JoystickButton(gamepad, ControllerBase.GamepadButtons.START);
 		gamePadStart.whenPressed(new HingeHome());
@@ -159,7 +164,8 @@ public class OI {
 		gamepadRB.whenPressed(new HingeMoveMidway());
 
 		gamepadLB = new JoystickButton(gamepad, ControllerBase.GamepadButtons.LB);
-		gamepadLB.whenPressed(new ElevatorMoveMidway());
+		//gamepadLB.whenPressed(new ElevatorMoveMidway());
+		gamepadLB.whenPressed(new IfCargoPotentiallyLoaded(new ElevatorMoveMidwayPlus(),new ElevatorMoveMidway()));
 
 		gamepadY = new JoystickButton(gamepad, ControllerBase.GamepadButtons.Y);
 		//gamepadY.whileHeld(new GamepadRumble(true)); // to demonstrate whileHeld()/whenReleased()
@@ -191,6 +197,7 @@ public class OI {
 
 		joyRightBtn10 = new JoystickButton(joyRight, ControllerBase.JoystickButtons.BTN10);
 		joyRightBtn10.whenPressed(new CargoDeliverRocket());
+		//joyRightBtn10.whenPressed(new CargoDeliverShip());
 
 		joyRightBtn9 = new JoystickButton(joyRight, ControllerBase.JoystickButtons.BTN9);
 		joyRightBtn9.whenPressed(new HatchPanelDeliver());
