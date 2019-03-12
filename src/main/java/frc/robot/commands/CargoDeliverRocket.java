@@ -47,15 +47,15 @@ public class CargoDeliverRocket extends CommandGroup {
 			break;
 
 			case 1:
-			//addSequential(new ElevatorMoveDown()); // TODO restore this line
+			addSequential(new ElevatorMoveDownPlus());
 			break;
 
 			case 2:
-			addSequential(new ElevatorMoveMidway());
+			addSequential(new ElevatorMoveMidwayPlus());
 			break;
 
 			case 3:
-			addSequential(new ElevatorMoveUp());
+			addSequential(new ElevatorMoveUp/*Plus*/()); // TODO Add Plus after making sure max height is properly calibrated
 			break;
 		}
 
@@ -67,7 +67,7 @@ public class CargoDeliverRocket extends CommandGroup {
 		addParallel(new HingeMoveUp());  
 		addSequential(new DrivetrainMoveDistance(-24 + LimelightCamera.OFFSET_CAMERA_PORT_INCHES-LimelightCamera.OFFSET_CAMERA_HATCH_INCHES));
 	
-		//addSequential(new ElevatorMoveDown()); // TODO restore this line
+		addSequential(new ElevatorMoveDown());
 	}
 
 	//Overloaded Constructor defaulted to level 1

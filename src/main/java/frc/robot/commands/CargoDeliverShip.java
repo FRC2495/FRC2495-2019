@@ -41,7 +41,7 @@ public class CargoDeliverShip extends CommandGroup {
 		addSequential(new DrivetrainDriveUsingCamera(LimelightCamera.OFFSET_CAMERA_PORT_INCHES + MAGIC_DISTANCE_INCHES));
 		addSequential(new DrivetrainTurnUsingCameraPidController());
 		
-		addSequential(new ElevatorMoveMidway());
+		addSequential(new ElevatorMoveMidway()); // TODO check if this is the ideal position or if MidwayPlus would be better (or even just more logical)
 
 		addSequential(new DrivetrainMoveDistanceWithStallDetection(MAGIC_DISTANCE_INCHES + 12)); // moves forward a little
 		//addSequential(new DrivetrainMoveDistanceWithStallDetection(12)); // TODO consider removing
