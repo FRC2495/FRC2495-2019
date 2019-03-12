@@ -9,11 +9,11 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class HingeDownWithEjectorUp extends CommandGroup {
+public class HingeDownWithEjectorRetracted extends CommandGroup {
 	/**
 	 * Add your docs here.
 	 */
-	public HingeDownWithEjectorUp() {
+	public HingeDownWithEjectorRetracted() {
 		// Add Commands here:
 		// e.g. addSequential(new Command1());
 		// addSequential(new Command2());

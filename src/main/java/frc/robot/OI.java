@@ -122,7 +122,7 @@ public class OI {
 
 		gamepadRT = new GamepadAxis(gamepad, ControllerBase.GamepadAxes.RT);
 		//gamepadRT.whenPressed(new HingeMoveDown());
-		gamepadRT.whenPressed(new HingeDownWithEjectorUp());
+		gamepadRT.whenPressed(new HingeDownWithEjectorRetracted());
 
 		gamepadLT = new GamepadAxis(gamepad, ControllerBase.GamepadAxes.LT);
 		gamepadLT.whenPressed(new ElevatorMoveDown());
