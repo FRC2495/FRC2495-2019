@@ -8,7 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import edu.wpi.first.wpilibj.command.TimedCommand;
+//import edu.wpi.first.wpilibj.command.TimedCommand;
 
 import frc.robot.sensors.*;
 
@@ -75,7 +75,7 @@ public class HatchPanelDeliver extends CommandGroup {
 		//addParallel(new ElevatorMoveDown()); // TODO restore this line
 
 		addSequential(new EjectorExtend());
-		addSequential(new HookSwitchUp());
+		addSequential(new HookSwitchUp()); // forces hook up in case it somehow did not automatically get back up
 	}
 
 	public HatchPanelDeliver(){
