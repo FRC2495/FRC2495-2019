@@ -75,6 +75,7 @@ public class HatchPanelDeliver extends CommandGroup {
 		//addParallel(new ElevatorMoveDown()); // TODO restore this line
 
 		addSequential(new EjectorExtend());
+		addSequential(new HookSwitchUp());
 	}
 
 	public HatchPanelDeliver(){
