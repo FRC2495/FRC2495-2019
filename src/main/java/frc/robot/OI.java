@@ -130,19 +130,19 @@ public class OI {
 
 		gamepadLYp = new GamepadAxis(gamepad, ControllerBase.GamepadAxes.LY);
 		//gamepadLYp.whenPressed(new ElevatorMoveUp());
-		gamepadLYp.whenPressed(new IfCargoPotentiallyLoaded(new ElevatorMoveUp/*Plus*/(),new ElevatorMoveUp()));
+		gamepadLYp.whenPressed(new IfCargoPotentiallyLoaded(new ElevatorMoveUpPlus(),new ElevatorMoveUp()));
 
 		gamepadLYn = new GamepadAxis(gamepad, ControllerBase.GamepadAxes.LY,false);
 		//gamepadLYn.whenPressed(new ElevatorMoveUp());
-		gamepadLYn.whenPressed(new IfCargoPotentiallyLoaded(new ElevatorMoveUp/*Plus*/(),new ElevatorMoveUp()));
+		gamepadLYn.whenPressed(new IfCargoPotentiallyLoaded(new ElevatorMoveUpPlus(),new ElevatorMoveUp()));
 
 		gamepadLXp = new GamepadAxis(gamepad, ControllerBase.GamepadAxes.LX);
 		//gamepadLXp.whenPressed(new ElevatorMoveUp());
-		gamepadLXp.whenPressed(new IfCargoPotentiallyLoaded(new ElevatorMoveUp/*Plus*/(),new ElevatorMoveUp()));
+		gamepadLXp.whenPressed(new IfCargoPotentiallyLoaded(new ElevatorMoveUpPlus(),new ElevatorMoveUp()));
 
 		gamepadLXn = new GamepadAxis(gamepad, ControllerBase.GamepadAxes.LX,false);
 		//gamepadLXn.whenPressed(new ElevatorMoveUp());
-		gamepadLXn.whenPressed(new IfCargoPotentiallyLoaded(new ElevatorMoveUp/*Plus*/(),new ElevatorMoveUp()));
+		gamepadLXn.whenPressed(new IfCargoPotentiallyLoaded(new ElevatorMoveUpPlus(),new ElevatorMoveUp()));
 		
 		
 		gamepadRS = new JoystickButton(gamepad, ControllerBase.GamepadButtons.RS);

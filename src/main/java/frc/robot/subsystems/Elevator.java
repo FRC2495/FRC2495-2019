@@ -26,9 +26,9 @@ public class Elevator extends Subsystem implements IElevator {
 	
 	public static final double GEAR_RATIO = 45.0; // TODO change if needed
 	
-	public static final int LENGTH_OF_TRAVEL_INCHES = 52; // TODO set proper value. IN REALITY THIS SHOULD CORRESPOND TO 56 INCHES PROVIDED THE ELEVATOR CAN HANDLE IT
-
 	public static final int PLUS_OFFSET_INCHES = 6; // TODO set proper value
+
+	public static final int LENGTH_OF_TRAVEL_INCHES = 52 - PLUS_OFFSET_INCHES; // TODO set proper value. IN REALITY THIS SHOULD CORRESPOND TO 56 INCHES PROVIDED THE ELEVATOR CAN HANDLE IT
 	
 	static final double VIRTUAL_HOME_OFFSET_INCHES = 0.1; // position of virtual home compared to physical home
 	

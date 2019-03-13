@@ -55,7 +55,7 @@ public class CargoDeliverRocket extends CommandGroup {
 			break;
 
 			case 3:
-			addSequential(new ElevatorMoveUp/*Plus*/()); // TODO Add Plus after making sure max height is properly calibrated
+			addSequential(new ElevatorMoveUpPlus()); // TODO Make sure max height is properly calibrated
 			break;
 		}
 
