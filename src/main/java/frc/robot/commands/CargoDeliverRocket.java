@@ -61,8 +61,6 @@ public class CargoDeliverRocket extends CommandGroup {
 
 		addSequential(new DrivetrainMoveDistanceWithStallDetection(MAGIC_DISTANCE_INCHES));
 
-		//addSequential(new DrivetrainMoveDistanceWithStallDetection(12)); // TODO consider removing
-		
 		addSequential(new GrasperTimedRelease(2));
 		addParallel(new HingeMoveUp());  
 		addSequential(new DrivetrainMoveDistance(-24 + LimelightCamera.OFFSET_CAMERA_PORT_INCHES-LimelightCamera.OFFSET_CAMERA_HATCH_INCHES));

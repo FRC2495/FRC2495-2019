@@ -50,7 +50,7 @@ public class HatchPanelDeliver extends CommandGroup {
 			break;
 
 			case 1:
-			//addSequential(new ElevatorMoveDown()); // TODO restore this line
+			addSequential(new ElevatorMoveDown());
 			break;
 
 			case 2:
@@ -68,11 +68,9 @@ public class HatchPanelDeliver extends CommandGroup {
 
 		addSequential(new DrivetrainMoveDistanceWithStallDetection(MAGIC_DISTANCE_INCHES + 12));
 
-		//addSequential(new DrivetrainMoveDistanceWithStallDetection(12)); // TODO consider removing
-
 		addParallel(new HookTimedSwitchDown(2.0));
 		addSequential(new DrivetrainMoveDistance(-24));
-		//addParallel(new ElevatorMoveDown()); // TODO restore this line
+		addParallel(new ElevatorMoveDown());
 
 		addSequential(new EjectorExtend());
 		addSequential(new HookSwitchUp()); // forces hook up in case it somehow did not automatically get back up

@@ -44,7 +44,6 @@ public class CargoDeliverShip extends CommandGroup {
 		addSequential(new ElevatorMoveMidwayPlus()); // TODO check if this is the ideal position or if something else would be better
 
 		addSequential(new DrivetrainMoveDistanceWithStallDetection(MAGIC_DISTANCE_INCHES + 12)); // moves forward a little
-		//addSequential(new DrivetrainMoveDistanceWithStallDetection(12)); // TODO consider removing
 
 		addSequential(new GrasperTimedRelease(2));
 		addParallel(new HingeMoveUp());  
