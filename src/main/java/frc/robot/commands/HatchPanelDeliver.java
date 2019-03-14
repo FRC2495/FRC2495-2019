@@ -36,8 +36,6 @@ public class HatchPanelDeliver extends CommandGroup {
 		// a CommandGroup containing them would require both the chassis and the
 		// arm.
 
-		addSequential(new EjectorRetract());
-
 		//addSequential(new DrivetrainTurnUsingCameraPidController());
 		//addSequential(new DrivetrainMoveUsingCameraPidControllerWithStallDetection(LimelightCamera.OFFSET_CAMERA_HATCH_INCHES));
 		final int MAGIC_DISTANCE_INCHES = 20;
@@ -50,7 +48,7 @@ public class HatchPanelDeliver extends CommandGroup {
 			break;
 
 			case 1:
-			addSequential(new ElevatorMoveDown());
+			//addSequential(new ElevatorMoveDown()); // this would be a failure point - we don't do it!
 			break;
 
 			case 2:
@@ -66,13 +64,19 @@ public class HatchPanelDeliver extends CommandGroup {
 
 		//addSequential(new TimedCommand(0.5));
 
+		addSequential(new EjectorRetract()); // we retract only after moving
+
 		addSequential(new DrivetrainMoveDistanceWithStallDetection(MAGIC_DISTANCE_INCHES + 12));
 
 		addParallel(new HookTimedSwitchDown(2.0));
 		addSequential(new DrivetrainMoveDistance(-24));
-		addParallel(new ElevatorMoveDown());
 
-		addSequential(new EjectorExtend());
+		addSequential(new EjectorExtend()); // we need to extend back before moving elevator
+
+		if (level == 2 ||  level ==3) {
+			addParallel(new ElevatorMoveDown()); // we only move down if needed
+		}
+
 		addSequential(new HookSwitchUp()); // forces hook up in case it somehow did not automatically get back up
 	}
 
