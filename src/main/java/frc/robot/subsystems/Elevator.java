@@ -51,7 +51,7 @@ public class Elevator extends Subsystem implements IElevator {
 	static final double MOVE_DERIVATIVE_GAIN = 0.0;
 	
 	static final int TALON_TICK_THRESH = 128;
-	static final double TICK_THRESH = 512;	
+	static final double TICK_THRESH = 1024;	
 	
 	private final static int MOVE_ON_TARGET_MINIMUM_COUNT = 10; // number of times/iterations we need to be on target to really be on target
 

@@ -302,7 +302,7 @@ public class Hinge extends Subsystem implements IHinge {
 			
 			setNominalAndPeakOutputs(MAX_PCT_OUTPUT);
 
-			tac = 0;
+			tac = VIRTUAL_HOME_OFFSET_TICKS; // because we cannot reach 0 reliably
 			hinge.set(ControlMode.Position,tac);
 			
 			isMoving = true;
