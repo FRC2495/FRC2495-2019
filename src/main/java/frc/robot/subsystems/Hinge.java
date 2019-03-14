@@ -154,8 +154,8 @@ public class Hinge extends Subsystem implements IHinge {
 		hinge.setSelectedSensorPosition(0, PRIMARY_PID_LOOP, TALON_TIMEOUT_MS); // we set the current position to zero
 		
 		setPIDParameters(); // we switch to position mode
-		tac = +VIRTUAL_HOME_OFFSET_TICKS;
-		hinge.set(ControlMode.Position,tac); // we move to virtual zero
+		//tac = +VIRTUAL_HOME_OFFSET_TICKS;
+		//hinge.set(ControlMode.Position,tac); // we move to virtual zero
 		
 		isHomingPart2 = true;
 		onTargetCount = 0;
@@ -231,7 +231,9 @@ public class Hinge extends Subsystem implements IHinge {
 
 	// Private. Checks if homing step 2 is done.
 	private boolean isReallyHomingPart2() {
-		double error = hinge.getClosedLoopError(PRIMARY_PID_LOOP);
+		return false;
+
+		/*double error = hinge.getClosedLoopError(PRIMARY_PID_LOOP);
 		
 		boolean isOnTarget = (Math.abs(error) < TICK_THRESH);
 		
@@ -251,7 +253,7 @@ public class Hinge extends Subsystem implements IHinge {
 			return false;
 		}
 			
-		return true;
+		return true;*/
 	}
 	
 	// This method should be called to assess the progress of a move

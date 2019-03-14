@@ -235,7 +235,7 @@ public class Elevator extends Subsystem implements IElevator {
 			setNominalAndPeakOutputs(REDUCED_PCT_OUTPUT);
 		}
 
-		tac = +convertInchesToRev(LENGTH_OF_TRAVEL_INCHES / 2 + PLUS_OFFSET_INCHES) * TICKS_PER_REVOLUTION;
+		tac = +convertInchesToRev(LENGTH_OF_TRAVEL_INCHES / 2 + PLUS_OFFSET_INCHES + 1) * TICKS_PER_REVOLUTION;
 		elevator.set(ControlMode.Position,tac);
 		
 		isMoving = true;
@@ -270,7 +270,7 @@ public class Elevator extends Subsystem implements IElevator {
 			setNominalAndPeakOutputs(REDUCED_PCT_OUTPUT); //  we have a margin so reduced pct output should be small enough
 		}
 
-		tac = +convertInchesToRev(PLUS_OFFSET_INCHES)* TICKS_PER_REVOLUTION;
+		tac = +convertInchesToRev(PLUS_OFFSET_INCHES + 2)* TICKS_PER_REVOLUTION;
 		elevator.set(ControlMode.Position,tac);
 		
 		isMoving = true;
