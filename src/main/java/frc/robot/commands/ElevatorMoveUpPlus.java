@@ -12,6 +12,7 @@
 package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.interfaces.IEjector.Position;;
 
 /**
  *
@@ -38,6 +39,7 @@ public class ElevatorMoveUpPlus extends Command {
 	@Override
 	protected void initialize() {
 		System.out.println("ElevatorMoveUpPlus: initialize");
+		Robot.ejector.setPosition(Position.EXTENDED);
 		Robot.elevatorControl.moveUpPlus();
 	}
 
