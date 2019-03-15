@@ -39,7 +39,9 @@ public class ElevatorMoveMidway extends Command {
 	@Override
 	protected void initialize() {
 		System.out.println("ElevatorMoveMidway: initialize");
-		Robot.ejector.setPosition(Position.EXTENDED);
+		if (Robot.hingeControl.isUp()) {
+			Robot.ejector.setPosition(Position.EXTENDED);
+		}
 		Robot.elevatorControl.moveMidway();
 	}
 

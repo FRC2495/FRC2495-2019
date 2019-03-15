@@ -39,7 +39,9 @@ public class ElevatorMoveUp extends Command {
 	@Override
 	protected void initialize() {
 		System.out.println("ElevatorMoveUp: initialize");
-		Robot.ejector.setPosition(Position.EXTENDED);
+		if (Robot.hingeControl.isUp()) {
+			Robot.ejector.setPosition(Position.EXTENDED);
+		}
 		Robot.elevatorControl.moveUp();
 	}
 
