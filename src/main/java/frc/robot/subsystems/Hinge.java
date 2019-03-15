@@ -9,7 +9,7 @@ import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.ControlMode;
-//import com.ctre.phoenix.ParamEnum;
+import com.ctre.phoenix.ParamEnum;
 
 import frc.robot.interfaces.*;
 //import frc.robot.Ports;
@@ -109,8 +109,8 @@ public class Hinge extends Subsystem implements IHinge {
 		hinge.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,	PRIMARY_PID_LOOP, TALON_TIMEOUT_MS);
 
 		// this will reset the encoder automatically when at or past the reverse limit sensor
-		//hinge.configSetParameter(ParamEnum.eClearPositionOnLimitR, 1, 0, 0, TALON_TIMEOUT_MS);
-		//hinge.configSetParameter(ParamEnum.eClearPositionOnLimitF, 0, 0, 0, TALON_TIMEOUT_MS);		
+		hinge.configSetParameter(ParamEnum.eClearPositionOnLimitR, 1, 0, 0, TALON_TIMEOUT_MS);
+		hinge.configSetParameter(ParamEnum.eClearPositionOnLimitF, 0, 0, 0, TALON_TIMEOUT_MS);		
 		
 		isHomingPart1 = false;
 		isHomingPart2 = false;
@@ -159,8 +159,8 @@ public class Hinge extends Subsystem implements IHinge {
 		hinge.setSelectedSensorPosition(0, PRIMARY_PID_LOOP, TALON_TIMEOUT_MS); // we set the current position to zero
 		
 		setPIDParameters(); // we switch to position mode
-		//tac = +VIRTUAL_HOME_OFFSET_TICKS;
-		//hinge.set(ControlMode.Position,tac); // we move to virtual zero
+		tac = +VIRTUAL_HOME_OFFSET_TICKS;
+		hinge.set(ControlMode.Position,tac); // we move to virtual zero
 		
 		isHomingPart2 = true;
 		onTargetCount = 0;
@@ -236,9 +236,8 @@ public class Hinge extends Subsystem implements IHinge {
 
 	// Private. Checks if homing step 2 is done.
 	private boolean isReallyHomingPart2() {
-		return false;
 
-		/*double error = hinge.getClosedLoopError(PRIMARY_PID_LOOP);
+		double error = hinge.getClosedLoopError(PRIMARY_PID_LOOP);
 		
 		boolean isOnTarget = (Math.abs(error) < TICK_THRESH);
 		
@@ -258,7 +257,7 @@ public class Hinge extends Subsystem implements IHinge {
 			return false;
 		}
 			
-		return true;*/
+		return true;
 	}
 	
 	// This method should be called to assess the progress of a move
@@ -307,7 +306,7 @@ public class Hinge extends Subsystem implements IHinge {
 			
 			setNominalAndPeakOutputs(MAX_PCT_OUTPUT);
 
-			tac = VIRTUAL_HOME_OFFSET_TICKS; // because we cannot reach 0 reliably
+			tac = 0; //VIRTUAL_HOME_OFFSET_TICKS; // because we cannot reach 0 reliably
 			hinge.set(ControlMode.Position,tac);
 			
 			isMoving = true;

@@ -59,7 +59,7 @@ public class CargoDeliverRocket extends CommandGroup {
 			break;
 		}
 
-		addSequential(new DrivetrainMoveDistanceWithStallDetection(MAGIC_DISTANCE_INCHES));
+		addSequential(new DrivetrainMoveDistanceWithStallDetection(MAGIC_DISTANCE_INCHES+3));
 
 		addSequential(new GrasperTimedRelease(2));
 		addParallel(new HingeMoveUp());  
