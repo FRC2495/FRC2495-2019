@@ -40,7 +40,7 @@ public class HatchPanelHab1CenterRightToShipBay0 extends CommandGroup {
 		double bayToLoadingDistance;
 
 		// moving forward a standard distance before vision targeting
-		addSequential(new DrivetrainMoveDistance(AutonConstants.HAB1_CARGOSHIP_DISTANCE_BEFORE_TURN));
+		addSequential(new DrivetrainMoveDistance(AutonConstants.HAB1_CARGOSHIP_DISTANCE_BEFORE_TURN + 30));
 
 		// vision targeting
 		addSequential (new HatchPanelDeliver());
