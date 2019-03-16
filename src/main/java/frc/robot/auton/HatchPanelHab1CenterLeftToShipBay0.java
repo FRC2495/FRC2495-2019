@@ -34,7 +34,6 @@ public class HatchPanelHab1CenterLeftToShipBay0 extends CommandGroup {
 		// arm.
 
 		final int TURN_DIRECTION = 1;  //When you are on Left side this is 1 and its -1 when on right side.
-		final int BAY_TO_LOADING_ADJUSTMENT = -30; //driving diagonaly from cargo ship towards loadingstation, if it is overshoots or under, use this to make adjustments
 		double rise;
 		double run;
 		int bayToLoadingTurnAngle;
@@ -60,7 +59,7 @@ public class HatchPanelHab1CenterLeftToShipBay0 extends CommandGroup {
 
 			//Drive torwards loading station.  This is the hypothenuse of the triangle between hab2line, bay1 and crossline 
 			bayToLoadingDistance = Math.sqrt(Math.pow(rise,2)+Math.pow(run,2));
-			addSequential(new DrivetrainMoveDistance(bayToLoadingDistance+BAY_TO_LOADING_ADJUSTMENT));
+			addSequential(new DrivetrainMoveDistance(bayToLoadingDistance+AutonConstants.BAY_TO_LOADING_ADJUSTMENT));
 
 			//Turn and face the loading station
 			addSequential(new DrivetrainTurnAngleUsingPidController(-TURN_DIRECTION*(bayToLoadingTurnAngle)));

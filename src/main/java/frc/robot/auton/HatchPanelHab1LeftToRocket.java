@@ -32,7 +32,34 @@ public class HatchPanelHab1LeftToRocket extends CommandGroup {
 		// a CommandGroup containing them would require both the chassis and the
 		// arm.
 
-		// Move forward 119 in.  (Started on LS) 
+		final int TURN_DIRECTION = 1;  //When you are on Left side this is 1 and its -1 when on right side.
+
+		//Robot is at an angle perpendicular to the long side. 
+		//This is angle the rocket ship hatch face to the perpendicular line is 61deg.  
+		//So turning 61 deg towards the long side will make it perpendicular and then 90 deg turn in the same direction will face loading station.
+		//Make adjustment if necessary as the robot will not be facing directly to the loading station.
+		//you may want to turn very few deg less if vision target has trouble reaching the loading station.
+		int bayToLoadingTurnAngle = 151;  
+
+		double bayToLoadingDistance = 100; //Move to AutonConstant if needed
+
+		//Position robot diagonally facing the rocket near side hatch.  Rough aim at the target
+		// moving straight a standard distance before vision targeting
+		addSequential(new DrivetrainMoveDistance(AutonConstants.HAB1_CARGOSHIP_DISTANCE_BEFORE_TURN));
+
+		// vision targeting
+		addSequential (new HatchPanelDeliver());
+
+		// Turn towards loading bay.     
+		addSequential(new DrivetrainTurnAngleUsingPidController(-TURN_DIRECTION*(bayToLoadingTurnAngle)));
+
+		//go towards loading station for an arbitrary distance to be near enough.
+		addSequential(new DrivetrainMoveDistance(bayToLoadingDistance));
+
+		//Calls the common command LeftToRocket for the rest of the tasks
+		addSequential(new LeftToRocket());		
+
+/*		// Move forward 119 in.  (Started on LS) 
 		addSequential(new DrivetrainMoveDistance(119));
 
 		// Turn 90 degrees to the left 
@@ -46,5 +73,6 @@ public class HatchPanelHab1LeftToRocket extends CommandGroup {
 
 		// Calls the common command LeftToRocket 
 		addSequential(new LeftToRocket());		
+	*/
 	}
 }
