@@ -300,7 +300,9 @@ public class Hinge extends Subsystem implements IHinge {
 	
 	public void moveUp() {
 		
-		if (hasBeenHomed) {
+		// since we reset encoder on limit sensor it is always ok to go to zero.
+
+		//if (hasBeenHomed) {
 			//setPIDParameters();
 			System.out.println("Moving Up");
 			
@@ -312,9 +314,11 @@ public class Hinge extends Subsystem implements IHinge {
 			isMoving = true;
 			isMovingUp = true;
 			onTargetCount = 0;
-		} else {
-			System.out.println("You have not been home, your mother must be worried sick");
-		}
+		//} else {
+		//	System.out.println("You have not been home, your mother must be worried sick");
+		//}
+
+		hasBeenHomed = true; // we consider that we homed if we went up all the way at least once.
 	}
 
 	public void moveMidway() {
