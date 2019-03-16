@@ -187,7 +187,7 @@ public class HabElevator extends Subsystem implements IHabElevator {
 		setNominalAndPeakOutputs(MAX_PCT_OUTPUT);
 
 		//tac = +convertInchesToRev(LENGTH_OF_TRAVEL_INCHES) * TICKS_PER_REVOLUTION;
-		tac = -65000;
+		tac = -69000;
 		elevator.set(ControlMode.Position,tac);
 		
 		isMoving = true;

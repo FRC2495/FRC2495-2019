@@ -14,7 +14,7 @@ public class SuckerFastSuck extends CommandGroup {
 
 	final double TIMEOUT_INHALE_FAST_S = 0.2;
 	final double TIMEOUT_EXHALE_FAST_S =  0.2;  
-	final int FAST_ITERATIONS = 15;
+	final int FAST_ITERATIONS = 30;
 
 	/**
 	 * Add your docs here.
