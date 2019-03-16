@@ -13,6 +13,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import frc.robot.interfaces.*;
 import frc.robot.Robot;
+import frc.robot.Ports;
 
 
 public class HabElevator extends Subsystem implements IHabElevator {
@@ -108,6 +109,20 @@ public class HabElevator extends Subsystem implements IHabElevator {
 		//elevator.configSetParameter(ParamEnum.eClearPositionOnLimitR, 1, 0, 0, TALON_TIMEOUT_MS);
 		//elevator.configSetParameter(ParamEnum.eClearPositionOnLimitF, 0, 0, 0, TALON_TIMEOUT_MS);
 
+
+		// begin booster
+		WPI_TalonSRX booster = new WPI_TalonSRX(Ports.CAN.WINCH);
+
+		booster.configFactoryDefault();
+
+		booster.setNeutralMode(NeutralMode.Coast);
+
+		booster.setInverted(true);
+
+		booster.follow(elevator);
+		// end booster
+
+
 		isMoving = false;
 		isMovingUp = false;
 
@@ -171,7 +186,8 @@ public class HabElevator extends Subsystem implements IHabElevator {
 		System.out.println("Moving Up");
 		setNominalAndPeakOutputs(MAX_PCT_OUTPUT);
 
-		tac = +convertInchesToRev(LENGTH_OF_TRAVEL_INCHES) * TICKS_PER_REVOLUTION;
+		//tac = +convertInchesToRev(LENGTH_OF_TRAVEL_INCHES) * TICKS_PER_REVOLUTION;
+		tac = -60000;
 		elevator.set(ControlMode.Position,tac);
 		
 		isMoving = true;
@@ -191,7 +207,8 @@ public class HabElevator extends Subsystem implements IHabElevator {
 			setNominalAndPeakOutputs(REDUCED_PCT_OUTPUT);
 		}
 
-		tac = +convertInchesToRev(LENGTH_OF_TRAVEL_INCHES / 2) * TICKS_PER_REVOLUTION;
+		//tac = +convertInchesToRev(LENGTH_OF_TRAVEL_INCHES / 2) * TICKS_PER_REVOLUTION;
+		tac = -30000;
 		elevator.set(ControlMode.Position,tac);
 		
 		isMoving = true;
@@ -204,7 +221,8 @@ public class HabElevator extends Subsystem implements IHabElevator {
 		System.out.println("Moving Down");
 		setNominalAndPeakOutputs(SUPER_REDUCED_PCT_OUTPUT);
 
-		tac = +convertInchesToRev(0)* TICKS_PER_REVOLUTION;
+		//tac = +convertInchesToRev(0)* TICKS_PER_REVOLUTION;
+		tac = -1000;
 		elevator.set(ControlMode.Position,tac);
 		
 		isMoving = true;
