@@ -30,7 +30,7 @@ public class AutonConstants {
     //Distance from front of Hab2 to the center of Bay3 (tape)
     public static final double HAB2_CARGOSHIP_BAY3_TOTAL_DISTANCE = HAB2_CARGOSHIP_BAY1_TOTAL_DISTANCE + CARGOSHIP_BAY1_TO_BAY3;
  
-    //Distance from Hab1 to reach the Bay1 of the ship
+    //Distance from center of Robot on Hab1 to the center of Bay1 of the ship 212.8-(35/2)
     public static final double HAB1_CARGOSHIP_BAY1_TOTAL_DISTANCE = 195.33;
 
     //Distance from Hab1 to reach the Bay2 of the ship
@@ -65,5 +65,9 @@ public class AutonConstants {
 
     //Distance robot will back up after pickup of hatchpanel
     public static final double BACKUP_AFTER_PICKUP = 24;
+
+    //Global adjustment for distance driving diagonaly from cargo ship towards loadingstation, if it is overshoots or under, use this to make adjustments
+    public static final int BAY_TO_LOADING_ADJUSTMENT = -30; 
+
 }
 

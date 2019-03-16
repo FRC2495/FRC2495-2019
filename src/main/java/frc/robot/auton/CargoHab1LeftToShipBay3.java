@@ -35,7 +35,6 @@ public class CargoHab1LeftToShipBay3 extends CommandGroup {
 		// arm.
 
 		final int TURN_DIRECTION = 1;  //When you are on Left side this is 1 and its -1 when on right side.
-		final int BAY_TO_LOADING_ADJUSTMENT = -30; //driving diagonaly from cargo ship towards loadingstation, if it is overshoots or under, use this to make adjustments
 		double rise;
 		double run;
 		int bayToLoadingTurnAngle;
@@ -69,7 +68,7 @@ public class CargoHab1LeftToShipBay3 extends CommandGroup {
 		//...to crossline of Hab2line and line perpendicular to loading station
 		//angle of turn is inverse tan (rise/run) -- calculate from center of robot
 		rise = AutonConstants.SHIP_TO_LONGSIDE-AutonConstants.LOADINGSTATION_TO_LONGSIDE-AutonConstants.BACKUP_AFTER_DELIVERY-(AutonConstants.ROBOT_LENGTH/2);
-		run  = AutonConstants.HAB2_CARGOSHIP_BAY3_TOTAL_DISTANCE; 
+		run  = AutonConstants.HAB1_CARGOSHIP_BAY3_TOTAL_DISTANCE; 
 		bayToLoadingTurnAngle = (int) Math.toDegrees(Math.atan(rise/run));
 
 		addSequential(new DrivetrainTurnAngleUsingPidController(TURN_DIRECTION*(bayToLoadingTurnAngle+90)));
@@ -77,7 +76,7 @@ public class CargoHab1LeftToShipBay3 extends CommandGroup {
 		
 		//Drive torwards loading station.  This is the hypotnuse of the triangle between hab2line, bay3 and crossline 
 		bayToLoadingDistance = Math.sqrt(Math.pow(rise,2)+Math.pow(run,2));
-		addSequential(new DrivetrainMoveDistance(bayToLoadingDistance+BAY_TO_LOADING_ADJUSTMENT));
+		addSequential(new DrivetrainMoveDistance(bayToLoadingDistance+AutonConstants.BAY_TO_LOADING_ADJUSTMENT));
 
 		//Turn and face the loading station
 		addSequential(new DrivetrainTurnAngleUsingPidController(-TURN_DIRECTION*(bayToLoadingTurnAngle)));
