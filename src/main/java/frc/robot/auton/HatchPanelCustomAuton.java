@@ -57,6 +57,7 @@ public class HatchPanelCustomAuton extends CommandGroup {
 		// arm.
 
 		addSequential(new EjectorExtend());
+		addSequential(new HingeMoveUp()); // forces hinge back up just in case
 
 		switch (startPosition) {
 			case Robot.START_POSITION_HAB1_LEFT:

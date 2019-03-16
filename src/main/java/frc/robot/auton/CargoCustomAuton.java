@@ -9,6 +9,7 @@ package frc.robot.auton;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.Robot;
+import frc.robot.commands.*;
 
 public class CargoCustomAuton extends CommandGroup {
 
@@ -54,6 +55,8 @@ public class CargoCustomAuton extends CommandGroup {
 		// e.g. if Command1 requires chassis, and Command2 requires arm,
 		// a CommandGroup containing them would require both the chassis and the
 		// arm.
+
+		addSequential(new HingeMoveUp()); // forces hinge back up just in case
 
 		switch (startPosition) {
 			case Robot.START_POSITION_HAB1_LEFT:
