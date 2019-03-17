@@ -56,8 +56,9 @@ public class HatchPanelCustomAuton extends CommandGroup {
 		// a CommandGroup containing them would require both the chassis and the
 		// arm.
 
-		addSequential(new EjectorExtend());
+		addSequential(new EjectorExtend()); // extends arm so we can catch the hatch panel
 		addSequential(new HingeMoveUp()); // forces hinge back up just in case
+		addSequential(new EjectorRetract()); // retracts the ejector so that we hold the hatch panel close to us
 
 		switch (startPosition) {
 			case Robot.START_POSITION_HAB1_LEFT:
