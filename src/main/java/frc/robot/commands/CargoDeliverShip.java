@@ -45,8 +45,11 @@ public class CargoDeliverShip extends CommandGroup {
 
 		addSequential(new DrivetrainMoveDistanceWithStallDetection(MAGIC_DISTANCE_INCHES + 12)); // moves forward a little
 
+		addSequential(new HingeMoveDown());
+
 		addSequential(new GrasperTimedRelease(2));
-		addParallel(new HingeMoveUp());  
+		
+		addSequential(new HingeMoveUp());  
 		addSequential(new DrivetrainMoveDistance(-24 + LimelightCamera.OFFSET_CAMERA_PORT_INCHES-LimelightCamera.OFFSET_CAMERA_HATCH_INCHES));
 	
 		addSequential(new ElevatorMoveDown());
