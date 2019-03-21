@@ -68,6 +68,8 @@ public class HatchPanelDeliver extends CommandGroup {
 
 		addSequential(new DrivetrainMoveDistanceWithStallDetection(MAGIC_DISTANCE_INCHES + 12));
 
+		addSequential(new EjectorExtend()); // we extend back
+
 		addParallel(new HookTimedSwitchDown(2.0));
 		addSequential(new DrivetrainMoveDistance(-24));
 
