@@ -161,7 +161,7 @@ public class OI {
 		gamepadBack.whileHeld(new FullCalibrateAndReset());
 
 		gamepadRB = new JoystickButton(gamepad, ControllerBase.GamepadButtons.RB);
-		gamepadRB.whenPressed(new HingeMoveMidway());
+		gamepadRB.whenPressed(new HingeMidwayWithEjectorRetracted());
 
 		gamepadLB = new JoystickButton(gamepad, ControllerBase.GamepadButtons.LB);
 		//gamepadLB.whenPressed(new ElevatorMoveMidway());
@@ -213,7 +213,7 @@ public class OI {
 
 		joyRightBtn5 = new JoystickButton(joyRight, ControllerBase.JoystickButtons.BTN5);
 		//joyRightBtn5.whenPressed(new DrivetrainMoveUsingCameraPidController(LimelightCamera.OFFSET_CAMERA_HATCH_INCHES));
-		final int MAGIC_DISTANCE_INCHES = 12;
+		final int MAGIC_DISTANCE_INCHES = 20;
 		joyRightBtn5.whenPressed(new DrivetrainDriveUsingCamera(LimelightCamera.OFFSET_CAMERA_HATCH_INCHES + MAGIC_DISTANCE_INCHES));
 
 		joyRightBtn4 = new JoystickButton(joyRight, ControllerBase.JoystickButtons.BTN4);
