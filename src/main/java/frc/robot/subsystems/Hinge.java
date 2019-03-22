@@ -23,7 +23,7 @@ public class Hinge extends Subsystem implements IHinge {
 	
 	public static final double GEAR_RATIO = 3.0; // TODO change if needed
 	
-	public static final int ANGLE_TO_TRAVEL_TICKS = Robot.COMPETITION_BOT_CONFIG?150000:150000; // TODO set proper value
+	public static final int ANGLE_TO_TRAVEL_TICKS = Robot.COMPETITION_BOT_CONFIG?148000:148000; // TODO set proper value
 	public static final int FAKE_HOME_POSITION_TICKS = ANGLE_TO_TRAVEL_TICKS; 
 	
 	/*
@@ -33,8 +33,8 @@ public class Hinge extends Subsystem implements IHinge {
 	*/
 	static final double VIRTUAL_HOME_OFFSET_TICKS = 1000; // position of virtual home compared to physical home
 	
-	static final double HOMING_PCT_OUTPUT = 0.4; // ~homing speed
-	static final double MAX_PCT_OUTPUT = 0.8; // ~full speed
+	static final double HOMING_PCT_OUTPUT = 0.3; // ~homing speed
+	static final double MAX_PCT_OUTPUT = 0.6; // ~full speed
 	
 	static final int TALON_TIMEOUT_MS = 10;
 	public static final int TICKS_PER_REVOLUTION = 4096;
@@ -51,7 +51,7 @@ public class Hinge extends Subsystem implements IHinge {
 	static final double MOVE_INTEGRAL_GAIN = 0.0;
 	static final double MOVE_DERIVATIVE_GAIN = 0.0;
 	
-	static final int TALON_TICK_THRESH = 128;
+	static final int TALON_TICK_THRESH = 256;//128;
 	static final double TICK_THRESH = 4096;	
 	
 	private final static int MOVE_ON_TARGET_MINIMUM_COUNT= 10; // number of times/iterations we need to be on target to really be on target
