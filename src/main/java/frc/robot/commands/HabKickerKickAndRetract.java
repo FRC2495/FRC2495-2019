@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 
 public class HabKickerKickAndRetract extends CommandGroup {
 
-  final double TIMEOUT_KICK_S = 0.5;
+  final double TIMEOUT_KICK_S = 0.25;
 
   /**
    * Add your docs here.
